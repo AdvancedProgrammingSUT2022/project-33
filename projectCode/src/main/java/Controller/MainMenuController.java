@@ -42,7 +42,7 @@ public class MainMenuController {
             }
             else if (doesMatch(input, MatchingStrings.MainControllerStrings.ENTER_MENU)){
                 if (doesMatch(input, MatchingStrings.MainControllerStrings.ENTER_PROFILE_MENU)){
-                    ProfileMenuController profileMenuController = new ProfileMenuController(menu.getUser());
+                    ProfileMenuController profileMenuController = new ProfileMenuController(menu.getUser(), menu.getUsers());
                 }
                 else {
                     view.showImpossibleMenuNavigation();

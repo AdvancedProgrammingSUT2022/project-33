@@ -36,4 +36,21 @@ public class MatchingStrings {
         public final static Pattern PLAY_8_PLAYER_GAME = Pattern.compile("play game (-(-?)player1 [a-zA-Z0-9]+) (-(-?)player2 [a-zA-Z0-9]+) (-(-?)player3 [a-zA-Z0-9]+) (-(-?)player4 [a-zA-Z0-9]+) (-(-?)player5 [a-zA-Z0-9]+) (-(-?)player6 [a-zA-Z0-9]+) (-(-?)player7 [a-zA-Z0-9]+) (-(-?)player8 [a-zA-Z0-9]+)");
         public final static Pattern PLAYER = Pattern.compile("(-(-?)player[1-8] [a-zA-Z0-9]+)");
     }
+
+
+
+    public static class ProfileControllerStrings{
+        public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
+        public final static Pattern ENTER_MENU = Pattern.compile("menu enter \\S");
+        public final static Pattern EXIT = Pattern.compile("menu exit");
+        public final static Pattern CHANGE_NICKNAME = Pattern.compile("profile change -(-?)nickname (\\w)+");
+        public final static Pattern CHANGE_PASSWORD1 = Pattern.compile("profile change (-(-?)password) -(-?)current [a-zA-Z0-9]+ -(-?)new [a-zA-Z0-9]+");
+        public final static Pattern CHANGE_PASSWORD2 = Pattern.compile("profile change (-(-?)password) -(-?)new [a-zA-Z0-9]+ -(-?)current [a-zA-Z0-9]+");
+        public final static Pattern CHANGE_PASSWORD3 = Pattern.compile("profile change -(-?)current [a-zA-Z0-9]+ (-(-?)password) -(-?)new [a-zA-Z0-9]+");
+        public final static Pattern CHANGE_PASSWORD4 = Pattern.compile("profile change -(-?)current [a-zA-Z0-9]+ -(-?)new [a-zA-Z0-9]+ (-(-?)password)");
+        public final static Pattern CHANGE_PASSWORD5 = Pattern.compile("profile change -(-?)new [a-zA-Z0-9]+ (-(-?)password) -(-?)current [a-zA-Z0-9]+");
+        public final static Pattern CHANGE_PASSWORD6 = Pattern.compile("profile change -(-?)new [a-zA-Z0-9]+ -(-?)current [a-zA-Z0-9]+ (-(-?)password)");
+        public final static Pattern CURRENT_PASSWORD = Pattern.compile("-(-?)current [a-zA-Z0-9]+");
+        public final static Pattern NEW_PASSWORD = Pattern.compile("-(-?)new [a-zA-Z0-9]+");
+    }
 }

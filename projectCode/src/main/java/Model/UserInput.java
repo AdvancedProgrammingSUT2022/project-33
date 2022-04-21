@@ -29,4 +29,12 @@ public class UserInput {
 
         return input;
     }
+
+
+
+    public static boolean doesMatch(String input, Pattern pattern)
+    {
+        Matcher matcher = pattern.matcher(input);
+        return matcher.matches();
+    }
 }

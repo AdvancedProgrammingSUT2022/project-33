@@ -85,4 +85,11 @@ public class MainMenu {
     {
         return user;
     }
+
+
+
+    public ArrayList<User> getUsers()
+    {
+        return users;
+    }
 }
