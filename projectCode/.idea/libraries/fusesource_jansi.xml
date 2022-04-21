@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="fusesource.jansi" type="repository">
+    <properties maven-id="org.fusesource.jansi:jansi:2.4.0">
+      <exclude>
+        <dependency maven-id="org.fusesource.jansi:jansi" />
+      </exclude>
+    </properties>
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
