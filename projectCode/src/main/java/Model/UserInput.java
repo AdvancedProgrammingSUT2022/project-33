@@ -23,7 +23,7 @@ public class UserInput {
         Matcher spaceMatcher = Pattern.compile("\\s(\\s+)").matcher(input);
 
         while (spaceMatcher.find()){
-            input = input.substring(0, spaceMatcher.start()) + input.substring(spaceMatcher.end());
+            input = input.substring(0, spaceMatcher.start()) + " " + input.substring(spaceMatcher.end());
             spaceMatcher = Pattern.compile("\\s(\\s+)").matcher(input);
         }
 

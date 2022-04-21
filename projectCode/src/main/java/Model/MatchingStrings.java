@@ -19,4 +19,21 @@ public class MatchingStrings {
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern EXIT = Pattern.compile("Exit");
     }
+
+
+
+    public static class MainControllerStrings{
+        public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
+        public final static Pattern ENTER_MENU = Pattern.compile("menu enter \\S");
+        public final static Pattern ENTER_PROFILE_MENU = Pattern.compile("menu enter Profile");
+        public final static Pattern EXIT = Pattern.compile("menu exit");
+        public final static Pattern PLAY_2_PLAYER_GAME = Pattern.compile("play game (-(-?)player1 [a-zA-Z0-9]+) (-(-?)player2 [a-zA-Z0-9]+)");
+        public final static Pattern PLAY_3_PLAYER_GAME = Pattern.compile("play game (-(-?)player1 [a-zA-Z0-9]+) (-(-?)player2 [a-zA-Z0-9]+) (-(-?)player3 [a-zA-Z0-9]+)");
+        public final static Pattern PLAY_4_PLAYER_GAME = Pattern.compile("play game (-(-?)player1 [a-zA-Z0-9]+) (-(-?)player2 [a-zA-Z0-9]+) (-(-?)player3 [a-zA-Z0-9]+) (-(-?)player4 [a-zA-Z0-9]+)");
+        public final static Pattern PLAY_5_PLAYER_GAME = Pattern.compile("play game (-(-?)player1 [a-zA-Z0-9]+) (-(-?)player2 [a-zA-Z0-9]+) (-(-?)player3 [a-zA-Z0-9]+) (-(-?)player4 [a-zA-Z0-9]+) (-(-?)player5 [a-zA-Z0-9]+)");
+        public final static Pattern PLAY_6_PLAYER_GAME = Pattern.compile("play game (-(-?)player1 [a-zA-Z0-9]+) (-(-?)player2 [a-zA-Z0-9]+) (-(-?)player3 [a-zA-Z0-9]+) (-(-?)player4 [a-zA-Z0-9]+) (-(-?)player5 [a-zA-Z0-9]+) (-(-?)player6 [a-zA-Z0-9]+)");
+        public final static Pattern PLAY_7_PLAYER_GAME = Pattern.compile("play game (-(-?)player1 [a-zA-Z0-9]+) (-(-?)player2 [a-zA-Z0-9]+) (-(-?)player3 [a-zA-Z0-9]+) (-(-?)player4 [a-zA-Z0-9]+) (-(-?)player5 [a-zA-Z0-9]+) (-(-?)player6 [a-zA-Z0-9]+) (-(-?)player7 [a-zA-Z0-9]+)");
+        public final static Pattern PLAY_8_PLAYER_GAME = Pattern.compile("play game (-(-?)player1 [a-zA-Z0-9]+) (-(-?)player2 [a-zA-Z0-9]+) (-(-?)player3 [a-zA-Z0-9]+) (-(-?)player4 [a-zA-Z0-9]+) (-(-?)player5 [a-zA-Z0-9]+) (-(-?)player6 [a-zA-Z0-9]+) (-(-?)player7 [a-zA-Z0-9]+) (-(-?)player8 [a-zA-Z0-9]+)");
+        public final static Pattern PLAYER = Pattern.compile("(-(-?)player[1-8] [a-zA-Z0-9]+)");
+    }
 }

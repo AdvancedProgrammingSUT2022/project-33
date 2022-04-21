@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.MainMenuController;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -15,6 +17,20 @@ public class LoginMenu {
     {
         //TODO load users from file
         users = new ArrayList<>();
+    }
+
+
+
+    public void addUser(User user)
+    {
+        users.add(user);
+    }
+
+
+
+    public void loginUser(User user)
+    {
+        MainMenuController mainMenuController = new MainMenuController(user, users);
     }
 
 
@@ -44,19 +60,5 @@ public class LoginMenu {
         }
 
         return null;
-    }
-
-
-
-    public void addUser(User user)
-    {
-        users.add(user);
-    }
-
-
-
-    public void loginUser(User user)
-    {
-
     }
 }
