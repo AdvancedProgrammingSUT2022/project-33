@@ -1,5 +1,5 @@
 package Model;
 
-public enum GeneralBioms {
-    
+public enum GeneralBiomes {
+    DESERT, FOREST, GRASSLAND, TUNDRA, FRESHWATER
 }

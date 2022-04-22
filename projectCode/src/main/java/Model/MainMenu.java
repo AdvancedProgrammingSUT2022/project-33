@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.GameLoaderController;
 import View.MainMenuView;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class MainMenu {
             players.add(getUserFromUsername(usernames.get(i)));
         }
 
-        GameLoader gameLoader = new GameLoader(players);
+        GameLoaderController gameLoader = new GameLoaderController(players);
     }
 
 

@@ -1,2 +1,5 @@
-package Model;public enum Colors {
+package Model;
+
+public enum Colors {
+    BLUE, RED, GREEN, YELLOW, AQUA, ORANGE, PURPLE, PINK
 }
