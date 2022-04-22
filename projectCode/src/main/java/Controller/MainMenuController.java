@@ -54,7 +54,7 @@ public class MainMenuController {
             || doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_8_PLAYER_GAME)){
                 getUsernamesAndStartGame(input);
             }
-            else if (doesMatch(input, MatchingStrings.MainControllerStrings.EXIT)){
+            else if (doesMatch(input, MatchingStrings.MainControllerStrings.EXIT) || doesMatch(input, MatchingStrings.MainControllerStrings.LOGOUT)){
                 return;
             }
             else {

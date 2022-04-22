@@ -51,7 +51,7 @@ public class LoginMenuController {
             }
             else if (doesMatch(input, MatchingStrings.LoginControllerStrings.EXIT)){
                 view.showGoodbye();
-                Exit();
+                menu.Exit();
                 return;
             }
             else {
@@ -157,12 +157,5 @@ public class LoginMenuController {
         String password = passwordMatcher.group().split(" ")[1];
 
         return new String[]{username, password};
-    }
-
-
-
-    private void Exit()
-    {
-        //TODO: save users
     }
 }
