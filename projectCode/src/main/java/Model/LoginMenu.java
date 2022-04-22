@@ -27,7 +27,9 @@ public class LoginMenu {
         try {
             Reader reader = Files.newBufferedReader(Paths.get("../Users/usersList.json"));
 
-            users = new ArrayList<>(Arrays.asList(gson.fromJson(reader, User[].class)));
+            if (gson.fromJson(reader, User[].class) != null) {
+                users = new ArrayList<>(Arrays.asList(gson.fromJson(reader, User[].class)));
+            }
         }
         catch (Exception ex){
             ex.printStackTrace();

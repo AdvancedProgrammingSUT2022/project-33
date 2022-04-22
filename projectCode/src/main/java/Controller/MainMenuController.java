@@ -37,38 +37,30 @@ public class MainMenuController {
             String input = UserInput.getInput();
             input = UserInput.removeSpaces(input);
 
-            if (doesMatch(input, MatchingStrings.MainControllerStrings.SHOW_MENU)){
+            if (UserInput.doesMatch(input, MatchingStrings.MainControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu();
             }
-            else if (doesMatch(input, MatchingStrings.MainControllerStrings.ENTER_MENU)){
-                if (doesMatch(input, MatchingStrings.MainControllerStrings.ENTER_PROFILE_MENU)){
+            else if (UserInput.doesMatch(input, MatchingStrings.MainControllerStrings.ENTER_MENU)){
+                if (UserInput.doesMatch(input, MatchingStrings.MainControllerStrings.ENTER_PROFILE_MENU)){
                     ProfileMenuController profileMenuController = new ProfileMenuController(menu.getUser(), menu.getUsers());
                 }
                 else {
                     view.showImpossibleMenuNavigation();
                 }
             }
-            else if (doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_2_PLAYER_GAME) || doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_3_PLAYER_GAME)
-            || doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_4_PLAYER_GAME) || doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_5_PLAYER_GAME)
-            || doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_6_PLAYER_GAME) || doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_7_PLAYER_GAME)
-            || doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_8_PLAYER_GAME)){
+            else if (UserInput.doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_2_PLAYER_GAME) || UserInput.doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_3_PLAYER_GAME)
+            || UserInput.doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_4_PLAYER_GAME) || UserInput.doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_5_PLAYER_GAME)
+            || UserInput.doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_6_PLAYER_GAME) || UserInput.doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_7_PLAYER_GAME)
+            || UserInput.doesMatch(input, MatchingStrings.MainControllerStrings.PLAY_8_PLAYER_GAME)){
                 getUsernamesAndStartGame(input);
             }
-            else if (doesMatch(input, MatchingStrings.MainControllerStrings.EXIT) || doesMatch(input, MatchingStrings.MainControllerStrings.LOGOUT)){
+            else if (UserInput.doesMatch(input, MatchingStrings.MainControllerStrings.EXIT) || UserInput.doesMatch(input, MatchingStrings.MainControllerStrings.LOGOUT)){
                 return;
             }
             else {
                 view.showInvalidCommand();
             }
         }
-    }
-
-
-
-    private boolean doesMatch(String input, Pattern pattern)
-    {
-        Matcher matcher = pattern.matcher(input);
-        return matcher.matches();
     }
 
 

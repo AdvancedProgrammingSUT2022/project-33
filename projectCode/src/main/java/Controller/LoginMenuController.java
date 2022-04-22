@@ -35,21 +35,21 @@ public class LoginMenuController {
             String input = UserInput.getInput();
             input = UserInput.removeSpaces(input);
 
-            if (doesMatch(input, MatchingStrings.LoginControllerStrings.CREATE_USER_1) || doesMatch(input, MatchingStrings.LoginControllerStrings.CREATE_USER_2)
-            || doesMatch(input, MatchingStrings.LoginControllerStrings.CREATE_USER_3) || doesMatch(input, MatchingStrings.LoginControllerStrings.CREATE_USER_4)
-            || doesMatch(input, MatchingStrings.LoginControllerStrings.CREATE_USER_5) || doesMatch(input, MatchingStrings.LoginControllerStrings.CREATE_USER_6)){
+            if (UserInput.doesMatch(input, MatchingStrings.LoginControllerStrings.CREATE_USER_1) || UserInput.doesMatch(input, MatchingStrings.LoginControllerStrings.CREATE_USER_2)
+            || UserInput.doesMatch(input, MatchingStrings.LoginControllerStrings.CREATE_USER_3) || UserInput.doesMatch(input, MatchingStrings.LoginControllerStrings.CREATE_USER_4)
+            || UserInput.doesMatch(input, MatchingStrings.LoginControllerStrings.CREATE_USER_5) || UserInput.doesMatch(input, MatchingStrings.LoginControllerStrings.CREATE_USER_6)){
                 createUser(input);
             }
-            else if (doesMatch(input, MatchingStrings.LoginControllerStrings.ENTER_MENU)){
+            else if (UserInput.doesMatch(input, MatchingStrings.LoginControllerStrings.ENTER_MENU)){
                 view.showPleaseLogin();
             }
-            else if (doesMatch(input, MatchingStrings.LoginControllerStrings.SHOW_MENU)){
+            else if (UserInput.doesMatch(input, MatchingStrings.LoginControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu();
             }
-            else if (doesMatch(input, MatchingStrings.LoginControllerStrings.LOGIN_USER_1) || doesMatch(input, MatchingStrings.LoginControllerStrings.LOGIN_USER_2)){
+            else if (UserInput.doesMatch(input, MatchingStrings.LoginControllerStrings.LOGIN_USER_1) || UserInput.doesMatch(input, MatchingStrings.LoginControllerStrings.LOGIN_USER_2)){
                 loginUser(input);
             }
-            else if (doesMatch(input, MatchingStrings.LoginControllerStrings.EXIT)){
+            else if (UserInput.doesMatch(input, MatchingStrings.LoginControllerStrings.EXIT)){
                 view.showGoodbye();
                 menu.Exit();
                 return;
@@ -58,14 +58,6 @@ public class LoginMenuController {
                 view.showInvalidCommand();
             }
         }
-    }
-
-
-
-    private boolean doesMatch(String input, Pattern pattern)
-    {
-        Matcher matcher = pattern.matcher(input);
-        return  matcher.matches();
     }
 
 

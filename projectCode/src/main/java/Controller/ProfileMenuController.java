@@ -37,35 +37,27 @@ public class ProfileMenuController {
             String input = UserInput.getInput();
             input = UserInput.removeSpaces(input);
 
-            if (doesMatch(input, MatchingStrings.ProfileControllerStrings.SHOW_MENU)){
+            if (UserInput.doesMatch(input, MatchingStrings.ProfileControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu();
             }
-            else if (doesMatch(input, MatchingStrings.ProfileControllerStrings.ENTER_MENU)){
+            else if (UserInput.doesMatch(input, MatchingStrings.ProfileControllerStrings.ENTER_MENU)){
                 view.showImpossibleNavigation();
             }
-            else if (doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_NICKNAME)){
+            else if (UserInput.doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_NICKNAME)){
                 changeNickname(input);
             }
-            else if (doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_PASSWORD1) || doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_PASSWORD2)
-            || doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_PASSWORD3) || doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_PASSWORD4)
-            || doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_PASSWORD5) || doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_PASSWORD6)){
+            else if (UserInput.doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_PASSWORD1) || UserInput.doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_PASSWORD2)
+            || UserInput.doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_PASSWORD3) || UserInput.doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_PASSWORD4)
+            || UserInput.doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_PASSWORD5) || UserInput.doesMatch(input, MatchingStrings.ProfileControllerStrings.CHANGE_PASSWORD6)){
                 changePassword(input);
             }
-            else if (doesMatch(input, MatchingStrings.ProfileControllerStrings.EXIT)){
+            else if (UserInput.doesMatch(input, MatchingStrings.ProfileControllerStrings.EXIT)){
                 return;
             }
             else {
                 view.showInvalidCommand();
             }
         }
-    }
-
-
-
-    private boolean doesMatch(String input, Pattern pattern)
-    {
-        Matcher matcher = pattern.matcher(input);
-        return matcher.matches();
     }
 
 
