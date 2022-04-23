@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Terrain extends MapLandElement{
-    ArrayList<String> availableProperties;
+    private ArrayList<String> availableProperties;
     private boolean hasProperty;
     private MapProperty property;
     boolean hasResource;
-    ResourceCategories resourceCategory;
-    Resource resource;
-    StrategicResource strategicResource;
-    LuxuryResource luxuryResource;
+    private ResourceCategories resourceCategory;
+    private Resource resource;
+    private StrategicResource strategicResource;
+    private LuxuryResource luxuryResource;
 
 
 
@@ -103,5 +103,13 @@ public class Terrain extends MapLandElement{
                 luxuryResource = temporarilyResource;
             }
         }
+    }
+
+
+
+    //getters
+    public void setCoordinates(Coordinates coordinates)
+    {
+        super.setCenterCoordinates(coordinates);
     }
 }

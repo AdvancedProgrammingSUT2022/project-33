@@ -15,7 +15,7 @@ public enum TerrainTypes {
     TUNDRA(1, 0, 0, -33, 1, true, new ArrayList<String>(List.of("JUNGLE")));
 
 
-    public final MapLandElement land;
+    public final Terrain land;
 
     TerrainTypes(int food, int production, int gold, int fightChangePercentage, int movementPrice, boolean isMovable, ArrayList<String> availableProperties)
     {
