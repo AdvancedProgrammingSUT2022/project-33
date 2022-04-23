@@ -11,4 +11,11 @@ public class MapProperty extends MapLandElement{
     {
         super(food, production, gold, fightChangePercentage, movementPrice, canBeCrossed);
     }
+
+
+
+    public MapProperty(String type, MapLandElement property)
+    {
+        super(type, property);
+    }
 }

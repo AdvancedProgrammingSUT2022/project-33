@@ -80,4 +80,46 @@ public class MapLandElement {
     public boolean isCanBeCrossed() {
         return canBeCrossed;
     }
+
+
+
+    //setters
+    public void setType(String type) {
+        this.type = type;
+    }
+
+
+    public void setCenterCoordinates(Coordinates centerCoordinates) {
+        this.centerCoordinates = centerCoordinates;
+    }
+
+
+    public void setFood(int food) {
+        this.food = food;
+    }
+
+
+    public void setProduction(int production) {
+        this.production = production;
+    }
+
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+
+    public void setFightChangePercentage(int fightChangePercentage) {
+        this.fightChangePercentage = fightChangePercentage;
+    }
+
+
+    public void setMovementPrice(int movementPrice) {
+        this.movementPrice = movementPrice;
+    }
+
+
+    public void setCanBeCrossed(boolean canBeCrossed) {
+        this.canBeCrossed = canBeCrossed;
+    }
 }
