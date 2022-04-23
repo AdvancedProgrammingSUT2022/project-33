@@ -22,10 +22,10 @@ public enum LandElementType {
     OASIS(3, 0, 1, -33, 1, true);
 
 
-    public final LandElementTypeEffect effect;
+    public final MapLandElement land;
 
     LandElementType(int food, int production, int gold, int fightChangePercentage, int movementPrice, boolean isMovable)
     {
-        effect = new LandElementTypeEffect(food, production, gold, fightChangePercentage, movementPrice, isMovable);
+        land = new MapLandElement(food, production, gold, fightChangePercentage, movementPrice, isMovable);
     }
 }
