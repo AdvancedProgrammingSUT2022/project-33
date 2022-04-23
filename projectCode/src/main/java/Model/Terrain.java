@@ -8,10 +8,10 @@ public class Terrain extends MapLandElement{
     private boolean hasProperty;
     private MapProperty property;
     boolean hasResource;
-    String resourceType;
+    ResourceCategories resourceCategory;
     Resource resource;
-    LuxuryResource luxuryResource;
     StrategicResource strategicResource;
+    LuxuryResource luxuryResource;
 
 
 
@@ -39,7 +39,7 @@ public class Terrain extends MapLandElement{
 
 
 
-    public void chooseAndPlaceProperty()
+    private void chooseAndPlaceProperty()
     {
         Random rand = new Random();
 
@@ -54,21 +54,54 @@ public class Terrain extends MapLandElement{
             return;
         }
 
-        int propertyTypeIndex = rand.nextInt(availableProperties.size() - 1);
+        int propertyTypeIndex = rand.nextInt(availableProperties.size());
         property = new MapProperty(MapPropertyTypes.values()[propertyTypeIndex].toString(), MapPropertyTypes.values()[propertyTypeIndex].property);
         hasProperty = true;
     }
 
 
 
-    public void chooseAndPlaceResource()
+    private void chooseAndPlaceResource()
     {
         Random rand = new Random();
+        hasResource = false;
 
-        if (rand.nextInt(100) >= 25)
+        if (rand.nextInt(100) >= 35)
         {
-            hasResource = false;
             return;
+        }
+
+        int resourceTypeNumber = rand.nextInt(3);
+
+        if (resourceTypeNumber == 0){
+            int resourceIndex = rand.nextInt(ResourceTypes.values().length);
+            Resource temporarilyResource = new Resource(ResourceTypes.values()[resourceIndex].toString() , ResourceTypes.values()[resourceIndex].resource);
+
+            if (temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
+                hasResource = true;
+                resourceCategory = ResourceCategories.NORMAL;
+                resource = temporarilyResource;
+            }
+        }
+        else if (resourceTypeNumber == 1){
+            int resourceIndex = rand.nextInt(StrategicResourceTypes.values().length);
+            StrategicResource temporarilyResource = new StrategicResource(StrategicResourceTypes.values()[resourceIndex].toString() , StrategicResourceTypes.values()[resourceIndex].resource);
+
+            if (temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
+                hasResource = true;
+                resourceCategory = ResourceCategories.STRATEGIC;
+                strategicResource = temporarilyResource;
+            }
+        }
+        else {
+            int resourceIndex = rand.nextInt(LuxuryResourceTypes.values().length);
+            LuxuryResource temporarilyResource = new LuxuryResource(LuxuryResourceTypes.values()[resourceIndex].toString() , LuxuryResourceTypes.values()[resourceIndex].resource);
+
+            if (temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
+                hasResource = true;
+                resourceCategory = ResourceCategories.LUXURY;
+                luxuryResource = temporarilyResource;
+            }
         }
     }
 }
