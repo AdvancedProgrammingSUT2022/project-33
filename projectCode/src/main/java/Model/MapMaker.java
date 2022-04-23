@@ -57,7 +57,7 @@ public class MapMaker {
                     terrain.setCoordinates(coordinates);
                     map.addTerrain(terrain);
                     unavailableCoordinates.add(coordinates);
-                    //TODO: spread the land
+                    callSpreadFunctions(terrain, coordinates.getX(), coordinates.getY(), coordinates.getZ(), 100, 100);
                 }
             }
         }
@@ -67,13 +67,16 @@ public class MapMaker {
 
     private TerrainTypes getBiomeType(Coordinates coordinates)
     {
-        biomes.snowChance *= (int) (Math.pow(coordinates.getY() / mapSize.size, 9) * 40);
+        int snowChance = biomes.getSnowChance() * (int) ((1 - Math.pow(coordinates.getY() / mapSize.size * 2, 8)) * 40);
+        Biomes temporaryBiomes = new Biomes(biomes);
+        temporaryBiomes.setSnowChance(snowChance);
+
 
         Random rand = new Random();
-        int maxChance = biomes.getMaxChance();
+        int maxChance = temporaryBiomes.getMaxChance();
         int randomBiomeChance = rand.nextInt(maxChance);
 
-        ArrayList<Integer> chancesList = biomes.getChancesList();
+        ArrayList<Integer> chancesList = temporaryBiomes.getChancesList();
 
         for (int i = 0; i < chancesList.size(); i++){
             if (randomBiomeChance < chancesList.get(i)){
@@ -114,5 +117,72 @@ public class MapMaker {
         }
 
         return true;
+    }
+
+
+
+    private void spreadTerrain(Terrain terrain, Coordinates coordinates, int chance, int maxChance)
+    {
+        chance /= 3;
+
+        if (!isCoordinateAvailable(coordinates)){
+             return;
+        }
+
+        Random rand = new Random();
+        int chanceNumber = rand.nextInt(maxChance);
+
+        if (chanceNumber < chance){
+            Terrain newTerrain = new Terrain(terrain.getType(), terrain);
+            newTerrain.setCoordinates(coordinates);
+
+            int mainX = coordinates.getX();
+            int mainY = coordinates.getY();
+            int mainZ = coordinates.getZ();
+
+            callSpreadFunctions(newTerrain, mainX, mainY, mainZ, chance, maxChance);
+        }
+    }
+
+
+
+    private void callSpreadFunctions(Terrain newTerrain, int mainX, int mainY, int mainZ, int chance, int maxChance)
+    {
+        if (mainY + 2 < mapSize.size) {
+            spreadTerrain(newTerrain, new Coordinates(mainX, mainY + 2, mainZ), chance, maxChance);
+        }
+        if (mainY + 1 < mapSize.size) {
+            if (mainX + 1 < mapSize.size) {
+                spreadTerrain(newTerrain, new Coordinates(mainX + 1, mainY + 1, mainZ), chance, maxChance);
+            }
+            else {
+                spreadTerrain(newTerrain, new Coordinates(0, mainY + 1, mainZ), chance, maxChance);
+            }
+
+            if (mainX - 1 >= 0){
+                spreadTerrain(newTerrain, new Coordinates(mainX - 1, mainY + 1, mainZ), chance, maxChance);
+            }
+            else {
+                spreadTerrain(newTerrain, new Coordinates(mapSize.size - 1, mainY + 1, mainZ), chance, maxChance);
+            }
+        }
+        if (mainY - 1 >= 0){
+            if (mainX + 1 < mapSize.size) {
+                spreadTerrain(newTerrain, new Coordinates(mainX + 1, mainY - 1, mainZ), chance, maxChance);
+            }
+            else {
+                spreadTerrain(newTerrain, new Coordinates(0, mainY - 1, mainZ), chance, maxChance);
+            }
+
+            if (mainX - 1 >= 0){
+                spreadTerrain(newTerrain, new Coordinates(mainX - 1, mainY - 1 , mainZ), chance, maxChance);
+            }
+            else {
+                spreadTerrain(newTerrain, new Coordinates(mapSize.size - 1, mainY - 1 , mainZ), chance, maxChance);
+            }
+        }
+        if (mainY - 2 >= 0) {
+            spreadTerrain(newTerrain, new Coordinates(mainX, mainY - 2, mainZ), chance, maxChance);
+        }
     }
 }

@@ -3,14 +3,14 @@ package Model;
 import java.util.ArrayList;
 
 public class Biomes {
-    int desertChance;
-    int grasslandChance;
-    int hillsChance;
-    int mountainChance;
-    int oceanChance;
-    int plainChance;
-    int snowChance;
-    int tundraChance;
+    private int desertChance;
+    private int grasslandChance;
+    private int hillsChance;
+    private int mountainChance;
+    private int oceanChance;
+    private int plainChance;
+    private int snowChance;
+    private int tundraChance;
 
 
 
@@ -69,5 +69,17 @@ public class Biomes {
         chanceList.add(tundraChance);
 
         return chanceList;
+    }
+
+
+    public int getSnowChance() {
+        return snowChance;
+    }
+
+
+
+    //setters
+    public void setSnowChance(int snowChance) {
+        this.snowChance = snowChance;
     }
 }
