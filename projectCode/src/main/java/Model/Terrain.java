@@ -77,7 +77,7 @@ public class Terrain extends MapLandElement{
             int resourceIndex = rand.nextInt(ResourceTypes.values().length);
             Resource temporarilyResource = new Resource(ResourceTypes.values()[resourceIndex].toString() , ResourceTypes.values()[resourceIndex].resource);
 
-            if (temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
+            if (temporarilyResource.landsThatCanBeFound != null && temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
                 hasResource = true;
                 resourceCategory = ResourceCategories.NORMAL;
                 resource = temporarilyResource;
@@ -87,7 +87,7 @@ public class Terrain extends MapLandElement{
             int resourceIndex = rand.nextInt(StrategicResourceTypes.values().length);
             StrategicResource temporarilyResource = new StrategicResource(StrategicResourceTypes.values()[resourceIndex].toString() , StrategicResourceTypes.values()[resourceIndex].resource);
 
-            if (temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
+            if (temporarilyResource.landsThatCanBeFound != null && temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
                 hasResource = true;
                 resourceCategory = ResourceCategories.STRATEGIC;
                 strategicResource = temporarilyResource;
@@ -97,7 +97,7 @@ public class Terrain extends MapLandElement{
             int resourceIndex = rand.nextInt(LuxuryResourceTypes.values().length);
             LuxuryResource temporarilyResource = new LuxuryResource(LuxuryResourceTypes.values()[resourceIndex].toString() , LuxuryResourceTypes.values()[resourceIndex].resource);
 
-            if (temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
+            if (temporarilyResource.landsThatCanBeFound != null && temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
                 hasResource = true;
                 resourceCategory = ResourceCategories.LUXURY;
                 luxuryResource = temporarilyResource;

@@ -1,9 +1,11 @@
 package Model;
 
 public enum MapSizes {
-    SMALL(250),
-    MEDIUM(500),
-    LARGE(1000);
+    VERY_TINY(10),
+    TINY(25),
+    SMALL(50),
+    MEDIUM(100),
+    LARGE(200);
 
     public final int size;
 

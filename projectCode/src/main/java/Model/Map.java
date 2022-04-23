@@ -12,7 +12,7 @@ public class Map {
     ////methods////
     public Map()
     {
-
+        terrains = new ArrayList<>();
     }
 
 

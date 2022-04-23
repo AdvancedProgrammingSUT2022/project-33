@@ -41,6 +41,21 @@ public class MapMaker {
         }
 
         generateTerrains();
+
+        for (int j = 0; j < mapSize.size; j++){
+            for (int i = 0; i < mapSize.size; i++){
+                String name;
+
+                for (int k = 0; k < map.terrains.size(); k++){
+                    if (map.terrains.get(k).getCenterCoordinates().getX() == i && map.terrains.get(k).getCenterCoordinates().getY() == j){
+                        System.out.print(map.terrains.get(k).getType().toString().charAt(0) + " ");
+                        break;
+                    }
+                }
+            }
+
+            System.out.println(" ");
+        }
     }
 
 
@@ -57,7 +72,9 @@ public class MapMaker {
                     terrain.setCoordinates(coordinates);
                     map.addTerrain(terrain);
                     unavailableCoordinates.add(coordinates);
-                    callSpreadFunctions(terrain, coordinates.getX(), coordinates.getY(), coordinates.getZ(), 100, 100);
+                    if (type != TerrainTypes.SNOW) {
+                        callSpreadFunctions(terrain, coordinates.getX(), coordinates.getY(), coordinates.getZ(), 100, 100);
+                    }
                 }
             }
         }
@@ -67,7 +84,9 @@ public class MapMaker {
 
     private TerrainTypes getBiomeType(Coordinates coordinates)
     {
-        int snowChance = biomes.getSnowChance() * (int) ((1 - Math.pow(coordinates.getY() / mapSize.size * 2, 8)) * 40);
+        double y = coordinates.getY();
+        double yColdnessEffect = ((Math.pow(1 - y / mapSize.size * 2, 8)) * 40);
+        int snowChance = biomes.getSnowChance() * (int) yColdnessEffect;
         Biomes temporaryBiomes = new Biomes(biomes);
         temporaryBiomes.setSnowChance(snowChance);
 
@@ -135,6 +154,8 @@ public class MapMaker {
         if (chanceNumber < chance){
             Terrain newTerrain = new Terrain(terrain.getType(), terrain);
             newTerrain.setCoordinates(coordinates);
+            map.addTerrain(newTerrain);
+            unavailableCoordinates.add(coordinates);
 
             int mainX = coordinates.getX();
             int mainY = coordinates.getY();
