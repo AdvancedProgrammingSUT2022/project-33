@@ -41,21 +41,6 @@ public class MapMaker {
         }
 
         generateTerrains();
-
-        for (int j = 0; j < mapSize.size; j++){
-            for (int i = 0; i < mapSize.size; i++){
-                String name;
-
-                for (int k = 0; k < map.terrains.size(); k++){
-                    if (map.terrains.get(k).getCenterCoordinates().getX() == i && map.terrains.get(k).getCenterCoordinates().getY() == j){
-                        System.out.print(map.terrains.get(k).getType().toString().charAt(0) + " ");
-                        break;
-                    }
-                }
-            }
-
-            System.out.println(" ");
-        }
     }
 
 
