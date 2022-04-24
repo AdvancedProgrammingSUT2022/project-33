@@ -42,6 +42,7 @@ public class MapMaker {
 
         generateTerrains();
         buildDefaultCities();
+        placeBarbarians();
     }
 
 
@@ -222,7 +223,8 @@ public class MapMaker {
                     Coordinates cityCoordinates = new Coordinates(i, j, 0);
 
                     if (!map.getTerrainFromCoordinates(cityCoordinates).getIsTerritory()) {
-                        DefaultCity newDefaultCity = new DefaultCity(map.getTerrainFromCoordinates(cityCoordinates), NonPlayerColors.values()[map.getNumberOfDefaultCities()]);
+                        DefaultCity newDefaultCity = new DefaultCity(map.getTerrainFromCoordinates(cityCoordinates)
+                                , NonPlayerColors.values()[map.getNumberOfDefaultCities()], DefaultCityNames.values()[map.getNumberOfDefaultCities()]);
                         map.addDefaultCity(newDefaultCity);
 
                         if (map.getNumberOfDefaultCities() > maxCityNumber) {
@@ -245,10 +247,12 @@ public class MapMaker {
         for (int j = 0; j < mapSize.size; j++){
             for (int i = 0; i < mapSize.size; i++){
                 if (rand.nextInt(maxChance) < chance){
-                    Coordinates cityCoordinates = new Coordinates(i, j, 0);
+                    Coordinates baseCoordinates = new Coordinates(i, j, 0);
 
-                    if (!map.getTerrainFromCoordinates(cityCoordinates).getIsTerritory()) {
-                        //TODO:
+                    if (!map.getTerrainFromCoordinates(baseCoordinates).getIsTerritory()) {
+                        BarbarianBase barbarianBase = new BarbarianBase(baseCoordinates);
+                        map.addBarbarianBase(barbarianBase);
+                        map.getTerrainFromCoordinates(baseCoordinates).setTerritory(true);
                     }
                 }
             }

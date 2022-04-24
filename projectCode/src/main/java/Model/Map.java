@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Map {
     private ArrayList<Terrain> terrains;
     private ArrayList<DefaultCity> defaultCities;
+    private ArrayList<BarbarianBase> barbarianBases;
 
 
 
@@ -56,6 +57,13 @@ public class Map {
             city.addLand(getTerrainFromCoordinates(coordinates));
             getTerrainFromCoordinates(coordinates).setTerritory(true);
         }
+    }
+
+
+
+    public void addBarbarianBase(BarbarianBase barbarianBase)
+    {
+        barbarianBases.add(barbarianBase);
     }
 
 

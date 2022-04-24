@@ -1,6 +1,7 @@
 package Model;
 
 public class DefaultCity extends City{
+    private DefaultCityNames name;
     private NonPlayerColors color;
 
 
@@ -8,7 +9,7 @@ public class DefaultCity extends City{
 
 
     ////methods////
-    public DefaultCity(Terrain terrain, NonPlayerColors color)
+    public DefaultCity(Terrain terrain, NonPlayerColors color, DefaultCityNames name)
     {
         super(true, terrain);
 
