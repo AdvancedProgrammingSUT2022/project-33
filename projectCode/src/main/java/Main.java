@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args)
     {
         Map map = new Map();
-        MapMaker mapMaker = new MapMaker(map, GeneralBiomes.DESERT, MapSizes.VERY_TINY);
+        MapMaker mapMaker = new MapMaker(map, GeneralBiomes.DESERT, MapSizes.TINY);
         LoginMenuController loginMenuController = new LoginMenuController();
     }
 }

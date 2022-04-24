@@ -7,7 +7,7 @@ public class Terrain extends MapLandElement{
     private ArrayList<String> availableProperties;
     private boolean hasProperty;
     private MapProperty property;
-    boolean hasResource;
+    private boolean hasResource;
     private ResourceCategories resourceCategory;
     private Resource resource;
     private StrategicResource strategicResource;
@@ -74,8 +74,14 @@ public class Terrain extends MapLandElement{
         int resourceTypeNumber = rand.nextInt(3);
 
         if (resourceTypeNumber == 0){
-            int resourceIndex = rand.nextInt(ResourceTypes.values().length);
-            Resource temporarilyResource = new Resource(ResourceTypes.values()[resourceIndex].toString() , ResourceTypes.values()[resourceIndex].resource);
+            ArrayList<ResourceTypes> availableResources = getAvailableResources();
+
+            if (availableResources.size() == 0){
+                return;
+            }
+
+            int resourceIndex = rand.nextInt(availableResources.size());
+            Resource temporarilyResource = new Resource(availableResources.get(resourceIndex).toString() , availableResources.get(resourceIndex).resource);
 
             if (temporarilyResource.landsThatCanBeFound != null && temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
                 hasResource = true;
@@ -84,8 +90,14 @@ public class Terrain extends MapLandElement{
             }
         }
         else if (resourceTypeNumber == 1){
-            int resourceIndex = rand.nextInt(StrategicResourceTypes.values().length);
-            StrategicResource temporarilyResource = new StrategicResource(StrategicResourceTypes.values()[resourceIndex].toString() , StrategicResourceTypes.values()[resourceIndex].resource);
+            ArrayList<StrategicResourceTypes> availableResources = getAvailableStrategicResources();
+
+            if (availableResources.size() == 0){
+                return;
+            }
+
+            int resourceIndex = rand.nextInt(availableResources.size());
+            StrategicResource temporarilyResource = new StrategicResource(availableResources.get(resourceIndex).toString() , availableResources.get(resourceIndex).resource);
 
             if (temporarilyResource.landsThatCanBeFound != null && temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
                 hasResource = true;
@@ -94,15 +106,67 @@ public class Terrain extends MapLandElement{
             }
         }
         else {
-            int resourceIndex = rand.nextInt(LuxuryResourceTypes.values().length);
-            LuxuryResource temporarilyResource = new LuxuryResource(LuxuryResourceTypes.values()[resourceIndex].toString() , LuxuryResourceTypes.values()[resourceIndex].resource);
+            ArrayList<LuxuryResourceTypes> availableResources = getAvailableLuxuryResources();
 
-            if (temporarilyResource.landsThatCanBeFound != null && temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
-                hasResource = true;
-                resourceCategory = ResourceCategories.LUXURY;
-                luxuryResource = temporarilyResource;
+            if (availableResources.size() == 0){
+                return;
+            }
+
+            int resourceIndex = rand.nextInt(availableResources.size());
+            LuxuryResource temporarilyResource = new LuxuryResource(availableResources.get(resourceIndex).toString() , availableResources.get(resourceIndex).resource);
+
+            hasResource = true;
+            resourceCategory = ResourceCategories.LUXURY;
+            luxuryResource = temporarilyResource;
+        }
+    }
+
+
+
+    public ArrayList<ResourceTypes> getAvailableResources()
+    {
+        ArrayList<ResourceTypes> resources = new ArrayList<>();
+
+        for (int i = 0; i < ResourceTypes.values().length; i++){
+            if ((hasProperty && ResourceTypes.values()[i].resource.landsThatCanBeFound.contains(property.getType()))
+                    || ResourceTypes.values()[i].resource.landsThatCanBeFound.contains(this.getType())){
+                resources.add(ResourceTypes.values()[i]);
             }
         }
+
+        return resources;
+    }
+
+
+
+    public ArrayList<StrategicResourceTypes> getAvailableStrategicResources()
+    {
+        ArrayList<StrategicResourceTypes> resources = new ArrayList<>();
+
+        for (int i = 0; i < StrategicResourceTypes.values().length; i++){
+            if ((hasProperty && StrategicResourceTypes.values()[i].resource.landsThatCanBeFound.contains(property.getType()))
+                    || StrategicResourceTypes.values()[i].resource.landsThatCanBeFound.contains(this.getType())){
+                resources.add(StrategicResourceTypes.values()[i]);
+            }
+        }
+
+        return resources;
+    }
+
+
+
+    public ArrayList<LuxuryResourceTypes> getAvailableLuxuryResources()
+    {
+        ArrayList<LuxuryResourceTypes> resources = new ArrayList<>();
+
+        for (int i = 0; i < LuxuryResourceTypes.values().length; i++){
+            if ((hasProperty && LuxuryResourceTypes.values()[i].resource.landsThatCanBeFound.contains(property.getType()))
+                    || LuxuryResourceTypes.values()[i].resource.landsThatCanBeFound.contains(this.getType())){
+                resources.add(LuxuryResourceTypes.values()[i]);
+            }
+        }
+
+        return resources;
     }
 
 
@@ -111,5 +175,45 @@ public class Terrain extends MapLandElement{
     public void setCoordinates(Coordinates coordinates)
     {
         super.setCenterCoordinates(coordinates);
+    }
+
+
+    public ArrayList<String> getAvailableProperties() {
+        return availableProperties;
+    }
+
+
+    public boolean isHasProperty() {
+        return hasProperty;
+    }
+
+
+    public MapProperty getProperty() {
+        return property;
+    }
+
+
+    public boolean isHasResource() {
+        return hasResource;
+    }
+
+
+    public ResourceCategories getResourceCategory() {
+        return resourceCategory;
+    }
+
+
+    public Resource getResource() {
+        return resource;
+    }
+
+
+    public StrategicResource getStrategicResource() {
+        return strategicResource;
+    }
+
+
+    public LuxuryResource getLuxuryResource() {
+        return luxuryResource;
     }
 }

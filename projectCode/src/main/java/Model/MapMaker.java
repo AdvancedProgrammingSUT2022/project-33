@@ -72,9 +72,7 @@ public class MapMaker {
                     terrain.setCoordinates(coordinates);
                     map.addTerrain(terrain);
                     unavailableCoordinates.add(coordinates);
-                    if (type != TerrainTypes.SNOW) {
-                        callSpreadFunctions(terrain, coordinates.getX(), coordinates.getY(), coordinates.getZ(), 100, 100);
-                    }
+                    callSpreadFunctions(terrain, coordinates.getX(), coordinates.getY(), coordinates.getZ(), 100, 100);
                 }
             }
         }
@@ -85,7 +83,7 @@ public class MapMaker {
     private TerrainTypes getBiomeType(Coordinates coordinates)
     {
         double y = coordinates.getY();
-        double yColdnessEffect = ((Math.pow(1 - y / mapSize.size * 2, 8)) * 40);
+        double yColdnessEffect = 1 + ((Math.pow(1 - y / mapSize.size * 2, 10)) * 400);
         int snowChance = biomes.getSnowChance() * (int) yColdnessEffect;
         Biomes temporaryBiomes = new Biomes(biomes);
         temporaryBiomes.setSnowChance(snowChance);
@@ -151,6 +149,16 @@ public class MapMaker {
         Random rand = new Random();
         int chanceNumber = rand.nextInt(maxChance);
 
+
+        if (!terrain.getType().equals(TerrainTypes.SNOW.toString())) {
+            double y = coordinates.getY();
+            double yColdnessEffect = 1 + ((Math.pow(1 - y / mapSize.size * 2, 10)) * 2000);
+            int snowChance = biomes.getSnowChance() * (int) yColdnessEffect;
+
+            chanceNumber = rand.nextInt(maxChance + snowChance);
+        }
+
+
         if (chanceNumber < chance){
             Terrain newTerrain = new Terrain(terrain.getType(), terrain);
             newTerrain.setCoordinates(coordinates);
@@ -162,6 +170,12 @@ public class MapMaker {
             int mainZ = coordinates.getZ();
 
             callSpreadFunctions(newTerrain, mainX, mainY, mainZ, chance, maxChance);
+        }
+        else if (!terrain.getType().equals(TerrainTypes.SNOW.toString()) && chanceNumber > maxChance){
+            Terrain newTerrain = new Terrain(TerrainTypes.SNOW.toString(), TerrainTypes.SNOW.land);
+            newTerrain.setCoordinates(coordinates);
+            map.addTerrain(newTerrain);
+            unavailableCoordinates.add(coordinates);
         }
     }
 
