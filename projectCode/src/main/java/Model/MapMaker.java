@@ -41,6 +41,7 @@ public class MapMaker {
         }
 
         generateTerrains();
+        buildDefaultCities();
     }
 
 
@@ -203,6 +204,54 @@ public class MapMaker {
         }
         if (mainY - 2 >= 0) {
             spreadTerrain(newTerrain, new Coordinates(mainX, mainY - 2, mainZ), chance, maxChance);
+        }
+    }
+
+
+
+    private void buildDefaultCities()
+    {
+        Random rand = new Random();
+        int maxCityNumber = (mapSize.size - 10) / 5;
+        int chance = (rand.nextInt(maxCityNumber) + maxCityNumber) / 2;
+        int maxChance = mapSize.size * mapSize.size;
+
+        for (int j = 0; j < mapSize.size; j++){
+            for (int i = 0; i < mapSize.size; i++){
+                if (rand.nextInt(maxChance) < chance){
+                    Coordinates cityCoordinates = new Coordinates(i, j, 0);
+
+                    if (!map.getTerrainFromCoordinates(cityCoordinates).getIsTerritory()) {
+                        DefaultCity newDefaultCity = new DefaultCity(map.getTerrainFromCoordinates(cityCoordinates), NonPlayerColors.values()[map.getNumberOfDefaultCities()]);
+                        map.addDefaultCity(newDefaultCity);
+
+                        if (map.getNumberOfDefaultCities() > maxCityNumber) {
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    public void placeBarbarians()
+    {
+        Random rand = new Random();
+        int chance = 2;
+        int maxChance = 100;
+
+        for (int j = 0; j < mapSize.size; j++){
+            for (int i = 0; i < mapSize.size; i++){
+                if (rand.nextInt(maxChance) < chance){
+                    Coordinates cityCoordinates = new Coordinates(i, j, 0);
+
+                    if (!map.getTerrainFromCoordinates(cityCoordinates).getIsTerritory()) {
+                        //TODO:
+                    }
+                }
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ public class Terrain extends MapLandElement{
     private Resource resource;
     private StrategicResource strategicResource;
     private LuxuryResource luxuryResource;
+    private boolean isTerritory;
 
 
 
@@ -32,6 +33,7 @@ public class Terrain extends MapLandElement{
         super(terrain.getFood(), terrain.getProduction(), terrain.getGold(), terrain.getFightChangePercentage(), terrain.getMovementPrice(), terrain.isCanBeCrossed());
         super.setType(type);
         this.availableProperties = terrain.availableProperties;
+        this.isTerritory = false;
 
         chooseAndPlaceProperty();
         chooseAndPlaceResource();
@@ -215,5 +217,19 @@ public class Terrain extends MapLandElement{
 
     public LuxuryResource getLuxuryResource() {
         return luxuryResource;
+    }
+
+
+    public boolean getIsTerritory()
+    {
+        return isTerritory;
+    }
+
+
+
+    //setters
+    public void setTerritory(boolean isTerritory)
+    {
+        this.isTerritory = isTerritory;
     }
 }
