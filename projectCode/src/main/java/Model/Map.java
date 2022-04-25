@@ -8,6 +8,7 @@ public class Map {
     private ArrayList<BarbarianBase> barbarianBases;
     private ArrayList<NaturalWander> naturalWanders;
     private ArrayList<Ruin> ruins;
+    private ArrayList<River> rivers;
 
 
 
@@ -87,6 +88,13 @@ public class Map {
 
 
 
+    public void addRiver(River river)
+    {
+        rivers.add(river);
+    }
+
+
+
     //getters
     public int getNumberOfDefaultCities()
     {
@@ -109,6 +117,14 @@ public class Map {
     {
         return barbarianBases;
     }
+
+
+    public ArrayList<Terrain> getTerrains()
+    {
+        return terrains;
+    }
+
+
 
     //setters
 }

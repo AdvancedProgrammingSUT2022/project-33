@@ -19,6 +19,23 @@ public class Coordinates {
 
 
 
+    @Override
+    public boolean equals(Object object)
+    {
+        if (object == this){
+            return true;
+        }
+        else if (getClass() != object.getClass()){
+            return false;
+        }
+
+        Coordinates coordinates = (Coordinates) object;
+
+        return x == coordinates.getX() && y == coordinates.getY() && z == coordinates.getZ();
+    }
+
+
+
     //getters
     public int getX() {
         return x;

@@ -15,10 +15,10 @@ public class Ruin {
 
 
     ////methods////
-    public Ruin(Coordinates coordinates, ArrayList<BarbarianBase> barbarianBases)
+    public Ruin(Coordinates coordinates, ArrayList<BarbarianBase> barbarianBases, int maxSize)
     {
         this.coordinates = coordinates;
-        chooseCoordinatesToBeRevealed();
+        chooseCoordinatesToBeRevealed(maxSize);
 
         Random rand = new Random();
 
@@ -33,7 +33,7 @@ public class Ruin {
 
 
 
-    private void chooseCoordinatesToBeRevealed()
+    private void chooseCoordinatesToBeRevealed(int maxSize)
     {
         Random rand = new Random();
         int xChange = rand.nextInt(5) + 2;
@@ -56,35 +56,59 @@ public class Ruin {
         }
 
         Coordinates newCoordinates = new Coordinates(x, y, 0);
-        coordinatesToBeRevealed.add(newCoordinates);
-        spreadCoordinates(newCoordinates, 80);
+
+        if (x < maxSize && x >= 0 && y < maxSize && y >= 0) {
+            coordinatesToBeRevealed.add(newCoordinates);
+            spreadCoordinates(newCoordinates, 80, maxSize);
+        }
     }
 
 
 
-    private void spreadCoordinates(Coordinates newCoordinates, int chance)
+    private void spreadCoordinates(Coordinates newCoordinates, int chance, int maxSize)
     {
         int x = newCoordinates.getX();
         int y = newCoordinates.getY();
 
-        tryAddingCoordinates(x, y + 2, chance);
-        tryAddingCoordinates(x + 1, y + 1, chance);
-        tryAddingCoordinates(x + 1, y - 1, chance);
-        tryAddingCoordinates(x, y - 2, chance);
-        tryAddingCoordinates(x - 1, y - 1, chance);
-        tryAddingCoordinates(x - 1, y + 1, chance);
+        if (y < maxSize - 2) {
+            tryAddingCoordinates(x, y + 2, chance, maxSize);
+        }
+
+        if (y < maxSize - 1) {
+            if (x < maxSize - 1) {
+                tryAddingCoordinates(x + 1, y + 1, chance, maxSize);
+            }
+
+            if (x > 0) {
+                tryAddingCoordinates(x - 1, y + 1, chance, maxSize);
+            }
+        }
+
+        if (y > 0) {
+            if (x < maxSize - 1) {
+                tryAddingCoordinates(x + 1, y - 1, chance, maxSize);
+            }
+
+            if (x > 0) {
+                tryAddingCoordinates(x - 1, y - 1, chance, maxSize);
+            }
+        }
+
+        if (y > 1) {
+            tryAddingCoordinates(x, y - 2, chance, maxSize);
+        }
     }
 
 
 
-    private void tryAddingCoordinates(int x, int y, int chance)
+    private void tryAddingCoordinates(int x, int y, int chance, int maxSize)
     {
         Random rand = new Random();
 
         if (rand.nextInt(100) <= chance && isCoordinatesHidden(new Coordinates(x, y, 0))){
             Coordinates newCoordinates = new Coordinates(x, y, 0);
             coordinatesToBeRevealed.add(newCoordinates);
-            spreadCoordinates(newCoordinates, chance / 10);
+            spreadCoordinates(newCoordinates, chance / 10, maxSize);
         }
     }
 

@@ -44,6 +44,9 @@ public class MapMaker {
         buildDefaultCities();
         placeBarbarians();
         placeRuinsAndNaturalWanders();
+        digRiver();
+
+        //TODO: MAKING FOG AND PLAYER METHODS.
     }
 
 
@@ -289,10 +292,49 @@ public class MapMaker {
 
                 if (rand.nextInt(ruinMaxChance) < ruinChance && !map.getTerrainFromCoordinates(coordinates).getIsTerritory()){
                     map.getTerrainFromCoordinates(coordinates).setTerritory(true);
-                    Ruin ruin = new Ruin(coordinates, map.getBarbarianBases());
+                    Ruin ruin = new Ruin(coordinates, map.getBarbarianBases(), mapSize.size);
                     map.addRuin(ruin);
                 }
             }
         }
+    }
+
+
+
+    private void digRiver()
+    {
+        Random rand = new Random();
+        int riverChance = 1;
+
+        for (int j = 0; j < mapSize.size; j++){
+            for (int i = 0; i < mapSize.size; i++){
+                Coordinates coordinates = new Coordinates(i, j, 0);
+
+                if (map.getTerrainFromCoordinates(coordinates).isHasRiver()){
+                    River river = new River(coordinates, mapSize.size, getUnavailableRiverCoordinates());
+                    map.addRiver(river);
+                }
+                else if (rand.nextInt(200) < riverChance){
+                    River river = new River(coordinates, mapSize.size, getUnavailableRiverCoordinates());
+                    map.addRiver(river);
+                }
+            }
+        }
+    }
+
+
+
+    private ArrayList<Coordinates> getUnavailableRiverCoordinates()
+    {
+        ArrayList<Terrain> terrains = map.getTerrains();
+        ArrayList<Coordinates> unavailableCoordinates = new ArrayList<>();
+
+        for (int i = 0; i < terrains.size(); i++){
+            if (!terrains.get(i).isCanBeCrossed()){
+                unavailableCoordinates.add(terrains.get(i).getCenterCoordinates());
+            }
+        }
+
+        return unavailableCoordinates;
     }
 }

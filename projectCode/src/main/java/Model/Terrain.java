@@ -13,6 +13,7 @@ public class Terrain extends MapLandElement{
     private StrategicResource strategicResource;
     private LuxuryResource luxuryResource;
     private boolean isTerritory;
+    private boolean hasRiver;
 
 
 
@@ -34,6 +35,7 @@ public class Terrain extends MapLandElement{
         super.setType(type);
         this.availableProperties = terrain.availableProperties;
         this.isTerritory = false;
+
 
         chooseAndPlaceProperty();
         chooseAndPlaceResource();
@@ -59,6 +61,8 @@ public class Terrain extends MapLandElement{
         int propertyTypeIndex = rand.nextInt(availableProperties.size());
         property = new MapProperty(MapPropertyTypes.values()[propertyTypeIndex].toString(), MapPropertyTypes.values()[propertyTypeIndex].property);
         hasProperty = true;
+
+        this.hasRiver = property.getType().equals("FLOOD_PAIN");
     }
 
 
@@ -174,9 +178,9 @@ public class Terrain extends MapLandElement{
 
 
     //getters
-    public void setCoordinates(Coordinates coordinates)
+    public boolean isHasRiver()
     {
-        super.setCenterCoordinates(coordinates);
+        return hasRiver;
     }
 
 
@@ -231,5 +235,11 @@ public class Terrain extends MapLandElement{
     public void setTerritory(boolean isTerritory)
     {
         this.isTerritory = isTerritory;
+    }
+
+
+    public void setCoordinates(Coordinates coordinates)
+    {
+        super.setCenterCoordinates(coordinates);
     }
 }
