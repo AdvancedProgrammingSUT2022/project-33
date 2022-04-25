@@ -6,6 +6,8 @@ public class Map {
     private ArrayList<Terrain> terrains;
     private ArrayList<DefaultCity> defaultCities;
     private ArrayList<BarbarianBase> barbarianBases;
+    private ArrayList<NaturalWander> naturalWanders;
+    private ArrayList<Ruin> ruins;
 
 
 
@@ -16,6 +18,9 @@ public class Map {
     {
         terrains = new ArrayList<>();
         defaultCities = new ArrayList<>();
+        barbarianBases = new ArrayList<>();
+        naturalWanders = new ArrayList<>();
+        ruins = new ArrayList<>();
 
 
     }
@@ -68,6 +73,20 @@ public class Map {
 
 
 
+    public void addNaturalWander(NaturalWander naturalWander)
+    {
+        naturalWanders.add(naturalWander);
+    }
+
+
+
+    public void addRuin(Ruin ruin)
+    {
+        ruins.add(ruin);
+    }
+
+
+
     //getters
     public int getNumberOfDefaultCities()
     {
@@ -86,7 +105,10 @@ public class Map {
         return null;
     }
 
-
+    public ArrayList<BarbarianBase> getBarbarianBases()
+    {
+        return barbarianBases;
+    }
 
     //setters
 }

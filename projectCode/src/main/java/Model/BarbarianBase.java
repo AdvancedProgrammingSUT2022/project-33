@@ -3,13 +3,13 @@ package Model;
 import java.util.Random;
 
 public class BarbarianBase {
-    Coordinates coordinates;
-    int maxHealth;
-    int health;
-    int turnsNeededToBuildNewUnit;
-    int turnsRemainingUntilNextUnit;
-    boolean hasBarbarians;
-    Barbarian barbarian;
+    private Coordinates coordinates;
+    private int maxHealth;
+    private int health;
+    private int turnsNeededToBuildNewUnit;
+    private int turnsRemainingUntilNextUnit;
+    private boolean hasBarbarians;
+    private Barbarian barbarian;
 
 
 
@@ -25,5 +25,14 @@ public class BarbarianBase {
         turnsNeededToBuildNewUnit = 3 + new Random().nextInt(8);
         turnsRemainingUntilNextUnit = 0;
         hasBarbarians = false;
+
+        //TODO: MAKING THE AI.
+    }
+
+
+
+    //getters
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 }

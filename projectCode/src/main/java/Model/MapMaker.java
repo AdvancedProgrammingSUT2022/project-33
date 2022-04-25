@@ -43,6 +43,7 @@ public class MapMaker {
         generateTerrains();
         buildDefaultCities();
         placeBarbarians();
+        placeRuinsAndNaturalWanders();
     }
 
 
@@ -238,7 +239,7 @@ public class MapMaker {
 
 
 
-    public void placeBarbarians()
+    private void placeBarbarians()
     {
         Random rand = new Random();
         int chance = 2;
@@ -254,6 +255,42 @@ public class MapMaker {
                         map.addBarbarianBase(barbarianBase);
                         map.getTerrainFromCoordinates(baseCoordinates).setTerritory(true);
                     }
+                }
+            }
+        }
+    }
+
+
+
+    private void placeRuinsAndNaturalWanders()
+    {
+        Random rand = new Random();
+        int naturalWanderChance = 1;
+        int naturalWanderMaxChance = 300;
+
+        for (int j = 0; j < mapSize.size; j++){
+            for (int i = 0; i < mapSize.size; i++){
+                Coordinates coordinates = new Coordinates(i, j, 0);
+
+                if (rand.nextInt(naturalWanderMaxChance) < naturalWanderChance && !map.getTerrainFromCoordinates(coordinates).getIsTerritory()){
+                    map.getTerrainFromCoordinates(coordinates).setTerritory(true);
+                    NaturalWander naturalWander = new NaturalWander(NaturalWanderTypes.values()[rand.nextInt(NaturalWanderTypes.values().length)], coordinates);
+                    map.addNaturalWander(naturalWander);
+                }
+            }
+        }
+
+        int ruinChance = 1;
+        int ruinMaxChance = 100;
+
+        for (int j = 0; j < mapSize.size; j++){
+            for (int i = 0;i < mapSize.size; i++){
+                Coordinates coordinates = new Coordinates(i, j, 0);
+
+                if (rand.nextInt(ruinMaxChance) < ruinChance && !map.getTerrainFromCoordinates(coordinates).getIsTerritory()){
+                    map.getTerrainFromCoordinates(coordinates).setTerritory(true);
+                    Ruin ruin = new Ruin(coordinates, map.getBarbarianBases());
+                    map.addRuin(ruin);
                 }
             }
         }
