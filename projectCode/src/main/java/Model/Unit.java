@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Unit {
     String type;
     int health;
@@ -34,7 +36,7 @@ public class Unit {
 
     public void updateUnit()
     {
-
+        //TODO:
     }
 
 
@@ -44,7 +46,15 @@ public class Unit {
         if (coordinates.equals(destinationCoordinates)){
             return;
         }
-
+        //TODO:
 
     }
+
+
+
+//    private ArrayList<Coordinates> findTheBestRoot(ArrayList<Terrain> terrains, ArrayList<Coordinates> fogCoordinates)
+//    {
+//
+//        //TODO:
+//    }
 }

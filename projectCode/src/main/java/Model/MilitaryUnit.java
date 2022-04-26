@@ -1,3 +1,4 @@
+/*
 package Model;
 
 public class MilitaryUnit extends Unit{
@@ -10,6 +11,7 @@ public class MilitaryUnit extends Unit{
 
     public MilitaryUnit ()
     {
-
+        super();
     }
 }
+*/
