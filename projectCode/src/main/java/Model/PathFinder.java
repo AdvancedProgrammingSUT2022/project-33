@@ -30,7 +30,6 @@ public class PathFinder {
         this.destination = destination;
         possiblePaths.add(new ArrayList<>(List.of(startingPoint)));
 
-        //ArrayList<Coordinates> path = new ArrayList<>();
         testNewPaths();
         ArrayList<Coordinates> bestPath = possiblePaths.get(possiblePaths.size() - 1);
 
@@ -40,61 +39,6 @@ public class PathFinder {
 
         return bestPath;
     }
-
-
-
-    /*private ArrayList<Coordinates> testPath(ArrayList<Coordinates> searchedPlaces, Coordinates coordinatesToBeSearched)
-    {
-        if (searchedPlaces.contains(coordinatesToBeSearched) || unavailableTerrains.contains(coordinatesToBeSearched)){
-            return null;
-        }
-        else if (coordinatesToBeSearched.getX() < 0 || coordinatesToBeSearched.getX() >= mapSize ||
-        coordinatesToBeSearched.getY() < 0 || coordinatesToBeSearched.getY() >= mapSize){
-            return null;
-        }
-
-        ArrayList<Coordinates> path = new ArrayList<>();
-
-        if (searchedPlaces != null){
-            path.addAll(searchedPlaces);
-        }
-
-        path.add(coordinatesToBeSearched);
-
-        if (coordinatesToBeSearched.equals(destination)){
-            return path;
-        }
-
-        ArrayList<Coordinates> testCoordinates = new ArrayList<>();
-        testCoordinates.add(new Coordinates(coordinatesToBeSearched.getX(), coordinatesToBeSearched.getY() - 1, 0));
-        testCoordinates.add(new Coordinates(coordinatesToBeSearched.getX() + 1, coordinatesToBeSearched.getY() - 1, 0));
-        testCoordinates.add(new Coordinates(coordinatesToBeSearched.getX() - 1, coordinatesToBeSearched.getY() - 1, 0));
-        testCoordinates.add(new Coordinates(coordinatesToBeSearched.getX() + 1, coordinatesToBeSearched.getY(), 0));
-        testCoordinates.add(new Coordinates(coordinatesToBeSearched.getX() - 1, coordinatesToBeSearched.getY(), 0));
-        testCoordinates.add(new Coordinates(coordinatesToBeSearched.getX(), coordinatesToBeSearched.getY() + 1, 0));
-        ArrayList<Coordinates> test = new ArrayList<Coordinates>(goToNextPath(path, testCoordinates));
-        return test;
-    }
-
-
-
-    private ArrayList<Coordinates> goToNextPath(ArrayList<Coordinates> path , ArrayList<Coordinates> coordinatesOrder)
-    {
-        int min = 100000;
-
-        ArrayList<Coordinates> bestPath = new ArrayList<>();
-
-        for (int i = 0; i < coordinatesOrder.size(); i++){
-            ArrayList<Coordinates> temporarilyArrayList = testPath(path, coordinatesOrder.get(i));
-
-            if (temporarilyArrayList != null && temporarilyArrayList.size() < min){
-                min = temporarilyArrayList.size();
-                bestPath = temporarilyArrayList;
-            }
-        }
-
-        return bestPath;
-    }*/
 
 
 
