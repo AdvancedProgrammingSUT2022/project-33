@@ -78,20 +78,20 @@ public class River {
     {
         Coordinates lastCoordinates = riverCoordinates.get(riverCoordinates.size() - 1);
 
-        if (direction.equals(TileDirections.UP) && lastCoordinates.getY() > 1){
-            return new Coordinates(lastCoordinates.getX(), lastCoordinates.getY() - 2, 0);
+        if (direction.equals(TileDirections.UP) && lastCoordinates.getY() > 0){
+            return new Coordinates(lastCoordinates.getX(), lastCoordinates.getY() - 1, 0);
         }
         else if (direction.equals(TileDirections.UP_RIGHT) && lastCoordinates.getY() > 0 && lastCoordinates.getX() < mapSize - 1){
             return new Coordinates(lastCoordinates.getX() + 1, lastCoordinates.getY() - 1, 0);
         }
-        else if (direction.equals(TileDirections.DOWN_RIGHT) && lastCoordinates.getY() < mapSize - 1 && lastCoordinates.getX() < mapSize - 1){
-            return new Coordinates(lastCoordinates.getX() + 1, lastCoordinates.getY() + 1, 0);
+        else if (direction.equals(TileDirections.DOWN_RIGHT) && lastCoordinates.getX() < mapSize - 1){
+            return new Coordinates(lastCoordinates.getX() + 1, lastCoordinates.getY(), 0);
         }
-        else if (direction.equals(TileDirections.DOWN) && lastCoordinates.getY() < mapSize - 2){
-            return new Coordinates(lastCoordinates.getX(), lastCoordinates.getY() + 2, 0);
+        else if (direction.equals(TileDirections.DOWN) && lastCoordinates.getY() < mapSize - 1){
+            return new Coordinates(lastCoordinates.getX(), lastCoordinates.getY() + 1, 0);
         }
-        else if (direction.equals(TileDirections.DOWN_LEFT) && lastCoordinates.getY() < mapSize - 1 && lastCoordinates.getX() > 0){
-            return new Coordinates(lastCoordinates.getX() - 1, lastCoordinates.getY() + 1, 0);
+        else if (direction.equals(TileDirections.DOWN_LEFT) && lastCoordinates.getX() > 0){
+            return new Coordinates(lastCoordinates.getX() - 1, lastCoordinates.getY(), 0);
         }
         else if (direction.equals(TileDirections.UP_LEFT) && lastCoordinates.getY() > 0 && lastCoordinates.getX() > 0){
             return new Coordinates(lastCoordinates.getX() - 1, lastCoordinates.getY() - 1, 0);

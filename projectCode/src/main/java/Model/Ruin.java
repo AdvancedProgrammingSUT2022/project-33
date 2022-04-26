@@ -70,21 +70,21 @@ public class Ruin {
         int x = newCoordinates.getX();
         int y = newCoordinates.getY();
 
-        if (y < maxSize - 2) {
+        if (y < maxSize - 1) {
             tryAddingCoordinates(x, y + 2, chance, maxSize);
         }
 
-        if (y < maxSize - 1) {
-            if (x < maxSize - 1) {
-                tryAddingCoordinates(x + 1, y + 1, chance, maxSize);
-            }
+        if (x < maxSize - 1) {
+            tryAddingCoordinates(x + 1, y, chance, maxSize);
+        }
 
-            if (x > 0) {
-                tryAddingCoordinates(x - 1, y + 1, chance, maxSize);
-            }
+        if (x > 0) {
+            tryAddingCoordinates(x - 1, y, chance, maxSize);
         }
 
         if (y > 0) {
+            tryAddingCoordinates(x, y - 1, chance, maxSize);
+
             if (x < maxSize - 1) {
                 tryAddingCoordinates(x + 1, y - 1, chance, maxSize);
             }
@@ -92,10 +92,6 @@ public class Ruin {
             if (x > 0) {
                 tryAddingCoordinates(x - 1, y - 1, chance, maxSize);
             }
-        }
-
-        if (y > 1) {
-            tryAddingCoordinates(x, y - 2, chance, maxSize);
         }
     }
 

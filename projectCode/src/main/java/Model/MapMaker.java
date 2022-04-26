@@ -174,41 +174,25 @@ public class MapMaker {
 
     private void callSpreadFunctions(Terrain newTerrain, int mainX, int mainY, int mainZ, int chance, int maxChance)
     {
-        if (mainY + 2 < mapSize.size) {
-            spreadTerrain(newTerrain, new Coordinates(mainX, mainY + 2, mainZ), chance, maxChance);
-        }
         if (mainY + 1 < mapSize.size) {
-            if (mainX + 1 < mapSize.size) {
-                spreadTerrain(newTerrain, new Coordinates(mainX + 1, mainY + 1, mainZ), chance, maxChance);
-            }
-            else {
-                spreadTerrain(newTerrain, new Coordinates(0, mainY + 1, mainZ), chance, maxChance);
-            }
-
-            if (mainX - 1 >= 0){
-                spreadTerrain(newTerrain, new Coordinates(mainX - 1, mainY + 1, mainZ), chance, maxChance);
-            }
-            else {
-                spreadTerrain(newTerrain, new Coordinates(mapSize.size - 1, mainY + 1, mainZ), chance, maxChance);
-            }
+            spreadTerrain(newTerrain, new Coordinates(mainX, mainY + 1, mainZ), chance, maxChance);
         }
+        if (mainX + 1 < mapSize.size) {
+            spreadTerrain(newTerrain, new Coordinates(mainX + 1, mainY, mainZ), chance, maxChance);
+        }
+        if (mainX - 1 >= 0){
+            spreadTerrain(newTerrain, new Coordinates(mainX - 1, mainY, mainZ), chance, maxChance);
+        }
+
         if (mainY - 1 >= 0){
+            spreadTerrain(newTerrain, new Coordinates(mainX, mainY = 1, mainZ), chance, maxChance);
+
             if (mainX + 1 < mapSize.size) {
                 spreadTerrain(newTerrain, new Coordinates(mainX + 1, mainY - 1, mainZ), chance, maxChance);
             }
-            else {
-                spreadTerrain(newTerrain, new Coordinates(0, mainY - 1, mainZ), chance, maxChance);
-            }
-
             if (mainX - 1 >= 0){
                 spreadTerrain(newTerrain, new Coordinates(mainX - 1, mainY - 1 , mainZ), chance, maxChance);
             }
-            else {
-                spreadTerrain(newTerrain, new Coordinates(mapSize.size - 1, mainY - 1 , mainZ), chance, maxChance);
-            }
-        }
-        if (mainY - 2 >= 0) {
-            spreadTerrain(newTerrain, new Coordinates(mainX, mainY - 2, mainZ), chance, maxChance);
         }
     }
 
