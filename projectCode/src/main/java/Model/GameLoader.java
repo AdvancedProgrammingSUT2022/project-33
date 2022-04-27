@@ -72,7 +72,14 @@ public class GameLoader {
                     Coordinates coordinates = new Coordinates(i, j, 0);
 
                     if (map.getTerrainFromCoordinates(coordinates).isCanBeCrossed() && rand.nextInt(maxChance) < 1){
+                        Settler settler = new Settler(coordinates, players.get(i).getColor());
+                        players.get(i).getMap().units.addSettler(settler);
+                        map.units.addSettler(settler);
+                        MilitaryUnit warrior = new MilitaryUnit(MeleeUnits.WARRIOR.unit, coordinates);
+                        players.get(i).getMap().units.addMilitaryUnit(warrior);
+                        map.units.addMilitaryUnit(warrior);
 
+                        //TODO:
                     }
                 }
             }

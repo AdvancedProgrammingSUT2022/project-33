@@ -15,4 +15,25 @@ public class MiniMap extends Map{
     {
         super(map);
     }
+
+
+
+    public void updateMap()
+    {
+        //TODO:
+    }
+
+
+
+    public void updateHiddenTiles()
+    {
+        //TODO:
+    }
+
+
+
+    public void updateFog()
+    {
+        //TODO:
+    }
 }

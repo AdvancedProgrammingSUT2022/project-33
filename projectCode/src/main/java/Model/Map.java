@@ -10,6 +10,7 @@ public class Map {
     private ArrayList<Ruin> ruins;
     private ArrayList<River> rivers;
     private MapSizes size;
+    UnitList units;
 
 
 
@@ -25,6 +26,7 @@ public class Map {
         ruins = new ArrayList<>();
         rivers = new ArrayList<>();
         this.size = size;
+        units = new UnitList();
 
 
     }
@@ -39,6 +41,7 @@ public class Map {
         this.ruins = map.ruins;
         this.rivers = map.rivers;
         this.size = map.size;
+
     }
 
 

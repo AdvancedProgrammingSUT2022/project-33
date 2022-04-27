@@ -3,31 +3,33 @@ package Model;
 import java.util.ArrayList;
 
 public class Unit {
-    String type;
-    int health;
-    int visibilityRange;
-    int maxMovements;
-    int remainingMovements;
-    Coordinates coordinates;
-    Coordinates destinationCoordinates;
-    int price;
-    int timeRequiredForBeingMade;
-    int maintenancePricePerTurn;
-    boolean isMoving;
-    PathFinder pathFinder;
-    ArrayList<Coordinates> path;
+    private String type;
+    private Colors color;
+    private boolean belongsToPlayer;
+    private NonPlayerColors nonPlayerColor;
+    private int health;
+    private int visibilityRange;
+    private int maxMovements;
+    private int remainingMovements;
+    private Coordinates coordinates;
+    private Coordinates destinationCoordinates;
+    private int price;
+    private int timeRequiredForBeingMade;
+    private int maintenancePricePerTurn;
+    private boolean isMoving;
+    private PathFinder pathFinder;
+    private ArrayList<Coordinates> path;
 
 
 
 
 
     ////methods////
-    public Unit(int health, int visibilityRange, int maxMovements, Coordinates coordinates, int price, int timeRequiredForBeingMade, int maintenancePricePerTurn)
+    public Unit(int health, int visibilityRange, int maxMovements, int price, int timeRequiredForBeingMade, int maintenancePricePerTurn)
     {
         this.health = health;
         this.visibilityRange = visibilityRange;
         this.maxMovements = maxMovements;
-        this.coordinates = coordinates;
         this.price = price;
         this.timeRequiredForBeingMade = timeRequiredForBeingMade;
         this.maintenancePricePerTurn = maintenancePricePerTurn;
@@ -84,6 +86,14 @@ public class Unit {
 
 
 
+    public void cancelCurrentAction()
+    {
+        //TODO:
+    }
+
+
+
+    //setters
     public void setPath(Coordinates destinationCoordinates)
     {
         this.destinationCoordinates = destinationCoordinates;
@@ -92,7 +102,88 @@ public class Unit {
     }
 
 
+    public void setType(String type) {
+        this.type = type;
+    }
 
+
+    public void setColor(Colors color) {
+        this.color = color;
+    }
+
+
+    public void setBelongsToPlayer(boolean belongsToPlayer) {
+        this.belongsToPlayer = belongsToPlayer;
+    }
+
+
+    public void setNonPlayerColor(NonPlayerColors nonPlayerColor) {
+        this.nonPlayerColor = nonPlayerColor;
+    }
+
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+
+    public void setVisibilityRange(int visibilityRange) {
+        this.visibilityRange = visibilityRange;
+    }
+
+
+    public void setMaxMovements(int maxMovements) {
+        this.maxMovements = maxMovements;
+    }
+
+
+    public void setRemainingMovements(int remainingMovements) {
+        this.remainingMovements = remainingMovements;
+    }
+
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+
+    public void setDestinationCoordinates(Coordinates destinationCoordinates) {
+        this.destinationCoordinates = destinationCoordinates;
+    }
+
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+
+    public void setTimeRequiredForBeingMade(int timeRequiredForBeingMade) {
+        this.timeRequiredForBeingMade = timeRequiredForBeingMade;
+    }
+
+
+    public void setMaintenancePricePerTurn(int maintenancePricePerTurn) {
+        this.maintenancePricePerTurn = maintenancePricePerTurn;
+    }
+
+
+    public void setMoving(boolean moving) {
+        isMoving = moving;
+    }
+
+
+    public void setPathFinder(PathFinder pathFinder) {
+        this.pathFinder = pathFinder;
+    }
+
+
+    public void setPath(ArrayList<Coordinates> path) {
+        this.path = path;
+    }
+
+
+
+    //getters
     private Terrain getTerrainFromCoordinates(ArrayList<Terrain> terrains, Coordinates coordinates)
     {
         for (int i = 0; i < terrains.size(); i++){
@@ -105,9 +196,82 @@ public class Unit {
     }
 
 
+    public String getType() {
+        return type;
+    }
 
-    public void cancelCurrentAction()
-    {
-        //TODO:
+
+    public Colors getColor() {
+        return color;
+    }
+
+
+    public boolean isBelongsToPlayer() {
+        return belongsToPlayer;
+    }
+
+
+    public NonPlayerColors getNonPlayerColor() {
+        return nonPlayerColor;
+    }
+
+
+    public int getHealth() {
+        return health;
+    }
+
+
+    public int getVisibilityRange() {
+        return visibilityRange;
+    }
+
+
+    public int getMaxMovements() {
+        return maxMovements;
+    }
+
+
+    public int getRemainingMovements() {
+        return remainingMovements;
+    }
+
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+
+    public Coordinates getDestinationCoordinates() {
+        return destinationCoordinates;
+    }
+
+
+    public int getPrice() {
+        return price;
+    }
+
+
+    public int getTimeRequiredForBeingMade() {
+        return timeRequiredForBeingMade;
+    }
+
+
+    public int getMaintenancePricePerTurn() {
+        return maintenancePricePerTurn;
+    }
+
+
+    public boolean isMoving() {
+        return isMoving;
+    }
+
+
+    public PathFinder getPathFinder() {
+        return pathFinder;
+    }
+
+
+    public ArrayList<Coordinates> getPath() {
+        return path;
     }
 }

@@ -1,9 +1,9 @@
 package Model;
 
 public class Player {
-    String nickname;
-    Colors color;
-    MiniMap map;
+    private String nickname;
+    private Colors color;
+    private MiniMap map;
 
 
 
@@ -22,5 +22,22 @@ public class Player {
     public void setMap(MiniMap map)
     {
         this.map = map;
+    }
+
+
+
+    //getters
+    public String getNickname() {
+        return nickname;
+    }
+
+
+    public Colors getColor() {
+        return color;
+    }
+
+
+    public MiniMap getMap() {
+        return map;
     }
 }
