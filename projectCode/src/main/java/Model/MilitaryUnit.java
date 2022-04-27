@@ -1,4 +1,3 @@
-/*
 package Model;
 
 public class MilitaryUnit extends Unit{
@@ -9,9 +8,8 @@ public class MilitaryUnit extends Unit{
 
 
 
-    public MilitaryUnit ()
+    public MilitaryUnit (int health, int visibilityRange, int maxMovements, Coordinates coordinates, int price, int timeRequiredForBeingMade, int maintenancePricePerTurn)
     {
-        super();
+        super(health, visibilityRange, maxMovements, coordinates, price, timeRequiredForBeingMade, maintenancePricePerTurn);
     }
 }
-*/

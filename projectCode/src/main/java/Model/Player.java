@@ -3,6 +3,7 @@ package Model;
 public class Player {
     String nickname;
     Colors color;
+    MiniMap map;
 
 
 
@@ -13,5 +14,13 @@ public class Player {
     {
         this.nickname = nickname;
         this.color = Colors.values()[numberOfPlayer];
+    }
+
+
+
+    //setters
+    public void setMap(MiniMap map)
+    {
+        this.map = map;
     }
 }

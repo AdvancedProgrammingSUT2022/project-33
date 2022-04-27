@@ -201,7 +201,7 @@ public class MapMaker {
     private void buildDefaultCities()
     {
         Random rand = new Random();
-        int maxCityNumber = (mapSize.size - 10) / 5;
+        int maxCityNumber = (mapSize.size - 10) / 5 + 1;
         int chance = (rand.nextInt(maxCityNumber) + maxCityNumber) / 2;
         int maxChance = mapSize.size * mapSize.size;
 

@@ -9,21 +9,36 @@ public class Map {
     private ArrayList<NaturalWander> naturalWanders;
     private ArrayList<Ruin> ruins;
     private ArrayList<River> rivers;
+    private MapSizes size;
 
 
 
 
 
     ////methods////
-    public Map()
+    public Map(MapSizes size)
     {
         terrains = new ArrayList<>();
         defaultCities = new ArrayList<>();
         barbarianBases = new ArrayList<>();
         naturalWanders = new ArrayList<>();
         ruins = new ArrayList<>();
+        rivers = new ArrayList<>();
+        this.size = size;
 
 
+    }
+
+
+
+    public Map(Map map){
+        this.terrains = map.terrains;
+        this.defaultCities = map.defaultCities;
+        this.barbarianBases = map.barbarianBases;
+        this.naturalWanders = map.naturalWanders;
+        this.ruins = map.ruins;
+        this.rivers = map.rivers;
+        this.size = map.size;
     }
 
 
@@ -90,7 +105,9 @@ public class Map {
 
     public void addRiver(River river)
     {
-        rivers.add(river);
+        if (river != null) {
+            rivers.add(river);
+        }
     }
 
 
@@ -122,6 +139,12 @@ public class Map {
     public ArrayList<Terrain> getTerrains()
     {
         return terrains;
+    }
+
+
+    public int getMapSize()
+    {
+        return size.size;
     }
 
 

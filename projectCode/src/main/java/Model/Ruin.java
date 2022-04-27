@@ -58,8 +58,11 @@ public class Ruin {
         Coordinates newCoordinates = new Coordinates(x, y, 0);
 
         if (x < maxSize && x >= 0 && y < maxSize && y >= 0) {
-            coordinatesToBeRevealed.add(newCoordinates);
-            spreadCoordinates(newCoordinates, 80, maxSize);
+
+            if (coordinatesToBeRevealed != null) {
+                coordinatesToBeRevealed.add(newCoordinates);
+                spreadCoordinates(newCoordinates, 80, maxSize);
+            }
         }
     }
 
