@@ -8,14 +8,38 @@ public class Settler extends Unit{
 
     public Settler(Coordinates coordinates, Colors color)
     {
-        super(health, visibilityRange, maxMovements, coordinates, price, timeRequiredForBeingMade, maintenancePricePerTurn);
+        super(5, 2, 2, 89, 0, 100);
+        /* health = 5
+        visibilityRange =2
+        maxMovements = 2
+        price = 89
+        maintenancePricePerTurn = 0
+        productionNeededForBeingMade = 100 */
+
+        super.setCoordinates(coordinates);
+        super.setBelongsToPlayer(true);
+        super.setColor(color);
 
         //TODO:
     }
 
 
 
-    public Settler(Coordinates, NonPlayerColors color){
+    public Settler(Coordinates coordinates, NonPlayerColors color){
+
+        super(5, 2, 2, 89, 0, 100);
+        /* health = 5
+        visibilityRange =2
+        maxMovements = 2
+        price = 89
+        maintenancePricePerTurn = 0
+        productionNeededForBeingMade = 100 */
+
+        super.setCoordinates(coordinates);
+        super.setBelongsToPlayer(false);
+        super.setNonPlayerColor(color);
+
+
         //TODO:
     }
 }

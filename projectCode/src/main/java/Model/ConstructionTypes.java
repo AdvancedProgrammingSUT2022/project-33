@@ -10,4 +10,5 @@ public enum ConstructionTypes {
     STONE_MINE,
     TRADING_POST,
     FACTORY;
+    //TODO:
 }

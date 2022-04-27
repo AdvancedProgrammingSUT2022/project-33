@@ -14,7 +14,7 @@ public class Unit {
     private Coordinates coordinates;
     private Coordinates destinationCoordinates;
     private int price;
-    private int timeRequiredForBeingMade;
+    private int productionNeededForBeingMade;
     private int maintenancePricePerTurn;
     private boolean isMoving;
     private PathFinder pathFinder;
@@ -25,13 +25,13 @@ public class Unit {
 
 
     ////methods////
-    public Unit(int health, int visibilityRange, int maxMovements, int price, int timeRequiredForBeingMade, int maintenancePricePerTurn)
+    public Unit(int health, int visibilityRange, int maxMovements, int price, int productionNeededForBeingMade, int maintenancePricePerTurn)
     {
         this.health = health;
         this.visibilityRange = visibilityRange;
         this.maxMovements = maxMovements;
         this.price = price;
-        this.timeRequiredForBeingMade = timeRequiredForBeingMade;
+        this.productionNeededForBeingMade = productionNeededForBeingMade;
         this.maintenancePricePerTurn = maintenancePricePerTurn;
         this.path = new ArrayList<>();
 
@@ -157,8 +157,8 @@ public class Unit {
     }
 
 
-    public void setTimeRequiredForBeingMade(int timeRequiredForBeingMade) {
-        this.timeRequiredForBeingMade = timeRequiredForBeingMade;
+    public void setTimeRequiredForBeingMade(int productionNeededForBeingMade) {
+        this.productionNeededForBeingMade = productionNeededForBeingMade;
     }
 
 
@@ -251,8 +251,8 @@ public class Unit {
     }
 
 
-    public int getTimeRequiredForBeingMade() {
-        return timeRequiredForBeingMade;
+    public int getProductionNeededForBeingMade() {
+        return productionNeededForBeingMade;
     }
 
 

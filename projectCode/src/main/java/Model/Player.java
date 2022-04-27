@@ -18,6 +18,12 @@ public class Player {
 
 
 
+    public void updatePlayer(){
+        //TODO:
+    }
+
+
+
     //setters
     public void setMap(MiniMap map)
     {

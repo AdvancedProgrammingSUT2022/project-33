@@ -7,8 +7,9 @@ public class MeleeMilitaryUnit extends MilitaryUnit{
 
 
     ////methods////
-    public MeleeMilitaryUnit(int health, int visibilityRange, int maxMovements, Coordinates coordinates, int price, int timeRequiredForBeingMade, int maintenancePricePerTurn)
+    public MeleeMilitaryUnit(int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
+                             int attackDamage, Technologies technologyRequired, ResourceTypes resourceRequired, Eras era)
     {
-        super(health, visibilityRange, maxMovements, coordinates, price, timeRequiredForBeingMade, maintenancePricePerTurn);
+        super(health, visibilityRange, maxMovements, price, productionRequiredForBeingMade, maintenancePricePerTurn, attackDamage, technologyRequired, resourceRequired, era);
     }
 }
