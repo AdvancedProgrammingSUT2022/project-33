@@ -2,9 +2,9 @@ package Model;
 
 public class Technologies {
 
+//TODO:
 
-
-    Technology technology()
+    Technologies()
     {
 
     }
