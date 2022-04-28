@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class MiniMap extends Map{
     ArrayList<HiddenTile> hiddenTiles;
     ArrayList<Terrain> visibleTiles;
+    ArrayList<Coordinates> visibleCoordinates;
 
 
 
@@ -28,13 +29,35 @@ public class MiniMap extends Map{
 
     public void updateVisibility()
     {
-        ArrayList<MeleeMilitaryUnit> meleeUnits = getUnits().getMilitaryUnits();
-        ArrayList<Worker> workers = getUnits().getWorkers();
-        ArrayList<Settler> settlers = getUnits().getSettlers();
+        visibleCoordinates = new ArrayList<>();
 
-        for (int i = 0; i < meleeUnits.size(); i++){
-            findVisibleCoordinates(meleeUnits.get(i).getCoordinates(), meleeUnits.get(i).getVisibilityRange());
+        updateUnitVisibility(super.getUnits().getWorkers());
+        updateUnitVisibility(super.getUnits().getSettlers());
+        updateUnitVisibility(super.getUnits().getMeleeMilitaryUnits());
+        updateUnitVisibility(super.getUnits().getRangedMilitaryUnits());
+        updateUnitVisibility();
+    }
+
+
+
+    public void updateUnitVisibility(ArrayList<? extends Unit> checkingUnits)
+    {
+        for (int i = 0; i < checkingUnits.size(); i++){
+            ArrayList<Coordinates> visibleWorkerCoordinates = new ArrayList<>(findVisibleCoordinates(checkingUnits.get(i).getCoordinates(), checkingUnits.get(i).getVisibilityRange()));
+
+            for (int k = 0; k < visibleWorkerCoordinates.size(); k++){
+                if (!visibleCoordinates.contains(visibleWorkerCoordinates.get(k))){
+                    visibleCoordinates.add(visibleWorkerCoordinates.get(k));
+                }
+            }
         }
+    }
+
+
+
+    public void sayName(Unit unit)
+    {
+        System.out.println(unit.getColor());
     }
 
 

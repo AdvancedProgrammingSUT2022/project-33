@@ -34,4 +34,13 @@ public class MilitaryUnit extends Unit{
                 unit.getProductionNeededForBeingMade(), unit.getMaintenancePricePerTurn());
         super.setCoordinates(coordinates);
     }
+
+
+
+    public MilitaryUnit(RangedMilitaryUnit unit, Coordinates coordinates)
+    {
+        super(unit.getHealth(), unit.getVisibilityRange(), unit.getMaxMovements(), unit.getPrice(),
+                unit.getProductionNeededForBeingMade(), unit.getMaintenancePricePerTurn());
+        super.setCoordinates(coordinates);
+    }
 }

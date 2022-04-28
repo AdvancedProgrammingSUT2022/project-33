@@ -3,10 +3,11 @@ package Model;
 import java.util.ArrayList;
 
 public class UnitList {
-    ArrayList<Worker> workers;
-    ArrayList<Settler> settlers;
-    ArrayList<MeleeMilitaryUnit> militaryUnits;
-    int numberOfAllUnits;
+    private ArrayList<Worker> workers;
+    private ArrayList<Settler> settlers;
+    private ArrayList<MeleeMilitaryUnit> meleeMilitaryUnits;
+    private ArrayList<RangedMilitaryUnit> rangedMilitaryUnits;
+    private int numberOfAllUnits;
 
 
 
@@ -40,7 +41,7 @@ public class UnitList {
 
     public void addMilitaryUnit(MeleeMilitaryUnit militaryUnit)
     {
-        militaryUnits.add(militaryUnit);
+        meleeMilitaryUnits.add(militaryUnit);
         this.numberOfAllUnits++;
     }
 
@@ -57,7 +58,14 @@ public class UnitList {
     }
 
 
-    public ArrayList<MeleeMilitaryUnit> getMilitaryUnits() {
-        return militaryUnits;
+    public ArrayList<MeleeMilitaryUnit> getMeleeMilitaryUnits() {
+        return meleeMilitaryUnits;
+    }
+
+
+
+    public ArrayList<RangedMilitaryUnit> getRangedMilitaryUnits()
+    {
+        return rangedMilitaryUnits;
     }
 }
