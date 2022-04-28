@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class MiniMap extends Map{
     ArrayList<MiniMapTile> hiddenTiles;
+    ArrayList<Coordinates> hiddenCoordinates;
     ArrayList<MiniMapTile> visibleTiles;
     ArrayList<Coordinates> visibleCoordinates;
 
@@ -22,6 +23,7 @@ public class MiniMap extends Map{
     public void updateMap()
     {
         updateVisibility();
+        updateTiles();
         //TODO:
     }
 
@@ -61,14 +63,15 @@ public class MiniMap extends Map{
 
         for (int i = 0; i < visibleCoordinates.size(); i++){
             visibleTiles.add(getTileFromCoordinates(visibleCoordinates.get(i)));
+
+            if (hiddenCoordinates.contains(visibleCoordinates.get(i))){
+                hiddenTiles.remove(getIndexOfHiddenTileFromCoordinates(visibleCoordinates.get(i)));
+                hiddenCoordinates.remove(getIndexOfHiddenCoordinateFromCoordinates(visibleCoordinates.get(i)));
+            }
+
+            hiddenCoordinates.add(visibleCoordinates.get(i));
+            hiddenTiles.add(visibleTiles.get(i));
         }
-    }
-
-
-
-    public void updateHiddenTiles()
-    {
-        //TODO:
     }
 
 
@@ -141,7 +144,23 @@ public class MiniMap extends Map{
         }
 
         if (getUnits().getSettlerFromCoordinates(coordinates) != null){
-            tile.setHasSettler();
+            tile.setHasSettler(true);
+            tile.setSettler(getUnits().getSettlerFromCoordinates(coordinates));
+        }
+
+        if (getUnits().getMeleeMilitaryUnitFromCoordinates(coordinates) != null){
+            tile.setHasMeleeMilitaryUnit(true);
+            tile.setMeleeMilitaryUnit(getUnits().getMeleeMilitaryUnitFromCoordinates(coordinates));
+        }
+
+        if (getUnits().getRangedMilitaryUnitFromCoordinates(coordinates) != null){
+            tile.setHasRangedMilitaryUnit(true);
+            tile.setRangedMilitaryUnit(getUnits().getRangedMilitaryUnitFromCoordinates(coordinates));
+        }
+
+        if (getUnits().getHeavyRangedMilitaryUnitFromCoordinates(coordinates) != null){
+            tile.setHasHeavyRangedMilitaryUnit(true);
+            tile.setHeavyRangedMilitaryUnits(getUnits().getHeavyRangedMilitaryUnitFromCoordinates(coordinates));
         }
     }
 
@@ -164,5 +183,31 @@ public class MiniMap extends Map{
         }
 
         setTileUnitType(coordinates, tile);
+
+        return tile;
+    }
+
+
+    public int getIndexOfHiddenTileFromCoordinates(Coordinates coordinates)
+    {
+        for (int i = 0; i < hiddenTiles.size(); i++){
+            if (hiddenTiles.get(i).getCoordinates().equals(coordinates)){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+
+    public int getIndexOfHiddenCoordinateFromCoordinates(Coordinates coordinates)
+    {
+        for (int i = 0; i < hiddenCoordinates.size(); i++){
+            if (hiddenCoordinates.get(i).equals(coordinates)){
+                return i;
+            }
+        }
+
+        return -1;
     }
 }

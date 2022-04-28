@@ -18,8 +18,15 @@ public class HeavyRangedMilitaryUnits extends RangedMilitaryUnit{
 
 
 
-    public HeavyRangedMilitaryUnits(HeavyRangedUnits unit, Coordinates coordinates)
+    public HeavyRangedMilitaryUnits(HeavyRangedMilitaryUnits unit, Coordinates coordinates, Colors color)
     {
-        super(unit.unit, coordinates);
+        super(unit, coordinates, color);
+    }
+
+
+
+    public HeavyRangedMilitaryUnits(HeavyRangedMilitaryUnits unit, Coordinates coordinates, NonPlayerColors color)
+    {
+        super(unit, coordinates, color);
     }
 }
