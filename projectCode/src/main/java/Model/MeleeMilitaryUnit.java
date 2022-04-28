@@ -12,4 +12,11 @@ public class MeleeMilitaryUnit extends MilitaryUnit{
     {
         super(health, visibilityRange, maxMovements, price, productionRequiredForBeingMade, maintenancePricePerTurn, attackDamage, technologyRequired, resourceRequired, era);
     }
+
+
+
+    public MeleeMilitaryUnit(MeleeUnits unit, Coordinates coordinates)
+    {
+        super(unit.unit, coordinates);
+    }
 }

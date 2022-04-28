@@ -3,8 +3,8 @@ package Model;
 import java.util.ArrayList;
 
 public class MiniMap extends Map{
-    ArrayList<Fog> fogs;
     ArrayList<HiddenTile> hiddenTiles;
+    ArrayList<Terrain> visibleTiles;
 
 
 
@@ -20,7 +20,21 @@ public class MiniMap extends Map{
 
     public void updateMap()
     {
+        updateVisibility();
         //TODO:
+    }
+
+
+
+    public void updateVisibility()
+    {
+        ArrayList<MeleeMilitaryUnit> meleeUnits = getUnits().getMilitaryUnits();
+        ArrayList<Worker> workers = getUnits().getWorkers();
+        ArrayList<Settler> settlers = getUnits().getSettlers();
+
+        for (int i = 0; i < meleeUnits.size(); i++){
+            findVisibleCoordinates(meleeUnits.get(i).getCoordinates(), meleeUnits.get(i).getVisibilityRange());
+        }
     }
 
 
@@ -39,49 +53,62 @@ public class MiniMap extends Map{
 
 
 
-    public ArrayList<Coordinates> findVisibleCoordinates(Coordinates coordinates, int range, ArrayList<Coordinates> visibleCoordinatesUntilNow)
+    public ArrayList<Coordinates> findVisibleCoordinates(Coordinates coordinates, int range)
     {
-        ArrayList<Coordinates> visibleCoordinates = new ArrayList<>();
+        ArrayList<Coordinates> availableCoordinates = new ArrayList<>();
         ArrayList<Coordinates> blockCoordinates = new ArrayList<>();
-        ArrayList<Coordinates> resultCoordinates = new ArrayList<>();
 
-        for (int j = -1; j <= 1; j++){
-            for (int i = Math.abs(j) - 1; i < 1 - Math.abs(j); i++){
+        for (int j = -range; j <= range; j++){
+            for (int i = Math.abs(j) - range; i <= range - Math.abs(j); i++){
                 Coordinates checkingCoordinates = new Coordinates(coordinates.getX() + i, coordinates.getY() + j, 0);
+                availableCoordinates.add(checkingCoordinates);
 
-                if (!visibleCoordinatesUntilNow.contains(checkingCoordinates)) {
-                    if (getTerrainFromCoordinates(checkingCoordinates).getType().equals("HILLS") ||
-                            getTerrainFromCoordinates(checkingCoordinates).getType().equals("MOUNTAIN")) {
-                        blockCoordinates.add(checkingCoordinates);
-                    } else {
-                        visibleCoordinates.add(checkingCoordinates);
+                if (getTerrainFromCoordinates(checkingCoordinates).getType().equals("HILLS") || getTerrainFromCoordinates(checkingCoordinates).getType().equals("MOUNTAIN")){
+                    blockCoordinates.add(checkingCoordinates);
+                }
+            }
+        }
+
+        ArrayList<Coordinates> visibleCoordinates = new ArrayList<>();
+
+        for (int i = 0; i < availableCoordinates.size(); i++){
+            if (isInLineOfSight(availableCoordinates.get(i), blockCoordinates, coordinates)){
+                visibleCoordinates.add(availableCoordinates.get(i));
+            }
+        }
+
+        return visibleCoordinates;
+    }
+
+
+
+    private boolean isInLineOfSight(Coordinates checkingCoordinates, ArrayList<Coordinates> blockCoordinates, Coordinates centerCoordinates)
+    {
+        for (int i = 0; i < blockCoordinates.size(); i++){
+            if (!checkingCoordinates.equals(blockCoordinates.get(i))){
+                NormalCoordinates normalCheckingCoordinates = new NormalCoordinates(checkingCoordinates);
+                NormalCoordinates normalBlockCoordinates = new NormalCoordinates(blockCoordinates.get(i));
+                NormalCoordinates normalCenterCoordinates = new NormalCoordinates(centerCoordinates);
+
+                for (int r = 0; r < normalCenterCoordinates.calculateDistance(normalCheckingCoordinates); r++){
+                    double lineX = normalCenterCoordinates.getX() + r *
+                            (normalCheckingCoordinates.getX() - normalCenterCoordinates.getX()) / normalCenterCoordinates.calculateDistance(normalCheckingCoordinates);
+                    double lineY = normalCenterCoordinates.getY() +  r *
+                            (normalCheckingCoordinates.getY() - normalCenterCoordinates.getY()) / normalCenterCoordinates.calculateDistance(normalCheckingCoordinates);
+
+                    NormalCoordinates lineCoordinates = new NormalCoordinates(lineX, lineY);
+                    double lineDistanceFromBlockCoordinates = normalBlockCoordinates.calculateDistance(lineCoordinates);
+
+                    if (lineDistanceFromBlockCoordinates < Math.sqrt(3) / 2 * 0.8 && getTerrainFromCoordinates(blockCoordinates.get(i)).getType().equals("MOUNTAIN")){
+                        return false;
+                    }
+                    else if (lineDistanceFromBlockCoordinates < Math.sqrt(3) / 2 * 0.65 && getTerrainFromCoordinates(blockCoordinates.get(i)).getType().equals("HILLS")){
+                        return false;
                     }
                 }
             }
         }
 
-        resultCoordinates.addAll(visibleCoordinates);
-        resultCoordinates.addAll(blockCoordinates);
-
-        if (range - 1 == 0){
-            return resultCoordinates;
-        }
-        else {
-            ArrayList<Coordinates> unavailableCoordinates = new ArrayList<>();
-
-            for (int i = 0; i < visibleCoordinates.size(); i++){
-                resultCoordinates.addAll(findVisibleCoordinates(visibleCoordinates.get(i), range - 1));
-            }
-
-            for (int i = 0; i < blockCoordinates.size(); i++){
-                unavailableCoordinates.addAll(findVisibleCoordinates(blockCoordinates.get(i), range - 1))''
-            }
-
-            for (int i = 0; i < unavailableCoordinates.size(); i++){
-                if (resultCoordinates.contains())
-            }
-
-            return resultCoordinates;
-        }
+        return true;
     }
 }

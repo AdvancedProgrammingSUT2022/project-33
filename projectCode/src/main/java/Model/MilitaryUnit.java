@@ -28,7 +28,7 @@ public class MilitaryUnit extends Unit{
 
 
 
-    public MilitaryUnit(MilitaryUnit unit, Coordinates coordinates)
+    public MilitaryUnit(MeleeMilitaryUnit unit, Coordinates coordinates)
     {
         super(unit.getHealth(), unit.getVisibilityRange(), unit.getMaxMovements(), unit.getPrice(),
                 unit.getProductionNeededForBeingMade(), unit.getMaintenancePricePerTurn());

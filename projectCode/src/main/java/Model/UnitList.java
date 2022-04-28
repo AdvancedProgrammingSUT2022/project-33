@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class UnitList {
     ArrayList<Worker> workers;
     ArrayList<Settler> settlers;
-    ArrayList<MilitaryUnit> militaryUnits;
+    ArrayList<MeleeMilitaryUnit> militaryUnits;
+    int numberOfAllUnits;
 
 
 
@@ -24,6 +25,7 @@ public class UnitList {
     public void addWorker(Worker worker)
     {
         workers.add(worker);
+        this.numberOfAllUnits++;
     }
 
 
@@ -31,12 +33,31 @@ public class UnitList {
     public void addSettler(Settler settler)
     {
         settlers.add(settler);
+        this.numberOfAllUnits++;
     }
 
 
 
-    public void addMilitaryUnit(MilitaryUnit militaryUnit)
+    public void addMilitaryUnit(MeleeMilitaryUnit militaryUnit)
     {
         militaryUnits.add(militaryUnit);
+        this.numberOfAllUnits++;
+    }
+
+
+
+    //getters
+    public ArrayList<Worker> getWorkers() {
+        return workers;
+    }
+
+
+    public ArrayList<Settler> getSettlers() {
+        return settlers;
+    }
+
+
+    public ArrayList<MeleeMilitaryUnit> getMilitaryUnits() {
+        return militaryUnits;
     }
 }

@@ -73,11 +73,11 @@ public class GameLoader {
 
                     if (map.getTerrainFromCoordinates(coordinates).isCanBeCrossed() && rand.nextInt(maxChance) < 1){
                         Settler settler = new Settler(coordinates, players.get(k).getColor());
-                        players.get(k).getMap().units.addSettler(settler);
-                        map.units.addSettler(settler);
-                        MilitaryUnit warrior = new MilitaryUnit(MeleeUnits.WARRIOR.unit, coordinates);
-                        players.get(k).getMap().units.addMilitaryUnit(warrior);
-                        map.units.addMilitaryUnit(warrior);
+                        players.get(k).getMap().getUnits().addSettler(settler);
+                        map.getUnits().addSettler(settler);
+                        MeleeMilitaryUnit warrior = new MeleeMilitaryUnit(MeleeUnits.WARRIOR, coordinates);
+                        players.get(k).getMap().getUnits().addMilitaryUnit(warrior);
+                        map.getUnits().addMilitaryUnit(warrior);
                         players.get(k).getMap().updateMap();
                         //TODO:
                     }

@@ -10,7 +10,7 @@ public class Map {
     private ArrayList<Ruin> ruins;
     private ArrayList<River> rivers;
     private MapSizes size;
-    UnitList units;
+    private UnitList units;
 
 
 
@@ -148,6 +148,12 @@ public class Map {
     public int getMapSize()
     {
         return size.size;
+    }
+
+
+    public UnitList getUnits()
+    {
+        return units;
     }
 
 

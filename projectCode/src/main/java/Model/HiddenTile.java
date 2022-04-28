@@ -1,6 +1,8 @@
 package Model;
 
-public class HiddenTile extends MiniMapLand{
+public class HiddenTile {
+    Coordinates coordinates;
+    //TODO:
 
 
 
@@ -9,6 +11,6 @@ public class HiddenTile extends MiniMapLand{
     ////methods////
     public HiddenTile(Coordinates coordinates)
     {
-        super(coordinates);
+        this.coordinates = coordinates;
     }
 }
