@@ -16,8 +16,19 @@ public class MeleeMilitaryUnit extends MilitaryUnit{
 
 
 
-    public MeleeMilitaryUnit(MeleeUnits unit, Coordinates coordinates)
+    public MeleeMilitaryUnit(MeleeMilitaryUnit unit, Coordinates coordinates, Colors color)
     {
-        super(unit.unit, coordinates);
+        super(unit, coordinates);
+        super.setColor(color);
+        super.setBelongsToPlayer(true);
+    }
+
+
+
+    public MeleeMilitaryUnit(MeleeMilitaryUnit unit, Coordinates coordinates, NonPlayerColors color)
+    {
+        super(unit, coordinates);
+        super.setNonPlayerColor(color);
+        super.setBelongsToPlayer(false);
     }
 }

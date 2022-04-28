@@ -132,7 +132,13 @@ public class MiniMapTile {
 
 
     public void setPlayerCity(PlayerCity playerCity) {
-        this.playerCity = new PlayerCity(playerCity);
+        this.playerCity.setHealth(playerCity.getHealth());
+        this.playerCity.setUnitInTheCity(playerCity.isUnitInTheCity());
+        this.playerCity.setCoordinates(playerCity.getCoordinates());
+        this.playerCity.setMaxHealth(playerCity.getMaxHealth());
+        this.playerCity.setAttackDamage(playerCity.getAttackDamage());
+        this.playerCity.setCapital(playerCity.isCapital());
+        this.playerCity.setLandsOwned(playerCity.getLandsOwned());
     }
 
 
@@ -142,7 +148,14 @@ public class MiniMapTile {
 
 
     public void setDefaultCity(DefaultCity defaultCity) {
-        this.defaultCity = defaultCity;
+        defaultCity = new DefaultCity(defaultCity.getLandsOwned().get(0), defaultCity.getColor(), defaultCity.getName());
+        this.defaultCity.setHealth(defaultCity.getHealth());
+        this.defaultCity.setUnitInTheCity(defaultCity.isUnitInTheCity());
+        this.defaultCity.setCoordinates(defaultCity.getCoordinates());
+        this.defaultCity.setMaxHealth(defaultCity.getMaxHealth());
+        this.defaultCity.setAttackDamage(defaultCity.getAttackDamage());
+        this.defaultCity.setCapital(defaultCity.isCapital());
+        this.defaultCity.setLandsOwned(defaultCity.getLandsOwned());
     }
 
 
@@ -152,7 +165,11 @@ public class MiniMapTile {
 
 
     public void setWorker(Worker worker) {
-        this.worker = worker;
+        this.worker = new Worker(worker.getCoordinates());
+        this.worker.setHealth(worker.getHealth());
+        this.worker.setColor(worker.getColor());
+        this.worker.setNonPlayerColor(worker.getNonPlayerColor());
+        this.worker.setBelongsToPlayer(worker.isBelongsToPlayer());
     }
 
 
@@ -162,7 +179,9 @@ public class MiniMapTile {
 
 
     public void setSettler(Settler settler) {
-        this.settler = settler;
+            this.settler = new Settler(settler.getCoordinates(), settler.getColor());
+            this.settler.setNonPlayerColor(settler.getNonPlayerColor());
+            this.settler.setBelongsToPlayer(settler.isBelongsToPlayer());
     }
 
 
@@ -172,7 +191,9 @@ public class MiniMapTile {
 
 
     public void setMeleeMilitaryUnit(MeleeMilitaryUnit meleeMilitaryUnit) {
-        this.meleeMilitaryUnit = meleeMilitaryUnit;
+        this.meleeMilitaryUnit = new MeleeMilitaryUnit(meleeMilitaryUnit, meleeMilitaryUnit.getCoordinates(), meleeMilitaryUnit.getColor());
+        this.meleeMilitaryUnit.setNonPlayerColor(meleeMilitaryUnit.getNonPlayerColor());
+        this.meleeMilitaryUnit.setBelongsToPlayer(meleeMilitaryUnit.isBelongsToPlayer());
     }
 
 

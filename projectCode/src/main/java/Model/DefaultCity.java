@@ -17,4 +17,28 @@ public class DefaultCity extends City{
 
         //TODO:
     }
+
+
+
+    //getters
+    public DefaultCityNames getName() {
+        return name;
+    }
+
+
+    public NonPlayerColors getColor() {
+        return color;
+    }
+
+
+
+    //setters
+    public void setName(DefaultCityNames name) {
+        this.name = name;
+    }
+
+
+    public void setColor(NonPlayerColors color) {
+        this.color = color;
+    }
 }

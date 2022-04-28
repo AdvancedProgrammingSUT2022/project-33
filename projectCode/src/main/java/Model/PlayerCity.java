@@ -3,8 +3,8 @@ package Model;
 import java.util.ArrayList;
 
 public class PlayerCity extends City{
-    Player owner;
-    ArrayList<Wander> wanders;
+    private Player owner;
+    private ArrayList<Wander> wanders;
     //TODO:
 
 
@@ -12,16 +12,12 @@ public class PlayerCity extends City{
 
 
     ////methods////
-    public PlayerCity()
+    public PlayerCity(boolean isCapital, Terrain terrain, Player owner)
     {
-        //TODO:
-    }
+        super(isCapital, terrain);
+        this.owner = owner;
+        wanders = new ArrayList<>();
 
-
-
-    public PlayerCity(PlayerCity city)
-    {
-        super(city.isCapital(), city.getLandsOwned().get(0));
         //TODO:
     }
 }

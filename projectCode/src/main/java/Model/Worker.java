@@ -8,8 +8,9 @@ public class Worker extends Unit{
 
 
 
-    public Worker (int health, int visibilityRange, int maxMovements, Coordinates coordinates, int price, int timeRequiredForBeingMade, int maintenancePricePerTurn)
+    public Worker (Coordinates coordinates)
     {
-        super(health, visibilityRange, maxMovements, coordinates, price, timeRequiredForBeingMade, maintenancePricePerTurn);
+        super(8, 2, 2, 70, 70, 0);
+        super.setCoordinates(coordinates);
     }
 }

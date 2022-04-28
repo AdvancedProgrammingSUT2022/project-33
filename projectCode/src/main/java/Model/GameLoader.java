@@ -75,7 +75,7 @@ public class GameLoader {
                         Settler settler = new Settler(coordinates, players.get(k).getColor());
                         players.get(k).getMap().getUnits().addSettler(settler);
                         map.getUnits().addSettler(settler);
-                        MeleeMilitaryUnit warrior = new MeleeMilitaryUnit(MeleeUnits.WARRIOR, coordinates);
+                        MeleeMilitaryUnit warrior = new MeleeMilitaryUnit(MeleeUnits.WARRIOR.unit, coordinates, players.get(k).getColor());
                         players.get(k).getMap().getUnits().addMilitaryUnit(warrior);
                         map.getUnits().addMilitaryUnit(warrior);
                         players.get(k).getMap().updateMap();

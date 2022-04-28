@@ -137,10 +137,12 @@ public class MiniMap extends Map{
     private void setTileUnitType(Coordinates coordinates, MiniMapTile tile){
         if (getUnits().getWorkerFromCoordinates(coordinates) != null){
             tile.setHasWorker(true);
-            tile.co
+            tile.setWorker(getUnits().getWorkerFromCoordinates(coordinates));
         }
 
-        if (getUnits().getSettlerFromCoordinates(coordinates) != null)
+        if (getUnits().getSettlerFromCoordinates(coordinates) != null){
+            tile.setHasSettler();
+        }
     }
 
 
