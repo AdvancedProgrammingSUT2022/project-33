@@ -9,9 +9,10 @@ public class RangedMilitaryUnit extends MilitaryUnit{
 
     ////methods////
     public RangedMilitaryUnit(int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
-                             int attackDamage, int attackRange, Technologies technologyRequired, ResourceTypes resourceRequired, Eras era)
+                             int attackDamage, boolean isCavalry, int attackRange, Technologies technologyRequired, ResourceTypes resourceRequired, Eras era)
     {
-        super(health, visibilityRange, maxMovements, price, productionRequiredForBeingMade, maintenancePricePerTurn, attackDamage, technologyRequired, resourceRequired, era);
+        super(health, visibilityRange, maxMovements, price, productionRequiredForBeingMade, maintenancePricePerTurn, attackDamage,
+                isCavalry, technologyRequired, resourceRequired, era);
         this.attackRange = attackRange;
     }
 
@@ -24,9 +25,17 @@ public class RangedMilitaryUnit extends MilitaryUnit{
 
 
 
-    public RangedMilitaryUnit(HeavyRangedMilitaryUnits units)
+    public RangedMilitaryUnit(HeavyRangedMilitaryUnits unit, Coordinates coordinates)
     {
-        super(units.getHealth(), units.getVisibilityRange(), units.getMaxMovements(), units.getPrice(), units.getProductionNeededForBeingMade(), units.getMaintenancePricePerTurn()
-        , units.getAt);
+        super(unit.getHealth(), unit.getVisibilityRange(), unit.getMaxMovements(), unit.getPrice(), unit.getProductionNeededForBeingMade()
+                , unit.getMaintenancePricePerTurn(), unit.getAttackDamage(), unit.getIsCavalry(), unit.getTechnologyRequired(), unit.getResourceRequired(), unit.getEra());
+        this.attackRange = unit.getAttackRange();
+    }
+
+
+
+    //getters
+    public int getAttackRange() {
+        return attackRange;
     }
 }

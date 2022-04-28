@@ -1,7 +1,7 @@
 package Model;
 
 public class HeavyRangedMilitaryUnits extends RangedMilitaryUnit{
-    int turnsNeededToEstablish;
+    int turnsNeededToSetUp;
 
 
 
@@ -9,16 +9,16 @@ public class HeavyRangedMilitaryUnits extends RangedMilitaryUnit{
 
     ////methods////
     public HeavyRangedMilitaryUnits(int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
-                              int attackDamage, int attackRange, int turnsNeededToEstablish, Technologies technologyRequired, ResourceTypes resourceRequired, Eras era)
+                              int attackDamage, int attackRange, int turnsNeededToSetUp, Technologies technologyRequired, ResourceTypes resourceRequired, Eras era)
     {
         super(health, visibilityRange, maxMovements, price, productionRequiredForBeingMade, maintenancePricePerTurn,
                 attackDamage, attackRange, technologyRequired, resourceRequired, era);
-        this.turnsNeededToEstablish = turnsNeededToEstablish;
+        this.turnsNeededToSetUp = turnsNeededToSetUp;
     }
 
 
 
-    public HeavyRangedMilitaryUnits(MeleeUnits unit, Coordinates coordinates)
+    public HeavyRangedMilitaryUnits(HeavyRangedUnits unit, Coordinates coordinates)
     {
         super(unit.unit, coordinates);
     }

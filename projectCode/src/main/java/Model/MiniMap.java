@@ -3,8 +3,8 @@ package Model;
 import java.util.ArrayList;
 
 public class MiniMap extends Map{
-    ArrayList<HiddenTile> hiddenTiles;
-    ArrayList<Terrain> visibleTiles;
+    ArrayList<MiniMapTile> hiddenTiles;
+    ArrayList<MiniMapTile> visibleTiles;
     ArrayList<Coordinates> visibleCoordinates;
 
 
@@ -35,7 +35,7 @@ public class MiniMap extends Map{
         updateUnitVisibility(super.getUnits().getSettlers());
         updateUnitVisibility(super.getUnits().getMeleeMilitaryUnits());
         updateUnitVisibility(super.getUnits().getRangedMilitaryUnits());
-        updateUnitVisibility();
+        updateUnitVisibility(super.getUnits().getHeavyRangedUnits());
     }
 
 
@@ -55,21 +55,18 @@ public class MiniMap extends Map{
 
 
 
-    public void sayName(Unit unit)
+    private void updateTiles()
     {
-        System.out.println(unit.getColor());
+        visibleTiles = new ArrayList<>();
+
+        for (int i = 0; i < visibleCoordinates.size(); i++){
+            visibleTiles.add(getTileFromCoordinates(visibleCoordinates.get(i)));
+        }
     }
 
 
 
     public void updateHiddenTiles()
-    {
-        //TODO:
-    }
-
-
-
-    public void updateFog()
     {
         //TODO:
     }
@@ -133,5 +130,37 @@ public class MiniMap extends Map{
         }
 
         return true;
+    }
+
+
+
+    private void setTileUnitType(Coordinates coordinates, MiniMapTile tile){
+        if (getUnits().getWorkerFromCoordinates(coordinates) != null){
+            tile.setHasWorker(true);
+            tile.co
+        }
+
+        if (getUnits().getSettlerFromCoordinates(coordinates) != null)
+    }
+
+
+
+    //getters
+    public MiniMapTile getTileFromCoordinates(Coordinates coordinates)
+    {
+        Terrain terrain = getTerrainFromCoordinates(coordinates);
+        MiniMapTile tile = new MiniMapTile(coordinates, terrain);
+
+        if (getDefaultCityFromCoordinates(coordinates) != null){
+            tile.setDefaultCity(getDefaultCityFromCoordinates(coordinates));
+            tile.setHasDefaultCity(true);
+        }
+
+        if (getPlayerCityFromCoordinates(coordinates) != null){
+            tile.setPlayerCity(getPlayerCityFromCoordinates(coordinates));
+            tile.setHasPlayerCity(true);
+        }
+
+        setTileUnitType(coordinates, tile);
     }
 }

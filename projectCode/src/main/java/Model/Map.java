@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Map {
     private ArrayList<Terrain> terrains;
+    private ArrayList<PlayerCity> playerCities;
     private ArrayList<DefaultCity> defaultCities;
     private ArrayList<BarbarianBase> barbarianBases;
     private ArrayList<NaturalWander> naturalWanders;
@@ -20,6 +21,7 @@ public class Map {
     public Map(MapSizes size)
     {
         terrains = new ArrayList<>();
+        playerCities = new ArrayList<>();
         defaultCities = new ArrayList<>();
         barbarianBases = new ArrayList<>();
         naturalWanders = new ArrayList<>();
@@ -56,14 +58,14 @@ public class Map {
     public void addDefaultCity(DefaultCity city)
     {
         defaultCities.add(city);
-        getTerrainFromCoordinates(city.coordinates).setTerritory(true);
+        getTerrainFromCoordinates(city.getCoordinates()).setTerritory(true);
 
-        Coordinates landCoordinates1 = new Coordinates(city.coordinates.getX(), city.coordinates.getY() + 2, city.coordinates.getZ());
-        Coordinates landCoordinates2 = new Coordinates(city.coordinates.getX() + 1, city.coordinates.getY() + 1, city.coordinates.getZ());
-        Coordinates landCoordinates3 = new Coordinates(city.coordinates.getX() + 1, city.coordinates.getY() - 1, city.coordinates.getZ());
-        Coordinates landCoordinates4 = new Coordinates(city.coordinates.getX(), city.coordinates.getY() - 2, city.coordinates.getZ());
-        Coordinates landCoordinates5 = new Coordinates(city.coordinates.getX() - 1, city.coordinates.getY() + 1, city.coordinates.getZ());
-        Coordinates landCoordinates6 = new Coordinates(city.coordinates.getX() - 1, city.coordinates.getY() - 1, city.coordinates.getZ());
+        Coordinates landCoordinates1 = new Coordinates(city.getCoordinates().getX(), city.getCoordinates().getY() + 2, city.getCoordinates().getZ());
+        Coordinates landCoordinates2 = new Coordinates(city.getCoordinates().getX() + 1, city.getCoordinates().getY() + 1, city.getCoordinates().getZ());
+        Coordinates landCoordinates3 = new Coordinates(city.getCoordinates().getX() + 1, city.getCoordinates().getY() - 1, city.getCoordinates().getZ());
+        Coordinates landCoordinates4 = new Coordinates(city.getCoordinates().getX(), city.getCoordinates().getY() - 2, city.getCoordinates().getZ());
+        Coordinates landCoordinates5 = new Coordinates(city.getCoordinates().getX() - 1, city.getCoordinates().getY() + 1, city.getCoordinates().getZ());
+        Coordinates landCoordinates6 = new Coordinates(city.getCoordinates().getX() - 1, city.getCoordinates().getY() - 1, city.getCoordinates().getZ());
 
         addDefaultCityLand(city, landCoordinates1);
         addDefaultCityLand(city, landCoordinates2);
@@ -154,6 +156,41 @@ public class Map {
     public UnitList getUnits()
     {
         return units;
+    }
+
+
+    public DefaultCity getDefaultCityFromCoordinates(Coordinates coordinates)
+    {
+        for (int i = 0; i < defaultCities.size(); i++){
+            if (coordinates.equals(defaultCities.get(i).getCoordinates())){
+                return defaultCities.get(i);
+            }
+        }
+
+        return null;
+    }
+
+
+    public PlayerCity getPlayerCityFromCoordinates(Coordinates coordinates)
+    {
+        for (int i = 0; i < playerCities.size(); i++){
+            if (coordinates.equals(playerCities.get(i).getCoordinates())){
+                return playerCities.get(i);
+            }
+        }
+
+        return null;
+    }
+
+
+    public boolean isUnitInTheCoordinates(Coordinates coordinates){
+        if (units.getWorkerFromCoordinates(coordinates) != null || units.getSettlerFromCoordinates(coordinates) != null ||
+        units.getMeleeMilitaryUnitFromCoordinates(coordinates) != null || units.getRangedMilitaryUnitFromCoordinates(coordinates) != null
+        || units.getHeavyRangedMilitaryUnitFromCoordinates(coordinates) != null){
+            return true;
+        }
+
+        return false;
     }
 
 
