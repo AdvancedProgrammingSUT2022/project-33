@@ -4,7 +4,6 @@ import View.GameLoaderView;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Timer;
 
 public class GameLoader {
     private ArrayList<Player> players;
@@ -54,6 +53,16 @@ public class GameLoader {
 
         GameLoaderView.printSpaces();
         GameLoaderView.showLoadingScreen("80");
+
+        dropPlayers(map);
+
+        startTime = System.currentTimeMillis();
+
+        while (System.currentTimeMillis() - startTime < 1000){
+
+        }
+
+        ZaWarudo zaWarudo = new ZaWarudo(map, players);
     }
 
 
@@ -79,7 +88,6 @@ public class GameLoader {
                         players.get(k).getMap().getUnits().addMilitaryUnit(warrior);
                         map.getUnits().addMilitaryUnit(warrior);
                         players.get(k).getMap().updateMap();
-                        //TODO:
                     }
                 }
             }

@@ -3,10 +3,10 @@ package Model;
 import java.util.ArrayList;
 
 public class MiniMap extends Map{
-    ArrayList<MiniMapTile> hiddenTiles;
-    ArrayList<Coordinates> hiddenCoordinates;
-    ArrayList<MiniMapTile> visibleTiles;
-    ArrayList<Coordinates> visibleCoordinates;
+    private ArrayList<MiniMapTile> hiddenTiles;
+    private ArrayList<Coordinates> hiddenCoordinates;
+    private ArrayList<MiniMapTile> visibleTiles;
+    private ArrayList<Coordinates> visibleCoordinates;
 
 
 
@@ -210,4 +210,50 @@ public class MiniMap extends Map{
 
         return -1;
     }
+
+
+    public ArrayList<MiniMapTile> getHiddenTiles() {
+        return hiddenTiles;
+    }
+
+
+    public ArrayList<Coordinates> getHiddenCoordinates() {
+        return hiddenCoordinates;
+    }
+
+
+    public ArrayList<MiniMapTile> getVisibleTiles() {
+        return visibleTiles;
+    }
+
+
+    public ArrayList<Coordinates> getVisibleCoordinates() {
+        return visibleCoordinates;
+    }
+
+
+    public MiniMapTile getVisibleTileFromCoordinates(Coordinates coordinates)
+    {
+        for (int i = 0; i < visibleTiles.size(); i++){
+            if (visibleTiles.get(i).getCoordinates().equals(coordinates)){
+                return visibleTiles.get(i);
+            }
+        }
+
+        return null;
+    }
+
+
+
+    public MiniMapTile getHiddenTileFromCoordinates(Coordinates coordinates)
+    {
+        for (int i = 0; i < hiddenTiles.size(); i++){
+            if (hiddenTiles.get(i).getCoordinates().equals(coordinates)){
+                return hiddenTiles.get(i);
+            }
+        }
+
+        return null;
+    }
+
 }
