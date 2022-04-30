@@ -18,7 +18,6 @@ public class MiniMapTile {
     private boolean hasHeavyRangedMilitaryUnit;
     private HeavyRangedMilitaryUnits heavyRangedMilitaryUnits;
 
-    //TODO:
 
 
 

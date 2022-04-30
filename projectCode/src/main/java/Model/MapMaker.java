@@ -45,8 +45,6 @@ public class MapMaker {
         placeBarbarians();
         placeRuinsAndNaturalWanders();
         digRiver();
-
-        //TODO: MAKING FOG AND PLAYER METHODS.
     }
 
 
