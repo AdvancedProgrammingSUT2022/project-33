@@ -1,11 +1,21 @@
 package Model;
 
 public enum HeavyRangedUnits {
-    CATAPULT("Catapult", 14, 2, 2, 100, 75, 1, 4,
-            14, false, 3, 1, Technologies.MATHEMATICS, StrategicResourceTypes.IRON, Eras.CLASSICAL);
+    //classical units
+    CATAPULT("Catapult", 11, 2, 2, 100, 75, 1, 4,
+            14, false, 2, 1, Technologies.MATHEMATICS, StrategicResourceTypes.IRON, Eras.CLASSICAL),
+
+    //medieval units
+    TREBUCHET("Trebuchet", 12, 2, 2, 170, 170, 1, 6,
+            20, false, 2, 2, Technologies.PHYSICS, StrategicResourceTypes.IRON, Eras.MEDIEVAL),
+
+    //renaissance units
+    CANNON("Cannon", 14, 2,  2, 250, 235, 2, 10,
+            26, false, 2, 1, Technologies.CHEMISTRY, null, Eras.RENAISSANCE),
+
 
     //TODO:
-
+    ;
 
     final HeavyRangedMilitaryUnits unit;
 

@@ -1,13 +1,18 @@
 package Model;
 
 public enum RangedUnits {
+    //Ancient units
     Archer("Archer", 9, 2, 2, 70, 40,
             1, 4, 6, false, 2, Technologies.ARCHERY, null, Eras.ANCIENT),
+
+    //Ancient units
     CHARIOT_ARCHER("Chariot Archer", 10, 2, 4, 60, 60,
             1, 3, 6, true, 2, Technologies.THE_WHEEL, StrategicResourceTypes.HORSE, Eras.ANCIENT),
+
+    //medieval units
     CROSSBOWMAN("Crossbowman", 11, 2, 2, 120, 120,
             1, 6, 12, false, 2, Technologies.MACHINERY, null, Eras.MEDIEVAL),
-    
+
 
     ;
     //TODO:

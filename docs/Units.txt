@@ -64,6 +64,68 @@ Swordsman:
     era = Classical
 
 
+Knight:
+    health = 13
+    visibility = 2
+    move point = 2
+    price = 160
+    production needed = 145
+    maintenance = 3
+    attack damage = 18
+    technology required = Chivalry
+    resource required = Horse
+    era = Classical
+
+Long Swordsman:
+    health = 18
+    visibility = 2
+    move point = 2
+    price = 150
+    production needed = 140
+    maintenance = 3
+    attack damage = 18
+    technology required = Steel
+    resource required = Iron
+    era = Medieval
+
+
+Pikeman:
+    health = 11
+    visibility = 2
+    move point = 2
+    price = 100
+    production needed = 90
+    maintenance = 1
+    attack damage = 10
+    technology required = Civil Service
+    resource required = nothing
+    era = Medieval
+
+
+Cavalry:
+    health = 14
+    visibility = 2
+    move point = 3
+    price = 260
+    production needed = 250
+    maintenance = 2
+    attack damage = 26
+    technology required = Military Science
+    resource required = Horse
+    era = Renaissance
+
+
+Lancer:
+    health = 12
+    visibility = 2
+    move point = 4
+    price = 220
+    production needed = 200
+    maintenance = 2
+    attack damage = 22
+    technology required = Metallurgy
+    resource required = Horse
+    era = Renaissance
 
 
 
@@ -150,7 +212,7 @@ Crossbowman:
 ********** Heavy Units **********
 
 Catapult:
-    health = 14
+    health = 11
     visibility = 2
     move point = 2
     price = 100
@@ -165,16 +227,49 @@ Catapult:
     era = Classical
 
 
-:
-    health =
-    visibility =
-    move point =
-    price =
-    production needed =
-    maintenance =
-    attack damage =
-    ranged attack damage =
-    Range =
-    technology required =
-    resource required =
-    era =
+Trebuchet:
+    health = 12
+    visibility = 2
+    move point = 2
+    price = 170
+    production needed = 170
+    maintenance = 2
+    attack damage = 6
+    ranged attack damage = 20
+    Range = 2
+    turns to setup = 2
+    technology required = Physics
+    resource required = Iron
+    era = Medieval
+
+
+Cannon:
+    health = 14
+    visibility = 2
+    move point = 2
+    price = 250
+    production needed = 235
+    maintenance = 2
+    attack damage = 10
+    ranged attack damage = 26
+    Range = 2
+    turns to setup = 1
+    technology required = Chemistry
+    resource required = nothing
+    era = renaissance
+
+
+  :
+      health =
+      visibility =
+      move point =
+      price =
+      production needed =
+      maintenance =
+      attack damage =
+      ranged attack damage =
+      Range =
+      turns to setup =
+      technology required =
+      resource required =
+      era =
