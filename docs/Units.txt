@@ -1,0 +1,180 @@
+********** Melee Units **********
+Warrior:
+  health = 10
+  visibility = 2
+  move point = 2
+  price = 40
+  production needed = 40
+  maintenance = 1
+  attack damage = 6
+  technology required = nothing
+  resource required = nothing
+  era = Ancient
+
+
+Scout:
+    health = 8
+    visibility = 3
+    move point = 3
+    price = 25
+    production needed = 40
+    maintenance = 1
+    attack damage = 6
+    technology required = nothing
+    resource required = nothing
+    era = Ancient
+
+
+Spearman:
+    health = 10
+    visibility = 2
+    move point = 2
+    price = 50
+    production needed = 60
+    maintenance = 1
+    attack damage = 7
+    technology required = Bronze Working
+    resource required = nothing
+    era = Ancient
+
+
+Horseman:
+    health = 10
+    visibility = 2
+    move point = 4
+    price = 80
+    production needed = 70
+    maintenance = 1
+    attack damage = 12
+    technology required = Horseback riding
+    resource required = Horse
+    era = Classical
+
+
+Swordsman:
+    health = 11
+    visibility = 2
+    move point = 2
+    price = 80
+    production needed = 70
+    maintenance = 1
+    attack damage = 12
+    technology required = Iron Working
+    resource required = Iron
+    era = Classical
+
+
+
+
+
+  :
+    health =
+    visibility =
+    move point =
+    price =
+    production needed =
+    maintenance =
+    attack damage =
+    technology required =
+    resource required =
+    era =
+
+
+
+
+    ********** Ranged Units **********
+
+Archer:
+    health = 9
+    visibility = 2
+    move point = 2
+    price = 70
+    production needed = 40
+    maintenance = 1
+    attack damage = 4
+    ranged attack damage = 6
+    Range = 2
+    technology required = Archery
+    resource required = nothing
+    era = Ancient
+
+
+Chariot Archery:
+    health = 9
+    visibility = 2
+    move point = 2
+    price = 70
+    production needed = 60
+    maintenance = 1
+    attack damage = 3
+    ranged attack damage = 6
+    Range = 2
+    technology required = The Wheel
+    resource required = Horse
+    era = Ancient
+
+
+
+
+Crossbowman:
+    health = 11
+    visibility = 2
+    move point = 2
+    price = 120
+    production needed = 120
+    maintenance = 1
+    attack damage = 6
+    ranged attack damage = 12
+    Range = 2
+    technology required = Machinery
+    resource required = nothing
+    era = Medieval
+
+
+  :
+    health =
+    visibility =
+    move point =
+    price =
+    production needed =
+    maintenance =
+    attack damage =
+    ranged attack damage =
+    Range =
+    technology required =
+    resource required =
+    era =
+
+
+
+********** Heavy Units **********
+
+Catapult:
+    health = 14
+    visibility = 2
+    move point = 2
+    price = 100
+    production needed = 75
+    maintenance = 1
+    attack damage = 4
+    ranged attack damage = 14
+    Range = 3
+    turns to setup = 1
+    technology required = Mathematics
+    resource required = Iron
+    era = Classical
+
+
+:
+    health =
+    visibility =
+    move point =
+    price =
+    production needed =
+    maintenance =
+    attack damage =
+    ranged attack damage =
+    Range =
+    technology required =
+    resource required =
+    era =
