@@ -1,9 +1,39 @@
 package Model;
 
 public enum DefaultCityNames {
-    TEST,
-    TEST1,
-    TEST2,
-    TEST3,
-    //TODO
+    SHARIF("Sharif"),
+    SAGD("SAGD"),
+    BARGH("Bargh"),
+    PHYSIC("Physic"),
+    RIAZI("Riazi"),
+    MECHANIC("Mechanic"),
+    HAVA_FAZA("Hava Faza"),
+    SHIMI("Shimi"),
+    SANAYEE("Sanayee"),
+    EGHTESAD("Eghtesad"),
+    ENERGY("Energy"),
+    MAVAD("Mavad"),
+
+    ECLESH("Eclesh"),
+    OCHYE("Ochye"),
+    OSKUS("Oskus"),
+    PUSTAD("Pustad"),
+    ASNAL("Asnal"),
+    ASHEA("Ashea"),
+    SACRESH("Sacresh"),
+    ESCECH("Escesh"),
+    ODRA("Odra"),
+    OBRAD("Obrad"),
+
+
+    //TODO:
+    ;
+
+
+    final String name;
+
+    DefaultCityNames(String cityName)
+    {
+        name = cityName;
+    }
 }

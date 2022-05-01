@@ -1,9 +1,10 @@
 package Model;
 
-public class NaturalWander {
+public class NaturalWonder {
     Coordinates coordinates;
     private int happinessBoost;
     private int gold;
+    private int instantGold;
     private String name;
 
 
@@ -11,20 +12,21 @@ public class NaturalWander {
 
 
     ////methods////
-    public NaturalWander(int happinessBoost, int gold, String name)
+    public NaturalWonder(int happinessBoost, int gold, int instantGold, String name)
     {
         this.happinessBoost = happinessBoost;
+        this.instantGold = instantGold;
         this.gold = gold;
         this.name = name;
     }
 
 
 
-    public NaturalWander(NaturalWanderTypes naturalWander, Coordinates coordinates)
+    public NaturalWonder(NaturalWonderTypes naturalWander, Coordinates coordinates)
     {
-        this.happinessBoost = naturalWander.naturalWander.getHappinessBoost();
-        this.gold = naturalWander.naturalWander.getGold();
-        this.name = naturalWander.naturalWander.getName();
+        this.happinessBoost = naturalWander.naturalWonder.getHappinessBoost();
+        this.gold = naturalWander.naturalWonder.getGold();
+        this.name = naturalWander.naturalWonder.getName();
         this.coordinates = coordinates;
     }
 
@@ -46,5 +48,10 @@ public class NaturalWander {
     public String getName()
     {
         return name;
+    }
+
+
+    public int getInstantGold() {
+        return instantGold;
     }
 }

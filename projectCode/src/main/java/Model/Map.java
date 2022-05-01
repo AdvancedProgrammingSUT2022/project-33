@@ -7,7 +7,7 @@ public class Map {
     private ArrayList<PlayerCity> playerCities;
     private ArrayList<DefaultCity> defaultCities;
     private ArrayList<BarbarianBase> barbarianBases;
-    private ArrayList<NaturalWander> naturalWanders;
+    private ArrayList<NaturalWonder> naturalWanders;
     private ArrayList<Ruin> ruins;
     private ArrayList<River> rivers;
     private MapSizes size;
@@ -94,7 +94,7 @@ public class Map {
 
 
 
-    public void addNaturalWander(NaturalWander naturalWander)
+    public void addNaturalWander(NaturalWonder naturalWander)
     {
         naturalWanders.add(naturalWander);
     }

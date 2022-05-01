@@ -259,7 +259,7 @@ public class MapMaker {
 
                 if (rand.nextInt(naturalWanderMaxChance) < naturalWanderChance && !map.getTerrainFromCoordinates(coordinates).getIsTerritory()){
                     map.getTerrainFromCoordinates(coordinates).setTerritory(true);
-                    NaturalWander naturalWander = new NaturalWander(NaturalWanderTypes.values()[rand.nextInt(NaturalWanderTypes.values().length)], coordinates);
+                    NaturalWonder naturalWander = new NaturalWonder(NaturalWonderTypes.values()[rand.nextInt(NaturalWonderTypes.values().length)], coordinates);
                     map.addNaturalWander(naturalWander);
                 }
             }
