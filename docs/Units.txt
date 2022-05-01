@@ -128,18 +128,82 @@ Lancer:
     era = Renaissance
 
 
+Musketman:
+    health = 11
+    visibility = 2
+    move point = 2
+    price = 120
+    production needed = 110
+    maintenance = 1
+    attack damage = 16
+    technology required = Gunpowder
+    resource required = nothing
+    era = Renaissance
 
-  :
-    health =
-    visibility =
-    move point =
-    price =
-    production needed =
-    maintenance =
-    attack damage =
-    technology required =
-    resource required =
-    era =
+
+Rifleman:
+    health = 11
+    visibility = 2
+    move point = 2
+    price = 200
+    production needed = 200
+    maintenance = 1
+    attack damage = 25
+    technology required = Rifling
+    resource required = nothing
+    era = Renaissance
+
+
+Anti-Tank Gun:
+    health = 14
+    visibility = 2
+    move point = 2
+    price = 300
+    production needed = 320
+    maintenance = 2
+    attack damage = 32
+    technology required = Replaceable parts
+    resource required = nothing
+    era = Industrial
+
+
+Infantry:
+    health = 12
+    visibility = 2
+    move point = 2
+    price = 300
+    production needed = 280
+    maintenance = 1
+    attack damage = 36
+    technology required = Replaceable parts
+    resource required = nothing
+    era = Industrial
+
+
+Panzer:
+    health = 15
+    visibility = 2
+    move point = 5
+    price = 450
+    production needed = 475
+    maintenance = 2
+    attack damage = 60
+    technology required = Combustion
+    resource required = nothing
+    era = Industrial
+
+Tank:
+    health = 22
+    visibility = 2
+    move point = 4
+    price = 450
+    production needed = 475
+    maintenance = 3
+    attack damage = 50
+    technology required = Combustion
+    resource required = nothing
+    era = Industrial
+
 
 
 
@@ -193,19 +257,6 @@ Crossbowman:
     era = Medieval
 
 
-  :
-    health =
-    visibility =
-    move point =
-    price =
-    production needed =
-    maintenance =
-    attack damage =
-    ranged attack damage =
-    Range =
-    technology required =
-    resource required =
-    era =
 
 
 
@@ -259,17 +310,17 @@ Cannon:
     era = renaissance
 
 
-  :
-      health =
-      visibility =
-      move point =
-      price =
-      production needed =
-      maintenance =
-      attack damage =
-      ranged attack damage =
-      Range =
-      turns to setup =
-      technology required =
-      resource required =
-      era =
+Artillery:
+      health = 13
+      visibility = 2
+      move point = 2
+      price = 420
+      production needed = 400
+      maintenance = 2
+      attack damage = 16
+      ranged attack damage = 32
+      Range = 3
+      turns to setup = 1
+      technology required = Dynamite
+      resource required = nothing
+      era = Industrial  

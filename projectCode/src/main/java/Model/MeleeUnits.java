@@ -28,11 +28,20 @@ public enum MeleeUnits {
             2, 26, true, Technologies.MILITARY_SCIENCE, StrategicResourceTypes.HORSE, Eras.RENAISSANCE),
     LANCER("Lancer", 12, 2, 4, 220, 200,
             2, 22, true, Technologies.METALLURGY, StrategicResourceTypes.HORSE, Eras.RENAISSANCE),
-    
+     MUSKETMAN("Musketman", 11, 2, 2, 120, 110,
+             1, 16, false, Technologies.GUNPOWDER, null, Eras.RENAISSANCE),
+    RIFLEMAN("Rifleman", 11, 2, 2, 200, 200,
+            1, 25, false, Technologies.RIFLING, null, Eras.RENAISSANCE),
 
-
-    ;
-    //TODO:
+    //Industrial units
+    ANTI_TANK_GUN("Anti-Tank Gun", 14, 2, 2, 300, 320,
+            2, 32, false, Technologies.REPLACEABLE_PARTS, null, Eras.INDUSTRIAL),
+    INFANTRY("Infantry", 12, 2, 2, 300, 280,
+            1, 36, false, Technologies.REPLACEABLE_PARTS, null, Eras.INDUSTRIAL),
+    PANZER("Panzer", 15, 2, 5, 450, 475,
+            2, 60, false, Technologies.COMBUSTION, null, Eras.INDUSTRIAL),
+    TANK("Tank", 22, 2, 4, 450, 475,
+            3, 50, false, Technologies.COMBUSTION, null, Eras.INDUSTRIAL);
 
 
     final MeleeMilitaryUnit unit;

@@ -11,11 +11,7 @@ public enum RangedUnits {
 
     //medieval units
     CROSSBOWMAN("Crossbowman", 11, 2, 2, 120, 120,
-            1, 6, 12, false, 2, Technologies.MACHINERY, null, Eras.MEDIEVAL),
-
-
-    ;
-    //TODO:
+            1, 6, 12, false, 2, Technologies.MACHINERY, null, Eras.MEDIEVAL);
 
 
     final RangedMilitaryUnit unit;

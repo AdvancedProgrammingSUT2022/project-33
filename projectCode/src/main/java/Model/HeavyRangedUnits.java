@@ -13,9 +13,9 @@ public enum HeavyRangedUnits {
     CANNON("Cannon", 14, 2,  2, 250, 235, 2, 10,
             26, false, 2, 1, Technologies.CHEMISTRY, null, Eras.RENAISSANCE),
 
-
-    //TODO:
-    ;
+    //Industrial units
+    ARTILLERY("Artillery", 13, 2, 2, 420, 400, 2, 16,
+            32, false, 3, 1, Technologies.DYNAMITE, null, Eras.INDUSTRIAL);
 
     final HeavyRangedMilitaryUnits unit;
 
