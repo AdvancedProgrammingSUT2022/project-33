@@ -10,7 +10,7 @@ public class Worker extends Unit{
 
     public Worker (Coordinates coordinates)
     {
-        super(8, 2, 2, 70, 70, 0);
+        super("Worker", 8, 2, 2, 70, 70, 0);
         super.setCoordinates(coordinates);
     }
 }

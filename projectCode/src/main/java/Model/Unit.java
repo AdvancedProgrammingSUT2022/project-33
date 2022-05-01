@@ -3,6 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Unit {
+    private String gameName;
     private String type;
     private Colors color;
     private boolean belongsToPlayer;
@@ -25,8 +26,9 @@ public class Unit {
 
 
     ////methods////
-    public Unit(int health, int visibilityRange, int maxMovements, int price, int productionNeededForBeingMade, int maintenancePricePerTurn)
+    public Unit(String gameName, int health, int visibilityRange, int maxMovements, int price, int productionNeededForBeingMade, int maintenancePricePerTurn)
     {
+        this.gameName = gameName;
         this.health = health;
         this.visibilityRange = visibilityRange;
         this.maxMovements = maxMovements;
@@ -274,4 +276,10 @@ public class Unit {
     public ArrayList<Coordinates> getPath() {
         return path;
     }
+
+
+    public String getGameName() {
+        return gameName;
+    }
+
 }

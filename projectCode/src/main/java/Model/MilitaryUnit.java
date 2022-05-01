@@ -4,7 +4,7 @@ public class MilitaryUnit extends Unit{
     private int attackDamage;
     private int level;
     private Technologies technologyRequired;
-    private ResourceTypes resourceRequired;
+    private StrategicResourceTypes resourceRequired;
     private Eras era;
     private int turnsAfterStartingToStabilize;
     private int defenceBonus;
@@ -16,10 +16,10 @@ public class MilitaryUnit extends Unit{
 
 
     ////methods////
-    public MilitaryUnit (int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
-                         int attackDamage, boolean isCavalry, Technologies technologyRequired, ResourceTypes resourceRequired, Eras era)
+    public MilitaryUnit (String gameName, int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
+                         int attackDamage, boolean isCavalry, Technologies technologyRequired, StrategicResourceTypes resourceRequired, Eras era)
     {
-        super(health, visibilityRange, maxMovements, price, productionRequiredForBeingMade, maintenancePricePerTurn);
+        super(gameName, health, visibilityRange, maxMovements, price, productionRequiredForBeingMade, maintenancePricePerTurn);
         this.attackDamage = attackDamage;
         this.technologyRequired = technologyRequired;
         this.resourceRequired = resourceRequired;
@@ -32,7 +32,7 @@ public class MilitaryUnit extends Unit{
 
     public MilitaryUnit(MeleeMilitaryUnit unit, Coordinates coordinates)
     {
-        super(unit.getHealth(), unit.getVisibilityRange(), unit.getMaxMovements(), unit.getPrice(),
+        super(unit.getGameName(), unit.getHealth(), unit.getVisibilityRange(), unit.getMaxMovements(), unit.getPrice(),
                 unit.getProductionNeededForBeingMade(), unit.getMaintenancePricePerTurn());
         super.setCoordinates(coordinates);
     }
@@ -41,7 +41,7 @@ public class MilitaryUnit extends Unit{
 
     public MilitaryUnit(RangedMilitaryUnit unit, Coordinates coordinates)
     {
-        super(unit.getHealth(), unit.getVisibilityRange(), unit.getMaxMovements(), unit.getPrice(),
+        super(unit.getGameName(), unit.getHealth(), unit.getVisibilityRange(), unit.getMaxMovements(), unit.getPrice(),
                 unit.getProductionNeededForBeingMade(), unit.getMaintenancePricePerTurn());
         super.setCoordinates(coordinates);
     }
@@ -59,7 +59,7 @@ public class MilitaryUnit extends Unit{
     }
 
 
-    public ResourceTypes getResourceRequired() {
+    public StrategicResourceTypes getResourceRequired() {
         return resourceRequired;
     }
 

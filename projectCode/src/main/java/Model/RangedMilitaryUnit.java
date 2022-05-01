@@ -2,18 +2,20 @@ package Model;
 
 public class RangedMilitaryUnit extends MilitaryUnit{
     private int attackRange;
+    private int rangedAttackDamage;
 
 
 
 
 
     ////methods////
-    public RangedMilitaryUnit(int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
-                             int attackDamage, boolean isCavalry, int attackRange, Technologies technologyRequired, ResourceTypes resourceRequired, Eras era)
+    public RangedMilitaryUnit(String gameName, int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
+                             int attackDamage, int rangedAttackDamage, boolean isCavalry, int attackRange, Technologies technologyRequired, StrategicResourceTypes resourceRequired, Eras era)
     {
-        super(health, visibilityRange, maxMovements, price, productionRequiredForBeingMade, maintenancePricePerTurn, attackDamage,
+        super(gameName, health, visibilityRange, maxMovements, price, productionRequiredForBeingMade, maintenancePricePerTurn, attackDamage,
                 isCavalry, technologyRequired, resourceRequired, era);
         this.attackRange = attackRange;
+        this.rangedAttackDamage = rangedAttackDamage;
     }
 
 
@@ -38,9 +40,10 @@ public class RangedMilitaryUnit extends MilitaryUnit{
 
     public RangedMilitaryUnit(HeavyRangedMilitaryUnits unit, Coordinates coordinates)
     {
-        super(unit.getHealth(), unit.getVisibilityRange(), unit.getMaxMovements(), unit.getPrice(), unit.getProductionNeededForBeingMade()
+        super(unit.getGameName(), unit.getHealth(), unit.getVisibilityRange(), unit.getMaxMovements(), unit.getPrice(), unit.getProductionNeededForBeingMade()
                 , unit.getMaintenancePricePerTurn(), unit.getAttackDamage(), unit.getIsCavalry(), unit.getTechnologyRequired(), unit.getResourceRequired(), unit.getEra());
         this.attackRange = unit.getAttackRange();
+        this.rangedAttackDamage = unit.getRangedAttackDamage();
     }
 
 
@@ -48,5 +51,10 @@ public class RangedMilitaryUnit extends MilitaryUnit{
     //getters
     public int getAttackRange() {
         return attackRange;
+    }
+
+
+    public int getRangedAttackDamage() {
+        return rangedAttackDamage;
     }
 }

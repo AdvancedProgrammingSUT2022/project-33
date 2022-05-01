@@ -8,11 +8,11 @@ public class HeavyRangedMilitaryUnits extends RangedMilitaryUnit{
 
 
     ////methods////
-    public HeavyRangedMilitaryUnits(int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
-                              int attackDamage, boolean isCavalry, int attackRange, int turnsNeededToSetUp, Technologies technologyRequired, ResourceTypes resourceRequired, Eras era)
+    public HeavyRangedMilitaryUnits(String gameName, int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
+                              int attackDamage, int rangedAttackDamage, boolean isCavalry, int attackRange, int turnsNeededToSetUp, Technologies technologyRequired, StrategicResourceTypes resourceRequired, Eras era)
     {
-        super(health, visibilityRange, maxMovements, price, productionRequiredForBeingMade, maintenancePricePerTurn,
-                attackDamage, isCavalry, attackRange, technologyRequired, resourceRequired, era);
+        super(gameName, health, visibilityRange, maxMovements, price, productionRequiredForBeingMade, maintenancePricePerTurn,
+                attackDamage, rangedAttackDamage, isCavalry, attackRange, technologyRequired, resourceRequired, era);
         this.turnsNeededToSetUp = turnsNeededToSetUp;
     }
 
