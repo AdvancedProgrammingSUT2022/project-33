@@ -2,8 +2,9 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Construction {
+public class Improvement {
     String type;
+    String gameName;
     ArrayList<String> availableLandTypes;
     Technologies neededTechnology;
     int constructionTime;
@@ -17,13 +18,14 @@ public class Construction {
 
 
     ////methods////
-    public Construction(ArrayList<String> availableLandTypes, Technologies neededTechnology, int constructionTime, int foodEffect, int productionEffect, int goldEffect)
+    public Improvement(String gameName, ArrayList<String> availableLandTypes, Technologies neededTechnology, int foodEffect, int productionEffect, int goldEffect)
     {
+        this.gameName = gameName;
         this.availableLandTypes = availableLandTypes;
         this.neededTechnology = neededTechnology;
-        this.constructionTime = constructionTime;
         this.foodEffect = foodEffect;
         this.productionEffect = productionEffect;
         this.goldEffect = goldEffect;
+        constructionTime = 6;
     }
 }
