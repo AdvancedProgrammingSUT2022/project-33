@@ -243,7 +243,7 @@ Chariot Archery:
 
 
 Crossbowman:
-    health = 11
+    health = 22
     visibility = 2
     move point = 2
     price = 120
@@ -279,7 +279,7 @@ Catapult:
 
 
 Trebuchet:
-    health = 12
+    health = 14
     visibility = 2
     move point = 2
     price = 170
@@ -295,7 +295,7 @@ Trebuchet:
 
 
 Cannon:
-    health = 14
+    health = 20
     visibility = 2
     move point = 2
     price = 250
@@ -311,7 +311,7 @@ Cannon:
 
 
 Artillery:
-      health = 13
+      health = 30
       visibility = 2
       move point = 2
       price = 420
