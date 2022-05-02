@@ -42,8 +42,12 @@ public class Unit {
 
 
 
-    public void updateUnit()
+    public void updateUnit(ArrayList<Terrain> terrains)
     {
+        if (isMoving) {
+            moveUnit(terrains);
+        }
+
         //TODO:
     }
 

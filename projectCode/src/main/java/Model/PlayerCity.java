@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PlayerCity extends City{
     private Player owner;
-    private ArrayList<Wander> wanders;
+    private ArrayList<Wonder> wanders;
     //TODO:
 
 

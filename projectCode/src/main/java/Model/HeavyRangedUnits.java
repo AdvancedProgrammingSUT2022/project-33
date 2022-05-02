@@ -6,15 +6,15 @@ public enum HeavyRangedUnits {
             14, false, 2, 1, Technologies.MATHEMATICS, StrategicResourceTypes.IRON, Eras.CLASSICAL),
 
     //medieval units
-    TREBUCHET("Trebuchet", 12, 2, 2, 170, 170, 1, 6,
+    TREBUCHET("Trebuchet", 14, 2, 2, 170, 170, 1, 6,
             20, false, 2, 2, Technologies.PHYSICS, StrategicResourceTypes.IRON, Eras.MEDIEVAL),
 
     //renaissance units
-    CANNON("Cannon", 14, 2,  2, 250, 235, 2, 10,
+    CANNON("Cannon", 20, 2,  2, 250, 235, 2, 10,
             26, false, 2, 1, Technologies.CHEMISTRY, null, Eras.RENAISSANCE),
 
     //Industrial units
-    ARTILLERY("Artillery", 13, 2, 2, 420, 400, 2, 16,
+    ARTILLERY("Artillery", 30, 2, 2, 420, 400, 2, 16,
             32, false, 3, 1, Technologies.DYNAMITE, null, Eras.INDUSTRIAL);
 
     final HeavyRangedMilitaryUnits unit;

@@ -10,7 +10,7 @@ public enum RangedUnits {
             1, 3, 6, true, 2, Technologies.THE_WHEEL, StrategicResourceTypes.HORSE, Eras.ANCIENT),
 
     //medieval units
-    CROSSBOWMAN("Crossbowman", 11, 2, 2, 120, 120,
+    CROSSBOWMAN("Crossbowman", 22, 2, 2, 120, 120,
             1, 6, 12, false, 2, Technologies.MACHINERY, null, Eras.MEDIEVAL);
 
 
