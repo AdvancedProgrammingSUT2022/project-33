@@ -178,7 +178,7 @@ public class MiniMapTile {
 
 
     public void setSettler(Settler settler) {
-            this.settler = new Settler(settler.getCoordinates(), settler.getColor());
+            this.settler = new Settler(settler.getCoordinates(), settler.getColor(), settler.getOwner());
             this.settler.setNonPlayerColor(settler.getNonPlayerColor());
             this.settler.setBelongsToPlayer(settler.isBelongsToPlayer());
     }
@@ -190,7 +190,7 @@ public class MiniMapTile {
 
 
     public void setMeleeMilitaryUnit(MeleeMilitaryUnit meleeMilitaryUnit) {
-        this.meleeMilitaryUnit = new MeleeMilitaryUnit(meleeMilitaryUnit, meleeMilitaryUnit.getCoordinates(), meleeMilitaryUnit.getColor());
+        this.meleeMilitaryUnit = new MeleeMilitaryUnit(meleeMilitaryUnit, meleeMilitaryUnit.getCoordinates(), meleeMilitaryUnit.getColor(), meleeMilitaryUnit.getOwner());
         this.meleeMilitaryUnit.setNonPlayerColor(meleeMilitaryUnit.getNonPlayerColor());
         this.meleeMilitaryUnit.setBelongsToPlayer(meleeMilitaryUnit.isBelongsToPlayer());
     }
@@ -202,7 +202,7 @@ public class MiniMapTile {
 
 
     public void setRangedMilitaryUnit(RangedMilitaryUnit rangedMilitaryUnit) {
-        this.rangedMilitaryUnit = new RangedMilitaryUnit(rangedMilitaryUnit, rangedMilitaryUnit.getCoordinates(), rangedMilitaryUnit.getColor());
+        this.rangedMilitaryUnit = new RangedMilitaryUnit(rangedMilitaryUnit, rangedMilitaryUnit.getCoordinates(), rangedMilitaryUnit.getColor(), rangedMilitaryUnit.getOwner());
         this.rangedMilitaryUnit.setNonPlayerColor(rangedMilitaryUnit.getNonPlayerColor());
         this.rangedMilitaryUnit.setBelongsToPlayer(rangedMilitaryUnit.isBelongsToPlayer());
     }
@@ -215,7 +215,7 @@ public class MiniMapTile {
 
     public void setHeavyRangedMilitaryUnits(HeavyRangedMilitaryUnits heavyRangedMilitaryUnits) {
         this.heavyRangedMilitaryUnits = new HeavyRangedMilitaryUnits(heavyRangedMilitaryUnits,
-                heavyRangedMilitaryUnits.getCoordinates(), heavyRangedMilitaryUnits.getColor());
+                heavyRangedMilitaryUnits.getCoordinates(), heavyRangedMilitaryUnits.getColor(), heavyRangedMilitaryUnits.getOwner());
         this.heavyRangedMilitaryUnits.setNonPlayerColor(heavyRangedMilitaryUnits.getNonPlayerColor());
         this.heavyRangedMilitaryUnits.setBelongsToPlayer(heavyRangedMilitaryUnits.isBelongsToPlayer());
     }

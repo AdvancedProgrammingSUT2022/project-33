@@ -18,9 +18,9 @@ public class HeavyRangedMilitaryUnits extends RangedMilitaryUnit{
 
 
 
-    public HeavyRangedMilitaryUnits(HeavyRangedMilitaryUnits unit, Coordinates coordinates, Colors color)
+    public HeavyRangedMilitaryUnits(HeavyRangedMilitaryUnits unit, Coordinates coordinates, Colors color, Player player)
     {
-        super(unit, coordinates, color);
+        super(unit, coordinates, color, player);
     }
 
 

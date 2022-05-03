@@ -74,19 +74,21 @@ public class GameLoader {
         Random rand = new Random();
 
         while (k < players.size()){
-            players.get(k).setMap(new MiniMap(map));
+            players.get(k).setMap(new MiniMap(map, players.get(k)));
 
             for (int j = 0; j < map.getMapSize(); j++){
                 for (int i = 0; i < map.getMapSize(); i++){
                     Coordinates coordinates = new Coordinates(i, j, 0);
 
                     if (map.getTerrainFromCoordinates(coordinates).isCanBeCrossed() && rand.nextInt(maxChance) < 1){
-                        Settler settler = new Settler(coordinates, players.get(k).getColor());
+                        Settler settler = new Settler(coordinates, players.get(k).getColor(), players.get(k));
                         players.get(k).getMap().getUnits().addSettler(settler);
+                        players.get(k).getPlayerUnits().addSettler(settler);
                         map.getUnits().addSettler(settler);
-                        MeleeMilitaryUnit warrior = new MeleeMilitaryUnit(MeleeUnits.WARRIOR.unit, coordinates, players.get(k).getColor());
+                        MeleeMilitaryUnit warrior = new MeleeMilitaryUnit(MeleeUnits.WARRIOR.unit, coordinates, players.get(k).getColor(), players.get(k));
                         players.get(k).getMap().getUnits().addMilitaryUnit(warrior);
                         map.getUnits().addMilitaryUnit(warrior);
+                        players.get(k).getPlayerUnits().addMilitaryUnit(warrior);
                         players.get(k).getMap().updateMap();
                     }
                 }

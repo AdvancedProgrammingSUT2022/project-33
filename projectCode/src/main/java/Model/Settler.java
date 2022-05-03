@@ -6,7 +6,7 @@ public class Settler extends Unit{
 
 
 
-    public Settler(Coordinates coordinates, Colors color)
+    public Settler(Coordinates coordinates, Colors color, Player player)
     {
         super("Settler" , 5, 2, 2, 89, 0, 100);
         /* health = 5
@@ -19,6 +19,7 @@ public class Settler extends Unit{
         super.setCoordinates(coordinates);
         super.setBelongsToPlayer(true);
         super.setColor(color);
+        super.setOwner(player);
 
         //TODO:
     }
@@ -41,5 +42,24 @@ public class Settler extends Unit{
 
 
         //TODO:
+    }
+
+
+
+    public void createCity()
+    {
+        if (getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getIsTerritory()){
+            //TODO: error message
+            return;
+        }
+
+        PlayerCity newCity = new PlayerCity(getOwner().getCities().size() == 0, getOwner().getMap().getTerrainFromCoordinates(getCoordinates()), getOwner());
+        getOwner().addCity(newCity);
+        getOwner().getMap().addPlayerCity(newCity);
+        getOwner().getMap().getOriginalMap().addPlayerCity(newCity);
+
+        getOwner().getPlayerUnits().getSettlers().remove(this);
+        getOwner().getMap().getUnits().getSettlers().remove(this);
+        getOwner().getMap().getOriginalMap().getUnits().getSettlers().remove(this);
     }
 }

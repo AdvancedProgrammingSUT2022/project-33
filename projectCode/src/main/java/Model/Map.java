@@ -117,6 +117,13 @@ public class Map {
 
 
 
+    public void addPlayerCity(PlayerCity city)
+    {
+        playerCities.add(city);
+    }
+
+
+
     //getters
     public int getNumberOfDefaultCities()
     {

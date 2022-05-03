@@ -7,6 +7,7 @@ public class Unit {
     private String type;
     private Colors color;
     private boolean belongsToPlayer;
+    private Player Owner;
     private NonPlayerColors nonPlayerColor;
     private int health;
     private int visibilityRange;
@@ -188,6 +189,11 @@ public class Unit {
     }
 
 
+    public void setOwner(Player owner) {
+        Owner = owner;
+    }
+
+
 
     //getters
     private Terrain getTerrainFromCoordinates(ArrayList<Terrain> terrains, Coordinates coordinates)
@@ -286,4 +292,8 @@ public class Unit {
         return gameName;
     }
 
+
+    public Player getOwner() {
+        return Owner;
+    }
 }

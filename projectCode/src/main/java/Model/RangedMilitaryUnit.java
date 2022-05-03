@@ -20,11 +20,12 @@ public class RangedMilitaryUnit extends MilitaryUnit{
 
 
 
-    public RangedMilitaryUnit(RangedMilitaryUnit unit, Coordinates coordinates, Colors color)
+    public RangedMilitaryUnit(RangedMilitaryUnit unit, Coordinates coordinates, Colors color, Player player)
     {
         super(unit, coordinates);
         super.setColor(color);
         super.setBelongsToPlayer(true);
+        super.setOwner(player);
     }
 
 

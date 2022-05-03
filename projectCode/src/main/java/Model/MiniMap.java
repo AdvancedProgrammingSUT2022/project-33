@@ -7,15 +7,19 @@ public class MiniMap extends Map{
     private ArrayList<Coordinates> hiddenCoordinates;
     private ArrayList<MiniMapTile> visibleTiles;
     private ArrayList<Coordinates> visibleCoordinates;
+    Map originalMap;
+    Player owner;
 
 
 
 
 
     ////methods////
-    public MiniMap(Map map)
+    public MiniMap(Map map, Player owner)
     {
         super(map);
+        originalMap = map;
+        this.owner = owner;
     }
 
 
@@ -33,11 +37,11 @@ public class MiniMap extends Map{
     {
         visibleCoordinates = new ArrayList<>();
 
-        updateUnitVisibility(super.getUnits().getWorkers());
-        updateUnitVisibility(super.getUnits().getSettlers());
-        updateUnitVisibility(super.getUnits().getMeleeMilitaryUnits());
-        updateUnitVisibility(super.getUnits().getRangedMilitaryUnits());
-        updateUnitVisibility(super.getUnits().getHeavyRangedUnits());
+        updateUnitVisibility(owner.getPlayerUnits().getWorkers());
+        updateUnitVisibility(owner.getPlayerUnits().getSettlers());
+        updateUnitVisibility(owner.getPlayerUnits().getMeleeMilitaryUnits());
+        updateUnitVisibility(owner.getPlayerUnits().getRangedMilitaryUnits());
+        updateUnitVisibility(owner.getPlayerUnits().getHeavyRangedUnits());
     }
 
 
@@ -256,4 +260,8 @@ public class MiniMap extends Map{
         return null;
     }
 
+
+    public Map getOriginalMap() {
+        return originalMap;
+    }
 }

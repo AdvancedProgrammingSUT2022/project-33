@@ -34,6 +34,7 @@ public class City {
         this.buildings = new ArrayList<>();
         this.landsOwned = new ArrayList<>();
         landsOwned.add(terrain);
+        terrain.setTerritory(true);
         this.isWorking = false;
         this.maxHealth = 20;
 
