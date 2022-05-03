@@ -1,0 +1,119 @@
+********** Buildings **********
+
+Barracks:
+    cost: 80
+    production Needed: 75
+    maintenance: 1
+    food: 0
+    production: 0
+    happiness: 0
+    gold: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 15
+    technology needed: Bronze Working
+    building needed: nothing
+    era: Ancient
+
+
+Granary:
+    cost: 100
+    production Needed: 85
+    maintenance: 1
+    food: 2
+    production: 0
+    happiness: 0
+    gold: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Pottery
+    building needed: nothing
+    era: Ancient
+
+
+Library:
+    cost: 80
+    production Needed: 90
+    maintenance: 1
+    food: 0
+    production: 0
+    happiness: 0
+    gold: 0
+    science per Citizen: 1
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Writing
+    building needed: nothing
+    era: Ancient
+
+
+Monument:
+    cost: 60
+    production Needed: 75
+    maintenance: 1
+    food: 0
+    production: 1
+    happiness: 0
+    gold: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: nothing
+    building needed: nothing
+    era: Ancient
+
+
+Walls:
+    cost:  100
+    production Needed: 100
+    maintenance: 1
+    food: 0
+    production: 0
+    happiness: 0
+    gold: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 5
+    Xp bonus: 0
+    technology needed: Masonry
+    building needed: nothing
+    era: Ancient
+
+
+Water Mill:
+    cost: 120
+    production Needed: 110
+    maintenance: 2
+    food: 2
+    production: 1
+    happiness:0
+    gold: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: The Wheel
+    building needed: nothing
+    era: Ancient
+
+
+:
+  cost:
+  production Needed:
+  maintenance:
+  food:
+  production:
+  happiness:
+  gold:
+  science per Citizen:
+  science effect:
+  defence:
+  Xp bonus:
+  technology needed:
+  building needed:
+  era:
