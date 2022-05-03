@@ -53,7 +53,12 @@ public class Settler extends Unit{
             return;
         }
 
-        PlayerCity newCity = new PlayerCity(getOwner().getCities().size() == 0, getOwner().getMap().getTerrainFromCoordinates(getCoordinates()), getOwner());
+        //TODO: get city name
+
+         String cityName = "ye chizi"; //TODO:  set city name
+
+        PlayerCity newCity = new PlayerCity(getOwner().getCities().size() == 0,
+                getOwner().getMap().getTerrainFromCoordinates(getCoordinates()), getOwner(), cityName);
         getOwner().addCity(newCity);
         getOwner().getMap().addPlayerCity(newCity);
         getOwner().getMap().getOriginalMap().addPlayerCity(newCity);

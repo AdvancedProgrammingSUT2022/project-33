@@ -12,7 +12,7 @@ public class City {
     private int maxHealth;
     private boolean isUnitInTheCity;
     private int attackDamage;
-    private ArrayList<Building> buildings;
+    private ArrayList<BuildingTypes> buildings;
     private ArrayList<Terrain> landsOwned;
     private int goldPerTurn;
     private boolean isCapital;
@@ -103,7 +103,7 @@ public class City {
     }
 
 
-    public ArrayList<Building> getBuildings() {
+    public ArrayList<BuildingTypes> getBuildings() {
         return buildings;
     }
 
@@ -180,7 +180,7 @@ public class City {
     }
 
 
-    public void setBuildings(ArrayList<Building> buildings) {
+    public void setBuildings(ArrayList<BuildingTypes> buildings) {
         this.buildings = buildings;
     }
 

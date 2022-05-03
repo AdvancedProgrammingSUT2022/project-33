@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class PlayerCity extends City{
     private Player owner;
     private ArrayList<Wonder> wonders;
+    private String cityName;
     //TODO:
 
 
@@ -12,10 +13,11 @@ public class PlayerCity extends City{
 
 
     ////methods////
-    public PlayerCity(boolean isCapital, Terrain terrain, Player owner)
+    public PlayerCity(boolean isCapital, Terrain terrain, Player owner, String cityName)
     {
         super(isCapital, terrain);
         this.owner = owner;
+        this.cityName = cityName;
         wonders = new ArrayList<>();
 
         initializeBorders();
@@ -85,5 +87,41 @@ public class PlayerCity extends City{
             addLand(terrain);
             terrain.setTerritory(true);
         }
+    }
+
+
+
+    public void updateCity()
+    {
+        //TODO:
+    }
+
+
+
+    //setters:
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+
+
+    //getters:
+    public Player getOwner() {
+        return owner;
+    }
+
+
+    public ArrayList<Wonder> getWonders() {
+        return wonders;
+    }
+
+
+    public String getCityName() {
+        return cityName;
     }
 }
