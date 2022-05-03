@@ -6,10 +6,10 @@ public class Building {
     int productionNeeded;
     int maintenance;
     int foodPerTurn;
-    int productionPurTurn;
-    int happinessPurTurn;
-    int goldPurTurn;
-    int sciencePurTwoCitizen;
+    int productionPerTurn;
+    int happinessPerTurn;
+    int goldPerTurn;
+    int sciencePerTwoCitizen;
     int scienceEffect;
     int defenceEffect;
     int unitsXpBonus;
@@ -25,18 +25,18 @@ public class Building {
 
     ////methods////
 
-    public Building(String gameName, int cost, int productionNeeded, int maintenance, int foodPerTurn, int productionPurTurn,
-                    int happinessPurTurn, int goldPurTurn, int sciencePurTwoCitizen, int scienceEffect, int defenceEffect, int unitsXpBonus,
+    public Building(String gameName, int cost, int productionNeeded, int maintenance, int foodPerTurn, int productionPerTurn,
+                    int happinessPerTurn, int goldPerTurn, int sciencePerTwoCitizen, int scienceEffect, int defenceEffect, int unitsXpBonus,
                     Technologies technologyNeeded, BuildingTypes requiredBuildings, boolean needsRiver, boolean needsHorse, Eras era) {
         this.gameName = gameName;
         this.cost = cost;
         this.productionNeeded  = productionNeeded;
         this.maintenance = maintenance;
         this.foodPerTurn = foodPerTurn;
-        this.productionPurTurn = productionPurTurn;
-        this.happinessPurTurn = happinessPurTurn;
-        this.goldPurTurn = goldPurTurn;
-        this.sciencePurTwoCitizen = sciencePurTwoCitizen;
+        this.productionPerTurn = productionPerTurn;
+        this.happinessPerTurn = happinessPerTurn;
+        this.goldPerTurn = goldPerTurn;
+        this.sciencePerTwoCitizen = sciencePerTwoCitizen;
         this.scienceEffect = scienceEffect;
         this.defenceEffect = defenceEffect;
         this.unitsXpBonus = unitsXpBonus;

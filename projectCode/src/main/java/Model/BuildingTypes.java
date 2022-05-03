@@ -16,8 +16,23 @@ public enum BuildingTypes {
             0, 0, 0, Technologies.THE_WHEEL, null, true, false, Eras.ANCIENT),
 
     //Classical Buildings
-    
+    ARMORY("Armory", 130, 115, 3, 0, 0, 0, 0, 0,
+            0, 0, 15, Technologies.IRON_WORKING, BuildingTypes.BARRACKS, false, false, Eras.CLASSICAL),
+    BURIAL_TOMB("Burial Tomb", 120, 120, 0, 0, 0, 2, 0, 0,
+            0, 0, 0, Technologies.PHILOSOPHY, null, false, false, Eras.CLASSICAL),
+    CIRCUS("Circus", 150, 140, 3, 0, 0, 3, 0, 0,
+            0, 0, 0, Technologies.HORSEBACK_RIDING, null, false, true, Eras.CLASSICAL),
+    COLOSSEUM("Colosseum", 150, 165, 3, 0, 0, 4, 0, 0,
+            0, 0, 0, Technologies.CONSTRUCTION, null, false, false, Eras.CLASSICAL),
+    COURTHOUSE("Courthouse", 200, 190, 5, 0, 0, 0, 0, 0,
+            0, 0, 0, Technologies.MATHEMATICS, null, false, false, Eras.CLASSICAL),
+    STABLE("Stable", 100, 110, 1, 0, 2, 0, 0, 0,
+            0, 0, 0, Technologies.HORSEBACK_RIDING, null, false, true, Eras.CLASSICAL),
+    TEMPLE("Temple", 120, 140, 2, 0, 1, 0, 0, 0,
+            0, 0, 0, Technologies.PHILOSOPHY, BuildingTypes.MONUMENT, false, false, Eras.CLASSICAL),
 
+    //Medieval buildings
+    
 
 
     ;
@@ -25,11 +40,11 @@ public enum BuildingTypes {
 
     final Building building;
 
-    BuildingTypes(String gameName, int cost, int productionNeeded, int maintenance, int foodPerTurn, int productionPurTurn,
-                  int happinessPurTurn, int goldPurTurn, int sciencePurTwoCitizen, int scienceEffect, int defenceEffect, int unitsXpBonus,
+    BuildingTypes(String gameName, int cost, int productionNeeded, int maintenance, int foodPerTurn, int productionPerTurn,
+                  int happinessPerTurn, int goldPerTurn, int sciencePerTwoCitizen, int scienceEffect, int defenceEffect, int unitsXpBonus,
                   Technologies technologyNeeded, BuildingTypes requiredBuildings, boolean needsRiver, boolean needsHorse, Eras era)
     {
-        building  = new Building(gameName, cost, productionNeeded, maintenance, foodPerTurn, productionPurTurn, happinessPurTurn, goldPurTurn,
-                sciencePurTwoCitizen, scienceEffect, defenceEffect, unitsXpBonus, technologyNeeded, requiredBuildings, needsRiver, needsHorse, era);
+        building  = new Building(gameName, cost, productionNeeded, maintenance, foodPerTurn, productionPerTurn, happinessPerTurn, goldPerTurn,
+                sciencePerTwoCitizen, scienceEffect, defenceEffect, unitsXpBonus, technologyNeeded, requiredBuildings, needsRiver, needsHorse, era);
     }
 }

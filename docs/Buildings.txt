@@ -102,6 +102,128 @@ Water Mill:
     era: Ancient
 
 
+Armory:
+    cost: 130
+    production Needed: 115
+    maintenance: 3
+    food: 0
+    production: 0
+    happiness: 0
+    gold: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 15
+    technology needed: Iron Working
+    building needed: Barracks
+    era: Classical
+
+
+Burial Tomb:
+    cost: 120
+    production Needed: 120
+    maintenance: 0
+    food: 0
+    production: 0
+    happiness: 2
+    gold: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Philosophy
+    building needed: nothing
+    era: Classical
+
+
+Circus:
+    cost: 150
+    production Needed: 140
+    maintenance: 3
+    food: 0
+    production: 0
+    happiness: 3
+    gold: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Horseback Riding
+    building needed: nothing
+    era: Classical
+
+
+Colosseum:
+    cost: 150
+    production Needed: 165
+    maintenance: 3
+    food: 0
+    production: 0
+    happiness: 3
+    gold: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: construction
+    building needed: nothing
+    era: Classical
+
+
+Courthouse:
+    cost: 200
+    production Needed: 190
+    maintenance: 5
+    food: 0
+    production: 0
+    happiness: 0
+    gold: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Mathematics
+    building needed: nothing
+    era: Classical
+
+
+Stable:
+    cost: 100
+    production Needed: 110
+    maintenance: 1
+    food: 0
+    production: 2
+    happiness: 0
+    gold: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Horseback Riding
+    building needed: nothing
+    era: Classical
+
+
+Temple:
+    cost: 120
+    production Needed: 140
+    maintenance: 2
+    food: 0
+    production: 1
+    happiness: 0
+    gold: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Philosophy
+    building needed: Monument
+    era: Classical
+
+
+    
+
+
 :
   cost:
   production Needed:
