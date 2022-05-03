@@ -17,7 +17,7 @@ public enum BuildingTypes {
     WALLS("Walls", 100, 100, 1, 0, 0, 0,
             0, 0,0 , 0, 5, 0,
             Technologies.MASONRY, null, false, false, Eras.ANCIENT),
-    WATER_MILL("Watter Mill", 120, 110, 2, 2, 1, 0,
+    WATER_MILL("Water Mill", 120, 110, 2, 2, 1, 0,
             0, 0, 0, 0, 0, 0,
             Technologies.THE_WHEEL, null, true, false, Eras.ANCIENT),
 
@@ -71,6 +71,32 @@ public enum BuildingTypes {
             Technologies.METAL_CASTING, null, false, false, Eras.MEDIEVAL),
 
     //Renaissance buildings
+    BANK("Bank", 220, 200, 0, 0, 0, 0,
+            0, 25, 0, 0, 0, 0,
+            Technologies.BANKING, BuildingTypes.MARKET, false, false, Eras.RENAISSANCE),
+   MILITARY_ACADEMY("Military Academy", 350, 330, 3, 0, 0, 0,
+           0, 0, 0, 0, 0, 15,
+           Technologies.MILITARY_SCIENCE, null, false, false, Eras.RENAISSANCE),
+    OPERA_HOUSE("Opera House", 220, 220, 3, 0, 0, 2,
+            0, 0, 0, 0, 0, 0,
+            Technologies.ACOUSTICS, BuildingTypes.TEMPLE, false, false, Eras.RENAISSANCE),
+    MUSEUM("Museum", 350, 360, 3, 0, 1, 0,
+            0, 0, 0, 0, 0, 0,
+            Technologies.ARCHAEOLOGY, BuildingTypes.OPERA_HOUSE, false, false, Eras.RENAISSANCE),
+    PUBLIC_SCHOOL("Public School", 350, 320, 3, 0, 0, 0,
+            0, 0, 0, 50, 0, 0,
+            Technologies.SCIENTIFIC_THEORY, BuildingTypes.UNIVERSITY, false, false, Eras.RENAISSANCE),
+    SATRAP_COURT("Satrap's Court", 220, 200, 0, 0, 0, 2,
+            0, 25, 0, 0, 0, 0,
+            Technologies.BANKING, BuildingTypes.MARKET, false, false, Eras.RENAISSANCE),
+    THEATER("Theater", 300, 280, 5, 0, 0, 4,
+            0, 0, 0, 0, 0, 0,
+            Technologies.PRINTING_PRESS, BuildingTypes.COLOSSEUM, false, false, Eras.RENAISSANCE),
+    WINDMILL("Windmill", 180, 170, 2, 0, 4, 0,
+            0, 0, 0, 0, 0, 0,
+            Technologies.ECONOMICS, null, false, false, Eras.RENAISSANCE),
+
+    //Industrial Buildings
 
 
 

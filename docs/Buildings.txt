@@ -378,19 +378,163 @@ Workshop:
     era: Medieval
 
 
+Bank:
+    cost: 220
+    production Needed: 200
+    maintenance:
+    food: 0
+    production: 0
+    happiness: 0
+    gold: 0
+    gold effect: 25
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Banking
+    building needed: Market
+    era: Renaissance
+
+
+Military Academy:
+    cost: 220
+    production Needed: 200
+    maintenance: 3
+    food: 0
+    production: 0
+    happiness: 0
+    gold: 0
+    gold effect: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 15
+    technology needed: Military Science
+    building needed: nothing
+    era: Renaissance
+
+
+Opera House:
+    cost: 220
+    production Needed: 220
+    maintenance: 3
+    food: 0
+    production: 0
+    happiness: 2
+    gold: 0
+    gold effect: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Acoustics
+    building needed: Temple
+    era: Renaissance
+
+
+Museum:
+    cost: 350
+    production Needed: 360
+    maintenance: 3
+    food: 0
+    production: 1
+    happiness: 0
+    gold: 0
+    gold effect: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Archaeology
+    building needed: Opera House
+    era: Renaissance
+
+
+Public School:
+    cost: 350
+    production Needed: 320
+    maintenance: 3
+    food: 0
+    production: 0
+    happiness: 0
+    gold: 0
+    gold effect: 0
+    science per Citizen: 0
+    science effect: 50
+    defence: 0
+    Xp bonus: 0
+    technology needed: Scientific Theory
+    building needed: University
+    era: Renaissance
+
+
+Satrap's Court:
+    cost: 220
+    production Needed: 200
+    maintenance: 0
+    food: 0
+    production: 0
+    happiness: 2
+    gold: 0
+    gold effect: 25
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Banking
+    building needed: Market
+    era: Renaissance
+
+
+Theater:
+    cost: 300
+    production Needed: 280
+    maintenance: 5
+    food: 0
+    production: 0
+    happiness: 4
+    gold: 0
+    gold effect: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Printing Press
+    building needed: Colosseum
+    era: Renaissance
+
+
+Windmill:
+    cost: 180
+    production Needed:170
+    maintenance: 2
+    food: 0
+    production: 4
+    happiness: 0
+    gold: 0
+    gold effect: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Economics
+    building needed: nothing
+    era: Renaissance
+
+
     :
       cost:
       production Needed:
       maintenance:
-      food:
-      production:
-      happiness:
-      gold:
+      food: 0
+      production: 0
+      happiness: 0
+      gold: 0
       gold effect: 0
-      science per Citizen:
-      science effect:
-      defence:
-      Xp bonus:
+      science per Citizen: 0
+      science effect: 0
+      defence: 0
+      Xp bonus: 0
       technology needed:
       building needed:
       era:
