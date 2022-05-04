@@ -100,6 +100,8 @@ public class PlayerCity extends City{
         calculateHappiness();
         updateResources();
         findConnectedCities();
+        managePopulation();
+        repairCity();
         //TODO:
     }
 

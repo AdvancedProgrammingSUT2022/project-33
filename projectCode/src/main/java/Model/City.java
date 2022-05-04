@@ -21,6 +21,9 @@ public class City {
     private ArrayList<City> connectedCities;
     private boolean isWorking;
     private boolean isAnnexed;
+    private int foodUntilNewCitizen;
+    private boolean isCityStarving;
+    private int turnsUntilACitizenDies;
 
 
 
@@ -42,6 +45,8 @@ public class City {
         this.maxHealth = 20;
         this.luxuryResources = new ArrayList<>();
         this.isAnnexed = false;
+        foodUntilNewCitizen = 10;
+        isCityStarving = false;
 
         //TODO:
     }
@@ -55,6 +60,8 @@ public class City {
         calculateProduction();
         calculateHappiness();
         updateResources();
+        managePopulation();
+        repairCity();
      //TODO:
     }
 
@@ -160,7 +167,7 @@ public class City {
 
 
 
-    public void updateResources()
+    protected void updateResources()
     {
         ArrayList<CityLand> workableLands = getWorkableLands();
             strategicResources = new ArrayList<>();
@@ -173,6 +180,54 @@ public class City {
             else if (workableLands.get(i).hasLuxuryResource()){
                 luxuryResources.add(workableLands.get(i).getTerrain().getLuxuryResource());
             }
+        }
+    }
+
+
+
+    protected void managePopulation()
+    {
+        if (food < 0){
+            if (isCityStarving){
+                turnsUntilACitizenDies--;
+
+                if (turnsUntilACitizenDies == 0){
+                    population--;
+                    turnsUntilACitizenDies = 5;
+                }
+            }
+            else {
+                turnsUntilACitizenDies = 5;
+                isCityStarving = true;
+            }
+        }
+        else {
+            foodUntilNewCitizen -= food;
+
+            if (foodUntilNewCitizen <= 0){
+                foodUntilNewCitizen = (int) (10 * Math.pow(1.15, population));
+                //TODO: finding a normal function.
+                population++;
+            }
+        }
+    }
+
+
+
+    protected void repairCity()
+    {
+        if (health == maxHealth){
+            return;
+        }
+
+        double repairFactor = ((double) maxHealth) / 20 + ((double) health) / 20;
+        repairFactor *= (1 + ((double) production) / 20);
+        //TODO: finding normal values.
+
+        health += repairFactor;
+
+        if (health > maxHealth){
+            health = maxHealth;
         }
     }
 
