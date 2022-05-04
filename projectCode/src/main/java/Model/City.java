@@ -45,6 +45,8 @@ public class City {
 
     public void updateCity()
     {
+        calculateGold();
+        calculateFood();
      //TODO:
     }
 
@@ -53,6 +55,50 @@ public class City {
     public void addLand(CityLand cityLand)
     {
         landsOwned.add(cityLand);
+    }
+
+
+
+    private void calculateGold()
+    {
+        int goldIncome = 0;
+        double goldIncreasePercentage = 1;
+
+        for (int i = 0; i < getBuildings().size(); i++){
+            goldIncome += getBuildings().get(i).building.getGoldPerTurn() - getBuildings().get(i).building.getMaintenance();
+            goldIncreasePercentage *= 1 + (double) getBuildings().get(i).building.getGoldEffect() / 100;
+        }
+
+        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
+
+        for (int i = 0; i < workableLands.size(); i++){
+            goldIncome += workableLands.get(i).getLandGold();
+        }
+
+        goldIncome *= goldIncreasePercentage;
+
+        setGoldPerTurn(goldIncome);
+    }
+
+
+
+    private void calculateFood()
+    {
+        int foodRemaining = 0;
+
+        for (int i = 0; i < getBuildings().size(); i++){
+            foodRemaining += getBuildings().get(i).building.getFoodPerTurn();
+        }
+
+        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
+
+        for (int i = 0; i < workableLands.size(); i++){
+            foodRemaining += workableLands.get(i).getLandFood();
+        }
+
+        foodRemaining -= population * 2;
+
+        setGoldPerTurn(foodRemaining);
     }
 
 
@@ -132,6 +178,34 @@ public class City {
         return isWorking;
     }
 
+
+    public ArrayList<CityLand> getWorkableLands()
+    {
+        ArrayList<CityLand> workableLands = new ArrayList<>();
+
+        for (int j = -2; j < 2; j++){
+            for (int i = Math.abs(j) - 2; i < 2 - Math.abs(j); i++){
+                if (getCityLandFromCoordinates(new Coordinates(coordinates.getX() + i, coordinates.getY() + j, 0)) != null){
+                    workableLands.add(getCityLandFromCoordinates(new Coordinates(coordinates.getX() + i, coordinates.getY() + j, 0)));
+                }
+            }
+        }
+
+        return workableLands;
+    }
+
+
+
+    private CityLand getCityLandFromCoordinates(Coordinates coordinates)
+    {
+        for (int i = 0; i < landsOwned.size(); i++){
+            if (landsOwned.get(i).getTerrain().getCenterCoordinates().equals(coordinates)){
+                return landsOwned.get(i);
+            }
+        }
+
+        return null;
+    }
 
 
     //setters

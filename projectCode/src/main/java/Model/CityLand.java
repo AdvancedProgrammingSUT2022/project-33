@@ -45,4 +45,16 @@ public class CityLand {
 
         return gold;
     }
+
+
+    public int getLandFood()
+    {
+        int food = terrain.getFood();
+
+        if (hasImprovement){
+            food += improvement.foodEffect;
+        }
+
+        return food;
+    }
 }

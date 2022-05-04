@@ -26,6 +26,7 @@ public class MiniMap extends Map{
 
     public void updateMap()
     {
+        //TODO: updating map from original map
         updateVisibility();
         updateTiles();
         //TODO:

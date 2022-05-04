@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PlayerCity extends City{
     private Player owner;
-    private ArrayList<Wonder> wonders;
+    private ArrayList<Wonders> wonders;
     private String cityName;
     //TODO:
 
@@ -95,9 +95,9 @@ public class PlayerCity extends City{
     public void updateCity()
     {
         calculateGold();
+        calculateFood();
         //TODO:
     }
-
 
 
 
@@ -111,13 +111,55 @@ public class PlayerCity extends City{
             goldIncreasePercentage *= 1 + (double) getBuildings().get(i).building.getGoldEffect() / 100;
         }
 
-        for (int i = 0; i < getLandsOwned().size(); i++){
-            goldIncome += getLandsOwned().get(i).getLandGold();
+        for (int i = 0; i < wonders.size(); i++){
+            goldIncome += wonders.get(i).wonder.getGoldPerTurn();
+            goldIncreasePercentage *= 1 + (double) wonders.get(i).wonder.getGoldEffect() / 100;
+        }
+
+        ArrayList<CityLand> workableLands = new ArrayList<>(super.getWorkableLands());
+
+        for (int i = 0; i < workableLands.size(); i++){
+            goldIncome += workableLands.get(i).getLandGold();
         }
 
         goldIncome *= goldIncreasePercentage;
 
         setGoldPerTurn(goldIncome);
+    }
+
+
+
+    private void calculateFood()
+    {
+        int foodRemaining = 0;
+        int foodIncreasePercentage = 1;
+
+        for (int i = 0; i < getBuildings().size(); i++){
+            foodRemaining += getBuildings().get(i).building.getFoodPerTurn();
+        }
+
+        for (int i = 0; i < wonders.size(); i++){
+            foodRemaining += wonders.get(i).wonder.getFoodPerTurn();
+            foodIncreasePercentage *= 1 + (double) wonders.get(i).wonder.getFoodEffect() / 100;
+        }
+
+        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
+
+        for (int i = 0; i < workableLands.size(); i++){
+            foodRemaining += workableLands.get(i).getLandFood();
+        }
+
+        foodRemaining *= foodIncreasePercentage;
+        foodRemaining -= getPopulation() * 2;
+
+        setGoldPerTurn(foodRemaining);
+    }
+
+
+
+    private void calculateLandFood()
+    {
+
     }
 
 
@@ -140,7 +182,7 @@ public class PlayerCity extends City{
     }
 
 
-    public ArrayList<Wonder> getWonders() {
+    public ArrayList<Wonders> getWonders() {
         return wonders;
     }
 

@@ -43,6 +43,7 @@ public class Map {
         this.ruins = map.ruins;
         this.rivers = map.rivers;
         this.size = map.size;
+        this.units = map.units;
 
     }
 
