@@ -97,10 +97,24 @@ public enum BuildingTypes {
             Technologies.ECONOMICS, null, false, false, Eras.RENAISSANCE),
 
     //Industrial Buildings
-
-
-
-    ;
+    ARSENAL("Arsenal", 350, 340, 3, 0, 5, 0,
+            0, 0, 0, 0, 0, 0,
+            Technologies.RAILROAD, BuildingTypes.MILITARY_ACADEMY, false, false, Eras.INDUSTRIAL),
+    BROADCAST_TOWER("Broadcast Tower", 600, 620, 3, 0, 1, 0,
+            0, 0, 0, 0, 0, 0,
+            Technologies.RADIO, BuildingTypes.MUSEUM, false, false, Eras.INDUSTRIAL),
+    FACTORY("Factory", 300, 330, 3, 0, 15, 0,
+            0, 0, 0, 0, 0, 0,
+            Technologies.STEAM_POWER, null, false, false, Eras.INDUSTRIAL),
+    HOSPITAL("Hospital", 400, 390, 2, 0, 0, 0,
+            0, 0, 0, 0, 0, 0,
+            Technologies.BIOLOGY, null, false, false, Eras.INDUSTRIAL),
+    MILITARY_BASE("Military Base", 450, 440, 4, 0, 0, 0,
+            0, 0, 0, 0, 12, 0,
+            Technologies.TELEGRAPH, BuildingTypes.CASTLE, false, false, Eras.INDUSTRIAL),
+    STOCK_EXCHANGE("Stock Exchange", 650, 640, 0, 0, 0, 0,
+            0, 33, 0, 0, 0, 0,
+            Technologies.ELECTRICITY, BuildingTypes.BANK, false, false, Eras.INDUSTRIAL);
 
 
     final Building building;

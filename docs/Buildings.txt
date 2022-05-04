@@ -522,37 +522,109 @@ Windmill:
     era: Renaissance
 
 
-    :
-      cost:
-      production Needed:
-      maintenance:
-      food: 0
-      production: 0
-      happiness: 0
-      gold: 0
-      gold effect: 0
-      science per Citizen: 0
-      science effect: 0
-      defence: 0
-      Xp bonus: 0
-      technology needed:
-      building needed:
-      era:
+Arsenal:
+    cost: 350
+    production Needed: 340
+    maintenance: 3
+    food: 0
+    production: 5
+    happiness: 0
+    gold: 0
+    gold effect: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Railroad
+    building needed: Military Academy
+    era: Industrial
 
 
-:
-  cost:
-  production Needed:
-  maintenance:
-  food:
-  production:
-  happiness:
-  gold:
-  gold effect: 0
-  science per Citizen:
-  science effect:
-  defence:
-  Xp bonus:
-  technology needed:
-  building needed:
-  era:
+Broadcast Tower:
+    cost: 350
+    production Needed: 340
+    maintenance: 3
+    food: 0
+    production: 1
+    happiness: 0
+    gold: 0
+    gold effect: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Radio
+    building needed: Museum
+    era: Industrial
+
+
+Factory:
+    cost: 300
+    production Needed: 330
+    maintenance: 3
+    food: 0
+    production: 15
+    happiness: 0
+    gold: 0
+    gold effect: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Steam Power
+    building needed: nothing
+    era: Industrial
+
+
+Hospital:
+    cost: 400
+    production Needed: 390
+    maintenance: 2
+    food: 0
+    production: 0
+    happiness: 0
+    gold: 0
+    gold effect: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Biology
+    building needed: nothing
+    era: Industrial
+
+
+Military Base:
+    cost: 450
+    production Needed: 440
+    maintenance: 4
+    food: 0
+    production: 0
+    happiness: 0
+    gold: 0
+    gold effect: 0
+    science per Citizen: 0
+    science effect: 0
+    defence: 12
+    Xp bonus: 0
+    technology needed: Telegraph
+    building needed: Castle
+    era: Industrial
+
+
+Stock Exchange:
+    cost: 650
+    production Needed: 640
+    maintenance: 0
+    food: 0
+    production: 0
+    happiness: 0
+    gold: 0
+    gold effect: 33
+    science per Citizen: 0
+    science effect: 0
+    defence: 0
+    Xp bonus: 0
+    technology needed: Electricity
+    building needed: Bank
+    era: Industrial
