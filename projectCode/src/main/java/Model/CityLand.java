@@ -57,4 +57,17 @@ public class CityLand {
 
         return food;
     }
+
+
+
+    public int getLandProduction()
+    {
+        int production = terrain.getProduction();
+
+        if (hasImprovement){
+            production += improvement.productionEffect;
+        }
+
+        return production;
+    }
 }

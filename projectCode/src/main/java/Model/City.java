@@ -47,6 +47,7 @@ public class City {
     {
         calculateGold();
         calculateFood();
+        calculateProduction();
      //TODO:
     }
 
@@ -98,7 +99,26 @@ public class City {
 
         foodRemaining -= population * 2;
 
-        setGoldPerTurn(foodRemaining);
+        setFood(foodRemaining);
+    }
+
+
+
+    private void calculateProduction()
+    {
+        int production  = 0;
+
+        for (int i = 0; i < getBuildings().size(); i++){
+            production += getBuildings().get(i).building.getProductionPerTurn();
+        }
+
+        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
+
+        for (int i = 0; i < workableLands.size(); i++){
+            production += workableLands.get(i).getLandProduction();
+        }
+
+        setProduction(production);
     }
 
 

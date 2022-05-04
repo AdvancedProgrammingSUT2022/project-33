@@ -1,15 +1,15 @@
 package Model;
 
 public class Wonder {
-    int goldPerTurn;
-    int happinessPerTurn;
-    int productionPerTurn;
-    int foodPerTurn;
-    int goldEffect;
-    int happinessEffect;
-    int productionEffect;
-    int foodEffect;
-    int productionNeeded;
+    private int goldPerTurn;
+    private int happinessPerTurn;
+    private int productionPerTurn;
+    private int foodPerTurn;
+    private int goldEffect;
+    private int happinessEffect;
+    private int productionEffect;
+    private int foodEffect;
+    private int productionNeeded;
 
     //TODO:
 

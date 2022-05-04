@@ -96,6 +96,7 @@ public class PlayerCity extends City{
     {
         calculateGold();
         calculateFood();
+        calculateProduction();
         //TODO:
     }
 
@@ -152,14 +153,34 @@ public class PlayerCity extends City{
         foodRemaining *= foodIncreasePercentage;
         foodRemaining -= getPopulation() * 2;
 
-        setGoldPerTurn(foodRemaining);
+        setFood(foodRemaining);
     }
 
 
 
-    private void calculateLandFood()
+    private void calculateProduction()
     {
+        int production = 0;
+        int productionIncreasePercentage = 1;
 
+        for (int i = 0; i < getBuildings().size(); i++){
+            production += getBuildings().get(i).building.getProductionPerTurn();
+        }
+
+        for (int i = 0; i < wonders.size(); i++){
+            production += wonders.get(i).wonder.getProductionPerTurn();
+            productionIncreasePercentage *= 1 + (double) wonders.get(i).wonder.getProductionEffect() / 100;
+        }
+
+        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
+
+        for (int i = 0; i < workableLands.size(); i++){
+            production += workableLands.get(i).getLandProduction();
+        }
+
+        production *= productionIncreasePercentage;
+
+        setProduction(production);
     }
 
 
