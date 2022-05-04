@@ -10,9 +10,9 @@ public class DefaultCity extends City{
 
 
     ////methods////
-    public DefaultCity(Terrain terrain, NonPlayerColors color, DefaultCityNames name)
+    public DefaultCity(CityLand cityLand, NonPlayerColors color, DefaultCityNames name)
     {
-        super(true, terrain);
+        super(true, cityLand);
         this.name = name;
         this.defaultCityGameName =name.name;
         this.color = color;

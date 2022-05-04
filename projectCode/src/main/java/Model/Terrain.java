@@ -14,6 +14,7 @@ public class Terrain extends MapLandElement{
     private LuxuryResource luxuryResource;
     private boolean isTerritory;
     private boolean hasRiver;
+    private boolean hasRoad;
 
 
 
@@ -25,6 +26,7 @@ public class Terrain extends MapLandElement{
     {
         super(food, production, gold, fightChangePercentage, movementPrice, canBeCrossed);
         this.availableProperties = availableProperties;
+        this.hasRoad = false;
     }
 
 
@@ -227,6 +229,16 @@ public class Terrain extends MapLandElement{
     public boolean getIsTerritory()
     {
         return isTerritory;
+    }
+
+
+    public boolean isTerritory() {
+        return isTerritory;
+    }
+
+
+    public boolean isHasRoad() {
+        return hasRoad;
     }
 
 

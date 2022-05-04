@@ -99,6 +99,7 @@ public class PlayerCity extends City{
         calculateProduction();
         calculateHappiness();
         updateResources();
+        findConnectedCities();
         //TODO:
     }
 
@@ -222,6 +223,80 @@ public class PlayerCity extends City{
         }
 
         setHappiness(happiness);
+    }
+
+
+
+    private void findConnectedCities()
+    {
+        setConnectedCities(new ArrayList<>());
+        ArrayList<Coordinates> searchedCoordinates = new ArrayList<>();
+
+        searchRoad(getCoordinates(), searchedCoordinates);
+
+        //TODO
+    }
+
+
+
+    private void searchRoad(Coordinates coordinates, ArrayList<Coordinates> searchedCoordinates)
+    {
+        if (owner.getMap().getTerrainFromCoordinates(coordinates) == null || searchedCoordinates.contains(coordinates) ||
+                (!owner.getMap().getTerrainFromCoordinates(coordinates).isHasRoad() && owner.getMap().getPlayerCityFromCoordinates(coordinates) == null)){
+            return;
+        }
+
+        searchedCoordinates.add(coordinates);
+
+        if (owner.getMap().getPlayerCityFromCoordinates(coordinates) != null && owner.getMap().getPlayerCityFromCoordinates(coordinates) != this){
+            getConnectedCities().add(owner.getMap().getPlayerCityFromCoordinates(coordinates));
+        }
+
+        int x = coordinates.getX();
+        int y = coordinates.getY();
+
+        if (y > 0){
+            searchRoad(new Coordinates(x, y - 1, 0), searchedCoordinates);
+        }
+
+        if (x % 2 == 0){
+            if (x > 0){
+                searchRoad(new Coordinates(x - 1, y, 0), searchedCoordinates);
+
+                if (y > 0){
+                    searchRoad(new Coordinates(x - 1, y - 1, 0), searchedCoordinates);
+                }
+            }
+
+            if (x < owner.getMap().getMapSize() - 1){
+                 searchRoad(new Coordinates(x + 1, y, 0), searchedCoordinates);
+
+                if (y < owner.getMap().getMapSize() - 1){
+                    searchRoad(new Coordinates(x + 1, y - 1, 0), searchedCoordinates);
+                }
+            }
+        }
+        else {
+            if (x > 0){
+                searchRoad(new Coordinates(x - 1, y, 0), searchedCoordinates);
+
+                if (y < owner.getMap().getMapSize() - 1){
+                    searchRoad(new Coordinates(x - 1, y + 1, 0), searchedCoordinates);
+                }
+            }
+
+            if (x < owner.getMap().getMapSize() - 1){
+                searchRoad(new Coordinates(x + 1, y, 0), searchedCoordinates);
+
+                if (y < owner.getMap().getMapSize() - 1){
+                    searchRoad(new Coordinates(x + 1, y + 1, 0), searchedCoordinates);
+                }
+            }
+        }
+
+        if (y < owner.getMap().getMapSize() - 1){
+            searchRoad(new Coordinates(x, y + 1, 0), searchedCoordinates);
+        }
     }
 
 

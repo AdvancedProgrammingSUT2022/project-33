@@ -209,7 +209,7 @@ public class MapMaker {
                     Coordinates cityCoordinates = new Coordinates(i, j, 0);
 
                     if (!map.getTerrainFromCoordinates(cityCoordinates).getIsTerritory()) {
-                        DefaultCity newDefaultCity = new DefaultCity(map.getTerrainFromCoordinates(cityCoordinates)
+                        DefaultCity newDefaultCity = new DefaultCity(new CityLand(map.getTerrainFromCoordinates(cityCoordinates))
                                 , NonPlayerColors.values()[map.getNumberOfDefaultCities()], DefaultCityNames.values()[map.getNumberOfDefaultCities()]);
                         map.addDefaultCity(newDefaultCity);
 
