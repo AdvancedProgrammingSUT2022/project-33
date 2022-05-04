@@ -97,6 +97,7 @@ public class PlayerCity extends City{
         calculateGold();
         calculateFood();
         calculateProduction();
+        calculateHappiness();
         //TODO:
     }
 
@@ -151,6 +152,11 @@ public class PlayerCity extends City{
         }
 
         foodRemaining *= foodIncreasePercentage;
+
+        if (getHappiness() < 0){
+            foodRemaining /= 3;
+        }
+
         foodRemaining -= getPopulation() * 2;
 
         setFood(foodRemaining);
@@ -181,6 +187,35 @@ public class PlayerCity extends City{
         production *= productionIncreasePercentage;
 
         setProduction(production);
+    }
+
+
+
+    private void calculateHappiness()
+    {
+        int happiness  = 0;
+        int happinessEffect = 1;
+
+        for (int i = 0; i < getBuildings().size(); i++){
+            happiness += getBuildings().get(i).building.getHappinessPerTurn();
+        }
+
+        for (int i = 0; i < wonders.size(); i++){
+            happiness += getWonders().get(i).wonder.getHappinessPerTurn();
+            happinessEffect *= 1 + (double) wonders.get(i).wonder.getHappinessEffect() / 100;
+        }
+
+        happiness += getLuxuryResources().size();
+        happiness *= happinessEffect;
+
+        if (isAnnexed()){
+            happiness -= getPopulation() * 4 / 3;
+        }
+        else {
+            happiness -= getPopulation();
+        }
+
+        setHappiness(happiness);
     }
 
 

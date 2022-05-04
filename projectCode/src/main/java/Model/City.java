@@ -14,10 +14,12 @@ public class City {
     private int attackDamage;
     private ArrayList<BuildingTypes> buildings;
     private ArrayList<CityLand> landsOwned;
+    private ArrayList<LuxuryResource> luxuryResources;
     private int goldPerTurn;
     private boolean isCapital;
     private ArrayList<City> connectedCities;
     private boolean isWorking;
+    private boolean isAnnexed;
 
 
 
@@ -37,6 +39,8 @@ public class City {
         cityLand.getTerrain().setTerritory(true);
         this.isWorking = false;
         this.maxHealth = 20;
+        this.luxuryResources = new ArrayList<>();
+        this.isAnnexed = false;
 
         //TODO:
     }
@@ -48,6 +52,7 @@ public class City {
         calculateGold();
         calculateFood();
         calculateProduction();
+        calculateHappiness();
      //TODO:
     }
 
@@ -97,6 +102,10 @@ public class City {
             foodRemaining += workableLands.get(i).getLandFood();
         }
 
+        if (happiness < 0){
+            foodRemaining /= 3;
+        }
+
         foodRemaining -= population * 2;
 
         setFood(foodRemaining);
@@ -119,6 +128,28 @@ public class City {
         }
 
         setProduction(production);
+    }
+
+
+
+    private void calculateHappiness()
+    {
+        int happiness  = 0;
+
+        for (int i = 0; i < getBuildings().size(); i++){
+            happiness += getBuildings().get(i).building.getHappinessPerTurn();
+        }
+
+        happiness += luxuryResources.size();
+
+        if (isAnnexed()){
+            happiness -= getPopulation() * 4 / 3;
+        }
+        else {
+            happiness -= getPopulation();
+        }
+
+        setProduction(happiness);
     }
 
 
@@ -226,6 +257,17 @@ public class City {
 
         return null;
     }
+
+
+    public ArrayList<LuxuryResource> getLuxuryResources() {
+        return luxuryResources;
+    }
+
+
+    public boolean isAnnexed() {
+        return isAnnexed;
+    }
+
 
 
     //setters
