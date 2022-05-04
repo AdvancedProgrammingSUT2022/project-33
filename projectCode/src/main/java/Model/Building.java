@@ -1,24 +1,24 @@
 package Model;
 
 public class Building {
-    String gameName;
-    int cost;
-    int productionNeeded;
-    int maintenance;
-    int foodPerTurn;
-    int productionPerTurn;
-    int happinessPerTurn;
-    int goldPerTurn;
-    int goldEffect;
-    int sciencePerTwoCitizen;
-    int scienceEffect;
-    int defenceEffect;
-    int unitsXpBonus;
-    Technologies technologyNeeded;
-    BuildingTypes RequiredBuildings;
-    boolean needsRiver;
-    boolean needsHorse;
-    Eras era;
+    private String gameName;
+    private int cost;
+    private int productionNeeded;
+    private int maintenance;
+    private int foodPerTurn;
+    private int productionPerTurn;
+    private int happinessPerTurn;
+    private int goldPerTurn;
+    private int goldEffect;
+    private int sciencePerTwoCitizen;
+    private int scienceEffect;
+    private int defenceEffect;
+    private int unitsXpBonus;
+    private Technologies technologyNeeded;
+    private BuildingTypes RequiredBuildings;
+    private boolean needsRiver;
+    private boolean needsHorse;
+    private Eras era;
 
 
 
@@ -47,5 +47,97 @@ public class Building {
         this.needsRiver = needsRiver;
         this.needsHorse = needsHorse;
         this.era = era;
+    }
+
+
+
+    //getters
+    public String getGameName() {
+        return gameName;
+    }
+
+
+    public int getCost() {
+        return cost;
+    }
+
+
+    public int getProductionNeeded() {
+        return productionNeeded;
+    }
+
+
+    public int getMaintenance() {
+        return maintenance;
+    }
+
+
+    public int getFoodPerTurn() {
+        return foodPerTurn;
+    }
+
+
+    public int getProductionPerTurn() {
+        return productionPerTurn;
+    }
+
+
+    public int getHappinessPerTurn() {
+        return happinessPerTurn;
+    }
+
+
+    public int getGoldPerTurn() {
+        return goldPerTurn;
+    }
+
+
+    public int getGoldEffect() {
+        return goldEffect;
+    }
+
+
+    public int getSciencePerTwoCitizen() {
+        return sciencePerTwoCitizen;
+    }
+
+
+    public int getScienceEffect() {
+        return scienceEffect;
+    }
+
+
+    public int getDefenceEffect() {
+        return defenceEffect;
+    }
+
+
+    public int getUnitsXpBonus() {
+        return unitsXpBonus;
+    }
+
+
+    public Technologies getTechnologyNeeded() {
+        return technologyNeeded;
+    }
+
+
+    public BuildingTypes getRequiredBuildings() {
+        return RequiredBuildings;
+    }
+
+
+    public boolean isNeedsRiver() {
+        return needsRiver;
+    }
+
+
+    public boolean isNeedsHorse() {
+        return needsHorse;
+    }
+
+
+    public Eras getEra() {
+        return era;
     }
 }

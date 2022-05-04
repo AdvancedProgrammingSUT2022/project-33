@@ -80,7 +80,8 @@ public class Map {
     private void addDefaultCityLand(DefaultCity city, Coordinates coordinates)
     {
         if (!getTerrainFromCoordinates(coordinates).getIsTerritory()){
-            city.addLand(getTerrainFromCoordinates(coordinates));
+            CityLand land = new CityLand(getTerrainFromCoordinates(coordinates));
+            city.addLand(land);
             getTerrainFromCoordinates(coordinates).setTerritory(true);
         }
     }

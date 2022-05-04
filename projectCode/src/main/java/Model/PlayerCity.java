@@ -15,7 +15,7 @@ public class PlayerCity extends City{
     ////methods////
     public PlayerCity(boolean isCapital, Terrain terrain, Player owner, String cityName)
     {
-        super(isCapital, terrain);
+        super(isCapital, new CityLand(terrain));
         this.owner = owner;
         this.cityName = cityName;
         wonders = new ArrayList<>();
@@ -84,7 +84,8 @@ public class PlayerCity extends City{
 
         if (!owner.getMap().getTerrainFromCoordinates(coordinates).getIsTerritory()){
             Terrain terrain = owner.getMap().getTerrainFromCoordinates(coordinates);
-            addLand(terrain);
+            CityLand cityLand = new CityLand(terrain);
+            addLand(cityLand);
             terrain.setTerritory(true);
         }
     }
@@ -93,7 +94,30 @@ public class PlayerCity extends City{
 
     public void updateCity()
     {
+        calculateGold();
         //TODO:
+    }
+
+
+
+
+    private void calculateGold()
+    {
+        int goldIncome = 0;
+        double goldIncreasePercentage = 1;
+
+        for (int i = 0; i < getBuildings().size(); i++){
+            goldIncome += getBuildings().get(i).building.getGoldPerTurn() - getBuildings().get(i).building.getMaintenance();
+            goldIncreasePercentage *= 1 + (double) getBuildings().get(i).building.getGoldEffect() / 100;
+        }
+
+        for (int i = 0; i < getLandsOwned().size(); i++){
+            goldIncome += getLandsOwned().get(i).getLandGold();
+        }
+
+        goldIncome *= goldIncreasePercentage;
+
+        setGoldPerTurn(goldIncome);
     }
 
 

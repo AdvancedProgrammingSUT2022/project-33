@@ -13,7 +13,7 @@ public class City {
     private boolean isUnitInTheCity;
     private int attackDamage;
     private ArrayList<BuildingTypes> buildings;
-    private ArrayList<Terrain> landsOwned;
+    private ArrayList<CityLand> landsOwned;
     private int goldPerTurn;
     private boolean isCapital;
     private ArrayList<City> connectedCities;
@@ -24,17 +24,17 @@ public class City {
 
 
     ////methods////
-    public City(boolean isCapital, Terrain terrain)
+    public City(boolean isCapital, CityLand cityLand)
     {
         this.isCapital = isCapital;
-        this.coordinates = terrain.getCenterCoordinates();
+        this.coordinates = cityLand.getTerrain().getCenterCoordinates();
 
         this.population = 1;
         this.isUnitInTheCity = false;
         this.buildings = new ArrayList<>();
         this.landsOwned = new ArrayList<>();
-        landsOwned.add(terrain);
-        terrain.setTerritory(true);
+        landsOwned.add(cityLand);
+        cityLand.getTerrain().setTerritory(true);
         this.isWorking = false;
         this.maxHealth = 20;
 
@@ -50,9 +50,9 @@ public class City {
 
 
 
-    public void addLand(Terrain terrain)
+    public void addLand(CityLand cityLand)
     {
-        landsOwned.add(terrain);
+        landsOwned.add(cityLand);
     }
 
 
@@ -108,7 +108,7 @@ public class City {
     }
 
 
-    public ArrayList<Terrain> getLandsOwned() {
+    public ArrayList<CityLand> getLandsOwned() {
         return landsOwned;
     }
 
@@ -185,7 +185,7 @@ public class City {
     }
 
 
-    public void setLandsOwned(ArrayList<Terrain> landsOwned) {
+    public void setLandsOwned(ArrayList<CityLand> landsOwned) {
         this.landsOwned = landsOwned;
     }
 
