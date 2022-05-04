@@ -59,7 +59,6 @@ public class CityLand {
     }
 
 
-
     public int getLandProduction()
     {
         int production = terrain.getProduction();
@@ -69,5 +68,19 @@ public class CityLand {
         }
 
         return production;
+    }
+
+
+    public boolean hasStrategicResourceProduction()
+    {
+        return terrain.isHasResource() && terrain.getResourceCategory().equals(ResourceCategories.STRATEGIC) &&
+                hasImprovement && improvement.toString().equals(terrain.getResource().constructionNeeded);
+    }
+
+
+    public boolean hasLuxuryResource()
+    {
+        return terrain.isHasResource() && terrain.getResourceCategory().equals(ResourceCategories.LUXURY) &&
+                hasImprovement && improvement.toString().equals(terrain.getResource().constructionNeeded);
     }
 }

@@ -15,6 +15,7 @@ public class City {
     private ArrayList<BuildingTypes> buildings;
     private ArrayList<CityLand> landsOwned;
     private ArrayList<LuxuryResource> luxuryResources;
+    private ArrayList<StrategicResource> strategicResources;
     private int goldPerTurn;
     private boolean isCapital;
     private ArrayList<City> connectedCities;
@@ -53,6 +54,7 @@ public class City {
         calculateFood();
         calculateProduction();
         calculateHappiness();
+        updateResources();
      //TODO:
     }
 
@@ -149,7 +151,29 @@ public class City {
             happiness -= getPopulation();
         }
 
+        for (int i = 0; i < connectedCities.size(); i++){
+            happiness += connectedCities.get(i).getLuxuryResources().size();
+        }
+
         setProduction(happiness);
+    }
+
+
+
+    public void updateResources()
+    {
+        ArrayList<CityLand> workableLands = getWorkableLands();
+            strategicResources = new ArrayList<>();
+            luxuryResources = new ArrayList<>();
+
+        for (int i = 0; i < workableLands.size(); i++){
+            if (workableLands.get(i).hasStrategicResourceProduction()){
+                strategicResources.add(workableLands.get(i).getTerrain().getStrategicResource());
+            }
+            else if (workableLands.get(i).hasLuxuryResource()){
+                luxuryResources.add(workableLands.get(i).getTerrain().getLuxuryResource());
+            }
+        }
     }
 
 

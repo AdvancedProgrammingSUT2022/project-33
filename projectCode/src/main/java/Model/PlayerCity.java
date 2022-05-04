@@ -98,6 +98,7 @@ public class PlayerCity extends City{
         calculateFood();
         calculateProduction();
         calculateHappiness();
+        updateResources();
         //TODO:
     }
 
@@ -206,6 +207,11 @@ public class PlayerCity extends City{
         }
 
         happiness += getLuxuryResources().size();
+
+        for (int i = 0; i < getConnectedCities().size(); i++){
+            happiness += getConnectedCities().get(i).getLuxuryResources().size();
+        }
+
         happiness *= happinessEffect;
 
         if (isAnnexed()){
