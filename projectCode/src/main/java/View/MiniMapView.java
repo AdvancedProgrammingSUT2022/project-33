@@ -61,7 +61,7 @@ public class MiniMapView {
             }
         }
 
-        System.out.println("");
+        System.out.println();
     }
 
 
@@ -92,7 +92,7 @@ public class MiniMapView {
             }
         }
 
-        System.out.println("");
+        System.out.println();
     }
 
 
@@ -108,7 +108,7 @@ public class MiniMapView {
 
             printLinearSpaces(5 - j);
             System.out.print("/");
-            System.out.println("");
+            System.out.println();
         }
 
         showMidLine(mapSize, y);
@@ -125,7 +125,7 @@ public class MiniMapView {
                 System.out.print("\\");
             }
 
-            System.out.println("");
+            System.out.println();
         }
     }
 
@@ -133,16 +133,9 @@ public class MiniMapView {
 
     private void showFirstPartOfVisibleTile(int i, int j, int y, MiniMap map, int mapSize)
     {
-        Coordinates coordinates = new Coordinates(i, y, 0);
-
-        if (map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
-            showFirstPartOfFog(i, j, y, map, mapSize);
-            return;
-        }
-
         if (i % 2 == 0){
-            if (i != 0 && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
-                    map.getVisibleTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null){
+            if (i != 0 && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y - 1, 0)) == null &&
+                    map.getVisibleTileFromCoordinates(new Coordinates(i - 1, y - 1, 0)) == null){
                 printFog(5 - j);
             }
             else {
@@ -150,6 +143,13 @@ public class MiniMapView {
             }
 
             System.out.print("/");
+
+            Coordinates coordinates = new Coordinates(i, y, 0);
+
+            if (map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
+                showFirstPartOfFog(i, j);
+                return;
+            }
 
             String dataType = "";
             String data = "";
@@ -164,8 +164,11 @@ public class MiniMapView {
             printLinearSpaces(spaceNeeded);
         }
         else {
-            if (map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
+            if (y < mapSize && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
                     map.getVisibleTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null){
+                printFog(j + 1);
+            }
+            else if (y == mapSize){
                 printFog(j + 1);
             }
             else {
@@ -173,6 +176,14 @@ public class MiniMapView {
             }
 
             System.out.print("\\");
+
+            Coordinates coordinates = new Coordinates(i, y - 1, 0);
+
+            if (map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
+                showFirstPartOfFog(i, j);
+                return;
+            }
+
             printLinearSpaces(5 - j);
 
             String dataType = "";
@@ -190,60 +201,24 @@ public class MiniMapView {
 
 
 
-    private void showFirstPartOfFog(int i, int j, int y, MiniMap map, int mapSize)
+    private void showFirstPartOfFog(int i, int j)
     {
         if (i % 2 == 0){
-            if (i != 0 && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
-                    map.getVisibleTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null){
-                printFog(5 - j);
-            }
-            else {
-                printLinearSpaces(5 - j);
-            }
-
-            System.out.print("/");
             printFog(22 + j);
         }
         else {
-            if (map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
-                    map.getVisibleTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null){
-                printFog(j + 1);
-            }
-            else {
-                printLinearSpaces(j + 1);
-            }
-
-            System.out.print("\\");
             printFog(26 - j);
         }
     }
 
 
 
-    private void showSecondPartOfFog(int i, int j, int y, MiniMap map, int mapSize)
+    private void showSecondPartOfFog(int i, int j)
     {
         if (i % 2 == 0){
-            if (i != 0 && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
-                    map.getVisibleTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null){
-                printFog(j + 1);
-            }
-            else {
-                printLinearSpaces(j + 1);
-            }
-
-            System.out.print("\\");
             printFog(26 - j);
         }
         else {
-            if (map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
-                    map.getVisibleTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null){
-                printFog(5 - j);
-            }
-            else {
-                printLinearSpaces(5 - j);
-            }
-
-            System.out.print("/");
             printFog(22 + j);
         }
     }
@@ -261,13 +236,6 @@ public class MiniMapView {
 
     private void showSecondPartOfVisibleTile(int i, int j, int y, MiniMap map, int mapSize)
     {
-        Coordinates coordinates = new Coordinates(i, y, 0);
-
-        if (map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
-            showSecondPartOfFog(i, j, y, map, mapSize);
-            return;
-        }
-
         if (i % 2 == 0 && y < mapSize){
             if (i != 0 && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
                     map.getVisibleTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null){
@@ -279,13 +247,18 @@ public class MiniMapView {
 
             System.out.print("\\");
 
-            String data = "";
-            String dataType = "";
+            Coordinates coordinates = new Coordinates(i, y, 0);
 
-            if (y < mapSize) {
-                dataType = findTileLineDataFromLineNumber(j + 5, map, i, y)[0];
-                data = findTileLineDataFromLineNumber(j + 5, map, i, y)[1];
+            if (map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
+                showSecondPartOfFog(i, j);
+                return;
             }
+
+            String data;
+            String dataType;
+
+            dataType = findTileLineDataFromLineNumber(j + 5, map, i, y)[0];
+            data = findTileLineDataFromLineNumber(j + 5, map, i, y)[1];
 
             printLinearSpaces(5 - j);
             int spaceNeeded = printTileDate(dataType, data, 21);
@@ -301,10 +274,18 @@ public class MiniMapView {
             }
 
             System.out.print("/");
+
+            Coordinates coordinates = new Coordinates(i, y, 0);
+
+            if (map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
+                showSecondPartOfFog(i, j);
+                return;
+            }
+
             printLinearSpaces(j + 1);
 
-            String dataType = "";
-            String data = "";
+            String dataType;
+            String data;
 
             dataType = findTileLineDataFromLineNumber(j , map, i, y )[0];
             data = findTileLineDataFromLineNumber(j, map, i, y)[1];
@@ -448,198 +429,6 @@ public class MiniMapView {
 
         System.out.print(data);
         return characterLimit - data.length();
-    }
-
-
-
-    private void showLine2(int mapSize)
-    {
-        for (int i = 0; i < mapSize; i++){
-            if (i % 2 == 0){
-                System.out.print("      /                     ");
-            }
-            else {
-                System.out.print("  \\                         ");
-
-            }
-        }
-
-        System.out.println("");
-    }
-
-
-
-    private void showLine3(int mapSize)
-    {
-        for (int i = 0; i < mapSize; i++){
-            if (i % 2 == 0){
-                System.out.print("     /                      ");
-            }
-            else {
-                System.out.print("   \\                        ");
-
-            }
-        }
-
-        System.out.println("");
-    }
-
-
-
-    private void showLine4(int mapSize)
-    {
-        for (int i = 0; i < mapSize; i++){
-            if (i % 2 == 0){
-                System.out.print("    /                       ");
-            }
-            else {
-                System.out.print("    \\                       ");
-
-            }
-        }
-
-        System.out.println("");
-    }
-
-
-
-    private void showLine5(int mapSize)
-    {
-        for (int i = 0; i < mapSize; i++){
-            if (i % 2 == 0){
-                System.out.print("   /                        ");
-            }
-            else {
-                System.out.print("     \\                      ");
-
-            }
-        }
-
-        System.out.println("");
-    }
-
-
-
-    private void showLine6(int mapSize)
-    {
-        for (int i = 0; i < mapSize; i++){
-            if (i % 2 == 0){
-                System.out.print("  /                         ");
-            }
-            else {
-                System.out.print("      \\                     ");
-
-            }
-        }
-
-        System.out.println("");
-    }
-
-
-
-    private void showLine7(int mapSize)
-    {
-        for (int i = 0; i < mapSize; i++){
-            if (i % 2 == 0){
-                System.out.print("  \\                         ");
-            }
-            else {
-                System.out.print("      /                     ");
-
-            }
-        }
-
-        System.out.println("");
-    }
-
-
-
-    private void showLine8(int mapSize)
-    {
-        for (int i = 0; i < mapSize; i++){
-            if (i % 2 == 0){
-                System.out.print("   \\                        ");
-            }
-            else {
-                System.out.print("     /                      ");
-
-            }
-        }
-
-        System.out.println("");
-    }
-
-
-
-    private void showLine9(int mapSize)
-    {
-        for (int i = 0; i < mapSize; i++){
-            if (i % 2 == 0){
-                System.out.print("    \\                       ");
-            }
-            else {
-                System.out.print("    /                       ");
-
-            }
-        }
-
-        System.out.println("");
-    }
-
-
-
-    private void showLine10(int mapSize)
-    {
-        for (int i = 0; i < mapSize; i++){
-            if (i % 2 == 0){
-                System.out.print("     \\                      ");
-            }
-            else {
-                System.out.print("   /                        ");
-
-            }
-        }
-
-        System.out.println("");
-    }
-
-
-
-    private void showLine11(int mapSize)
-    {
-        for (int i = 0; i < mapSize; i++){
-            if (i % 2 == 0){
-                System.out.print("      \\                     ");
-            }
-            else {
-                System.out.print("  /                         ");
-
-            }
-        }
-
-        System.out.println("");
-    }
-
-
-
-
-    public void showTiles(MiniMap map)
-    {
-        for (int j = 0; j < map.getMapSize(); j++) {
-            for (int i = 0; i < map.getMapSize(); i++){
-                Coordinates coordinates = new Coordinates(i, j, 0);
-
-                if (map.getVisibleCoordinates().contains(coordinates)){
-                    showVisibleTiles(map.getVisibleTileFromCoordinates(coordinates));
-                }
-                else if (map.getHiddenCoordinates().contains(coordinates)){
-                    showHiddenTiles(map.getHiddenTileFromCoordinates(coordinates));
-                }
-                else {
-                    //TODO:
-                }
-            }
-        }
     }
 
 
