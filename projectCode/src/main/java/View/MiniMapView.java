@@ -14,6 +14,7 @@ public class MiniMapView {
     public void showMiniMap(MiniMap miniMap)
     {
         showXCoordinates(miniMap.getMapSize());
+        //showRows(miniMap.getMapSize());
     }
 
 
@@ -21,8 +22,149 @@ public class MiniMapView {
     private void showXCoordinates(int mapSize)
     {
         for (int i = 0; i < mapSize; i++){
-            System.out.print("        " + i + "        ");
+            //hex side is almost equal to 18. and it has a center -> 18 + 1.
+            System.out.print("                  " + i + "         ");
         }
+
+        System.out.println();
+
+        showLine1(mapSize);
+        showLine2(mapSize);
+        showLine3(mapSize);
+        showLine4(mapSize);
+        showLine5(mapSize);
+        showLine6(mapSize);
+        showMidLine(mapSize);
+    }
+
+
+
+    private void showRows(int mapSize)
+    {
+        for (int j = 0; j < mapSize; j++){
+            showLine1(mapSize);
+            //TODO:
+        }
+    }
+
+
+
+    private void showLine1(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0){
+                System.out.print("      .---------------------.");
+            }
+            else {
+                System.out.print("                          ");
+            }
+        }
+
+        System.out.println("");
+    }
+
+
+
+    private void showLine2(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0){
+                System.out.print("     /                     ");
+            }
+            else {
+                System.out.print("  \\                         ");
+
+            }
+        }
+
+        System.out.println("");
+    }
+
+
+
+    private void showLine3(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0){
+                System.out.print("    /                      ");
+            }
+            else {
+                System.out.print("   \\                        ");
+
+            }
+        }
+
+        System.out.println("");
+    }
+
+
+
+    private void showLine4(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0){
+                System.out.print("   /                       ");
+            }
+            else {
+                System.out.print("    \\                       ");
+
+            }
+        }
+
+        System.out.println("");
+    }
+
+
+
+    private void showLine5(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0){
+                System.out.print("  /                        ");
+            }
+            else {
+                System.out.print("     \\                      ");
+
+            }
+        }
+
+        System.out.println("");
+    }
+
+
+
+    private void showLine6(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0){
+                System.out.print(" /                         ");
+            }
+            else {
+                System.out.print("      \\                     ");
+
+            }
+        }
+
+        System.out.println("");
+    }
+
+
+
+    private void showMidLine(int mapSize)
+    {
+        System.out.print(".");
+
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0){
+                System.out.print("                          ");
+            }
+            else {
+                System.out.print("      .---------------------.");
+
+            }
+        }
+
+        System.out.println("");
     }
 
 

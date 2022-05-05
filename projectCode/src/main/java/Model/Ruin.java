@@ -24,7 +24,7 @@ public class Ruin {
 
         hasBarbarianActivity = (rand.nextInt(2) == 0);
 
-        if (hasBarbarianActivity){
+        if (hasBarbarianActivity && barbarianBases.size() != 0){
             barbarianCoordinates = barbarianBases.get(rand.nextInt(barbarianBases.size())).getCoordinates();
         }
 
