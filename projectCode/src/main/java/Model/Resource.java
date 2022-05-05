@@ -35,6 +35,7 @@ public class Resource {
         this.production = resource.production;
         this.gold = resource.gold;
         this.constructionNeeded = resource.constructionNeeded;
+        this.gameName = resource.gameName;
     }
 
 

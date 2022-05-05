@@ -3,7 +3,6 @@ package View;
 import Model.Coordinates;
 import Model.MiniMap;
 import Model.MiniMapTile;
-import Model.Resource;
 
 public class MiniMapView {
 
@@ -14,60 +13,51 @@ public class MiniMapView {
     ////methods////
     public void showMiniMap(MiniMap miniMap)
     {
-        showXCoordinates(miniMap.getMapSize(), miniMap);
-        //showRows(miniMap.getMapSize());
+        showXCoordinates(miniMap.getMapSize());
+        showRows(miniMap.getMapSize(), miniMap);
     }
 
 
 
-    private void showXCoordinates(int mapSize, MiniMap miniMap)
+    private void showXCoordinates(int mapSize)
     {
         for (int i = 0; i < mapSize; i++){
             //hex side is almost equal to 18. and it has a center -> 18 + 1.
-            System.out.print("                  " + i + "         ");
+            System.out.print("                 " + i + "         ");
         }
 
         System.out.println();
-
-        showLine1(mapSize);
-
-        showTileFirstHalf(mapSize, miniMap, 0);
-
-//        showLine2(mapSize);
-//        showLine3(mapSize);
-//        showLine4(mapSize);
-//        showLine5(mapSize);
-//        showLine6(mapSize);
-//        showMidLine(mapSize);
-//        showLine7(mapSize);
-//        showLine8(mapSize);
-//        showLine9(mapSize);
-//        showLine10(mapSize);
-//        showLine11(mapSize);
     }
 
 
 
-    private void showRows(int mapSize)
+    private void showRows(int mapSize, MiniMap miniMap)
     {
-        for (int j = 0; j < mapSize; j++){
-            showLine1(mapSize);
-            //TODO:
+        for (int j = 0; j <= mapSize; j++){
+            showLine1(mapSize, j);
+            showTileLines(mapSize, miniMap, j);
         }
+            //TODO:
     }
 
 
 
-    private void showLine1(int mapSize)
+    private void showLine1(int mapSize, int y)
     {
         System.out.print("      ");
+        printLinearSpaces(3);
 
         for (int i = 0; i < mapSize; i++){
             if (i % 2 == 0){
-                System.out.print(".■■■■■■■■■■■■■■■■■■■■■.");
+                System.out.print(".---------------------.");
             }
             else {
-                System.out.print("────────────────◯────────────────");
+                if (y != 0) {
+                    System.out.print("────────────────◯────────────────");
+                }
+                else {
+                    System.out.print("                                 ");
+                }
             }
         }
 
@@ -76,18 +66,49 @@ public class MiniMapView {
 
 
 
-    private void showTileFirstHalf(int mapSize, MiniMap map, int y)
+    private void showMidLine(int mapSize, int y)
     {
-        //                                 //                     //
+        System.out.print(y);
+        printLinearSpaces(3 - Integer.toString(y).length());
 
+        System.out.print(".");
+
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0) {
+                if (y < mapSize) {
+                    System.out.print("────────────────◯────────────────");
+                }
+                else {
+                    System.out.print("                                 ");
+                }
+            }
+            else {
+                System.out.print(".---------------------.");
+            }
+        }
+
+        System.out.println("");
+    }
+
+
+
+    private void showTileLines(int mapSize, MiniMap map, int y)
+    {
         for (int j = 0; j < 5; j++){
+            printLinearSpaces(3);
+
             for (int i = 0; i < mapSize; i++){
                 if (i % 2 == 0){
                     printLinearSpaces(5 - j);
                     System.out.print("/");
 
-                    String dataType = findTileLineDataFromLineNumber(j, map, i, y)[0];
-                    String data = findTileLineDataFromLineNumber(j, map, i, y)[1];
+                    String dataType = "";
+                    String data = "";
+
+                    if (y < mapSize) {
+                        dataType = findTileLineDataFromLineNumber(j, map, i, y)[0];
+                        data = findTileLineDataFromLineNumber(j, map, i, y)[1];
+                    }
 
                     printLinearSpaces(j + 1);
                     int spaceNeeded = printTileDate(dataType, data, 21);
@@ -98,8 +119,57 @@ public class MiniMapView {
                     System.out.print("\\");
                     printLinearSpaces(5 - j);
 
-                    String dataType = findTileLineDataFromLineNumber(5 + j, map, i, y)[0];
-                    String data = findTileLineDataFromLineNumber(5 + j, map, i, y)[1];
+                    String dataType = "";
+                    String data = "";
+
+                    if (y > 0) {
+                        dataType = findTileLineDataFromLineNumber(5 + j, map, i, y - 1)[0];
+                        data = findTileLineDataFromLineNumber(5 + j, map, i, y - 1)[1];
+                    }
+
+                    int spaceNeeded = printTileDate(dataType, data, 21);
+
+                    printLinearSpaces(spaceNeeded);
+                }
+            }
+
+            System.out.println("");
+        }
+
+        showMidLine(mapSize, y);
+
+        for (int j = 0; j < 5; j++){
+            printLinearSpaces(3);
+
+            for (int i = 0; i < mapSize; i++){
+                if (i % 2 == 0){
+                    printLinearSpaces(j + 1);
+                    System.out.print("\\");
+
+                    String data = "";
+                    String dataType = "";
+
+                    if (y < mapSize) {
+                        dataType = findTileLineDataFromLineNumber(j + 5, map, i, y)[0];
+                        data = findTileLineDataFromLineNumber(j + 5, map, i, y)[1];
+                    }
+
+                    printLinearSpaces(5 - j);
+                    int spaceNeeded = printTileDate(dataType, data, 21);
+                    printLinearSpaces(spaceNeeded);
+                }
+                else {
+                    printLinearSpaces(5 - j);
+                    System.out.print("/");
+                    printLinearSpaces(j + 1);
+
+                    String dataType = "";
+                    String data = "";
+
+                    if (y > 0 && y < mapSize) {
+                        dataType = findTileLineDataFromLineNumber(j , map, i, y - 1)[0];
+                        data = findTileLineDataFromLineNumber(j, map, i, y - 1)[1];
+                    }
 
                     int spaceNeeded = printTileDate(dataType, data, 21);
                     printLinearSpaces(spaceNeeded);
@@ -108,9 +178,6 @@ public class MiniMapView {
 
             System.out.println("");
         }
-
-        showMidLine(mapSize);
-
     }
 
 
@@ -234,8 +301,11 @@ public class MiniMapView {
 
     private int printTileDate(String dataType, String data, int characterLimit)
     {
-        characterLimit -= dataType.length() + 2;
-        System.out.print(dataType + ": ");
+
+        if (dataType.length() != 0) {
+            characterLimit -= dataType.length() + 2;
+            System.out.print(dataType + ": ");
+        }
 
         if (characterLimit < data.length()) {
             System.out.print(data.substring(0, characterLimit - 1));
@@ -325,24 +395,6 @@ public class MiniMapView {
             else {
                 System.out.print("      \\                     ");
 
-            }
-        }
-
-        System.out.println("");
-    }
-
-
-
-    private void showMidLine(int mapSize)
-    {
-        System.out.print(".");
-
-        for (int i = 0; i < mapSize; i++){
-            if (i % 2 == 0) {
-                System.out.print("────────────────◯────────────────");
-            }
-            else {
-                System.out.print(".■■■■■■■■■■■■■■■■■■■■■.");
             }
         }
 
