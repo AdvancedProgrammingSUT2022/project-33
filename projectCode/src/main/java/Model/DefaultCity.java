@@ -12,7 +12,7 @@ public class DefaultCity extends City{
     ////methods////
     public DefaultCity(CityLand cityLand, NonPlayerColors color, DefaultCityNames name)
     {
-        super(true, cityLand);
+        super(true, cityLand, color.toString());
         this.name = name;
         this.defaultCityGameName =name.name;
         this.color = color;

@@ -9,9 +9,9 @@ public class LuxuryResource extends Resource{
 
 
     ////methods////
-    public LuxuryResource(int food, int production, int gold, String constructionNeeded, ArrayList<String> landsThatCanBeFound)
+    public LuxuryResource(String gameName, int food, int production, int gold, String constructionNeeded, ArrayList<String> landsThatCanBeFound)
     {
-        super(food, production, gold, constructionNeeded, landsThatCanBeFound);
+        super(gameName, food, production, gold, constructionNeeded, landsThatCanBeFound);
     }
 
 

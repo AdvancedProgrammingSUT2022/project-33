@@ -10,9 +10,9 @@ public class StrategicResource extends Resource {
 
 
     ////methods////
-    public StrategicResource(int food, int production, int gold, String constructionNeeded, String technologyNeeded, ArrayList<String> landsThatCanBeFound)
+    public StrategicResource(String gameName, int food, int production, int gold, String constructionNeeded, String technologyNeeded, ArrayList<String> landsThatCanBeFound)
     {
-        super(food, production, gold, constructionNeeded, landsThatCanBeFound);
+        super(gameName, food, production, gold, constructionNeeded, landsThatCanBeFound);
         this.technologyNeeded = technologyNeeded;
     }
 

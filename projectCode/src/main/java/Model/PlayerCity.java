@@ -15,7 +15,7 @@ public class PlayerCity extends City{
     ////methods////
     public PlayerCity(boolean isCapital, Terrain terrain, Player owner, String cityName)
     {
-        super(isCapital, new CityLand(terrain));
+        super(isCapital, new CityLand(terrain), owner.getColor().toString());
         this.owner = owner;
         this.cityName = cityName;
         wonders = new ArrayList<>();
@@ -86,7 +86,7 @@ public class PlayerCity extends City{
             Terrain terrain = owner.getMap().getTerrainFromCoordinates(coordinates);
             CityLand cityLand = new CityLand(terrain);
             addLand(cityLand);
-            terrain.setTerritory(true);
+            terrain.setTerritory(true, owner.getColor().toString());
         }
     }
 

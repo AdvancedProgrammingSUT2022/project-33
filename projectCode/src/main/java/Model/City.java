@@ -30,7 +30,7 @@ public class City {
 
 
     ////methods////
-    public City(boolean isCapital, CityLand cityLand)
+    public City(boolean isCapital, CityLand cityLand, String color)
     {
         this.isCapital = isCapital;
         this.coordinates = cityLand.getTerrain().getCenterCoordinates();
@@ -40,7 +40,7 @@ public class City {
         this.buildings = new ArrayList<>();
         this.landsOwned = new ArrayList<>();
         landsOwned.add(cityLand);
-        cityLand.getTerrain().setTerritory(true);
+        cityLand.getTerrain().setTerritory(true, color);
         this.isWorking = false;
         this.maxHealth = 20;
         this.luxuryResources = new ArrayList<>();

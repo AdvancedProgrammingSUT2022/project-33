@@ -238,7 +238,7 @@ public class MapMaker {
                     if (!map.getTerrainFromCoordinates(baseCoordinates).getIsTerritory()) {
                         BarbarianBase barbarianBase = new BarbarianBase(baseCoordinates);
                         map.addBarbarianBase(barbarianBase);
-                        map.getTerrainFromCoordinates(baseCoordinates).setTerritory(true);
+                        map.getTerrainFromCoordinates(baseCoordinates).setTerritory(true, "Barbarian");
                     }
                 }
             }
@@ -258,7 +258,7 @@ public class MapMaker {
                 Coordinates coordinates = new Coordinates(i, j, 0);
 
                 if (rand.nextInt(naturalWanderMaxChance) < naturalWanderChance && !map.getTerrainFromCoordinates(coordinates).getIsTerritory()){
-                    map.getTerrainFromCoordinates(coordinates).setTerritory(true);
+                    map.getTerrainFromCoordinates(coordinates).setTerritory(true, "natural wonder");
                     NaturalWonder naturalWander = new NaturalWonder(NaturalWonderTypes.values()[rand.nextInt(NaturalWonderTypes.values().length)], coordinates);
                     map.addNaturalWander(naturalWander);
                 }
@@ -273,7 +273,7 @@ public class MapMaker {
                 Coordinates coordinates = new Coordinates(i, j, 0);
 
                 if (rand.nextInt(ruinMaxChance) < ruinChance && !map.getTerrainFromCoordinates(coordinates).getIsTerritory()){
-                    map.getTerrainFromCoordinates(coordinates).setTerritory(true);
+                    map.getTerrainFromCoordinates(coordinates).setTerritory(true, "Ruin");
                     Ruin ruin = new Ruin(coordinates, map.getBarbarianBases(), mapSize.size);
                     map.addRuin(ruin);
                 }

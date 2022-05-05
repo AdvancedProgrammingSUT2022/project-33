@@ -60,7 +60,7 @@ public class Map {
     public void addDefaultCity(DefaultCity city)
     {
         defaultCities.add(city);
-        getTerrainFromCoordinates(city.getCoordinates()).setTerritory(true);
+        getTerrainFromCoordinates(city.getCoordinates()).setTerritory(true, city.getColor().toString());
 
         Coordinates landCoordinates1 = new Coordinates(city.getCoordinates().getX(), city.getCoordinates().getY() + 2, city.getCoordinates().getZ());
         Coordinates landCoordinates2 = new Coordinates(city.getCoordinates().getX() + 1, city.getCoordinates().getY() + 1, city.getCoordinates().getZ());
@@ -84,7 +84,7 @@ public class Map {
         if (!getTerrainFromCoordinates(coordinates).getIsTerritory()){
             CityLand land = new CityLand(getTerrainFromCoordinates(coordinates));
             city.addLand(land);
-            getTerrainFromCoordinates(coordinates).setTerritory(true);
+            getTerrainFromCoordinates(coordinates).setTerritory(true, city.getColor().toString());
         }
     }
 

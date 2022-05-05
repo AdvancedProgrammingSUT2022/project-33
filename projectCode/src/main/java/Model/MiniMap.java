@@ -268,4 +268,9 @@ public class MiniMap extends Map{
     public Map getOriginalMap() {
         return originalMap;
     }
+
+
+    public Player getOwner() {
+        return owner;
+    }
 }

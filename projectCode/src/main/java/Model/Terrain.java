@@ -15,6 +15,8 @@ public class Terrain extends MapLandElement{
     private boolean isTerritory;
     private boolean hasRiver;
     private boolean hasRoad;
+    private String territoryColor;
+    private Player Owner;
 
 
 
@@ -91,7 +93,7 @@ public class Terrain extends MapLandElement{
             int resourceIndex = rand.nextInt(availableResources.size());
             Resource temporarilyResource = new Resource(availableResources.get(resourceIndex).toString() , availableResources.get(resourceIndex).resource);
 
-            if (temporarilyResource.landsThatCanBeFound != null && temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
+            if (temporarilyResource.getLandsThatCanBeFound() != null && temporarilyResource.getLandsThatCanBeFound().contains(Terrain.super.getType())){
                 hasResource = true;
                 resourceCategory = ResourceCategories.NORMAL;
                 resource = temporarilyResource;
@@ -107,7 +109,7 @@ public class Terrain extends MapLandElement{
             int resourceIndex = rand.nextInt(availableResources.size());
             StrategicResource temporarilyResource = new StrategicResource(availableResources.get(resourceIndex).toString() , availableResources.get(resourceIndex).resource);
 
-            if (temporarilyResource.landsThatCanBeFound != null && temporarilyResource.landsThatCanBeFound.contains(Terrain.super.getType())){
+            if (temporarilyResource.getLandsThatCanBeFound() != null && temporarilyResource.getLandsThatCanBeFound().contains(Terrain.super.getType())){
                 hasResource = true;
                 resourceCategory = ResourceCategories.STRATEGIC;
                 strategicResource = temporarilyResource;
@@ -136,8 +138,8 @@ public class Terrain extends MapLandElement{
         ArrayList<ResourceTypes> resources = new ArrayList<>();
 
         for (int i = 0; i < ResourceTypes.values().length; i++){
-            if ((hasProperty && ResourceTypes.values()[i].resource.landsThatCanBeFound.contains(property.getType()))
-                    || ResourceTypes.values()[i].resource.landsThatCanBeFound.contains(this.getType())){
+            if ((hasProperty && ResourceTypes.values()[i].resource.getLandsThatCanBeFound().contains(property.getType()))
+                    || ResourceTypes.values()[i].resource.getLandsThatCanBeFound().contains(this.getType())){
                 resources.add(ResourceTypes.values()[i]);
             }
         }
@@ -152,8 +154,8 @@ public class Terrain extends MapLandElement{
         ArrayList<StrategicResourceTypes> resources = new ArrayList<>();
 
         for (int i = 0; i < StrategicResourceTypes.values().length; i++){
-            if ((hasProperty && StrategicResourceTypes.values()[i].resource.landsThatCanBeFound.contains(property.getType()))
-                    || StrategicResourceTypes.values()[i].resource.landsThatCanBeFound.contains(this.getType())){
+            if ((hasProperty && StrategicResourceTypes.values()[i].resource.getLandsThatCanBeFound().contains(property.getType()))
+                    || StrategicResourceTypes.values()[i].resource.getLandsThatCanBeFound().contains(this.getType())){
                 resources.add(StrategicResourceTypes.values()[i]);
             }
         }
@@ -168,8 +170,8 @@ public class Terrain extends MapLandElement{
         ArrayList<LuxuryResourceTypes> resources = new ArrayList<>();
 
         for (int i = 0; i < LuxuryResourceTypes.values().length; i++){
-            if ((hasProperty && LuxuryResourceTypes.values()[i].resource.landsThatCanBeFound.contains(property.getType()))
-                    || LuxuryResourceTypes.values()[i].resource.landsThatCanBeFound.contains(this.getType())){
+            if ((hasProperty && LuxuryResourceTypes.values()[i].resource.getLandsThatCanBeFound().contains(property.getType()))
+                    || LuxuryResourceTypes.values()[i].resource.getLandsThatCanBeFound().contains(this.getType())){
                 resources.add(LuxuryResourceTypes.values()[i]);
             }
         }
@@ -242,11 +244,36 @@ public class Terrain extends MapLandElement{
     }
 
 
+    public String getResourceTypeString()
+    {
+        if(resourceCategory.equals(ResourceCategories.STRATEGIC)){
+            return strategicResource.getGameName();
+        }
+        else if (resourceCategory.equals(ResourceCategories.LUXURY)){
+            return luxuryResource.getGameName();
+        }
+        else {
+            return resource.getGameName();
+        }
+    }
+
+
+    public Player getOwner() {
+        return Owner;
+    }
+
+
+    public String getTerritoryColor() {
+        return territoryColor;
+    }
+
+
 
     //setters
-    public void setTerritory(boolean isTerritory)
+    public void setTerritory(boolean isTerritory, String color)
     {
         this.isTerritory = isTerritory;
+        this.territoryColor = color;
     }
 
 

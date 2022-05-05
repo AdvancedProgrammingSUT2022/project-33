@@ -74,13 +74,13 @@ public class CityLand {
     public boolean hasStrategicResourceProduction()
     {
         return terrain.isHasResource() && terrain.getResourceCategory().equals(ResourceCategories.STRATEGIC) &&
-                hasImprovement && improvement.toString().equals(terrain.getResource().constructionNeeded);
+                hasImprovement && improvement.toString().equals(terrain.getResource().getConstructionNeeded());
     }
 
 
     public boolean hasLuxuryResource()
     {
         return terrain.isHasResource() && terrain.getResourceCategory().equals(ResourceCategories.LUXURY) &&
-                hasImprovement && improvement.toString().equals(terrain.getResource().constructionNeeded);
+                hasImprovement && improvement.toString().equals(terrain.getResource().getConstructionNeeded());
     }
 }
