@@ -20,6 +20,8 @@ public class MiniMap extends Map{
         super(map);
         originalMap = map;
         this.owner = owner;
+        hiddenTiles = new ArrayList<>();
+        hiddenCoordinates = new ArrayList<>();
     }
 
 
@@ -91,7 +93,8 @@ public class MiniMap extends Map{
                 Coordinates checkingCoordinates = new Coordinates(coordinates.getX() + i, coordinates.getY() + j, 0);
                 availableCoordinates.add(checkingCoordinates);
 
-                if (getTerrainFromCoordinates(checkingCoordinates).getType().equals("HILLS") || getTerrainFromCoordinates(checkingCoordinates).getType().equals("MOUNTAIN")){
+                if (getTerrainFromCoordinates(checkingCoordinates) != null &&(getTerrainFromCoordinates(checkingCoordinates).getType().equals("HILLS") ||
+                        getTerrainFromCoordinates(checkingCoordinates).getType().equals("MOUNTAIN"))){
                     blockCoordinates.add(checkingCoordinates);
                 }
             }

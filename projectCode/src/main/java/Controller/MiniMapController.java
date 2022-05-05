@@ -1,10 +1,12 @@
 package Controller;
 
 import Model.MiniMap;
+import Model.Player;
+import Model.UserInput;
 import View.MiniMapView;
 
 public class MiniMapController {
-    MiniMap map;
+    Player player;
     MiniMapView view;
 
 
@@ -12,11 +14,24 @@ public class MiniMapController {
 
 
     ////methods////
-    public MiniMapController(MiniMap map)
+    public MiniMapController(Player player)
     {
-        this.map = map;
+        this.player = player;
         this.view = new MiniMapView();
+        view.showMiniMap(player.getMap());
 
-        view.showMiniMap(map);
+        run();
+    }
+
+
+
+    private void run()
+    {
+        while (true){
+            String input = UserInput.getInput();
+            input = UserInput.removeSpaces(input);
+
+            //TODO:
+        }
     }
 }

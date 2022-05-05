@@ -62,12 +62,16 @@ public class GameLoader {
 
         }
 
+        GameLoaderView.printSpaces();
+        GameLoaderView.showLoadingScreen("100");
+
         ZaWarudo zaWarudo = new ZaWarudo(map, players);
     }
 
 
 
-    private void dropPlayers(Map map)
+    private void
+    dropPlayers(Map map)
     {
         int k = 0;
         int maxChance = map.getMapSize();
@@ -75,6 +79,7 @@ public class GameLoader {
 
         while (k < players.size()){
             players.get(k).setMap(new MiniMap(map, players.get(k)));
+            boolean flag = false;
 
             for (int j = 0; j < map.getMapSize(); j++){
                 for (int i = 0; i < map.getMapSize(); i++){
@@ -90,7 +95,13 @@ public class GameLoader {
                         map.getUnits().addMilitaryUnit(warrior);
                         players.get(k).getPlayerUnits().addMilitaryUnit(warrior);
                         players.get(k).getMap().updateMap();
+                        k++; flag = true;
+                        break;
                     }
+                }
+
+                if (flag){
+                    break;
                 }
             }
         }

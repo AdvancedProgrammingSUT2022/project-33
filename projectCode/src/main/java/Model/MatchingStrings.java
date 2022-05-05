@@ -3,7 +3,8 @@ package Model;
 import java.util.regex.Pattern;
 
 public class MatchingStrings {
-    public static class LoginControllerStrings{
+    public static class LoginControllerStrings
+    {
         public final static Pattern CREATE_USER_1 = Pattern.compile("user create ((-(-?)username)|(-(-?)u)) [a-zA-Z0-9]+ ((-(-?)nickname)|(-(-?)n)) (\\w)+ ((-(-?)password)|(-(-?)p)) [a-zA-Z0-9]+");
         public final static Pattern CREATE_USER_2 = Pattern.compile("user create ((-(-?)username)|(-(-?)u)) [a-zA-Z0-9]+ ((-(-?)password)|(-(-?)p)) [a-zA-Z0-9]+ ((-(-?)nickname)|(-(-?)n)) (\\w)+");
         public final static Pattern CREATE_USER_3 = Pattern.compile("user create ((-(-?)nickname)|(-(-?)n)) (\\w)+ ((-(-?)username)|(-(-?)u)) [a-zA-Z0-9]+ ((-(-?)password)|(-(-?)p)) [a-zA-Z0-9]+");
@@ -22,7 +23,8 @@ public class MatchingStrings {
 
 
 
-    public static class MainControllerStrings{
+    public static class MainControllerStrings
+    {
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern ENTER_MENU = Pattern.compile("menu enter \\S+");
         public final static Pattern ENTER_PROFILE_MENU = Pattern.compile("menu enter Profile");
@@ -40,7 +42,8 @@ public class MatchingStrings {
 
 
 
-    public static class ProfileControllerStrings{
+    public static class ProfileControllerStrings
+    {
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern ENTER_MENU = Pattern.compile("menu enter \\S+");
         public final static Pattern EXIT = Pattern.compile("menu exit");
@@ -53,5 +56,13 @@ public class MatchingStrings {
         public final static Pattern CHANGE_PASSWORD6 = Pattern.compile("profile change ((-(-?)new)|(-(-?)n)) [a-zA-Z0-9]+ ((-(-?)current)|(-(-?)c)) [a-zA-Z0-9]+ ((-(-?)password)|(-(-?)p))");
         public final static Pattern CURRENT_PASSWORD = Pattern.compile("((-(-?)current)|(-(-?)c)) [a-zA-Z0-9]+");
         public final static Pattern NEW_PASSWORD = Pattern.compile("((-(-?)new)|(-(-?)n)) [a-zA-Z0-9]+");
+    }
+
+
+
+    public static class PlayerControllerStrings
+    {
+        public final static Pattern ENTER_SECTION = Pattern.compile("enter -(-?)(section|s) \\S+");
+        public final static Pattern MINIMAP = Pattern.compile("minimap");
     }
 }

@@ -1,6 +1,9 @@
 package Controller;
 
+import Model.MatchingStrings;
 import Model.Player;
+import Model.User;
+import Model.UserInput;
 import View.PlayerView;
 
 public class PlayerController {
@@ -16,9 +19,38 @@ public class PlayerController {
     {
         this.player = player;
         view = new PlayerView();
+        run();
 
         //TODO:
+    }
 
-        MiniMapController miniMapController = new MiniMapController(player.getMap());
+
+
+    private void run()
+    {
+        view.showYourTurn(player.getNickname());
+
+        while (true){
+            String input = UserInput.getInput();
+            input = UserInput.removeSpaces(input);
+
+            if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.ENTER_SECTION)){
+                enterSection(input);
+            }
+            //TODO:
+        }
+    }
+
+
+
+    private void enterSection(String input)
+    {
+        String section = input.split(" ")[2];
+
+        if (UserInput.doesMatch(section, MatchingStrings.PlayerControllerStrings.MINIMAP)){
+            view.showEnteringSection("minimap");
+            MiniMapController miniMapController = new MiniMapController(player);
+            //TODO:
+        }
     }
 }

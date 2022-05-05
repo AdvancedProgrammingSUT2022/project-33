@@ -13,7 +13,16 @@ public class MiniMapView {
     ////methods////
     public void showMiniMap(MiniMap miniMap)
     {
+        showXCoordinates(miniMap.getMapSize());
+    }
 
+
+
+    private void showXCoordinates(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++){
+            System.out.print("        " + i + "        ");
+        }
     }
 
 

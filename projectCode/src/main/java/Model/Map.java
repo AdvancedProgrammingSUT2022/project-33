@@ -44,6 +44,7 @@ public class Map {
         this.rivers = map.rivers;
         this.size = map.size;
         this.units = map.units;
+        this.playerCities = map.playerCities;
 
     }
 

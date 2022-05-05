@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.PlayerController;
+
 import java.util.ArrayList;
 
 public class ZaWarudo {
@@ -22,8 +24,15 @@ public class ZaWarudo {
 
     public void updateGame()
     {
-        for (int i = 0; i < players.size(); i++){
+        //TODO:
+        while (true) {
+            for (int i = 0; i < players.size(); i++) {
+                players.get(i).updatePlayer();
+                PlayerController controller = new PlayerController(players.get(i));
 
+
+                //TODO: managing turns and game
+            }
         }
     }
 }
