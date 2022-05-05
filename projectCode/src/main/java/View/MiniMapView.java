@@ -35,6 +35,11 @@ public class MiniMapView {
         showLine5(mapSize);
         showLine6(mapSize);
         showMidLine(mapSize);
+        showLine7(mapSize);
+        showLine8(mapSize);
+        showLine9(mapSize);
+        showLine10(mapSize);
+        showLine11(mapSize);
     }
 
 
@@ -51,12 +56,14 @@ public class MiniMapView {
 
     private void showLine1(int mapSize)
     {
+        System.out.print(" ");
+
         for (int i = 0; i < mapSize; i++){
             if (i % 2 == 0){
                 System.out.print("      .---------------------.");
             }
             else {
-                System.out.print("                          ");
+                System.out.print("                           ");
             }
         }
 
@@ -65,11 +72,20 @@ public class MiniMapView {
 
 
 
+    private void showTileFirstHalf()
+    {
+        for (int i = 0; i < 5; i++){
+            
+        }
+    }
+
+
+
     private void showLine2(int mapSize)
     {
         for (int i = 0; i < mapSize; i++){
             if (i % 2 == 0){
-                System.out.print("     /                     ");
+                System.out.print("      /                     ");
             }
             else {
                 System.out.print("  \\                         ");
@@ -86,7 +102,7 @@ public class MiniMapView {
     {
         for (int i = 0; i < mapSize; i++){
             if (i % 2 == 0){
-                System.out.print("    /                      ");
+                System.out.print("     /                      ");
             }
             else {
                 System.out.print("   \\                        ");
@@ -103,7 +119,7 @@ public class MiniMapView {
     {
         for (int i = 0; i < mapSize; i++){
             if (i % 2 == 0){
-                System.out.print("   /                       ");
+                System.out.print("    /                       ");
             }
             else {
                 System.out.print("    \\                       ");
@@ -120,7 +136,7 @@ public class MiniMapView {
     {
         for (int i = 0; i < mapSize; i++){
             if (i % 2 == 0){
-                System.out.print("  /                        ");
+                System.out.print("   /                        ");
             }
             else {
                 System.out.print("     \\                      ");
@@ -137,7 +153,7 @@ public class MiniMapView {
     {
         for (int i = 0; i < mapSize; i++){
             if (i % 2 == 0){
-                System.out.print(" /                         ");
+                System.out.print("  /                         ");
             }
             else {
                 System.out.print("      \\                     ");
@@ -152,11 +168,11 @@ public class MiniMapView {
 
     private void showMidLine(int mapSize)
     {
-        System.out.print(".");
+        System.out.print(" .");
 
         for (int i = 0; i < mapSize; i++){
             if (i % 2 == 0){
-                System.out.print("                          ");
+                System.out.print("                           ");
             }
             else {
                 System.out.print("      .---------------------.");
@@ -165,6 +181,107 @@ public class MiniMapView {
         }
 
         System.out.println("");
+    }
+
+
+
+    private void showLine7(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0){
+                System.out.print("  \\                         ");
+            }
+            else {
+                System.out.print("      /                     ");
+
+            }
+        }
+
+        System.out.println("");
+    }
+
+
+
+    private void showLine8(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0){
+                System.out.print("   \\                        ");
+            }
+            else {
+                System.out.print("     /                      ");
+
+            }
+        }
+
+        System.out.println("");
+    }
+
+
+
+    private void showLine9(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0){
+                System.out.print("    \\                       ");
+            }
+            else {
+                System.out.print("    /                       ");
+
+            }
+        }
+
+        System.out.println("");
+    }
+
+
+
+    private void showLine10(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0){
+                System.out.print("     \\                      ");
+            }
+            else {
+                System.out.print("   /                        ");
+
+            }
+        }
+
+        System.out.println("");
+    }
+
+
+
+    private void showLine11(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++){
+            if (i % 2 == 0){
+                System.out.print("      \\                     ");
+            }
+            else {
+                System.out.print("  /                         ");
+
+            }
+        }
+
+        System.out.println("");
+    }
+
+
+
+    private int printTileDate(String dataType, String data, int characterLimit)
+    {
+        characterLimit -= dataType.length() + 2;
+        System.out.print(dataType + ": ");
+
+        if (characterLimit < data.length()) {
+            System.out.print(data.substring(0, characterLimit - 1));
+            return 0;
+        }
+
+        System.out.print(data);
+        return characterLimit - data.length();
     }
 
 
