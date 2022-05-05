@@ -21,9 +21,9 @@ public class MiniMapView {
 
     private void showXCoordinates(int mapSize)
     {
+
         for (int i = 0; i < mapSize; i++){
-            //hex side is almost equal to 18. and it has a center -> 18 + 1.
-            System.out.print("                 " + i + "         ");
+            System.out.print("                    " + i + "       ");
         }
 
         System.out.println();
@@ -68,8 +68,13 @@ public class MiniMapView {
 
     private void showMidLine(int mapSize, int y)
     {
-        System.out.print(y);
-        printLinearSpaces(3 - Integer.toString(y).length());
+        if (y < mapSize) {
+            System.out.print(y);
+            printLinearSpaces(3 - Integer.toString(y).length());
+        }
+        else {
+            printLinearSpaces(3);
+        }
 
         System.out.print(".");
 
@@ -128,11 +133,12 @@ public class MiniMapView {
                     }
 
                     int spaceNeeded = printTileDate(dataType, data, 21);
-
                     printLinearSpaces(spaceNeeded);
                 }
             }
 
+            printLinearSpaces(5 - j);
+            System.out.print("/");
             System.out.println("");
         }
 
@@ -142,7 +148,7 @@ public class MiniMapView {
             printLinearSpaces(3);
 
             for (int i = 0; i < mapSize; i++){
-                if (i % 2 == 0){
+                if (i % 2 == 0 && y < mapSize){
                     printLinearSpaces(j + 1);
                     System.out.print("\\");
 
@@ -158,7 +164,7 @@ public class MiniMapView {
                     int spaceNeeded = printTileDate(dataType, data, 21);
                     printLinearSpaces(spaceNeeded);
                 }
-                else {
+                else if (y < mapSize){
                     printLinearSpaces(5 - j);
                     System.out.print("/");
                     printLinearSpaces(j + 1);
@@ -176,6 +182,11 @@ public class MiniMapView {
                 }
             }
 
+            if (y != mapSize) {
+                printLinearSpaces(j + 1);
+                System.out.print("\\");
+            }
+            
             System.out.println("");
         }
     }
