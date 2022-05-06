@@ -1,1 +1,2 @@
-
+show map -> shows map
+show zoomed map -start <starting point> -end <ending point> -> shows map from x and y value of starting point to x and y = ending value
