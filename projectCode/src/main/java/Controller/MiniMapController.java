@@ -33,14 +33,21 @@ public class MiniMapController {
             String input = UserInput.getInput();
             input = UserInput.removeSpaces(input);
 
-            while (true){
-                if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MAP)){
-                    view.showMiniMap(player.getMap());
-                }
-                else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MAP_ZOOMED1) ||
-                        UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MAP_ZOOMED2)){
-                    showZoomedMap(input);
-                }
+            if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MAP)){
+                view.showMiniMap(player.getMap());
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MAP_ZOOMED1) ||
+                    UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MAP_ZOOMED2)){
+                showZoomedMap(input);
+            }
+            else if (){
+                showUnits(input);
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.BACK)){
+                return;
+            }
+            else {
+                view.showInvalidCommand();
             }
             //TODO:
         }
@@ -69,4 +76,18 @@ public class MiniMapController {
             view.showMiniMapZoomed(player.getMap(), startingPoint, endingPoint);
         }
     }
+
+
+
+    private void showUnits(String input)
+    {
+        String unitType = UserInput.getMatchingStringGroupFromInput(input, MatchingStrings.MinimapControllerStrings.UNIT_TYPE);
+        unitType = unitType.split(" ")[1];
+
+        boolean healthFlag = MatchingStrings.MinimapControllerStrings.HEALTH.matcher(input).find();
+        boolean movePointFlag = MatchingStrings.MinimapControllerStrings.MOVE_POINT.matcher(input).find();
+
+
+    }
+
 }

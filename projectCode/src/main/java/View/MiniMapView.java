@@ -445,4 +445,11 @@ public class MiniMapView {
         System.out.println(number + "is out of Boundaries for " + valuePart);
         System.out.println("maximum value is: " + maxValue);
     }
+
+
+
+    public void showInvalidCommand()
+    {
+        System.out.println("invalid command");
+    }
 }

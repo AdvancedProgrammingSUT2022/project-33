@@ -1,5 +1,7 @@
 package Model;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,5 +51,45 @@ public class UserInput {
         }
 
         return "";
+    }
+
+
+
+    public static boolean doesMatchMultipleRegex(String input, String base,  ArrayList<Pattern> patterns)
+    {
+        ArrayList<Pattern> finalPatterns = new ArrayList<>();
+        combinePatterns(patterns, base, finalPatterns);
+
+        for (int i = 0; i < finalPatterns.size(); i++){
+            if (doesMatch(input, finalPatterns.get(i))){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+    public static void combinePatterns(ArrayList<Pattern> patterns, String pattern, ArrayList<Pattern> finalPatterns)
+    {
+        for (int i = 0; i < patterns.size(); i++){
+            ArrayList<Pattern> patternsCopy = new ArrayList<>(patterns);
+            String newPattern = pattern + patternsCopy.get(i).toString();
+            patternsCopy.remove(i);
+            combinePatterns(patternsCopy, newPattern, finalPatterns);
+        }
+
+        if (patterns.size() != 0){
+            return;
+        }
+
+        for (int i = 0; i < finalPatterns.size(); i++){
+            if (finalPatterns.get(i).toString().equals(pattern)){
+                return;
+            }
+        }
+
+        finalPatterns.add(Pattern.compile(pattern));
     }
 }

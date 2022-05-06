@@ -75,5 +75,13 @@ public class MatchingStrings {
         public final static Pattern SHOW_MAP_ZOOMED2 = Pattern.compile("show zoomed map (-(-?)(end|e) (\\d+)) (-(-?)(start|s) (\\d+))");
         public final static Pattern STARTING_POINT = Pattern.compile("-(-?)(start|s) (\\d+)");
         public final static Pattern ENDING_POINT = Pattern.compile("-(-?)(start|s) (\\d+)");
+        public final static Pattern SHOW_UNITS = Pattern.compile("show units -(-?)(type|t) (military|worker|settler)");
+        public final static Pattern UNIT_TYPE = Pattern.compile("-(-?)(type|t) (military|worker|settler)");
+        public final static Pattern MOVE_POINT = Pattern.compile(" -(-?)(move_point|mp)");
+        public final static Pattern HEALTH = Pattern.compile(" -(-?)(health|h)");
+        public final static Pattern ATTACK_DAMAGE = Pattern.compile("(( -(-?)(attack_damage|ad))?)");
+        public final static Pattern DEFENCE = Pattern.compile("(( -(-?)(defence|d))?)");
+        public final static Pattern LEVEL = Pattern.compile("(( -(-?)(level|l))?)");
+        public final static Pattern BACK = Pattern.compile("back");
     }
 }
