@@ -37,4 +37,17 @@ public class UserInput {
         Matcher matcher = pattern.matcher(input);
         return matcher.matches();
     }
+
+
+
+    public static String getMatchingStringGroupFromInput(String input, Pattern searchingPattern)
+    {
+        Matcher matcher = searchingPattern.matcher(input);
+
+        if (matcher.find()){
+            return matcher.group();
+        }
+
+        return "";
+    }
 }

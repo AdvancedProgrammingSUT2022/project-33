@@ -13,16 +13,23 @@ public class MiniMapView {
     ////methods////
     public void showMiniMap(MiniMap miniMap)
     {
-        showXCoordinates(miniMap.getMapSize());
-        showRows(miniMap.getMapSize(), miniMap);
+        showXCoordinates(0, miniMap.getMapSize());
+        showRows(0, miniMap.getMapSize(), miniMap);
     }
 
 
 
-    private void showXCoordinates(int mapSize)
+    public void showMiniMapZoomed(MiniMap miniMap, int startingPoint, int endingPoint)
     {
+        showXCoordinates(startingPoint, endingPoint);
+        showRows(startingPoint,  endingPoint, miniMap);
+    }
 
-        for (int i = 0; i < mapSize; i++){
+
+
+    private void showXCoordinates(int startingPoint, int endingPoint)
+    {
+        for (int i = startingPoint; i < endingPoint; i++){
             System.out.print("                    " + i + "       ");
         }
 
@@ -31,23 +38,23 @@ public class MiniMapView {
 
 
 
-    private void showRows(int mapSize, MiniMap miniMap)
+    private void showRows(int startingPoint, int endingPoint, MiniMap miniMap)
     {
-        for (int j = 0; j <= mapSize; j++){
-            showLine1(mapSize, j);
-            showTileLines(mapSize, miniMap, j);
+        for (int j = startingPoint; j <= endingPoint; j++){
+            showLine1(startingPoint, endingPoint, j);
+            showTileLines(startingPoint, endingPoint, miniMap, j);
         }
             //TODO:
     }
 
 
 
-    private void showLine1(int mapSize, int y)
+    private void showLine1(int startingPoint, int endingPoint, int y)
     {
         System.out.print("      ");
         printLinearSpaces(3);
 
-        for (int i = 0; i < mapSize; i++){
+        for (int i = startingPoint; i < endingPoint; i++){
             if (i % 2 == 0){
                 System.out.print(".---------------------.");
             }
@@ -66,9 +73,9 @@ public class MiniMapView {
 
 
 
-    private void showMidLine(int mapSize, int y)
+    private void showMidLine(int startingPoint, int endingPoint, int y)
     {
-        if (y < mapSize) {
+        if (y < endingPoint) {
             System.out.print(y);
             printLinearSpaces(3 - Integer.toString(y).length());
         }
@@ -78,9 +85,9 @@ public class MiniMapView {
 
         System.out.print(".");
 
-        for (int i = 0; i < mapSize; i++){
+        for (int i = startingPoint; i < endingPoint; i++){
             if (i % 2 == 0) {
-                if (y < mapSize) {
+                if (y < endingPoint) {
                     System.out.print("────────────────◯────────────────");
                 }
                 else {
@@ -97,13 +104,13 @@ public class MiniMapView {
 
 
 
-    private void showTileLines(int mapSize, MiniMap map, int y)
+    private void showTileLines(int startingPoint, int endingPoint, MiniMap map, int y)
     {
         for (int j = 0; j < 5; j++){
             printLinearSpaces(3);
 
-            for (int i = 0; i < mapSize; i++){
-                showFirstPartOfVisibleTile(i, j, y, map, mapSize);
+            for (int i = startingPoint; i < endingPoint; i++){
+                showFirstPartOfVisibleTile(i, j, y, map, endingPoint);
             }
 
             printLinearSpaces(5 - j);
@@ -111,16 +118,16 @@ public class MiniMapView {
             System.out.println();
         }
 
-        showMidLine(mapSize, y);
+        showMidLine(startingPoint, endingPoint, y);
 
         for (int j = 0; j < 5; j++){
             printLinearSpaces(3);
 
-            for (int i = 0; i < mapSize; i++){
-                showSecondPartOfVisibleTile(i, j, y, map, mapSize);
+            for (int i = startingPoint; i < endingPoint; i++){
+                showSecondPartOfVisibleTile(i, j, y, map, endingPoint);
             }
 
-            if (y != mapSize) {
+            if (y != endingPoint) {
                 printLinearSpaces(j + 1);
                 System.out.print("\\");
             }
@@ -433,22 +440,9 @@ public class MiniMapView {
 
 
 
-    public void showVisibleTiles(MiniMapTile tile)
+    public void showValueOutOfBoundaries(int number, int maxValue, String valuePart)
     {
-        //TODO:
-    }
-
-
-
-    public void showHiddenTiles(MiniMapTile tile)
-    {
-        //TODO:
-    }
-
-
-
-    public void showFog()
-    {
-        //TODO:
+        System.out.println(number + "is out of Boundaries for " + valuePart);
+        System.out.println("maximum value is: " + maxValue);
     }
 }

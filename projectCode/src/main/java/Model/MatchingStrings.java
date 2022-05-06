@@ -65,4 +65,15 @@ public class MatchingStrings {
         public final static Pattern ENTER_SECTION = Pattern.compile("enter -(-?)(section|s) \\S+");
         public final static Pattern MINIMAP = Pattern.compile("minimap");
     }
+
+
+
+    public static class MinimapControllerStrings
+    {
+        public final static Pattern SHOW_MAP = Pattern.compile("show map");
+        public final static Pattern SHOW_MAP_ZOOMED1 = Pattern.compile("show zoomed map (-(-?)(start|s) (\\d+)) (-(-?)(end|e) (\\d+))");
+        public final static Pattern SHOW_MAP_ZOOMED2 = Pattern.compile("show zoomed map (-(-?)(end|e) (\\d+)) (-(-?)(start|s) (\\d+))");
+        public final static Pattern STARTING_POINT = Pattern.compile("-(-?)(start|s) (\\d+)");
+        public final static Pattern ENDING_POINT = Pattern.compile("-(-?)(start|s) (\\d+)");
+    }
 }
