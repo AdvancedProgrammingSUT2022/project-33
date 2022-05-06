@@ -88,15 +88,12 @@ public class MiniMap extends Map{
         ArrayList<Coordinates> availableCoordinates = new ArrayList<>();
         ArrayList<Coordinates> blockCoordinates = new ArrayList<>();
 
-        for (int j = -range; j <= range; j++){
-            for (int i = Math.abs(j) - range; i <= range - Math.abs(j); i++){
-                Coordinates checkingCoordinates = new Coordinates(coordinates.getX() + i, coordinates.getY() + j, 0);
-                availableCoordinates.add(checkingCoordinates);
+        getAvailableCoordinates(availableCoordinates, coordinates, range + 1);
 
-                if (getTerrainFromCoordinates(checkingCoordinates) != null &&(getTerrainFromCoordinates(checkingCoordinates).getType().equals("HILLS") ||
-                        getTerrainFromCoordinates(checkingCoordinates).getType().equals("MOUNTAIN"))){
-                    blockCoordinates.add(checkingCoordinates);
-                }
+        for (int i = 0; i < availableCoordinates.size(); i++){
+            if (getTerrainFromCoordinates(availableCoordinates.get(i)).getType().equals("HILLS") ||
+                    getTerrainFromCoordinates(availableCoordinates.get(i)).getType().equals("MOUNTAIN")){
+                blockCoordinates.add(availableCoordinates.get(i));
             }
         }
 
@@ -113,10 +110,69 @@ public class MiniMap extends Map{
 
 
 
+    private void getAvailableCoordinates(ArrayList<Coordinates> availableCoordinates, Coordinates coordinates, int range)
+    {
+        if (!availableCoordinates.contains(coordinates)){
+            availableCoordinates.add(coordinates);
+        }
+
+        range--;
+
+        if (range > 0){
+            int x = coordinates.getX();
+            int y = coordinates.getY();
+
+            if (y > 0){
+                getAvailableCoordinates(availableCoordinates, new Coordinates(x, y - 1, 0), range);
+            }
+
+            if (x % 2 == 0){
+                if (x > 0){
+                    getAvailableCoordinates(availableCoordinates, new Coordinates(x - 1, y, 0), range);
+
+                    if (y > 0){
+                        getAvailableCoordinates(availableCoordinates, new Coordinates(x - 1, y - 1, 0), range);
+                    }
+                }
+
+                if (x < getMapSize() - 1){
+                    getAvailableCoordinates(availableCoordinates, new Coordinates(x + 1, y, 0), range);
+
+                    if (y > 0){
+                        getAvailableCoordinates(availableCoordinates, new Coordinates(x + 1, y - 1, 0), range);
+                    }
+                }
+            }
+            else {
+                if (x > 0){
+                    getAvailableCoordinates(availableCoordinates, new Coordinates(x - 1, y, 0), range);
+
+                    if (y < getMapSize() - 1){
+                        getAvailableCoordinates(availableCoordinates, new Coordinates(x - 1, y + 1, 0), range);
+                    }
+                }
+
+                if (x < getMapSize() - 1){
+                    getAvailableCoordinates(availableCoordinates, new Coordinates(x + 1, y, 0), range);
+
+                    if (y < getMapSize() - 1){
+                        getAvailableCoordinates(availableCoordinates, new Coordinates(x + 1, y + 1, 0), range);
+                    }
+                }
+            }
+
+            if (y < getMapSize() - 1){
+                getAvailableCoordinates(availableCoordinates, new Coordinates(x, y + 1, 0), range);
+            }
+        }
+    }
+
+
+
     private boolean isInLineOfSight(Coordinates checkingCoordinates, ArrayList<Coordinates> blockCoordinates, Coordinates centerCoordinates)
     {
         for (int i = 0; i < blockCoordinates.size(); i++){
-            if (!checkingCoordinates.equals(blockCoordinates.get(i))){
+            if (!checkingCoordinates.equals(blockCoordinates.get(i)) && !centerCoordinates.equals(blockCoordinates.get(i))){
                 NormalCoordinates normalCheckingCoordinates = new NormalCoordinates(checkingCoordinates);
                 NormalCoordinates normalBlockCoordinates = new NormalCoordinates(blockCoordinates.get(i));
                 NormalCoordinates normalCenterCoordinates = new NormalCoordinates(centerCoordinates);

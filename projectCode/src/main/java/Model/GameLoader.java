@@ -74,7 +74,7 @@ public class GameLoader {
     dropPlayers(Map map)
     {
         int k = 0;
-        int maxChance = map.getMapSize();
+        int maxChance = map.getMapSize() * map.getMapSize();
         Random rand = new Random();
 
         while (k < players.size()){

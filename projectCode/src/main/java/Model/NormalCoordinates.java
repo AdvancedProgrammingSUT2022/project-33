@@ -20,7 +20,7 @@ public class NormalCoordinates {
     public NormalCoordinates(Coordinates coordinates)
     {
         x = 1.5 * coordinates.getX();
-        y = Math.sqrt(3) * (coordinates.getY() + (x % 2) / 2);
+        y = Math.sqrt(3) * (coordinates.getY() + ((double)coordinates.getX() % 2) / 2);
     }
 
 
