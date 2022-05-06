@@ -71,7 +71,7 @@ public class UserInput {
 
 
 
-    public static void combinePatterns(ArrayList<Pattern> patterns, String pattern, ArrayList<Pattern> finalPatterns)
+    private static void combinePatterns(ArrayList<Pattern> patterns, String pattern, ArrayList<Pattern> finalPatterns)
     {
         for (int i = 0; i < patterns.size(); i++){
             ArrayList<Pattern> patternsCopy = new ArrayList<>(patterns);

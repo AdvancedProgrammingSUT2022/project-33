@@ -5,6 +5,8 @@ import Model.Player;
 import Model.UserInput;
 import View.MiniMapView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 
 public class MiniMapController {
@@ -40,7 +42,9 @@ public class MiniMapController {
                     UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MAP_ZOOMED2)){
                 showZoomedMap(input);
             }
-            else if (){
+            else if (UserInput.doesMatchMultipleRegex(input, MatchingStrings.MinimapControllerStrings.SHOW_UNITS.toString(),
+                    new ArrayList<>(Arrays.asList(MatchingStrings.MinimapControllerStrings.HEALTH, MatchingStrings.MinimapControllerStrings.MOVE_POINT,
+                            MatchingStrings.MinimapControllerStrings.ATTACK_DAMAGE, MatchingStrings.MinimapControllerStrings.DEFENCE)))){
                 showUnits(input);
             }
             else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.BACK)){
@@ -86,8 +90,25 @@ public class MiniMapController {
 
         boolean healthFlag = MatchingStrings.MinimapControllerStrings.HEALTH.matcher(input).find();
         boolean movePointFlag = MatchingStrings.MinimapControllerStrings.MOVE_POINT.matcher(input).find();
+        boolean attackDamageFlag = MatchingStrings.MinimapControllerStrings.ATTACK_DAMAGE.matcher(input).find();
+        boolean defenceFlag = MatchingStrings.MinimapControllerStrings.DEFENCE.matcher(input).find();
 
+        if ((defenceFlag || attackDamageFlag) && (unitType.equals("worker") || unitType.equals("settler"))){
+            view.showInvalidUnitFlag(unitType);
+            return;
+        }
 
+        if (unitType.equals("worker")) {
+            view.showNormalUnits(player.getPlayerUnits().getWorkers(), healthFlag, movePointFlag);
+        }
+        else if (unitType.equals("settler")){
+            view.showNormalUnits(player.getPlayerUnits().getSettlers(), healthFlag, movePointFlag);
+        }
+        else {
+            view.showMilitaryUnits(player.getPlayerUnits().getMeleeMilitaryUnits(), healthFlag, movePointFlag, attackDamageFlag, defenceFlag);
+            view.showMilitaryUnits(player.getPlayerUnits().getRangedMilitaryUnits(), healthFlag, movePointFlag, attackDamageFlag, defenceFlag);
+            view.showMilitaryUnits(player.getPlayerUnits().getHeavyRangedUnits(), healthFlag, movePointFlag, attackDamageFlag, defenceFlag);
+        }
     }
 
 }

@@ -1,8 +1,8 @@
 package View;
 
-import Model.Coordinates;
-import Model.MiniMap;
-import Model.MiniMapTile;
+import Model.*;
+
+import java.util.ArrayList;
 
 public class MiniMapView {
 
@@ -451,5 +451,60 @@ public class MiniMapView {
     public void showInvalidCommand()
     {
         System.out.println("invalid command");
+    }
+
+
+
+    public void showInvalidUnitFlag(String unit)
+    {
+        System.out.println("input flag is Invalid for " + unit);
+    }
+
+
+
+    public void showNormalUnits(ArrayList<? extends Unit> units, boolean healthFlag, boolean movePointFlag)
+    {
+        for (int i = 0; i < units.size(); i++){
+            System.out.print(units.get(i).getCoordinates() +
+                            ": coordinates: (x = " + units.get(i).getCoordinates().getX() + ", y = " + units.get(i).getCoordinates().getY() + ")");
+
+            if (healthFlag){
+                System.out.print(", health = " + units.get(i).getHealth());
+            }
+
+            if (movePointFlag){
+                System.out.print(", move point = " + units.get(i).getRemainingMovements());
+            }
+
+            System.out.println();
+        }
+    }
+
+
+
+    public void showMilitaryUnits(ArrayList<? extends MilitaryUnit> units, boolean healthFlag, boolean movePointFlag, boolean attackDamageFlag, boolean defenceFlag)
+    {
+        for (int i = 0; i < units.size(); i++){
+            System.out.print(units.get(i).getCoordinates() +
+                    ": coordinates: (x = " + units.get(i).getCoordinates().getX() + ", y = " + units.get(i).getCoordinates().getY() + ")");
+
+            if (healthFlag){
+                System.out.print(", health = " + units.get(i).getHealth());
+            }
+
+            if (movePointFlag){
+                System.out.print(", move point = " + units.get(i).getRemainingMovements());
+            }
+
+            if (attackDamageFlag){
+                System.out.print(", attack damage = " + units.get(i).getOverallDamage());
+            }
+
+            if (defenceFlag){
+                System.out.print(", defence = " + units.get(i).getOverallDefence());
+            }
+
+            System.out.println();
+        }
     }
 }

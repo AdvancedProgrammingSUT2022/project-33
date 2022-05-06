@@ -73,4 +73,20 @@ public class MilitaryUnit extends Unit{
     {
         return isCavalry;
     }
+
+
+
+    public int getOverallDamage()
+    {
+        //TODO:
+        return 0;
+    }
+
+
+
+    public  int getOverallDefence()
+    {
+        //TODO:
+        return 0;
+    }
 }
