@@ -465,7 +465,7 @@ public class MiniMapView {
     public void showNormalUnits(ArrayList<? extends Unit> units, boolean healthFlag, boolean movePointFlag)
     {
         for (int i = 0; i < units.size(); i++){
-            System.out.print(units.get(i).getCoordinates() +
+            System.out.print(units.get(i).getGameName() +
                             ": coordinates: (x = " + units.get(i).getCoordinates().getX() + ", y = " + units.get(i).getCoordinates().getY() + ")");
 
             if (healthFlag){
@@ -485,7 +485,7 @@ public class MiniMapView {
     public void showMilitaryUnits(ArrayList<? extends MilitaryUnit> units, boolean healthFlag, boolean movePointFlag, boolean attackDamageFlag, boolean defenceFlag)
     {
         for (int i = 0; i < units.size(); i++){
-            System.out.print(units.get(i).getCoordinates() +
+            System.out.print(units.get(i).getGameName() +
                     ": coordinates: (x = " + units.get(i).getCoordinates().getX() + ", y = " + units.get(i).getCoordinates().getY() + ")");
 
             if (healthFlag){

@@ -1,2 +1,3 @@
 show map -> shows map
 show zoomed map -start <starting point> -end <ending point> -> shows map from x and y value of starting point to x and y = ending value
+show units -t <unit type> <flags> ->  shows all units based on their type and flags. (types : worker, settler, military), (flags : health, move_point, attack_damage, defence)

@@ -78,9 +78,13 @@ public class MatchingStrings {
         public final static Pattern SHOW_UNITS = Pattern.compile("show units -(-?)(type|t) (military|worker|settler)");
         public final static Pattern UNIT_TYPE = Pattern.compile("-(-?)(type|t) (military|worker|settler)");
         public final static Pattern MOVE_POINT = Pattern.compile(" -(-?)(move_point|mp)");
+        public final static Pattern MOVE_POINT_FLAG = Pattern.compile("( -(-?)(move_point|mp))?");
         public final static Pattern HEALTH = Pattern.compile(" -(-?)(health|h)");
-        public final static Pattern ATTACK_DAMAGE = Pattern.compile("(( -(-?)(attack_damage|ad))?)");
-        public final static Pattern DEFENCE = Pattern.compile("(( -(-?)(defence|d))?)");
+        public final static Pattern HEALTH_FLAG = Pattern.compile("( -(-?)(health|h))?");
+        public final static Pattern ATTACK_DAMAGE = Pattern.compile(" -(-?)(attack_damage|ad)");
+        public final static Pattern ATTACK_DAMAGE_FLAG = Pattern.compile("(( -(-?)(attack_damage|ad))?)");
+        public final static Pattern DEFENCE = Pattern.compile(" -(-?)(defence|d)");
+        public final static Pattern DEFENCE_FLAG = Pattern.compile("(( -(-?)(defence|d))?)");
         public final static Pattern LEVEL = Pattern.compile("(( -(-?)(level|l))?)");
         public final static Pattern BACK = Pattern.compile("back");
     }

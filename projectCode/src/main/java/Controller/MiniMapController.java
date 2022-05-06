@@ -43,8 +43,8 @@ public class MiniMapController {
                 showZoomedMap(input);
             }
             else if (UserInput.doesMatchMultipleRegex(input, MatchingStrings.MinimapControllerStrings.SHOW_UNITS.toString(),
-                    new ArrayList<>(Arrays.asList(MatchingStrings.MinimapControllerStrings.HEALTH, MatchingStrings.MinimapControllerStrings.MOVE_POINT,
-                            MatchingStrings.MinimapControllerStrings.ATTACK_DAMAGE, MatchingStrings.MinimapControllerStrings.DEFENCE)))){
+                    new ArrayList<>(Arrays.asList(MatchingStrings.MinimapControllerStrings.HEALTH_FLAG, MatchingStrings.MinimapControllerStrings.MOVE_POINT_FLAG,
+                            MatchingStrings.MinimapControllerStrings.ATTACK_DAMAGE_FLAG, MatchingStrings.MinimapControllerStrings.DEFENCE_FLAG)))){
                 showUnits(input);
             }
             else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.BACK)){
