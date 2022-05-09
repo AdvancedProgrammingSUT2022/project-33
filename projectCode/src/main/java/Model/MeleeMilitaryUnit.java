@@ -32,4 +32,15 @@ public class MeleeMilitaryUnit extends MilitaryUnit{
         super.setNonPlayerColor(color);
         super.setBelongsToPlayer(false);
     }
+
+
+
+    public void removeUnit()
+    {
+        getOwner().addGold(getPrice() * getHealth() / 10);
+
+        getOwner().getPlayerUnits().getMeleeMilitaryUnits().remove(this);
+        getOwner().getMap().getUnits().getMeleeMilitaryUnits().remove(this);
+        getOwner().getMap().getOriginalMap().getUnits().getMeleeMilitaryUnits().remove(this);
+    }
 }

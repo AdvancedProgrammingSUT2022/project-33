@@ -75,9 +75,13 @@ public class SettlerController {
             return;
         }
 
+        if (isDestinationOccupied(new Coordinates(x, y, 0))){
+            view.showOccupiedCoordinates(true, new Coordinates(x, y, 0));
+            return;
+        }
+
         settler.setDestinationCoordinates(new Coordinates(x, y, 0), settler.getOwner().getMap().getUnavailableTerrainsForMoving(), settler.getOwner().getMap().getMapSize());
-        settler.moveUnit(settler.getOwner().getMap().getOriginalMap().getTerrains(),
-                settler.getOwner().getPlayerUnits().getSettlers(), settler.getOwner().getPlayerUnits().getWorkers(), view);
+        settler.moveUnit(settler.getOwner().getMap().getOriginalMap().getTerrains(), settler.getOwner().getMap(), view);
     }
 
 
@@ -142,5 +146,13 @@ public class SettlerController {
                 view.showInvalidCommand();
             }
         }
+    }
+
+
+
+    private boolean isDestinationOccupied(Coordinates coordinates)
+    {
+        return settler.getOwner().getMap().getUnits().getSettlerFromCoordinates(coordinates) != null ||
+                settler.getOwner().getMap().getUnits().getWorkerFromCoordinates(coordinates) != null;
     }
 }

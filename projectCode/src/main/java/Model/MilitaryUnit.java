@@ -1,5 +1,10 @@
 package Model;
 
+import Controller.MeleeView;
+import View.SettlerView;
+
+import java.util.ArrayList;
+
 public class MilitaryUnit extends Unit{
     private int attackDamage;
     private int level;
@@ -48,6 +53,60 @@ public class MilitaryUnit extends Unit{
 
 
 
+    public void moveUnit(ArrayList<Terrain> terrains, MiniMap miniMap, MeleeView view)
+    {
+        ArrayList<Coordinates> remainingPath = new ArrayList<>();
+
+        int i = 0;
+
+        while(!getPath().get(i).equals(getCoordinates())){
+            i++;
+        }
+
+        i++;
+
+        while (i < getPath().size()){
+            remainingPath.add(getPath().get(i));
+            i++;
+        }
+
+        i = 0;
+
+        while (!getCoordinates().equals(getDestinationCoordinates()) &&
+                getRemainingMovements() >= getTerrainFromCoordinates(terrains, remainingPath.get(i)).getMovementPrice()){
+            if (miniMap.getUnits().getMeleeMilitaryUnitFromCoordinates(remainingPath.get(i)) != null){
+                view.showOccupiedCoordinates(false, remainingPath.get(i));
+                resetDestinationCoordinates();
+                setMoving(false);
+                return;
+            }
+            else if (miniMap.getUnits().getRangedMilitaryUnitFromCoordinates(remainingPath.get(i)) != null){
+                view.showOccupiedCoordinates(false, remainingPath.get(i));
+                resetDestinationCoordinates();
+                setMoving(false);
+                return;
+            }
+            else if (miniMap.getUnits().getHeavyRangedMilitaryUnitFromCoordinates(remainingPath.get(i)) != null){
+                view.showOccupiedCoordinates(false, remainingPath.get(i));
+                resetDestinationCoordinates();
+                setMoving(false);
+                return;
+            }
+
+
+            setRemainingMovements(getRemainingMovements() - getTerrainFromCoordinates(terrains, remainingPath.get(i)).getMovementPrice());
+            setCoordinates(remainingPath.get(i));
+            i++;
+        }
+
+
+        if (getCoordinates().equals(getDestinationCoordinates())){
+            setMoving(false);
+        }
+    }
+
+
+
     //getters
     public int getAttackDamage() {
         return attackDamage;
@@ -78,15 +137,41 @@ public class MilitaryUnit extends Unit{
 
     public int getOverallDamage()
     {
-        //TODO:
-        return 0;
+        return ((100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) *
+                (100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty().getFightChangePercentage()) *
+                (getAttackDamage())) / 10000;
     }
 
 
 
     public  int getOverallDefence()
     {
-        //TODO:
-        return 0;
+        return ((100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) *
+                (100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty().getFightChangePercentage())) / 10000;
+    }
+
+
+    public int getLevel() {
+        return level;
+    }
+
+
+    public int getTurnsAfterStartingToStabilize() {
+        return turnsAfterStartingToStabilize;
+    }
+
+
+    public int getDefenceBonus() {
+        return defenceBonus;
+    }
+
+
+    public int getAttackBonus() {
+        return attackBonus;
+    }
+
+
+    public boolean isCavalry() {
+        return isCavalry;
     }
 }

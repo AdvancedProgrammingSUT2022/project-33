@@ -79,7 +79,7 @@ public class Settler extends Unit{
 
 
 
-    public void moveUnit(ArrayList<Terrain> terrains, ArrayList<Settler> settlers, ArrayList<Worker> workers, SettlerView view)
+    public void moveUnit(ArrayList<Terrain> terrains, MiniMap miniMap, SettlerView view)
     {
         ArrayList<Coordinates> remainingPath = new ArrayList<>();
 
@@ -100,22 +100,17 @@ public class Settler extends Unit{
 
         while (!getCoordinates().equals(getDestinationCoordinates()) &&
                 getRemainingMovements() >= getTerrainFromCoordinates(terrains, remainingPath.get(i)).getMovementPrice()){
-            for (int k = 0; k < settlers.size(); k++){
-                if (settlers.get(k).getCoordinates().equals(remainingPath.get(i))){
-                    view.showOccupiedCoordinates(false, remainingPath.get(i));
-                    resetDestinationCoordinates();
-                    setMoving(false);
-                    return;
-                }
+            if (miniMap.getUnits().getSettlerFromCoordinates(remainingPath.get(i)) != null){
+                view.showOccupiedCoordinates(false, remainingPath.get(i));
+                resetDestinationCoordinates();
+                setMoving(false);
+                return;
             }
-
-            for (int k = 0; k < workers.size(); k++){
-                if (workers.get(k).getCoordinates().equals(remainingPath.get(i))){
-                    view.showOccupiedCoordinates(false, remainingPath.get(i));
-                    resetDestinationCoordinates();
-                    setMoving(false);
-                    return;
-                }
+            else if (miniMap.getUnits().getWorkerFromCoordinates(remainingPath.get(i)) != null){
+                view.showOccupiedCoordinates(false, remainingPath.get(i));
+                resetDestinationCoordinates();
+                setMoving(false);
+                return;
             }
 
             setRemainingMovements(getRemainingMovements() - getTerrainFromCoordinates(terrains, remainingPath.get(i)).getMovementPrice());

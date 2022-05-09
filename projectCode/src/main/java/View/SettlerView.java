@@ -11,6 +11,13 @@ public class SettlerView {
 
 
     ////methods////
+    public SettlerView()
+    {
+        System.out.println("you are now controlling settler");
+    }
+
+
+
     public void showInvalidCommand()
     {
         System.out.println("invalid command");
