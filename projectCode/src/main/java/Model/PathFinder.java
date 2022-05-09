@@ -33,10 +33,6 @@ public class PathFinder {
         testNewPaths();
         ArrayList<Coordinates> bestPath = possiblePaths.get(possiblePaths.size() - 1);
 
-        for (int i = 0; i < bestPath.size(); i++){
-            System.out.println(bestPath.get(i).getX() + "    " + bestPath.get(i).getY());
-        }
-
         return bestPath;
     }
 

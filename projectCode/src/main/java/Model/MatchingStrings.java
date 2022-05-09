@@ -116,6 +116,8 @@ public class MatchingStrings {
             public final static Pattern MOVE_UNIT1 = Pattern.compile("move to -x \\d+ -y \\d+");
             public final static Pattern MOVE_UNIT2 = Pattern.compile("move to -y \\d+ -x \\d+");
             public final static Pattern FINISH = Pattern.compile("finish");
+            public final static Pattern X_VALUE = Pattern.compile("-x \\d+");
+            public final static Pattern Y_VALUE = Pattern.compile("-y \\d+");
         }
     }
 }

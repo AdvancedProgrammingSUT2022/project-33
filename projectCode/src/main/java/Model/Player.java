@@ -25,6 +25,9 @@ public class Player {
 
 
     public void updatePlayer(){
+        //TODO: updating map
+        getPlayerUnits().updateUnits(map.getTerrains());
+
         //TODO:
     }
 

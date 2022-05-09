@@ -27,7 +27,8 @@ public class Unit {
 
 
     ////methods////
-    public Unit(String gameName, int health, int visibilityRange, int maxMovements, int price, int productionNeededForBeingMade, int maintenancePricePerTurn)
+    public Unit(String gameName, int health, int visibilityRange, int maxMovements, int price, int productionNeededForBeingMade,
+                int maintenancePricePerTurn)
     {
         this.gameName = gameName;
         this.health = health;
@@ -37,14 +38,14 @@ public class Unit {
         this.productionNeededForBeingMade = productionNeededForBeingMade;
         this.maintenancePricePerTurn = maintenancePricePerTurn;
         this.path = new ArrayList<>();
-
-
     }
 
 
 
     public void updateUnit(ArrayList<Terrain> terrains)
     {
+        remainingMovements = maxMovements;
+
         if (isMoving) {
             moveUnit(terrains);
         }
@@ -80,8 +81,8 @@ public class Unit {
         i = 0;
 
         while (!coordinates.equals(destinationCoordinates) && remainingMovements >= getTerrainFromCoordinates(terrains, path.get(i)).getMovementPrice()){
-            remainingMovements -= getTerrainFromCoordinates(terrains, path.get(i)).getMovementPrice();
-            coordinates = path.get(i);
+            remainingMovements -= getTerrainFromCoordinates(terrains, remainingPath.get(i)).getMovementPrice();
+            coordinates = remainingPath.get(i);
             i++;
         }
 
@@ -154,8 +155,17 @@ public class Unit {
     }
 
 
-    public void setDestinationCoordinates(Coordinates destinationCoordinates) {
+    public void setDestinationCoordinates(Coordinates destinationCoordinates, ArrayList<Coordinates> unavailableTerrains, int mapSize) {
         this.destinationCoordinates = destinationCoordinates;
+        pathFinder = new PathFinder(mapSize, unavailableTerrains);
+        setPath(pathFinder.findPath(coordinates, destinationCoordinates));
+    }
+
+
+
+    public void resetDestinationCoordinates()
+    {
+        this.destinationCoordinates = getCoordinates();
     }
 
 
@@ -196,10 +206,10 @@ public class Unit {
 
 
     //getters
-    private Terrain getTerrainFromCoordinates(ArrayList<Terrain> terrains, Coordinates coordinates)
+    public Terrain getTerrainFromCoordinates(ArrayList<Terrain> terrains, Coordinates coordinates)
     {
         for (int i = 0; i < terrains.size(); i++){
-            if (coordinates.equals(terrains.get(i))){
+            if (coordinates.equals(terrains.get(i).getCenterCoordinates())){
                 return terrains.get(i);
             }
         }

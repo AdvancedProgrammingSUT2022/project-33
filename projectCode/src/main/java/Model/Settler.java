@@ -1,5 +1,9 @@
 package Model;
 
+import View.SettlerView;
+
+import java.util.ArrayList;
+
 public class Settler extends Unit{
 
 
@@ -66,5 +70,57 @@ public class Settler extends Unit{
         getOwner().getPlayerUnits().getSettlers().remove(this);
         getOwner().getMap().getUnits().getSettlers().remove(this);
         getOwner().getMap().getOriginalMap().getUnits().getSettlers().remove(this);
+    }
+
+
+
+    public void moveUnit(ArrayList<Terrain> terrains, ArrayList<Settler> settlers, ArrayList<Worker> workers, SettlerView view)
+    {
+        ArrayList<Coordinates> remainingPath = new ArrayList<>();
+
+        int i = 0;
+
+        while(!getPath().get(i).equals(getCoordinates())){
+            i++;
+        }
+
+        i++;
+
+        while (i < getPath().size()){
+            remainingPath.add(getPath().get(i));
+            i++;
+        }
+
+        i = 0;
+
+        while (!getCoordinates().equals(getDestinationCoordinates()) &&
+                getRemainingMovements() >= getTerrainFromCoordinates(terrains, remainingPath.get(i)).getMovementPrice()){
+            for (int k = 0; k < settlers.size(); k++){
+                if (settlers.get(k).getCoordinates().equals(remainingPath.get(i))){
+                    view.showOccupiedCoordinates(false, remainingPath.get(i));
+                    resetDestinationCoordinates();
+                    setMoving(false);
+                    return;
+                }
+            }
+
+            for (int k = 0; k < workers.size(); k++){
+                if (workers.get(k).getCoordinates().equals(remainingPath.get(i))){
+                    view.showOccupiedCoordinates(false, remainingPath.get(i));
+                    resetDestinationCoordinates();
+                    setMoving(false);
+                    return;
+                }
+            }
+
+            setRemainingMovements(getRemainingMovements() - getTerrainFromCoordinates(terrains, remainingPath.get(i)).getMovementPrice());
+            setCoordinates(remainingPath.get(i));
+            i++;
+        }
+
+
+        if (getCoordinates().equals(getDestinationCoordinates())){
+            setMoving(false);
+        }
     }
 }

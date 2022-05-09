@@ -45,7 +45,6 @@ public class Map {
         this.size = map.size;
         this.units = map.units;
         this.playerCities = map.playerCities;
-
     }
 
 
@@ -201,6 +200,21 @@ public class Map {
         }
 
         return false;
+    }
+
+
+
+    public ArrayList<Coordinates> getUnavailableTerrainsForMoving()
+    {
+        ArrayList<Coordinates> unavailableCoordinates = new ArrayList<>();
+
+        for (int i = 0; i < terrains.size(); i++){
+            if (!terrains.get(i).isCanBeCrossed()){
+                unavailableCoordinates.add(terrains.get(i).getCenterCoordinates());
+            }
+        }
+
+        return unavailableCoordinates;
     }
 
 

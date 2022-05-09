@@ -30,6 +30,31 @@ public class UnitList {
 
 
 
+    public void updateUnits(ArrayList<Terrain> terrains)
+    {
+        for (int i = 0; i < workers.size(); i++){
+            workers.get(i).updateUnit(terrains);
+        }
+
+        for (int i = 0; i < settlers.size(); i++){
+            settlers.get(i).updateUnit(terrains);
+        }
+
+        for (int i = 0; i < meleeMilitaryUnits.size(); i++){
+            meleeMilitaryUnits.get(i).updateUnit(terrains);
+        }
+
+        for (int i = 0; i < rangedMilitaryUnits.size(); i++){
+            rangedMilitaryUnits.get(i).updateUnit(terrains);
+        }
+
+        for (int i = 0; i < heavyRangedMilitaryUnits.size(); i++){
+            heavyRangedMilitaryUnits.get(i).updateUnit(terrains);
+        }
+    }
+
+
+
     public void addWorker(Worker worker)
     {
         workers.add(worker);
