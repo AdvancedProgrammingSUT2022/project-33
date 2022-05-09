@@ -464,6 +464,10 @@ public class MiniMapView {
 
     public void showNormalUnits(ArrayList<? extends Unit> units, boolean healthFlag, boolean movePointFlag)
     {
+        if (units.size() == 0){
+            System.out.println("nothing");
+        }
+
         for (int i = 0; i < units.size(); i++){
             System.out.print(units.get(i).getGameName() +
                             ": coordinates: (x = " + units.get(i).getCoordinates().getX() + ", y = " + units.get(i).getCoordinates().getY() + ")");
@@ -484,6 +488,10 @@ public class MiniMapView {
 
     public void showMilitaryUnits(ArrayList<? extends MilitaryUnit> units, boolean healthFlag, boolean movePointFlag, boolean attackDamageFlag, boolean defenceFlag)
     {
+        if (units.size() == 0){
+            System.out.println("nothing");
+        }
+
         for (int i = 0; i < units.size(); i++){
             System.out.print(units.get(i).getGameName() +
                     ": coordinates: (x = " + units.get(i).getCoordinates().getX() + ", y = " + units.get(i).getCoordinates().getY() + ")");
@@ -505,6 +513,55 @@ public class MiniMapView {
             }
 
             System.out.println();
+        }
+    }
+
+
+
+    public void showCities(ArrayList<PlayerCity> cities, boolean healthFlag, boolean populationFlag, boolean goldFlag,
+                           boolean happinessFlag, boolean taskFlag, boolean landsFlag)
+    {
+        if (cities.size() == 0){
+            System.out.println("nothing");
+        }
+
+        for (int i = 0; i < cities.size(); i++){
+            System.out.print(cities.get(i).getCityName() + ": " +
+                    "coordinates: (" + cities.get(i).getCoordinates().getX() + ", " + cities.get(i).getCoordinates().getY() + ")");
+
+            if (healthFlag){
+                System.out.print(", health: " + cities.get(i).getHealth());
+            }
+
+            if (populationFlag){
+                System.out.print(", population: " + cities.get(i).getPopulation());
+            }
+
+            if (goldFlag){
+                System.out.print(", gold income: " + cities.get(i).getGoldPerTurn());
+            }
+
+            if (happinessFlag){
+                System.out.print(", happiness: " + cities.get(i).getHappiness());
+            }
+
+            if (taskFlag){
+                if (cities.get(i).isWorking()){
+                    System.out.print(", current task: " + cities.get(i).getTask().getGameName() + " turns remaining: " + cities.get(i).getTask().getTurnsRemaining());
+                }
+                else {
+                    System.out.print(", current task: " + "nothing");
+                }
+            }
+
+            if (landsFlag){
+                System.out.print(", lands coordinates:");
+
+                for (int k = 0; k < cities.get(i).getLandsOwned().size(); i++){
+                    System.out.print(" (" + cities.get(i).getLandsOwned().get(k).getTerrain().getCenterCoordinates().getX() +
+                            ", " + cities.get(i).getLandsOwned().get(k).getTerrain().getCenterCoordinates().getY() + ")");
+                }
+            }
         }
     }
 }

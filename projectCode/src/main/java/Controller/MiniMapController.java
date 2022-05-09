@@ -47,6 +47,12 @@ public class MiniMapController {
                             MatchingStrings.MinimapControllerStrings.ATTACK_DAMAGE_FLAG, MatchingStrings.MinimapControllerStrings.DEFENCE_FLAG)))){
                 showUnits(input);
             }
+            else if (UserInput.doesMatchMultipleRegex(input, MatchingStrings.MinimapControllerStrings.SHOW_CITIES.toString(),
+                    new ArrayList<>(Arrays.asList(MatchingStrings.MinimapControllerStrings.HEALTH_FLAG, MatchingStrings.MinimapControllerStrings.POPULATION_FLAG,
+                            MatchingStrings.MinimapControllerStrings.GOLD_FLAG, MatchingStrings.MinimapControllerStrings.HAPPINESS_FLAG,
+                            MatchingStrings.MinimapControllerStrings.TASK_FLAG, MatchingStrings.MinimapControllerStrings.LANDS_FLAG)))){
+                showCities(input);
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.BACK)){
                 return;
             }
@@ -109,6 +115,20 @@ public class MiniMapController {
             view.showMilitaryUnits(player.getPlayerUnits().getRangedMilitaryUnits(), healthFlag, movePointFlag, attackDamageFlag, defenceFlag);
             view.showMilitaryUnits(player.getPlayerUnits().getHeavyRangedUnits(), healthFlag, movePointFlag, attackDamageFlag, defenceFlag);
         }
+    }
+
+
+
+    private void showCities(String input)
+    {
+        boolean healthFlag = MatchingStrings.MinimapControllerStrings.HEALTH.matcher(input).find();
+        boolean populationFlag = MatchingStrings.MinimapControllerStrings.POPULATION.matcher(input).find();
+        boolean goldFlag = MatchingStrings.MinimapControllerStrings.GOLD.matcher(input).find();
+        boolean happinessFlag = MatchingStrings.MinimapControllerStrings.HAPPINESS.matcher(input).find();
+        boolean taskFlag = MatchingStrings.MinimapControllerStrings.TASK.matcher(input).find();
+        boolean landsFlag = MatchingStrings.MinimapControllerStrings.LANDS.matcher(input).find();
+
+        view.showCities(player.getCities(), healthFlag, populationFlag, goldFlag, happinessFlag, taskFlag, landsFlag);
     }
 
 }

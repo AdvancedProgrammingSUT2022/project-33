@@ -20,6 +20,7 @@ public class City {
     private boolean isCapital;
     private ArrayList<City> connectedCities;
     private boolean isWorking;
+    private Task task;
     private boolean isAnnexed;
     private int foodUntilNewCitizen;
     private boolean isCityStarving;
@@ -345,6 +346,11 @@ public class City {
 
     public boolean isAnnexed() {
         return isAnnexed;
+    }
+
+
+    public Task getTask() {
+        return task;
     }
 
 

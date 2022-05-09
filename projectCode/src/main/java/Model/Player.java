@@ -7,7 +7,7 @@ public class Player {
     private Colors color;
     private MiniMap map;
     UnitList playerUnits;
-    ArrayList<City> cities;
+    ArrayList<PlayerCity> cities;
 
 
 
@@ -30,7 +30,7 @@ public class Player {
 
 
 
-    public void addCity(City city)
+    public void addCity(PlayerCity city)
     {
         cities.add(city);
     }
@@ -66,7 +66,7 @@ public class Player {
     }
 
 
-    public ArrayList<City> getCities() {
+    public ArrayList<PlayerCity> getCities() {
         return cities;
     }
 }

@@ -85,7 +85,17 @@ public class MatchingStrings {
         public final static Pattern ATTACK_DAMAGE_FLAG = Pattern.compile("(( -(-?)(attack_damage|ad))?)");
         public final static Pattern DEFENCE = Pattern.compile(" -(-?)(defence|d)");
         public final static Pattern DEFENCE_FLAG = Pattern.compile("(( -(-?)(defence|d))?)");
-        public final static Pattern LEVEL = Pattern.compile("(( -(-?)(level|l))?)");
         public final static Pattern BACK = Pattern.compile("back");
+        public final static Pattern SHOW_CITIES = Pattern.compile("show cities");
+        public final static Pattern POPULATION = Pattern.compile(" -(-?)(population|p)");
+        public final static Pattern POPULATION_FLAG = Pattern.compile("( -(-?)(population|p))?");
+        public final static Pattern GOLD = Pattern.compile(" -(-?)(gold|g)");
+        public final static Pattern GOLD_FLAG = Pattern.compile("( -(-?)(gold|g))?");
+        public final static Pattern HAPPINESS = Pattern.compile(" -(-?)(happiness|h)");
+        public final static Pattern HAPPINESS_FLAG = Pattern.compile("( -(-?)(happiness|h))?");
+        public final static Pattern TASK = Pattern.compile(" -(-?)(task|t)");
+        public final static Pattern TASK_FLAG = Pattern.compile("( -(-?)(task|t))?");
+        public final static Pattern LANDS = Pattern.compile(" -(-?)(lands|l)");
+        public final static Pattern LANDS_FLAG = Pattern.compile("( -(-?)(lands|l))?");
     }
 }
