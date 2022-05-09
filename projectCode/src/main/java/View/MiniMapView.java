@@ -562,6 +562,23 @@ public class MiniMapView {
                             ", " + cities.get(i).getLandsOwned().get(k).getTerrain().getCenterCoordinates().getY() + ")");
                 }
             }
+
+            System.out.println();
         }
+    }
+
+
+
+    public void showCoordinatesOutOfBoundary(int value, String axis, int mapSize)
+    {
+        System.out.println(axis + "axis value is out of boundaries: " + value);
+        System.out.println("value must be between 0 and " +( mapSize - 1));
+    }
+
+
+
+    public void showThereIsNoUnit()
+    {
+        System.out.println("there is no unit in the given coordinates");
     }
 }

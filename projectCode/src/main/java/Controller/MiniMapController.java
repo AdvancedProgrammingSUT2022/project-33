@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Coordinates;
 import Model.MatchingStrings;
 import Model.Player;
 import Model.UserInput;
@@ -53,13 +54,20 @@ public class MiniMapController {
                             MatchingStrings.MinimapControllerStrings.TASK_FLAG, MatchingStrings.MinimapControllerStrings.LANDS_FLAG)))){
                 showCities(input);
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_UNIT1) ||
+                    UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_UNIT2)){
+                manageUnit(input);
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_MILITARY_UNIT1) ||
+            UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_MILITARY_UNIT2)){
+                manageMilitaryUnit(input);
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.BACK)){
                 return;
             }
             else {
                 view.showInvalidCommand();
             }
-            //TODO:
         }
     }
 
@@ -131,4 +139,72 @@ public class MiniMapController {
         view.showCities(player.getCities(), healthFlag, populationFlag, goldFlag, happinessFlag, taskFlag, landsFlag);
     }
 
+
+
+    private void manageUnit(String input)
+    {
+        Coordinates coordinates = getCoordinatesFromInput(input);
+
+        if (coordinates == null){
+            return;
+        }
+
+        if (player.getPlayerUnits().getWorkerFromCoordinates(coordinates) != null){
+            //TODO:
+        }
+        else if (player.getPlayerUnits().getSettlerFromCoordinates(coordinates) != null){
+            //TODO:
+        }
+        else {
+            view.showThereIsNoUnit();
+        }
+    }
+
+
+
+    private void manageMilitaryUnit(String input)
+    {
+        Coordinates coordinates = getCoordinatesFromInput(input);
+
+        if (coordinates == null){
+            return;
+        }
+
+        if (player.getPlayerUnits().getMeleeMilitaryUnitFromCoordinates(coordinates) != null){
+            //TODO:
+        }
+        else if (player.getPlayerUnits().getRangedMilitaryUnitFromCoordinates(coordinates) != null){
+            //TODO:
+        }
+        else if (player.getPlayerUnits().getHeavyRangedMilitaryUnitFromCoordinates(coordinates) != null){
+            //TODO:
+        }
+        else {
+            view.showThereIsNoUnit();
+        }
+    }
+
+
+
+    public Coordinates getCoordinatesFromInput(String input)
+    {
+        String xString = UserInput.getMatchingStringGroupFromInput(input, MatchingStrings.MinimapControllerStrings.X_VALUE).split(" ")[1];
+        String yString = UserInput.getMatchingStringGroupFromInput(input, MatchingStrings.MinimapControllerStrings.Y_VALUE).split(" ")[1];
+
+        int x = Integer.parseInt(xString);
+        int y = Integer.parseInt(yString);
+
+        if (x < 0 || x > player.getMap().getMapSize() - 1){
+            view.showCoordinatesOutOfBoundary(x, "x", player.getMap().getMapSize());
+            return null;
+        }
+        else if (y < 0 || y > player.getMap().getMapSize() - 1)
+        {
+            view.showCoordinatesOutOfBoundary(y, "y", player.getMap().getMapSize());
+            return null;
+        }
+        else {
+            return new Coordinates(x, y, 0);
+        }
+    }
 }

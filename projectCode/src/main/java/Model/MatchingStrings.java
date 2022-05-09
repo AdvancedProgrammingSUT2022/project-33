@@ -97,5 +97,11 @@ public class MatchingStrings {
         public final static Pattern TASK_FLAG = Pattern.compile("( -(-?)(task|t))?");
         public final static Pattern LANDS = Pattern.compile(" -(-?)(lands|l)");
         public final static Pattern LANDS_FLAG = Pattern.compile("( -(-?)(lands|l))?");
+        public final static Pattern MANAGE_UNIT1 = Pattern.compile("manage unit -x \\d+ -y \\d+");
+        public final static Pattern MANAGE_UNIT2 = Pattern.compile("manage unit -y \\d+ -x \\d+");
+        public final static Pattern MANAGE_MILITARY_UNIT1 = Pattern.compile("manage military unit -y \\d+ -x \\d+");
+        public final static Pattern MANAGE_MILITARY_UNIT2 = Pattern.compile("manage military unit -x \\d+ -y \\d+");
+        public final static Pattern X_VALUE = Pattern.compile("-x \\d+");
+        public final static Pattern Y_VALUE = Pattern.compile("-y \\d+");
     }
 }
