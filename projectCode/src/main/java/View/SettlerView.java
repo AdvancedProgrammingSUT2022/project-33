@@ -49,4 +49,25 @@ public class SettlerView {
             System.out.println("next tile is occupies by another unit. coordinates: (" + coordinates.getX() + ", " + coordinates.getY() + ")");
         }
     }
+
+
+
+    public void showEnterCityName()
+    {
+        System.out.print("city name: ");
+    }
+
+
+
+    public void showCanNotBuildCity()
+    {
+        System.out.println("can not build city in this tile");
+    }
+
+
+
+    public void showCityNameIsNotValid()
+    {
+        System.out.println("city name is not valid");
+    }
 }

@@ -82,7 +82,7 @@ public class PlayerCity extends City{
     {
         Coordinates coordinates = new Coordinates(x, y, 0);
 
-        if (!owner.getMap().getTerrainFromCoordinates(coordinates).getIsTerritory()){
+        if (owner.getMap().getTerrainFromCoordinates(coordinates) != null && !owner.getMap().getTerrainFromCoordinates(coordinates).getIsTerritory()){
             Terrain terrain = owner.getMap().getTerrainFromCoordinates(coordinates);
             CityLand cityLand = new CityLand(terrain);
             addLand(cityLand);

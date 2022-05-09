@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.SettlerController;
 import View.SettlerView;
 
 import java.util.ArrayList;
@@ -50,16 +51,18 @@ public class Settler extends Unit{
 
 
 
-    public void createCity()
+    public boolean createCity(SettlerView view, SettlerController controller)
     {
         if (getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getIsTerritory()){
-            //TODO: error message
-            return;
+            view.showCanNotBuildCity();
+            return false;
         }
 
-        //TODO: get city name
+         String cityName = controller.getCityName();
 
-         String cityName = "ye chizi"; //TODO:  set city name
+        if (cityName == null){
+            return false;
+        }
 
         PlayerCity newCity = new PlayerCity(getOwner().getCities().size() == 0,
                 getOwner().getMap().getTerrainFromCoordinates(getCoordinates()), getOwner(), cityName);
@@ -70,6 +73,8 @@ public class Settler extends Unit{
         getOwner().getPlayerUnits().getSettlers().remove(this);
         getOwner().getMap().getUnits().getSettlers().remove(this);
         getOwner().getMap().getOriginalMap().getUnits().getSettlers().remove(this);
+
+        return true;
     }
 
 

@@ -3,6 +3,8 @@ package Controller;
 import Model.*;
 import View.SettlerView;
 
+import java.util.regex.Pattern;
+
 public class SettlerController {
     private Settler settler;
     private SettlerView view;
@@ -36,6 +38,11 @@ public class SettlerController {
                     UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.MOVE_UNIT2)){
                 moveUnit(input);
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.CREATE_CITY)){
+                if (createCity()){
+                    return;
+                }
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.FINISH)){
                 return;
             }
@@ -67,5 +74,45 @@ public class SettlerController {
         settler.setDestinationCoordinates(new Coordinates(x, y, 0), settler.getOwner().getMap().getUnavailableTerrainsForMoving(), settler.getOwner().getMap().getMapSize());
         settler.moveUnit(settler.getOwner().getMap().getOriginalMap().getTerrains(),
                 settler.getOwner().getPlayerUnits().getSettlers(), settler.getOwner().getPlayerUnits().getWorkers(), view);
+    }
+
+
+
+    private boolean createCity()
+    {
+        return settler.createCity(view, this);
+    }
+
+
+
+    public String getCityName()
+    {
+        view.showEnterCityName();
+
+        while (true){
+            String input = UserInput.getInput();
+            input = UserInput.removeSpaces(input);
+
+            if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.CANCEL)){
+                return null;
+            }
+            else if (isCityNameValid(input)){
+                return input;
+            }
+            else {
+                view.showCityNameIsNotValid();
+            }
+        }
+    }
+
+
+
+    private boolean isCityNameValid(String input)
+    {
+        if (input.length() > 15 || input.length() < 3){
+            return false;
+        }
+
+        return UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.VALID_CITY_NAME);
     }
 }

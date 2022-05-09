@@ -118,6 +118,9 @@ public class MatchingStrings {
             public final static Pattern FINISH = Pattern.compile("finish");
             public final static Pattern X_VALUE = Pattern.compile("-x \\d+");
             public final static Pattern Y_VALUE = Pattern.compile("-y \\d+");
+            public final static Pattern CREATE_CITY =  Pattern.compile("create city");
+            public final static Pattern CANCEL = Pattern.compile("cancel");
+            public final static Pattern VALID_CITY_NAME = Pattern.compile("[a-zA-Z_0-9 ]+");
         }
     }
 }
