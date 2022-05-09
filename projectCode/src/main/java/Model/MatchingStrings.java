@@ -121,6 +121,7 @@ public class MatchingStrings {
             public final static Pattern CREATE_CITY =  Pattern.compile("create city");
             public final static Pattern CANCEL = Pattern.compile("cancel");
             public final static Pattern VALID_CITY_NAME = Pattern.compile("[a-zA-Z_0-9 ]+");
+            public final static Pattern REMOVE_UNIT = Pattern.compile("remove unit");
         }
     }
 }

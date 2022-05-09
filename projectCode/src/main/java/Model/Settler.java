@@ -128,4 +128,15 @@ public class Settler extends Unit{
             setMoving(false);
         }
     }
+
+
+
+    public void removeUnit()
+    {
+        getOwner().addGold(getPrice() * getHealth() / 10);
+
+        getOwner().getPlayerUnits().getSettlers().remove(this);
+        getOwner().getMap().getUnits().getSettlers().remove(this);
+        getOwner().getMap().getOriginalMap().getUnits().getSettlers().remove(this);
+    }
 }

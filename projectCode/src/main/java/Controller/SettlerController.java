@@ -3,7 +3,6 @@ package Controller;
 import Model.*;
 import View.SettlerView;
 
-import java.util.regex.Pattern;
 
 public class SettlerController {
     private Settler settler;
@@ -40,6 +39,11 @@ public class SettlerController {
             }
             else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.CREATE_CITY)){
                 if (createCity()){
+                    return;
+                }
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.REMOVE_UNIT)){
+                if (removeUnit()){
                     return;
                 }
             }
@@ -114,5 +118,29 @@ public class SettlerController {
         }
 
         return UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.VALID_CITY_NAME);
+    }
+
+
+
+    private boolean removeUnit()
+    {
+        view.showCheckRemovingMessage();
+
+        while (true) {
+            String input = UserInput.getInput();
+            input = UserInput.removeSpaces(input);
+
+            if (input.equalsIgnoreCase("yes")){
+                settler.removeUnit();
+                view.showUnitRemoved();
+                return true;
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.CANCEL) || input.equalsIgnoreCase("no")) {
+                return false;
+            }
+            else {
+                view.showInvalidCommand();
+            }
+        }
     }
 }

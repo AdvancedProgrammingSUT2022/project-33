@@ -70,4 +70,18 @@ public class SettlerView {
     {
         System.out.println("city name is not valid");
     }
+
+
+
+    public void showCheckRemovingMessage()
+    {
+        System.out.println("are you sure you want to remove this unit? ");
+    }
+
+
+
+    public void showUnitRemoved()
+    {
+        System.out.println("unit removed successfully");
+    }
 }

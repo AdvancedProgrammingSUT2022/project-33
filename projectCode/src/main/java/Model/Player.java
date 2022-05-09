@@ -6,8 +6,10 @@ public class Player {
     private String nickname;
     private Colors color;
     private MiniMap map;
-    UnitList playerUnits;
-    ArrayList<PlayerCity> cities;
+    private UnitList playerUnits;
+    private ArrayList<PlayerCity> cities;
+    private int gold;
+    private int happiness;
 
 
 
@@ -20,6 +22,8 @@ public class Player {
         this.color = Colors.values()[numberOfPlayer];
         playerUnits = new UnitList();
         cities = new ArrayList<>();
+        this.gold = 0;
+        this.happiness = 0;
     }
 
 
@@ -36,6 +40,13 @@ public class Player {
     public void addCity(PlayerCity city)
     {
         cities.add(city);
+    }
+
+
+
+    public void addGold(int amount)
+    {
+        this.gold += amount;
     }
 
 
@@ -71,5 +82,15 @@ public class Player {
 
     public ArrayList<PlayerCity> getCities() {
         return cities;
+    }
+
+
+    public int getGold() {
+        return gold;
+    }
+
+
+    public int getHappiness() {
+        return happiness;
     }
 }
