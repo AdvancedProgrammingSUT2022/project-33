@@ -153,7 +153,7 @@ public class MiniMapController {
             //TODO:
         }
         else if (player.getPlayerUnits().getSettlerFromCoordinates(coordinates) != null){
-            //TODO:
+            SettlerController settlerController = new SettlerController(player.getPlayerUnits().getSettlerFromCoordinates(coordinates));
         }
         else {
             view.showThereIsNoUnit();

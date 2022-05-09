@@ -64,6 +64,7 @@ public class MatchingStrings {
     {
         public final static Pattern ENTER_SECTION = Pattern.compile("enter -(-?)(section|s) \\S+");
         public final static Pattern MINIMAP = Pattern.compile("minimap");
+        //TODO:
     }
 
 
@@ -103,5 +104,18 @@ public class MatchingStrings {
         public final static Pattern MANAGE_MILITARY_UNIT2 = Pattern.compile("manage military unit -x \\d+ -y \\d+");
         public final static Pattern X_VALUE = Pattern.compile("-x \\d+");
         public final static Pattern Y_VALUE = Pattern.compile("-y \\d+");
+    }
+
+
+
+    public static class UnitsControllerStrings
+    {
+        public static class Settler
+        {
+            public final static Pattern SHOW_STATS = Pattern.compile("show stats");
+            public final static Pattern MOVE_UNIT1 = Pattern.compile("move to -x \\d+ -y \\d+");
+            public final static Pattern MOVE_UNIT2 = Pattern.compile("move to -y \\d+ -x \\d+");
+            public final static Pattern FINISH = Pattern.compile("finish");
+        }
     }
 }
