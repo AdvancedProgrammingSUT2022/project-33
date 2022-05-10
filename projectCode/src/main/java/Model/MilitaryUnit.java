@@ -1,7 +1,6 @@
 package Model;
 
-import Controller.MeleeView;
-import View.SettlerView;
+import View.MeleeView;
 
 import java.util.ArrayList;
 
@@ -30,7 +29,7 @@ public class MilitaryUnit extends Unit{
         this.resourceRequired = resourceRequired;
         this.era = era;
         this.level = 1;
-        this.isCavalry = true;
+        this.isCavalry = isCavalry;
     }
 
 
@@ -40,6 +39,12 @@ public class MilitaryUnit extends Unit{
         super(unit.getGameName(), unit.getHealth(), unit.getVisibilityRange(), unit.getMaxMovements(), unit.getPrice(),
                 unit.getProductionNeededForBeingMade(), unit.getMaintenancePricePerTurn());
         super.setCoordinates(coordinates);
+        this.attackDamage = unit.getAttackDamage();
+        this.technologyRequired = unit.getTechnologyRequired();
+        this.resourceRequired = unit.getResourceRequired();
+        this.era = unit.getEra();
+        this.level = 1;
+        this.isCavalry = unit.getIsCavalry();
     }
 
 
@@ -99,6 +104,7 @@ public class MilitaryUnit extends Unit{
             i++;
         }
 
+        getOwner().getMap().updateMap();
 
         if (getCoordinates().equals(getDestinationCoordinates())){
             setMoving(false);
@@ -137,17 +143,27 @@ public class MilitaryUnit extends Unit{
 
     public int getOverallDamage()
     {
-        return ((100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) *
-                (100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty().getFightChangePercentage()) *
-                (getAttackDamage())) / 10000;
+        if (getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty() != null) {
+            return ((100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) *
+                    (100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty().getFightChangePercentage()) *
+                    (getAttackDamage())) / 10000;
+        }
+        else {
+            return ((100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) * (getAttackDamage())) / 100;
+        }
     }
 
 
 
-    public  int getOverallDefence()
+    public double getOverallDefence()
     {
-        return ((100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) *
-                (100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty().getFightChangePercentage())) / 10000;
+        if (getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty() != null) {
+            return (double)((100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) *
+                    (100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty().getFightChangePercentage())) / 10000;
+        }
+        else {
+            return (double)(100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) / 100;
+        }
     }
 
 

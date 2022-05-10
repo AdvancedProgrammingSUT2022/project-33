@@ -1,4 +1,4 @@
-package Controller;
+package View;
 
 import Model.Coordinates;
 import Model.MeleeMilitaryUnit;
@@ -17,6 +17,13 @@ public class MeleeView {
 
 
 
+    public void showCurrentMenu(String gameName)
+    {
+        System.out.println(gameName + " menu");
+    }
+
+
+
     public void showStats(MeleeMilitaryUnit unit)
     {
         System.out.println(unit.getGameName() + ": ");
@@ -31,13 +38,21 @@ public class MeleeView {
         }
 
         System.out.println("overall attack damage: " + unit.getOverallDamage());
-        System.out.println("overall defence: " + unit.getOverallDefence());
+        System.out.println("overall defence: " + String.format("%.2f", unit.getOverallDefence()));
         System.out.println("level: " + unit.getLevel());
         System.out.println("era: " + unit.getEra());
     }
 
 
 
+
+
+
+    public void showCoordinatesOutOfBoundary(int value, String axis, int mapSize)
+    {
+        System.out.println(axis + "axis value is out of boundaries: " + value);
+        System.out.println("value must be between 0 and " +( mapSize - 1));
+    }
 
 
 

@@ -47,6 +47,9 @@ public class SettlerController {
                     return;
                 }
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.SHOW_MENU)){
+                view.showCurrentMenu();
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.FINISH)){
                 return;
             }

@@ -11,6 +11,13 @@ public class MiniMapView {
 
 
     ////methods////
+    public void showYouAreInMiniMapMessage()
+    {
+        System.out.println("you are now controlling minimap");
+    }
+
+
+
     public void showMiniMap(MiniMap miniMap)
     {
         showXCoordinates(0, miniMap.getMapSize());
@@ -23,6 +30,13 @@ public class MiniMapView {
     {
         showXCoordinates(startingPoint, endingPoint);
         showRows(startingPoint,  endingPoint, miniMap);
+    }
+
+
+
+    public void showCurrentMenu()
+    {
+        System.out.println("minimap menu");
     }
 
 

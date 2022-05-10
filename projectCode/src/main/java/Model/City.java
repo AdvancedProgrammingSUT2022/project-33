@@ -48,6 +48,7 @@ public class City {
         this.isAnnexed = false;
         foodUntilNewCitizen = 10;
         isCityStarving = false;
+        connectedCities = new ArrayList<>();
 
         //TODO:
     }

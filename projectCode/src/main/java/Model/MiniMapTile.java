@@ -131,6 +131,7 @@ public class MiniMapTile {
 
 
     public void setPlayerCity(PlayerCity playerCity) {
+        this.playerCity = playerCity;
         this.playerCity.setHealth(playerCity.getHealth());
         this.playerCity.setUnitInTheCity(playerCity.isUnitInTheCity());
         this.playerCity.setCoordinates(playerCity.getCoordinates());

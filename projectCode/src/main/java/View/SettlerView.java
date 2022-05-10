@@ -18,6 +18,13 @@ public class SettlerView {
 
 
 
+    public void showCurrentMenu()
+    {
+        System.out.println("settler menu");
+    }
+
+
+
     public void showInvalidCommand()
     {
         System.out.println("invalid command");

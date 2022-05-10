@@ -74,6 +74,8 @@ public class Settler extends Unit{
         getOwner().getMap().getUnits().getSettlers().remove(this);
         getOwner().getMap().getOriginalMap().getUnits().getSettlers().remove(this);
 
+        newCity.updateCity();
+
         return true;
     }
 
@@ -118,6 +120,7 @@ public class Settler extends Unit{
             i++;
         }
 
+        getOwner().getMap().updateMap();
 
         if (getCoordinates().equals(getDestinationCoordinates())){
             setMoving(false);

@@ -23,6 +23,7 @@ public class MiniMapController {
     {
         this.player = player;
         this.view = new MiniMapView();
+        view.showYouAreInMiniMapMessage();
         view.showMiniMap(player.getMap());
 
         run();
@@ -61,6 +62,9 @@ public class MiniMapController {
             else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_MILITARY_UNIT1) ||
             UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_MILITARY_UNIT2)){
                 manageMilitaryUnit(input);
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MENU)){
+                view.showCurrentMenu();
             }
             else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.BACK)){
                 return;
@@ -154,6 +158,7 @@ public class MiniMapController {
         }
         else if (player.getPlayerUnits().getSettlerFromCoordinates(coordinates) != null){
             SettlerController settlerController = new SettlerController(player.getPlayerUnits().getSettlerFromCoordinates(coordinates));
+            view.showYouAreInMiniMapMessage();
         }
         else {
             view.showThereIsNoUnit();
@@ -171,7 +176,8 @@ public class MiniMapController {
         }
 
         if (player.getPlayerUnits().getMeleeMilitaryUnitFromCoordinates(coordinates) != null){
-            //TODO:
+            MeleeController meleeController = new MeleeController(player.getPlayerUnits().getMeleeMilitaryUnitFromCoordinates(coordinates));
+            view.showYouAreInMiniMapMessage();
         }
         else if (player.getPlayerUnits().getRangedMilitaryUnitFromCoordinates(coordinates) != null){
             //TODO:

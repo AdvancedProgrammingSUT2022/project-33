@@ -104,6 +104,7 @@ public class MatchingStrings {
         public final static Pattern MANAGE_MILITARY_UNIT2 = Pattern.compile("manage military unit -x \\d+ -y \\d+");
         public final static Pattern X_VALUE = Pattern.compile("-x \\d+");
         public final static Pattern Y_VALUE = Pattern.compile("-y \\d+");
+        public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
     }
 
 
@@ -122,6 +123,22 @@ public class MatchingStrings {
             public final static Pattern CANCEL = Pattern.compile("cancel");
             public final static Pattern VALID_CITY_NAME = Pattern.compile("[a-zA-Z_0-9 ]+");
             public final static Pattern REMOVE_UNIT = Pattern.compile("remove unit");
+            public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
+        }
+
+
+
+        public static class MeleeUnitStrings
+        {
+            public final static Pattern SHOW_STATS = Pattern.compile("show stats");
+            public final static Pattern MOVE_UNIT1 = Pattern.compile("move to -x \\d+ -y \\d+");
+            public final static Pattern MOVE_UNIT2 = Pattern.compile("move to -y \\d+ -x \\d+");
+            public final static Pattern X_VALUE = Pattern.compile("-x \\d+");
+            public final static Pattern Y_VALUE = Pattern.compile("-y \\d+");
+            public final static Pattern CANCEL = Pattern.compile("cancel");
+            public final static Pattern REMOVE_UNIT = Pattern.compile("remove unit");
+            public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
+            public final static Pattern FINISH = Pattern.compile("finish");
         }
     }
 }
