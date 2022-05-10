@@ -64,13 +64,15 @@ public class TechnologyTreeView {
 
         for (int i = 0; i < playerTechnologies.size(); i++){
             System.out.print((i + 1) + ") " + playerTechnologies.get(i).technology.getGameName() + ": era:" + playerTechnologies.get(i).technology.getEra());
-            System.out.print(" leads to:");
+            System.out.print(", leads to:");
 
             for (int k = 0; k < Technologies.values().length; k++){
                 if (Technologies.values()[k].technology.getNeededTechnologies().contains(playerTechnologies.get(i))){
                     System.out.print(" " + Technologies.values()[k].technology.getGameName());
                 }
             }
+
+            System.out.println();
         }
     }
 
@@ -83,17 +85,26 @@ public class TechnologyTreeView {
         ArrayList<Technologies> availableTechnologies = getAvailableTechnologies(playerTechnologies);
 
         for (int i = 0; i < availableTechnologies.size(); i++){
-            System.out.print((i + 1) + ") " + availableTechnologies.get(i).technology.getGameName() +
-                    "turns needed: " + availableTechnologies.get(i).technology.getResearchCost() / researchPerTurn +
-                    ": era:" + playerTechnologies.get(i).technology.getEra());
+            if (researchPerTurn != 0) {
+                System.out.print((i + 1) + ") " + availableTechnologies.get(i).technology.getGameName() +
+                        ", turns needed: " + availableTechnologies.get(i).technology.getResearchCost() / researchPerTurn +
+                        ",  era:" + availableTechnologies.get(i).technology.getEra());
+            }
+            else {
+                System.out.print((i + 1) + ") " + availableTechnologies.get(i).technology.getGameName() +
+                        ", turns needed: " + "-" +
+                        ", era: " + availableTechnologies.get(i).technology.getEra());
+            }
 
-            System.out.print(" leads to:");
+            System.out.print(", leads to:");
 
             for (int k = 0; k < Technologies.values().length; k++){
-                if (Technologies.values()[k].technology.getNeededTechnologies().contains(playerTechnologies.get(i))){
+                if (Technologies.values()[k].technology.getNeededTechnologies().contains(availableTechnologies.get(i))){
                     System.out.print(" " + Technologies.values()[k].technology.getGameName());
                 }
             }
+
+            System.out.println();
         }
     }
 
@@ -101,13 +112,15 @@ public class TechnologyTreeView {
 
     private void showUnavailableTechnologies(ArrayList<Technologies> playerTechnologies)
     {
+        System.out.println("unavailable technologies: ");
+
         ArrayList<Technologies> unavailableTechnologies = getUnavailableTechnologies(playerTechnologies);
 
         for (int i = 0; i < unavailableTechnologies.size(); i++){
             System.out.print((i + 1) + ") " + unavailableTechnologies.get(i).technology.getGameName() +
-                    ": era:" + playerTechnologies.get(i).technology.getEra());
+                    ", era: " + unavailableTechnologies.get(i).technology.getEra());
 
-            System.out.print("technologies needed: ");
+            System.out.print(" technologies needed: ");
 
             for (int k = 0; k < unavailableTechnologies.get(i).technology.getNeededTechnologies().size(); k++){
                 System.out.print(" " + unavailableTechnologies.get(i).technology.getNeededTechnologies().get(k).technology.getGameName());
@@ -116,10 +129,12 @@ public class TechnologyTreeView {
             System.out.print(", leads to:");
 
             for (int k = 0; k < Technologies.values().length; k++){
-                if (Technologies.values()[k].technology.getNeededTechnologies().contains(playerTechnologies.get(i))){
+                if (Technologies.values()[k].technology.getNeededTechnologies().contains(unavailableTechnologies.get(i))){
                     System.out.print(" " + Technologies.values()[k].technology.getGameName());
                 }
             }
+
+            System.out.println();
         }
     }
 

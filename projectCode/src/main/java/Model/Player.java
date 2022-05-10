@@ -43,10 +43,11 @@ public class Player {
 
     public void updateHappiness()
     {
-        int temporarilyHappiness = 0;
+        int temporarilyHappiness = 5;
 
         for (int i = 0; i < cities.size(); i++){
             temporarilyHappiness += cities.get(i).getHappiness();
+            temporarilyHappiness -= 3;
         }
 
         happiness = temporarilyHappiness;
