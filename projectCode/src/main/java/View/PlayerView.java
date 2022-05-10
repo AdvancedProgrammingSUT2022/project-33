@@ -18,4 +18,18 @@ public class PlayerView {
     {
         System.out.println("entering " + section + " section");
     }
+
+
+
+    public void showInvalidCommand()
+    {
+        System.out.println("invalid command");
+    }
+
+
+
+    public void showCurrentMenu()
+    {
+        System.out.println("player menu");
+    }
 }

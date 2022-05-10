@@ -9,7 +9,8 @@ public class Main {
     public static void main(String[] args)
     {
         User test = new User("test", "test", "test1234");
-        GameLoader gameLoader = new GameLoader(new ArrayList<User>(List.of(test)), GeneralBiomes.DESERT, MapSizes.VERY_TINY);
+        User test2 = new User("testPrime", "test2", "test1234");
+        GameLoader gameLoader = new GameLoader(new ArrayList<User>(Arrays.asList(test, test2)), GeneralBiomes.DESERT, MapSizes.VERY_TINY);
 
 
         //LoginMenuController loginMenuController = new LoginMenuController();

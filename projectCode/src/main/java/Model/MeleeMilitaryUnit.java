@@ -1,5 +1,10 @@
 package Model;
 
+import View.MeleeView;
+import View.MilitaryView;
+
+import java.util.ArrayList;
+
 public class MeleeMilitaryUnit extends MilitaryUnit{
 
 
@@ -31,6 +36,19 @@ public class MeleeMilitaryUnit extends MilitaryUnit{
         super(unit, coordinates);
         super.setNonPlayerColor(color);
         super.setBelongsToPlayer(false);
+    }
+
+
+
+    public void updateUnit(ArrayList<Terrain> terrains)
+    {
+        setRemainingMovements(getMaxMovements());
+
+        if (isMoving()) {
+            moveUnit(terrains, getOwner().getMap(), new MilitaryView());
+        }
+
+        //TODO:
     }
 
 

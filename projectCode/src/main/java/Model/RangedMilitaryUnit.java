@@ -1,5 +1,11 @@
 package Model;
 
+import View.MeleeView;
+import View.MilitaryView;
+import View.RangedView;
+
+import java.util.ArrayList;
+
 public class RangedMilitaryUnit extends MilitaryUnit{
     private int attackRange;
     private int rangedAttackDamage;
@@ -45,6 +51,19 @@ public class RangedMilitaryUnit extends MilitaryUnit{
                 , unit.getMaintenancePricePerTurn(), unit.getAttackDamage(), unit.getIsCavalry(), unit.getTechnologyRequired(), unit.getResourceRequired(), unit.getEra());
         this.attackRange = unit.getAttackRange();
         this.rangedAttackDamage = unit.getRangedAttackDamage();
+    }
+
+
+
+    public void updateUnit(ArrayList<Terrain> terrains)
+    {
+        setRemainingMovements(getMaxMovements());
+
+        if (isMoving()) {
+            moveUnit(terrains, getOwner().getMap(), new MilitaryView());
+        }
+
+        //TODO:
     }
 
 

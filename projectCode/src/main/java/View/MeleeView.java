@@ -3,7 +3,7 @@ package View;
 import Model.Coordinates;
 import Model.MeleeMilitaryUnit;
 
-public class MeleeView {
+public class MeleeView extends MilitaryView {
 
 
 
@@ -71,5 +71,12 @@ public class MeleeView {
     public void showInvalidCommand()
     {
         System.out.println("invalid command");
+    }
+
+
+
+    public void showInaccessible()
+    {
+        System.out.println("destination coordinates is inaccessible");
     }
 }

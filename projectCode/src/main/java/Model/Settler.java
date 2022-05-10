@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.SettlerController;
+import View.MeleeView;
 import View.SettlerView;
 
 import java.util.ArrayList;
@@ -45,6 +46,19 @@ public class Settler extends Unit{
         super.setBelongsToPlayer(false);
         super.setNonPlayerColor(color);
 
+
+        //TODO:
+    }
+
+
+
+    public void updateUnit(ArrayList<Terrain> terrains)
+    {
+        setRemainingMovements(getMaxMovements());
+
+        if (isMoving()) {
+            moveUnit(terrains, getOwner().getMap(), new SettlerView());
+        }
 
         //TODO:
     }

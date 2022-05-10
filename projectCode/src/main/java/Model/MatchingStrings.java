@@ -64,6 +64,8 @@ public class MatchingStrings {
     {
         public final static Pattern ENTER_SECTION = Pattern.compile("enter -(-?)(section|s) \\S+");
         public final static Pattern MINIMAP = Pattern.compile("minimap");
+        public final static Pattern END_TURN = Pattern.compile("end turn");
+        public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         //TODO:
     }
 

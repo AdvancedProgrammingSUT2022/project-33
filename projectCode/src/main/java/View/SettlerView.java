@@ -98,4 +98,11 @@ public class SettlerView {
     {
         System.out.println("unit removed successfully");
     }
+
+
+
+    public void showInaccessible()
+    {
+        System.out.println("destination coordinates is inaccessible");
+    }
 }

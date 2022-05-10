@@ -42,54 +42,9 @@ public class Unit {
 
 
 
-    public void updateUnit(ArrayList<Terrain> terrains)
-    {
-        remainingMovements = maxMovements;
-
-        if (isMoving) {
-            moveUnit(terrains);
-        }
-
-        //TODO:
-    }
-
-
-
     public void resetUnit()
     {
         //TODO:
-    }
-
-
-
-    private void moveUnit(ArrayList<Terrain> terrains)
-    {
-        ArrayList<Coordinates> remainingPath = new ArrayList<>();
-
-        int i = 0;
-
-        while(!path.get(i).equals(coordinates)){
-            i++;
-        }
-
-        i++;
-
-        while (i < path.size()){
-            remainingPath.add(path.get(i));
-        }
-
-        i = 0;
-
-        while (!coordinates.equals(destinationCoordinates) && remainingMovements >= getTerrainFromCoordinates(terrains, path.get(i)).getMovementPrice()){
-            remainingMovements -= getTerrainFromCoordinates(terrains, remainingPath.get(i)).getMovementPrice();
-            coordinates = remainingPath.get(i);
-            i++;
-        }
-
-
-        if (coordinates.equals(destinationCoordinates)){
-            isMoving = false;
-        }
     }
 
 
@@ -155,10 +110,19 @@ public class Unit {
     }
 
 
-    public void setDestinationCoordinates(Coordinates destinationCoordinates, ArrayList<Coordinates> unavailableTerrains, int mapSize) {
+    public boolean setDestinationCoordinates(Coordinates destinationCoordinates, ArrayList<Coordinates> unavailableTerrains, int mapSize) {
+        if (!getOwner().getMap().getTerrainFromCoordinates(destinationCoordinates).isCanBeCrossed())
+        {
+            //returns true if can destination is not available
+            return true;
+        }
+
         this.destinationCoordinates = destinationCoordinates;
         pathFinder = new PathFinder(mapSize, unavailableTerrains);
         setPath(pathFinder.findPath(coordinates, destinationCoordinates));
+        isMoving = true;
+
+        return false;
     }
 
 

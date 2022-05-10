@@ -1,6 +1,8 @@
 package Model;
 
 import View.MeleeView;
+import View.MilitaryView;
+import View.RangedView;
 
 import java.util.ArrayList;
 
@@ -58,7 +60,7 @@ public class MilitaryUnit extends Unit{
 
 
 
-    public void moveUnit(ArrayList<Terrain> terrains, MiniMap miniMap, MeleeView view)
+    public void moveUnit(ArrayList<Terrain> terrains, MiniMap miniMap, MilitaryView view)
     {
         ArrayList<Coordinates> remainingPath = new ArrayList<>();
 

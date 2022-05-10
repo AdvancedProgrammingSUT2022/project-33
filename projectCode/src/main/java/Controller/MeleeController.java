@@ -74,7 +74,12 @@ public class MeleeController {
             return;
         }
 
-        unit.setDestinationCoordinates(new Coordinates(x, y, 0), unit.getOwner().getMap().getUnavailableTerrainsForMoving(), unit.getOwner().getMap().getMapSize());
+        if (unit.setDestinationCoordinates(new Coordinates(x, y, 0),
+                unit.getOwner().getMap().getUnavailableTerrainsForMoving(), unit.getOwner().getMap().getMapSize())){
+            view.showInaccessible();
+            return;
+        }
+
         unit.moveUnit(unit.getOwner().getMap().getOriginalMap().getTerrains(), unit.getOwner().getMap(), view);
     }
 

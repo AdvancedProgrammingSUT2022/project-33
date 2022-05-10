@@ -83,7 +83,12 @@ public class SettlerController {
             return;
         }
 
-        settler.setDestinationCoordinates(new Coordinates(x, y, 0), settler.getOwner().getMap().getUnavailableTerrainsForMoving(), settler.getOwner().getMap().getMapSize());
+        if (settler.setDestinationCoordinates(new Coordinates(x, y, 0),
+                settler.getOwner().getMap().getUnavailableTerrainsForMoving(), settler.getOwner().getMap().getMapSize())){
+            view.showInaccessible();
+            return;
+        }
+
         settler.moveUnit(settler.getOwner().getMap().getOriginalMap().getTerrains(), settler.getOwner().getMap(), view);
     }
 

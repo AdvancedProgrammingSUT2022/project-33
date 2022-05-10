@@ -37,6 +37,15 @@ public class PlayerController {
             if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.ENTER_SECTION)){
                 enterSection(input);
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.SHOW_MENU)){
+                view.showCurrentMenu();
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.END_TURN)){
+                return;
+            }
+            else {
+                view.showInvalidCommand();
+            }
             //TODO:
         }
     }
