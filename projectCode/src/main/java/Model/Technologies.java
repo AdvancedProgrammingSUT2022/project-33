@@ -63,7 +63,7 @@ public enum Technologies {
     TELEGRAPH("Telegraph", 2200, new ArrayList<>(List.of(ELECTRICITY)), Eras.INDUSTRIAL);
 
 
-    final Technology technology;
+    public final Technology technology;
 
     Technologies(String gameName, int researchCost, ArrayList<Technologies> neededTechnologies, Eras era)
     {

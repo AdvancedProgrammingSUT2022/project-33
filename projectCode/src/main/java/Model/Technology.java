@@ -21,4 +21,31 @@ public class Technology {
         this.neededTechnologies = neededTechnologies;
         this.era = era;
     }
+
+
+
+    //getters
+    public String getType() {
+        return type;
+    }
+
+
+    public String getGameName() {
+        return gameName;
+    }
+
+
+    public int getResearchCost() {
+        return researchCost;
+    }
+
+
+    public ArrayList<Technologies> getNeededTechnologies() {
+        return neededTechnologies;
+    }
+
+
+    public Eras getEra() {
+        return era;
+    }
 }

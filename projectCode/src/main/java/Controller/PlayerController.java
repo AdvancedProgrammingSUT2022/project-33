@@ -40,6 +40,9 @@ public class PlayerController {
             else if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu();
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.SHOW_HAPPINESS)){
+                view.showHappiness(player);
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.END_TURN)){
                 return;
             }
@@ -60,6 +63,9 @@ public class PlayerController {
             view.showEnteringSection("minimap");
             MiniMapController miniMapController = new MiniMapController(player);
             //TODO:
+        }
+        else if (UserInput.doesMatch(section, MatchingStrings.PlayerControllerStrings.TECHNOLOGY_TREE)){
+            TechnologyTreeController technologyTreeController = new TechnologyTreeController(player);
         }
     }
 }

@@ -66,7 +66,25 @@ public class MatchingStrings {
         public final static Pattern MINIMAP = Pattern.compile("minimap");
         public final static Pattern END_TURN = Pattern.compile("end turn");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
+        public final static Pattern SHOW_HAPPINESS = Pattern.compile("show happiness");
+        public final static Pattern TECHNOLOGY_TREE = Pattern.compile("technology_tree");
+
         //TODO:
+    }
+
+
+
+    public static class TechnologyTreeStrings
+    {
+        public final static Pattern SHOW_TECHNOLOGIES = Pattern.compile("show technologies");
+        public final static Pattern DISCOVERED_TECHNOLOGIES = Pattern.compile(" -(-?)(discovered|d)");
+        public final static Pattern DISCOVERED_TECHNOLOGIES_FLAG = Pattern.compile("( -(-?)(discovered|d))?");
+        public final static Pattern AVAILABLE_TECHNOLOGIES = Pattern.compile(" -(-?)(available|a)");
+        public final static Pattern AVAILABLE_TECHNOLOGIES_FLAG = Pattern.compile("( -(-?)(available|a))?");
+        public final static Pattern UNAVAILABLE_TECHNOLOGIES = Pattern.compile(" -(-?)(unavailable|u)");
+        public final static Pattern UNAVAILABLE_TECHNOLOGIES_FLAG = Pattern.compile("( -(-?)(unavailable|u))?");
+        public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
+        public final static Pattern BACK = Pattern.compile("back");
     }
 
 

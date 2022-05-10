@@ -8,8 +8,10 @@ public class Player {
     private MiniMap map;
     private UnitList playerUnits;
     private ArrayList<PlayerCity> cities;
+    private ArrayList<Technologies> technologies;
     private int gold;
     private int happiness;
+    private int researchPerTurn;
 
 
 
@@ -22,6 +24,7 @@ public class Player {
         this.color = Colors.values()[numberOfPlayer];
         playerUnits = new UnitList();
         cities = new ArrayList<>();
+        this.technologies = new ArrayList<>();
         this.gold = 0;
         this.happiness = 0;
     }
@@ -32,7 +35,21 @@ public class Player {
         //TODO: updating map
         getPlayerUnits().updateUnits(map.getTerrains());
 
+        updateHappiness();
         //TODO:
+    }
+
+
+
+    public void updateHappiness()
+    {
+        int temporarilyHappiness = 0;
+
+        for (int i = 0; i < cities.size(); i++){
+            temporarilyHappiness += cities.get(i).getHappiness();
+        }
+
+        happiness = temporarilyHappiness;
     }
 
 
@@ -92,5 +109,15 @@ public class Player {
 
     public int getHappiness() {
         return happiness;
+    }
+
+
+    public ArrayList<Technologies> getTechnologies() {
+        return technologies;
+    }
+
+
+    public int getResearchPerTurn() {
+        return researchPerTurn;
     }
 }

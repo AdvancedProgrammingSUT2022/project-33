@@ -9,6 +9,13 @@ public class MilitaryView {
 
 
     ////methods////
+    public void showCurrentMenu(String gameName)
+    {
+        System.out.println(gameName + " menu");
+    }
+
+
+
     public void showCoordinatesOutOfBoundary(int value, String axis, int mapSize)
     {
         System.out.println(axis + "axis value is out of boundaries: " + value);
