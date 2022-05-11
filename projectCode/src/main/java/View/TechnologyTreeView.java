@@ -179,4 +179,19 @@ public class TechnologyTreeView {
 
         return unavailableTechnologies;
     }
+
+
+
+    public void showResearch(Player player)
+    {
+        if (player.isResearching()){
+            System.out.print("current research: " + player.getResearch().technology.getGameName());
+            System.out.print(" research progress: " + (player.getResearchProgress() / player.getResearch().technology.getResearchCost()) + "%");
+            System.out.println(" time remaining: " +
+                    ((player.getResearch().technology.getResearchCost() - player.getResearchProgress()) / player.getResearchPerTurn()) + " turns");
+        }
+        else {
+            System.out.println("you are not working on any research right now");
+        }
+    }
 }

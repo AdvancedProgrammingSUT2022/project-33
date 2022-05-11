@@ -163,4 +163,33 @@ public class UnitList {
 
         return null;
     }
+
+
+
+    public int getGoldNeeded()
+    {
+        int gold = 0;
+
+        for (int i = 0; i < meleeMilitaryUnits.size(); i++){
+            gold += meleeMilitaryUnits.get(i).getMaintenancePricePerTurn();
+        }
+
+        for (int i = 0; i < rangedMilitaryUnits.size(); i++){
+            gold += rangedMilitaryUnits.get(i).getMaintenancePricePerTurn();
+        }
+
+        for (int i = 0; i < heavyRangedMilitaryUnits.size(); i++){
+            gold += heavyRangedMilitaryUnits.get(i).getMaintenancePricePerTurn();
+        }
+
+        for (int i = 0; i < settlers.size(); i++){
+            gold += settlers.get(i).getMaintenancePricePerTurn();
+        }
+
+        for (int i = 0; i < workers.size(); i++){
+            gold += workers.get(i).getMaintenancePricePerTurn();
+        }
+
+        return gold;
+    }
 }

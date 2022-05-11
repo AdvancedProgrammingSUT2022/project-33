@@ -11,6 +11,9 @@ public class Player {
     private ArrayList<Technologies> technologies;
     private int gold;
     private int happiness;
+    private boolean isResearching;
+    private Technologies research;
+    private int researchProgress;
     private int researchPerTurn;
 
 
@@ -27,6 +30,8 @@ public class Player {
         this.technologies = new ArrayList<>();
         this.gold = 0;
         this.happiness = 0;
+        this.isResearching = false;
+        this.researchPerTurn = 0;
     }
 
 
@@ -36,12 +41,13 @@ public class Player {
         getPlayerUnits().updateUnits(map.getTerrains());
 
         updateHappiness();
+        updateGold();
         //TODO:
     }
 
 
 
-    public void updateHappiness()
+    private void updateHappiness()
     {
         int temporarilyHappiness = 5;
 
@@ -51,6 +57,62 @@ public class Player {
         }
 
         happiness = temporarilyHappiness;
+    }
+
+
+
+    private void updateGold()
+    {
+        int goldIncome = 0;
+
+        goldIncome += getCitiesGoldIncome();
+        goldIncome -= playerUnits.getGoldNeeded();
+
+        if (goldIncome >= 0) {
+            if (happiness > 19) {
+                goldIncome *= 2;
+            } else if (happiness > 9) {
+                goldIncome *= 2;
+                goldIncome /= 3;
+            } else if (happiness < 0 && happiness > -6) {
+                goldIncome *= 2;
+                goldIncome /= 3;
+            } else if (happiness < -5 && happiness > -11) {
+                goldIncome /= 4;
+            } else if (happiness < -10 && happiness > -16) {
+                goldIncome /= 10;
+            }
+        }
+        else {
+            if (happiness > 19) {
+                goldIncome /= 2;
+            } else if (happiness > 9) {
+                goldIncome *= 2;
+                goldIncome /= 3;
+            } else if (happiness < 0 && happiness > -6) {
+                goldIncome *= 3;
+                goldIncome /= 2;
+            } else if (happiness < -5 && happiness > -11) {
+                goldIncome *= 4;
+            } else if (happiness < -10 && happiness > -16) {
+                goldIncome *= 10;
+            }
+        }
+
+        gold += goldIncome;
+    }
+
+
+
+    public int getCitiesGoldIncome()
+    {
+        int goldIncome = 0;
+
+        for (int i = 0; i < cities.size(); i++){
+            goldIncome += cities.get(i).getGoldPerTurn();
+        }
+
+        return goldIncome;
     }
 
 
@@ -120,5 +182,20 @@ public class Player {
 
     public int getResearchPerTurn() {
         return researchPerTurn;
+    }
+
+
+    public boolean isResearching() {
+        return isResearching;
+    }
+
+
+    public Technologies getResearch() {
+        return research;
+    }
+
+
+    public int getResearchProgress() {
+        return researchProgress;
     }
 }

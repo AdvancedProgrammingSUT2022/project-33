@@ -45,6 +45,9 @@ public class TechnologyTreeController {
             else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.SHOW_MENU)){
                 view.showCurrentMenu();
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.SHOW_CURRENT_RESEARCH)){
+                view.showResearch(player);
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.BACK)){
                 return;
             }
@@ -52,8 +55,8 @@ public class TechnologyTreeController {
                 view.showInvalidCommand();
             }
         }
-    }
 
+    }
 
 
     private void showTechnologies(String input)
