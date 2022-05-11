@@ -84,6 +84,7 @@ public class MatchingStrings {
         public final static Pattern UNAVAILABLE_TECHNOLOGIES = Pattern.compile(" -(-?)(unavailable|u)");
         public final static Pattern UNAVAILABLE_TECHNOLOGIES_FLAG = Pattern.compile("( -(-?)(unavailable|u))?");
         public final static Pattern SHOW_CURRENT_RESEARCH = Pattern.compile("show current research");
+        public final static Pattern START_RESEARCH = Pattern.compile("research \\S+( \\S+)?( \\S+)?");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern BACK = Pattern.compile("back");
     }

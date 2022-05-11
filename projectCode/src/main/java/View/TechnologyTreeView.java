@@ -194,4 +194,58 @@ public class TechnologyTreeView {
             System.out.println("you are not working on any research right now");
         }
     }
+
+
+
+    public void showInvalidTechnology()
+    {
+        System.out.println("invalid technology");
+        System.out.println("please enter a valid technology and try again");
+        System.out.println("technologies:");
+
+        for (int i = 0; i < Technologies.values().length; i++){
+            System.out.println((i + 1) + ") " + Technologies.values()[i].technology.getGameName());
+        }
+    }
+
+
+
+    public void showInvalidResearch(Technologies technology)
+    {
+        System.out.println("you don't have the required technologies to research this technology");
+
+        System.out.print("first research " + technology.technology.getNeededTechnologies().get(0));
+
+        if (technology.technology.getNeededTechnologies().size() > 1){
+            for (int i = 1; i < technology.technology.getNeededTechnologies().size(); i++){
+                System.out.print(" and " +  technology.technology.getNeededTechnologies().get(i));
+            }
+        }
+
+        System.out.println();
+    }
+
+
+
+    public void showAlreadyResearchingMessage(Technologies researchingTechnology)
+    {
+        System.out.println("you are already researching (" + researchingTechnology.technology.getGameName() + ")");
+        System.out.println("are you sure you want to cancel it?");
+    }
+
+
+
+    public void showInvalidConfirmationCommand()
+    {
+        System.out.println("invalid command");
+        System.out.println("please choose (yes) to start new research and (no) to continue last research");
+    }
+
+
+
+    public void showStartingResearch(Player player, Technologies technology)
+    {
+        System.out.println("starting new research: " + technology.technology.getGameName());
+        System.out.println("estimated time: " + technology.technology.getResearchCost() / player.getResearchPerTurn() + " turn");
+    }
 }

@@ -48,6 +48,9 @@ public class TechnologyTreeController {
             else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.SHOW_CURRENT_RESEARCH)){
                 view.showResearch(player);
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.START_RESEARCH)){
+                getResearch(input);
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.BACK)){
                 return;
             }
@@ -66,5 +69,76 @@ public class TechnologyTreeController {
         boolean unavailableFlag = MatchingStrings.TechnologyTreeStrings.UNAVAILABLE_TECHNOLOGIES.matcher(input).find();
 
         view.showTechnologies(player, discoveredFlag, availableFlag, unavailableFlag);
+    }
+
+
+
+    private void getResearch(String input)
+    {
+        String technologyString = input.substring(9);
+
+        for (int i = 0; i < Technologies.values().length; i++){
+            if (technologyString.equalsIgnoreCase(Technologies.values()[i].technology.getGameName())){
+                startResearch(Technologies.values()[i]);
+                return;
+            }
+        }
+
+        view.showInvalidTechnology();
+    }
+
+
+
+    private void startResearch(Technologies technology)
+    {
+        if (!canResearchTechnology(technology)){
+            view.showInvalidResearch(technology);
+        }
+
+        if (player.isResearching()){
+            if (!getConfirmation()){
+                return;
+            }
+        }
+
+        player.setResearching(true);
+        player.setResearch(technology);
+        player.setResearchProgress(0);
+        view.showStartingResearch(player, technology);
+    }
+
+
+
+    private boolean canResearchTechnology(Technologies technology)
+    {
+        for (int i = 0; i < technology.technology.getNeededTechnologies().size(); i++){
+            if (!player.getTechnologies().contains(technology.technology.getNeededTechnologies().get(i))){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+
+    private boolean getConfirmation()
+    {
+        view.showAlreadyResearchingMessage(player.getResearch());
+
+        while (true){
+            String input = UserInput.getInput();
+            input = UserInput.removeSpaces(input);
+
+            if (input.equalsIgnoreCase("yes")){
+                return true;
+            }
+            else if (input.equalsIgnoreCase("no")){
+                return false;
+            }
+            else {
+                view.showInvalidConfirmationCommand();
+            }
+        }
     }
 }

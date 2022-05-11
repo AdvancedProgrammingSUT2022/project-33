@@ -138,6 +138,17 @@ public class Player {
     }
 
 
+    public void setResearching(boolean researching) {
+        isResearching = researching;
+    }
+
+    public void setResearch(Technologies research) {
+        this.research = research;
+    }
+
+    public void setResearchProgress(int researchProgress) {
+        this.researchProgress = researchProgress;
+    }
 
     //getters
     public String getNickname() {
