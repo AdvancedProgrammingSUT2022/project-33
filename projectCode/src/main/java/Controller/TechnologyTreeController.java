@@ -57,6 +57,9 @@ public class TechnologyTreeController {
             else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.RESEARCH_ALL_CHEAT)){
                 researchAll();
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.FINISH_RESEARCH_CHEAT)){
+                finishResearch();
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.BACK)){
                 return;
             }
@@ -216,5 +219,19 @@ public class TechnologyTreeController {
         }
 
         view.showAllTechnologiesDiscovered();
+    }
+
+
+
+    private void finishResearch()
+    {
+        if (!player.isResearching()){
+            view.showNoResearch();
+            return;
+        }
+
+        player.addTechnology(player.getResearch());
+        player.setResearching(false);
+        view.showTechnologyDiscovered(player.getResearch());
     }
 }

@@ -1,0 +1,4 @@
+*****technology tree*****
+new discovery <technology> -> researches the given technology and all its roots instantly
+MegaMind -> discovers all technologies
+is research over? -> finishes current research

@@ -301,4 +301,11 @@ public class TechnologyTreeView {
         System.out.println("⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎");
         System.out.println();
     }
+
+
+
+    public void showNoResearch()
+    {
+        System.out.println("you are not researching anything");
+    }
 }
