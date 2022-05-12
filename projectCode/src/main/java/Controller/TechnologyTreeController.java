@@ -49,7 +49,13 @@ public class TechnologyTreeController {
                 view.showResearch(player);
             }
             else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.START_RESEARCH)){
-                getResearch(input);
+                getResearchAndStart(input);
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.GET_RESEARCH_CHEAT)){
+                researchCheatTechnology(input);
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.RESEARCH_ALL_CHEAT)){
+                researchAll();
             }
             else if (UserInput.doesMatch(input, MatchingStrings.TechnologyTreeStrings.BACK)){
                 return;
@@ -73,7 +79,7 @@ public class TechnologyTreeController {
 
 
 
-    private void getResearch(String input)
+    private void getResearchAndStart(String input)
     {
         String technologyString = input.substring(9);
 
@@ -91,8 +97,14 @@ public class TechnologyTreeController {
 
     private void startResearch(Technologies technology)
     {
+        if (player.getTechnologies().contains(technology)){
+            view.showDuplicatedResearch();
+            return;
+        }
+
         if (!canResearchTechnology(technology)){
             view.showInvalidResearch(technology);
+            return;
         }
 
         if (player.isResearching()){
@@ -140,5 +152,69 @@ public class TechnologyTreeController {
                 view.showInvalidConfirmationCommand();
             }
         }
+    }
+
+
+
+    private void researchCheatTechnology(String input)
+    {
+        Technologies technology = getResearchFromInput(input);
+
+        if (technology == null){
+            view.showInvalidTechnology();
+            return;
+        }
+
+        if (player.getTechnologies().contains(technology)){
+            view.showDuplicatedResearch();
+            return;
+        }
+
+        addCheatTechnology(technology);
+        view.showTechnologyDiscovered(technology);
+    }
+
+
+
+    private Technologies getResearchFromInput(String input)
+    {
+        for (int i = 0; i < input.length(); i++){
+            String temporarilyString = input.substring(i);
+
+            for (int k = 0; k < Technologies.values().length; k++){
+                if (temporarilyString.equalsIgnoreCase(Technologies.values()[k].technology.getGameName())){
+                    return Technologies.values()[k];
+                }
+            }
+        }
+
+        view.showInvalidTechnology();
+        return null;
+    }
+
+
+
+    private void addCheatTechnology(Technologies technology){
+        for (int i = 0; i < technology.technology.getNeededTechnologies().size(); i++){
+            if (!player.getTechnologies().contains(technology.technology.getNeededTechnologies().get(i))){
+                addCheatTechnology(technology.technology.getNeededTechnologies().get(i));
+            }
+        }
+
+        player.addTechnology(technology);
+    }
+
+
+
+    private void researchAll()
+    {
+        for (int i = 0; i < Technologies.values().length; i++){
+            if (!player.getTechnologies().contains(Technologies.values()[i])){
+                player.addTechnology(Technologies.values()[i]);
+                view.showTechnologyDiscoveredForAllCheat(Technologies.values()[i]);
+            }
+        }
+
+        view.showAllTechnologiesDiscovered();
     }
 }

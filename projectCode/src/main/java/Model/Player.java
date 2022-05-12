@@ -131,6 +131,12 @@ public class Player {
 
 
 
+    public void addTechnology(Technologies technology){
+        this.technologies.add(technology);
+    }
+
+
+
     //setters
     public void setMap(MiniMap map)
     {

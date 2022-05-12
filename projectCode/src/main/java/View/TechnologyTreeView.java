@@ -4,6 +4,7 @@ import Model.Player;
 import Model.Technologies;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class TechnologyTreeView {
 
@@ -247,5 +248,57 @@ public class TechnologyTreeView {
     {
         System.out.println("starting new research: " + technology.technology.getGameName());
         System.out.println("estimated time: " + technology.technology.getResearchCost() / player.getResearchPerTurn() + " turn");
+    }
+
+
+
+    public void showDuplicatedResearch()
+    {
+        System.out.println("you have already discovered this technology");
+    }
+
+
+
+    public void showTechnologyDiscovered(Technologies technology)
+    {
+        System.out.println(technology.technology.getGameName() + " has been discovered");
+    }
+
+
+
+    public void showTechnologyDiscoveredForAllCheat(Technologies technology)
+    {
+
+        for (int i = 0; i < 20; i ++){
+            try {
+                Thread.sleep(35);
+            }
+            catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+
+            System.out.print("■");
+        }
+
+        try {
+            Thread.sleep(80);
+        }
+        catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+
+        System.out.println();
+        System.out.println(technology.technology.getGameName() + " has been discovered");
+    }
+
+
+
+    public void showAllTechnologiesDiscovered()
+    {
+        System.out.println();
+        System.out.println("⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎");
+        System.out.println("all technologies has been discovered");
+        System.out.println("⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎⟎");
+        System.out.println();
     }
 }
