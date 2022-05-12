@@ -15,6 +15,7 @@ public class Player {
     private Technologies research;
     private int researchProgress;
     private int researchPerTurn;
+    private int happinessCheatBonus;
 
 
 
@@ -32,6 +33,7 @@ public class Player {
         this.happiness = 0;
         this.isResearching = false;
         this.researchPerTurn = 0;
+        this.happinessCheatBonus = 0;
     }
 
 
@@ -50,6 +52,7 @@ public class Player {
     private void updateHappiness()
     {
         int temporarilyHappiness = 5;
+        temporarilyHappiness += happinessCheatBonus;
 
         for (int i = 0; i < cities.size(); i++){
             temporarilyHappiness += cities.get(i).getHappiness();
@@ -62,6 +65,13 @@ public class Player {
 
 
     private void updateGold()
+    {
+        gold += getGoldIncome();
+    }
+
+
+
+    public int getGoldIncome()
     {
         int goldIncome = 0;
 
@@ -99,7 +109,7 @@ public class Player {
             }
         }
 
-        gold += goldIncome;
+        return goldIncome;
     }
 
 
@@ -155,6 +165,13 @@ public class Player {
     public void setResearchProgress(int researchProgress) {
         this.researchProgress = researchProgress;
     }
+
+
+    public void setHappinessCheatBonus(int happinessCheatBonus) {
+        this.happinessCheatBonus = happinessCheatBonus;
+    }
+
+
 
     //getters
     public String getNickname() {
@@ -214,5 +231,10 @@ public class Player {
 
     public int getResearchProgress() {
         return researchProgress;
+    }
+
+
+    public int getHappinessCheatBonus() {
+        return happinessCheatBonus;
     }
 }

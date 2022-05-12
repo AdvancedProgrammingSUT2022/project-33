@@ -49,6 +49,31 @@ public class PlayerView {
             System.out.println(player.getCities().get(i).getCityName() + ": " + player.getCities().get(i).getHappiness());
         }
 
+        if (player.getHappinessCheatBonus() != 0){
+            System.out.println("cheat bonus: " + player.getHappinessCheatBonus());
+        }
+
         System.out.println("overall happiness = " + player.getHappiness());
+    }
+
+
+
+    public void showInvalidSection()
+    {
+        System.out.println("invalid section");
+    }
+
+
+
+    public void showMaximumHappinessBonus()
+    {
+        System.out.println("happiness bonus is at its maximum value");
+    }
+
+
+
+    public void showAddHappinessCheat()
+    {
+        System.out.println("happiness is increased by 5");
     }
 }

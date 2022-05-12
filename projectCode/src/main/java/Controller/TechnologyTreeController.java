@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TechnologyTreeController {
-    Player player;
-    TechnologyTreeView view;
+    private Player player;
+    private TechnologyTreeView view;
 
 
 

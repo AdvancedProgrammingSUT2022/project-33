@@ -7,8 +7,8 @@ import Model.UserInput;
 import View.MeleeView;
 
 public class MeleeController {
-    MeleeMilitaryUnit unit;
-    MeleeView view;
+    private MeleeMilitaryUnit unit;
+    private MeleeView view;
 
 
 

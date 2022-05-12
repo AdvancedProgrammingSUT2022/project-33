@@ -11,8 +11,8 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 
 public class MiniMapController {
-    Player player;
-    MiniMapView view;
+    private Player player;
+    private MiniMapView view;
 
 
 

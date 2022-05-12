@@ -67,6 +67,8 @@ public class MatchingStrings {
         public final static Pattern END_TURN = Pattern.compile("end turn");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern SHOW_HAPPINESS = Pattern.compile("show happiness");
+        public final static Pattern ADD_HAPPINESS_CHEAT = Pattern.compile("clown attack");
+        public final static Pattern GOLD_SECTION = Pattern.compile("gold_box");
         public final static Pattern TECHNOLOGY_TREE = Pattern.compile("technology_tree");
 
         //TODO:
@@ -89,6 +91,15 @@ public class MatchingStrings {
         public final static Pattern GET_RESEARCH_CHEAT = Pattern.compile("new discovery \\S+( \\S+)?( \\S+)?");
         public final static Pattern RESEARCH_ALL_CHEAT = Pattern.compile("MegaMind");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
+        public final static Pattern BACK = Pattern.compile("back");
+    }
+
+
+
+    public static class GoldBoxStrings
+    {
+        public final static Pattern SHOW_GOLD = Pattern.compile("show gold");
+        public final static Pattern SHOW_GOLD_INCOME = Pattern.compile("show gold income");
         public final static Pattern BACK = Pattern.compile("back");
     }
 

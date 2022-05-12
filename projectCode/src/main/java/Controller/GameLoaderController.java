@@ -6,8 +6,8 @@ import View.GameLoaderView;
 import java.util.ArrayList;
 
 public class GameLoaderController {
-    GameLoader loader;
-    GameLoaderView view;
+    private GameLoader loader;
+    private GameLoaderView view;
 
 
 

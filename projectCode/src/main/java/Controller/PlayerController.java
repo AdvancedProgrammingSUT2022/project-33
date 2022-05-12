@@ -7,8 +7,8 @@ import Model.UserInput;
 import View.PlayerView;
 
 public class PlayerController {
-    Player player;
-    PlayerView view;
+    private Player player;
+    private PlayerView view;
 
 
 
@@ -43,6 +43,9 @@ public class PlayerController {
             else if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.SHOW_HAPPINESS)){
                 view.showHappiness(player);
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.ADD_HAPPINESS_CHEAT)){
+                addCheatHappiness();
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.END_TURN)){
                 return;
             }
@@ -62,10 +65,29 @@ public class PlayerController {
         if (UserInput.doesMatch(section, MatchingStrings.PlayerControllerStrings.MINIMAP)){
             view.showEnteringSection("minimap");
             MiniMapController miniMapController = new MiniMapController(player);
-            //TODO:
         }
         else if (UserInput.doesMatch(section, MatchingStrings.PlayerControllerStrings.TECHNOLOGY_TREE)){
             TechnologyTreeController technologyTreeController = new TechnologyTreeController(player);
         }
+        else if (UserInput.doesMatch(section, MatchingStrings.PlayerControllerStrings.GOLD_SECTION)){
+
+        }
+        //TODO:
+        else {
+            view.showInvalidSection();
+        }
+    }
+
+
+
+    private void addCheatHappiness()
+    {
+        if (player.getHappinessCheatBonus() >= 20){
+            view.showMaximumHappinessBonus();
+            return;
+        }
+
+        player.setHappinessCheatBonus(player.getHappinessCheatBonus() + 5);
+        view.showAddHappinessCheat();
     }
 }
