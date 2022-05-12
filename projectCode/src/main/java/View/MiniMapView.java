@@ -595,4 +595,10 @@ public class MiniMapView {
     {
         System.out.println("there is no unit in the given coordinates");
     }
+
+
+    public void showThereIsNoCity()
+    {
+        System.out.println("there is no city in the given coordinates");
+    }
 }

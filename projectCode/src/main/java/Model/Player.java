@@ -237,4 +237,16 @@ public class Player {
     public int getHappinessCheatBonus() {
         return happinessCheatBonus;
     }
+
+
+    public PlayerCity getCityFromCoordinates(Coordinates coordinates)
+    {
+        for (int i = 0; i < cities.size(); i++){
+            if (cities.get(i).getCoordinates().equals(coordinates)){
+                return cities.get(i);
+            }
+        }
+
+        return null;
+    }
 }

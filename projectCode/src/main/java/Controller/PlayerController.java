@@ -52,7 +52,6 @@ public class PlayerController {
             else {
                 view.showInvalidCommand();
             }
-            //TODO:
         }
     }
 
@@ -72,7 +71,9 @@ public class PlayerController {
         else if (UserInput.doesMatch(section, MatchingStrings.PlayerControllerStrings.GOLD_SECTION)){
             GoldBoxController goldBoxController = new GoldBoxController(player);
         }
-        //TODO:
+        else if (UserInput.doesMatch(section, MatchingStrings.PlayerControllerStrings.DIPLOMACY_SECTION)){
+            DiplomacyController diplomacyController = new DiplomacyController(player);
+        }
         else {
             view.showInvalidSection();
         }

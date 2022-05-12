@@ -1,9 +1,6 @@
 package Controller;
 
-import Model.Coordinates;
-import Model.MatchingStrings;
-import Model.Player;
-import Model.UserInput;
+import Model.*;
 import View.MiniMapView;
 
 import java.util.ArrayList;
@@ -62,6 +59,11 @@ public class MiniMapController {
             else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_MILITARY_UNIT1) ||
             UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_MILITARY_UNIT2)){
                 manageMilitaryUnit(input);
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_CITY_NAME) ||
+                    UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_CITY1) ||
+                            UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_CITY2)){
+
             }
             else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu();
@@ -212,5 +214,43 @@ public class MiniMapController {
         else {
             return new Coordinates(x, y, 0);
         }
+    }
+
+
+
+    private void enterCityMenu(String input)
+    {
+        PlayerCity city;
+
+        if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_CITY_NAME)){
+            city = getCityFromName(input);
+        }
+        else {
+            Coordinates cityCoordinates = getCoordinatesFromInput(input);
+            city = player.getCityFromCoordinates(cityCoordinates);
+        }
+
+        if (city == null){
+            view.showThereIsNoCity();
+            return;
+        }
+
+        CityController cityController = new CityController(player, city);
+    }
+
+
+
+    private PlayerCity getCityFromName(String input)
+    {
+        String cityName = input.substring(UserInput.getMatchingStringGroupFromInput(input,
+                MatchingStrings.MinimapControllerStrings.MANAGE_CITI_NAME_KNOWN_PART).length());
+
+        for (int i = 0; i < player.getCities().size(); i++){
+            if (cityName.equalsIgnoreCase(player.getCities().get(i).getCityName())){
+                return player.getCities().get(i);
+            }
+        }
+
+        return null;
     }
 }

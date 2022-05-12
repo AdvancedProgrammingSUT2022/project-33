@@ -70,7 +70,7 @@ public class MatchingStrings {
         public final static Pattern ADD_HAPPINESS_CHEAT = Pattern.compile("clown attack");
         public final static Pattern GOLD_SECTION = Pattern.compile("gold_box");
         public final static Pattern TECHNOLOGY_TREE = Pattern.compile("technology_tree");
-
+        public final static Pattern DIPLOMACY_SECTION = Pattern.compile("diplomacy");
         //TODO:
     }
 
@@ -102,6 +102,13 @@ public class MatchingStrings {
         public final static Pattern SHOW_GOLD_INCOME = Pattern.compile("show gold income");
         public final static Pattern ADD_POCKET_OF_GOLD_CHEAT = Pattern.compile("is that a coin");
         public final static Pattern ADD_CHEST_OF_GOLD_CHEAT = Pattern.compile("is that a treasure chest");
+        public final static Pattern BACK = Pattern.compile("back");
+    }
+
+
+
+    public static class DiplomacyStrings
+    {
         public final static Pattern BACK = Pattern.compile("back");
     }
 
@@ -140,6 +147,10 @@ public class MatchingStrings {
         public final static Pattern MANAGE_UNIT2 = Pattern.compile("manage unit -y \\d+ -x \\d+");
         public final static Pattern MANAGE_MILITARY_UNIT1 = Pattern.compile("manage military unit -y \\d+ -x \\d+");
         public final static Pattern MANAGE_MILITARY_UNIT2 = Pattern.compile("manage military unit -x \\d+ -y \\d+");
+        public final static Pattern MANAGE_CITY_NAME = Pattern.compile("manage city -(-?)(name|n) [a-zA-Z_0-9 ]+");
+        public final static Pattern MANAGE_CITI_NAME_KNOWN_PART = Pattern.compile("manage city -(-?)(name|n) ");
+        public final static Pattern MANAGE_CITY1 = Pattern.compile("manage city -x \\d+ -y \\d+");
+        public final static Pattern MANAGE_CITY2 = Pattern.compile("manage city -y \\d+ -x \\d+");
         public final static Pattern X_VALUE = Pattern.compile("-x \\d+");
         public final static Pattern Y_VALUE = Pattern.compile("-y \\d+");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
