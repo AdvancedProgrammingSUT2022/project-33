@@ -6,3 +6,8 @@ is research over? -> finishes current research
 
 *****player menu*****
 clown attack -> increases happiness by 5
+
+
+*****gold box menu*****
+is that a coin -> increases gold by 100
+is that a treasure chest -> increases gold by 1000

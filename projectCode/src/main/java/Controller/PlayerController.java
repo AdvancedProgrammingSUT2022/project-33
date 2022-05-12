@@ -70,7 +70,7 @@ public class PlayerController {
             TechnologyTreeController technologyTreeController = new TechnologyTreeController(player);
         }
         else if (UserInput.doesMatch(section, MatchingStrings.PlayerControllerStrings.GOLD_SECTION)){
-
+            GoldBoxController goldBoxController = new GoldBoxController(player);
         }
         //TODO:
         else {

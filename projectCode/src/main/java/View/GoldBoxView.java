@@ -44,4 +44,18 @@ public class GoldBoxView {
     {
         System.out.println("invalid command");
     }
+
+
+
+    public void showNoSpace()
+    {
+        System.out.println("there is no space for more gold in storage");
+    }
+
+
+
+    public void showGoldAdded(int amount)
+    {
+        System.out.println("your gold has increased by " + amount);
+    }
 }

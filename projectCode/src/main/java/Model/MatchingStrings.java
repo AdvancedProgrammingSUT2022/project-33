@@ -100,6 +100,8 @@ public class MatchingStrings {
     {
         public final static Pattern SHOW_GOLD = Pattern.compile("show gold");
         public final static Pattern SHOW_GOLD_INCOME = Pattern.compile("show gold income");
+        public final static Pattern ADD_POCKET_OF_GOLD_CHEAT = Pattern.compile("is that a coin");
+        public final static Pattern ADD_CHEST_OF_GOLD_CHEAT = Pattern.compile("is that a treasure chest");
         public final static Pattern BACK = Pattern.compile("back");
     }
 
