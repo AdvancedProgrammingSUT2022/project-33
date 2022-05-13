@@ -83,6 +83,9 @@ public class CityController {
                 if (city.isWorkerInBuilding(city.getBuildings().get(i))){
                    view.showWorkerIsInBuilding();
                 }
+                else if (!city.isWorkerFree()){
+                    view.showNoAvailableWorker();
+                }
                 else {
                     city.assignWorkerToBuilding(city.getBuildings().get(i));
                     view.showWorkerIsAssignedToBuilding(city.getBuildings().get(i));
@@ -97,10 +100,36 @@ public class CityController {
 
 
 
+    private void assignWorkerToLand(String input)
+    {
+        int xValue = Integer.parseInt(UserInput.getMatchingStringGroupFromInput(input, MatchingStrings.CityControllerStrings.X_VALUE).split(" ")[1]);
+        int yValue = Integer.parseInt(UserInput.getMatchingStringGroupFromInput(input, MatchingStrings.CityControllerStrings.Y_VALUE).split(" ")[1]);
+
+        Coordinates coordinates = new Coordinates(xValue, yValue, 0);
+
+        for (int i = 0; i < city.getWorkableLands().size(); i++){
+            if (city.getWorkableLands().get(i).getTerrain().getCenterCoordinates().equals(coordinates)){
+                if (city.isWorkerInLand(coordinates)){
+                    view.showWorkerIsInLand();
+                }
+                else if (!city.isWorkerFree()){
+                    view.showNoAvailableWorker();
+                }
+                else {
+                    city.assignWorkerToLand(coordinates);
+                    view.showWorkerIsAssignedToLand(coordinates);
+                }
+
+                return;
+            }
+        }
+
+    }
+
+
+
     private boolean getConfirmationForFiringWorkerFromBuilding()
     {
-        view.showWorkerIsInBuilding();
-
         while (true){
             String input = UserInput.getInput();
             input = UserInput.removeSpaces(input);

@@ -2,6 +2,7 @@ package View;
 
 import Model.Building;
 import Model.Citizen;
+import Model.Coordinates;
 import Model.PlayerCity;
 
 public class CityView {
@@ -144,9 +145,30 @@ public class CityView {
 
 
 
+    public void showWorkerIsInLand()
+    {
+        System.out.println("there is already a worker working in this land");
+    }
+
+
+
     public void showWorkerIsAssignedToBuilding(Building building)
     {
         System.out.println("a new specialist is now working in " + building.getGameName());
+    }
+
+
+
+    public void showWorkerIsAssignedToLand(Coordinates coordinates)
+    {
+        System.out.println("a new worker is now working on the land with (" + coordinates.getX() + ", " + coordinates.getY() + ") coordinates");
+    }
+
+
+
+    public void showNoAvailableWorker()
+    {
+        System.out.println("there is now available citizen to do the job right now");
     }
 }
 

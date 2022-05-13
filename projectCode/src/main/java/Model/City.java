@@ -246,6 +246,43 @@ public class City {
 
 
 
+    public void fireWorkerFromBuilding(Building building)
+    {
+        for (int i = 0; i < citizens.size(); i++){
+            if (citizens.get(i).isWorking() && citizens.get(i).isInside() && citizens.get(i).getBuilding() == building){
+                citizens.get(i).setWorking(false);
+            }
+        }
+    }
+
+
+
+    public void assignWorkerToBuilding(Building building)
+    {
+        for (int i = 0; i < citizens.size(); i++){
+            if (!citizens.get(i).isWorking()){
+                citizens.get(i).setWorking(true);
+                citizens.get(i).setInside(true);
+                citizens.get(i).setBuilding(building);
+            }
+        }
+    }
+
+
+
+    public void assignWorkerToLand(Coordinates coordinates)
+    {
+        for (int i = 0; i < citizens.size(); i++){
+            if (!citizens.get(i).isWorking()){
+                citizens.get(i).setWorking(true);
+                citizens.get(i).setInside(false);
+                citizens.get(i).setCoordinates(coordinates);
+            }
+        }
+    }
+
+
+
     //getters
     public Coordinates getCoordinates() {
         return coordinates;
@@ -443,26 +480,28 @@ public class City {
 
 
 
-    public void fireWorkerFromBuilding(Building building)
+    public boolean isWorkerInLand(Coordinates coordinates)
     {
         for (int i = 0; i < citizens.size(); i++){
-            if (citizens.get(i).isWorking() && citizens.get(i).isInside() && citizens.get(i).getBuilding() == building){
-                citizens.get(i).setWorking(false);
+            if (citizens.get(i).isWorking() && citizens.get(i).isInside() && citizens.get(i).getCoordinates().equals(coordinates)){
+                return true;
             }
         }
+
+        return false;
     }
 
 
 
-    public void assignWorkerToBuilding(Building building)
+    public boolean isWorkerFree()
     {
         for (int i = 0; i < citizens.size(); i++){
             if (!citizens.get(i).isWorking()){
-                citizens.get(i).setWorking(true);
-                citizens.get(i).setInside(true);
-                citizens.get(i).setBuilding(building);
+                return true;
             }
         }
+
+        return false;
     }
 
 
