@@ -37,7 +37,6 @@ public class City {
     {
         this.isCapital = isCapital;
         this.coordinates = cityLand.getTerrain().getCenterCoordinates();
-
         this.population = 1;
         this.isUnitInTheCity = false;
         this.buildings = new ArrayList<>();
@@ -46,12 +45,16 @@ public class City {
         cityLand.getTerrain().setTerritory(true, color);
         this.isWorkingOnTask = false;
         this.maxHealth = 20;
+        this.health = maxHealth;
+        this.attackDamage = 5;
         this.luxuryResources = new ArrayList<>();
         this.isAnnexed = false;
         foodUntilNewCitizen = 10;
         isCityStarving = false;
         connectedCities = new ArrayList<>();
         this.citizens = new ArrayList<>();
+        Citizen citizen = new Citizen(this);
+        citizens.add(citizen);
 
         //TODO:
     }
@@ -89,11 +92,15 @@ public class City {
             goldIncreasePercentage *= 1 + (double) getBuildings().get(i).getGoldEffect() / 100;
         }
 
-        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
+        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLandsWithoutCentralLand());
 
         for (int i = 0; i < workableLands.size(); i++){
-            goldIncome += workableLands.get(i).getLandGold();
+            if (isWorkerInLand(workableLands.get(i).getTerrain().getCenterCoordinates())) {
+                goldIncome += workableLands.get(i).getLandGold();
+            }
         }
+
+        goldIncome += getCityLandFromCoordinates(coordinates).getLandGold();
 
         goldIncome *= goldIncreasePercentage;
 
@@ -110,11 +117,15 @@ public class City {
             foodRemaining += getBuildings().get(i).getFoodPerTurn();
         }
 
-        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
+        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLandsWithoutCentralLand());
 
         for (int i = 0; i < workableLands.size(); i++){
-            foodRemaining += workableLands.get(i).getLandFood();
+            if (isWorkerInLand(workableLands.get(i).getTerrain().getCenterCoordinates())) {
+                foodRemaining += workableLands.get(i).getLandFood();
+            }
         }
+
+        foodRemaining += getCityLandFromCoordinates(coordinates).getLandFood();
 
         if (happiness < 0){
             foodRemaining /= 3;
@@ -129,19 +140,23 @@ public class City {
 
     private void calculateProduction()
     {
-        int production  = 0;
+        int productionIncome  = 0;
 
         for (int i = 0; i < getBuildings().size(); i++){
-            production += getBuildings().get(i).getProductionPerTurn();
+            productionIncome += getBuildings().get(i).getProductionPerTurn();
         }
 
-        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
+        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLandsWithoutCentralLand());
 
         for (int i = 0; i < workableLands.size(); i++){
-            production += workableLands.get(i).getLandProduction();
+            if (isWorkerInLand(workableLands.get(i).getTerrain().getCenterCoordinates())) {
+                productionIncome += workableLands.get(i).getLandProduction();
+            }
         }
 
-        setProduction(production);
+        productionIncome += getCityLandFromCoordinates(coordinates).getLandProduction();
+
+        setProduction(productionIncome);
     }
 
 
@@ -174,7 +189,7 @@ public class City {
 
     protected void updateResources()
     {
-        ArrayList<CityLand> workableLands = getWorkableLands();
+        ArrayList<CityLand> workableLands = getWorkableLandsWithoutCentralLand();
             strategicResources = new ArrayList<>();
             luxuryResources = new ArrayList<>();
 
@@ -213,6 +228,8 @@ public class City {
                 foodUntilNewCitizen = (int) (10 * Math.pow(1.15, population));
                 //TODO: finding a normal function.
                 population++;
+                Citizen newCitizen = new Citizen(this);
+                citizens.add(newCitizen);
             }
         }
     }
@@ -359,7 +376,7 @@ public class City {
     }
 
 
-    public ArrayList<CityLand> getWorkableLands()
+    public ArrayList<CityLand> getWorkableLandsWithoutCentralLand()
     {
         ArrayList<CityLand> workableLands = new ArrayList<>();
 
@@ -368,6 +385,13 @@ public class City {
                 if (getCityLandFromCoordinates(new Coordinates(coordinates.getX() + i, coordinates.getY() + j, 0)) != null){
                     workableLands.add(getCityLandFromCoordinates(new Coordinates(coordinates.getX() + i, coordinates.getY() + j, 0)));
                 }
+            }
+        }
+
+        for (int i = 0; i < workableLands.size(); i++){
+            if (workableLands.get(i).getTerrain().getCenterCoordinates().equals(coordinates)){
+                workableLands.remove(i);
+                return workableLands;
             }
         }
 

@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class DefaultCity extends City{
     private String defaultCityGameName;
     private DefaultCityNames name;
@@ -18,6 +20,13 @@ public class DefaultCity extends City{
         this.color = color;
 
         //TODO:
+    }
+
+
+
+    public void addCityLand(ArrayList<CityLand> lands)
+    {
+        setLandsOwned(lands);
     }
 
 

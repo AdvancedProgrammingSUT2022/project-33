@@ -107,8 +107,8 @@ public class CityController {
 
         Coordinates coordinates = new Coordinates(xValue, yValue, 0);
 
-        for (int i = 0; i < city.getWorkableLands().size(); i++){
-            if (city.getWorkableLands().get(i).getTerrain().getCenterCoordinates().equals(coordinates)){
+        for (int i = 0; i < city.getWorkableLandsWithoutCentralLand().size(); i++){
+            if (city.getWorkableLandsWithoutCentralLand().get(i).getTerrain().getCenterCoordinates().equals(coordinates)){
                 if (city.isWorkerInLand(coordinates)){
                     view.showWorkerIsInLand();
                 }

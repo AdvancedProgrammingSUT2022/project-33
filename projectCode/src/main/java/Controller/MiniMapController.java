@@ -63,7 +63,7 @@ public class MiniMapController {
             else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_CITY_NAME) ||
                     UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_CITY1) ||
                             UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.MANAGE_CITY2)){
-
+                enterCityMenu(input);
             }
             else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu();

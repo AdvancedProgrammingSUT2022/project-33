@@ -19,8 +19,9 @@ public class PlayerCity extends City{
         this.owner = owner;
         this.cityName = cityName;
         wonders = new ArrayList<>();
-
         initializeBorders();
+        getCitizens().get(0).findWorkForFood();
+        calculateFood();
 
         //TODO:
     }
@@ -36,7 +37,7 @@ public class PlayerCity extends City{
             tryAddingBorder(x, y - 1);
         }
 
-        if (y < owner.getMap().getMapSize()){
+        if (y < owner.getMap().getMapSize() - 1){
             tryAddingBorder(x, y + 1);
         }
 
@@ -61,7 +62,7 @@ public class PlayerCity extends City{
             if (x > 0){
                 tryAddingBorder(x - 1, y);
 
-                if (y < owner.getMap().getMapSize()) {
+                if (y < owner.getMap().getMapSize() - 1) {
                     tryAddingBorder(x - 1, y + 1);
                 }
             }
@@ -69,7 +70,7 @@ public class PlayerCity extends City{
             if (x < owner.getMap().getMapSize() - 1){
                 tryAddingBorder(x + 1, y);
 
-                if (y < owner.getMap().getMapSize()){
+                if (y < owner.getMap().getMapSize() - 1){
                     tryAddingBorder(x + 1, y + 1);
                 }
             }
@@ -122,7 +123,7 @@ public class PlayerCity extends City{
             goldIncreasePercentage *= 1 + (double) wonders.get(i).wonder.getGoldEffect() / 100;
         }
 
-        ArrayList<CityLand> workableLands = new ArrayList<>(super.getWorkableLands());
+        ArrayList<CityLand> workableLands = new ArrayList<>(super.getWorkableLandsWithoutCentralLand());
 
         for (int i = 0; i < workableLands.size(); i++){
             goldIncome += workableLands.get(i).getLandGold();
@@ -149,7 +150,7 @@ public class PlayerCity extends City{
             foodIncreasePercentage *= 1 + (double) wonders.get(i).wonder.getFoodEffect() / 100;
         }
 
-        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
+        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLandsWithoutCentralLand());
 
         for (int i = 0; i < workableLands.size(); i++){
             foodRemaining += workableLands.get(i).getLandFood();
@@ -182,7 +183,7 @@ public class PlayerCity extends City{
             productionIncreasePercentage *= 1 + (double) wonders.get(i).wonder.getProductionEffect() / 100;
         }
 
-        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
+        ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLandsWithoutCentralLand());
 
         for (int i = 0; i < workableLands.size(); i++){
             production += workableLands.get(i).getLandProduction();

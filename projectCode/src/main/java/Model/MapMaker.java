@@ -212,6 +212,7 @@ public class MapMaker {
                         DefaultCity newDefaultCity = new DefaultCity(new CityLand(map.getTerrainFromCoordinates(cityCoordinates))
                                 , NonPlayerColors.values()[map.getNumberOfDefaultCities()], DefaultCityNames.values()[map.getNumberOfDefaultCities()]);
                         map.addDefaultCity(newDefaultCity);
+                        newDefaultCity.addCityLand(giveBordersToDefaultCity(cityCoordinates, newDefaultCity.getColor().toString()));
 
                         if (map.getNumberOfDefaultCities() > maxCityNumber) {
                             return;
@@ -318,5 +319,73 @@ public class MapMaker {
         }
 
         return unavailableCoordinates;
+    }
+
+
+
+    private ArrayList<CityLand> giveBordersToDefaultCity(Coordinates coordinates, String color)
+    {
+        int x = coordinates.getX();
+        int y = coordinates.getY();
+        ArrayList<CityLand> cityLands = new ArrayList<>();
+
+        if (y > 0){
+            tryAddingBorder(x, y - 1, cityLands, color);
+        }
+
+        if (y < mapSize.size - 1){
+            tryAddingBorder(x, y + 1, cityLands, color);
+        }
+
+        if (x % 2 == 0){
+            if (x > 0){
+                tryAddingBorder(x - 1, y, cityLands, color);
+
+                if (y > 0) {
+                    tryAddingBorder(x - 1, y - 1, cityLands, color);
+                }
+            }
+
+            if (x < mapSize.size - 1){
+                tryAddingBorder(x + 1, y, cityLands, color);
+
+                if (y > 0){
+                    tryAddingBorder(x + 1, y - 1, cityLands, color);
+                }
+            }
+        }
+        else {
+            if (x > 0){
+                tryAddingBorder(x - 1, y, cityLands, color);
+
+                if (y < mapSize.size - 1) {
+                    tryAddingBorder(x - 1, y + 1, cityLands, color);
+                }
+            }
+
+            if (x < mapSize.size - 1){
+                tryAddingBorder(x + 1, y, cityLands, color);
+
+                if (y < mapSize.size - 1){
+                    tryAddingBorder(x + 1, y + 1, cityLands, color);
+                }
+            }
+        }
+
+        return cityLands;
+    }
+
+
+
+    private void tryAddingBorder(int x, int y, ArrayList<CityLand> lands, String color)
+    {
+        Coordinates coordinates = new Coordinates(x, y, 0);
+
+        if (map.getTerrainFromCoordinates(coordinates) != null && !map.getTerrainFromCoordinates(coordinates).getIsTerritory()){
+            Terrain terrain = map.getTerrainFromCoordinates(coordinates);
+            CityLand cityLand = new CityLand(terrain);
+            lands.add(cityLand);
+            terrain.setTerritory(true, color);
+        }
     }
 }

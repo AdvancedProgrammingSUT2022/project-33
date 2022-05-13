@@ -70,7 +70,7 @@ public class CityView {
 
         for (int i = 0; i < city.getCitizens().size(); i++){
             if (city.getCitizens().get(i).isWorking() && !city.getCitizens().get(i).isInside()){
-                System.out.print((i + 1) + "worker name: " + city.getCitizens().get(i).getCitizenName());
+                System.out.print((i + 1) + ") worker name: " + city.getCitizens().get(i).getCitizenName());
                 System.out.print(", land: coordinates: (" + city.getCitizens().get(i).getCoordinates().getX() + ", " +
                         city.getCitizens().get(i).getCoordinates().getY() + ")");
                 System.out.print(", food: " + city.getOwnedLandFromCoordinates(city.getCitizens().get(i).getCoordinates()).getLandFood());
@@ -84,7 +84,7 @@ public class CityView {
 
         for (int i = 0; i < city.getCitizens().size(); i++){
             if (city.getCitizens().get(i).isWorking() && city.getCitizens().get(i).isInside()){
-                System.out.print((i + 1) + "worker name: " + city.getCitizens().get(i).getCitizenName());
+                System.out.print((i + 1) + ") worker name: " + city.getCitizens().get(i).getCitizenName());
                 System.out.print(", building: " + city.getCitizens().get(i).getBuilding().getGameName());
                 System.out.print(", food: " + city.getCitizens().get(i).getBuilding().getFoodPerTurn());
                 System.out.print(", production: " + city.getCitizens().get(i).getBuilding().getProductionPerTurn());
@@ -99,7 +99,9 @@ public class CityView {
         System.out.println("free citizens: ");
 
         for (int i = 0; i < city.getCitizens().size(); i++){
-            System.out.println((i + 1) + "worker name: " + city.getCitizens().get(i).getCitizenName());
+            if (!city.getCitizens().get(i).isWorking()) {
+                System.out.println((i + 1) + ") worker name: " + city.getCitizens().get(i).getCitizenName());
+            }
         }
 
     }

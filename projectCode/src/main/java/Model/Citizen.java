@@ -29,16 +29,16 @@ public class Citizen {
 
 
 
-    private void findWorkForFood()
+    public void findWorkForFood()
     {
         int maxFood = 0;
         Coordinates bestCoordinates = city.getCoordinates();
 
-        for (int i = 0; i < city.getWorkableLands().size(); i++){
-            if (!city.isCitizenWorkingInLand(city.getWorkableLands().get(i).getTerrain().getCenterCoordinates())){
-                if (city.getWorkableLands().get(i).getLandFood() > maxFood){
-                    maxFood = city.getWorkableLands().get(i).getLandFood();
-                    bestCoordinates = city.getWorkableLands().get(i).getTerrain().getCenterCoordinates();
+        for (int i = 0; i < city.getWorkableLandsWithoutCentralLand().size(); i++){
+            if (!city.isCitizenWorkingInLand(city.getWorkableLandsWithoutCentralLand().get(i).getTerrain().getCenterCoordinates())){
+                if (city.getWorkableLandsWithoutCentralLand().get(i).getLandFood() > maxFood){
+                    maxFood = city.getWorkableLandsWithoutCentralLand().get(i).getLandFood();
+                    bestCoordinates = city.getWorkableLandsWithoutCentralLand().get(i).getTerrain().getCenterCoordinates();
                 }
             }
         }
@@ -73,16 +73,16 @@ public class Citizen {
 
 
 
-    private void findWorkForProduction()
+    public void findWorkForProduction()
     {
         int maxProduction = 0;
         Coordinates bestCoordinates = city.getCoordinates();
 
-        for (int i = 0; i < city.getWorkableLands().size(); i++){
-            if (!city.isCitizenWorkingInLand(city.getWorkableLands().get(i).getTerrain().getCenterCoordinates())){
-                if (city.getWorkableLands().get(i).getLandProduction() > maxProduction){
-                    maxProduction = city.getWorkableLands().get(i).getLandProduction();
-                    bestCoordinates = city.getWorkableLands().get(i).getTerrain().getCenterCoordinates();
+        for (int i = 0; i < city.getWorkableLandsWithoutCentralLand().size(); i++){
+            if (!city.isCitizenWorkingInLand(city.getWorkableLandsWithoutCentralLand().get(i).getTerrain().getCenterCoordinates())){
+                if (city.getWorkableLandsWithoutCentralLand().get(i).getLandProduction() > maxProduction){
+                    maxProduction = city.getWorkableLandsWithoutCentralLand().get(i).getLandProduction();
+                    bestCoordinates = city.getWorkableLandsWithoutCentralLand().get(i).getTerrain().getCenterCoordinates();
                 }
             }
         }
@@ -117,16 +117,16 @@ public class Citizen {
 
 
 
-    private void findWorkForGold()
+    public void findWorkForGold()
     {
         int maxGold = 0;
         Coordinates bestCoordinates = city.getCoordinates();
 
-        for (int i = 0; i < city.getWorkableLands().size(); i++){
-            if (!city.isCitizenWorkingInLand(city.getWorkableLands().get(i).getTerrain().getCenterCoordinates())){
-                if (city.getWorkableLands().get(i).getLandGold() > maxGold){
-                    maxGold = city.getWorkableLands().get(i).getLandGold();
-                    bestCoordinates = city.getWorkableLands().get(i).getTerrain().getCenterCoordinates();
+        for (int i = 0; i < city.getWorkableLandsWithoutCentralLand().size(); i++){
+            if (!city.isCitizenWorkingInLand(city.getWorkableLandsWithoutCentralLand().get(i).getTerrain().getCenterCoordinates())){
+                if (city.getWorkableLandsWithoutCentralLand().get(i).getLandGold() > maxGold){
+                    maxGold = city.getWorkableLandsWithoutCentralLand().get(i).getLandGold();
+                    bestCoordinates = city.getWorkableLandsWithoutCentralLand().get(i).getTerrain().getCenterCoordinates();
                 }
             }
         }
@@ -190,9 +190,9 @@ public class Citizen {
     
     private void findAnyWork()
     {
-        for (int i = 0; i < city.getWorkableLands().size(); i++){
-            if (!city.isCitizenWorkingInLand(city.getWorkableLands().get(i).getTerrain().getCenterCoordinates())){
-                coordinates = city.getWorkableLands().get(i).getTerrain().getCenterCoordinates();
+        for (int i = 0; i < city.getWorkableLandsWithoutCentralLand().size(); i++){
+            if (!city.isCitizenWorkingInLand(city.getWorkableLandsWithoutCentralLand().get(i).getTerrain().getCenterCoordinates())){
+                coordinates = city.getWorkableLandsWithoutCentralLand().get(i).getTerrain().getCenterCoordinates();
                 isWorking = true;
                 isInside = false;
                 return;
