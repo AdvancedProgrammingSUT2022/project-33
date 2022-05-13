@@ -101,5 +101,30 @@ public class CityView {
         }
 
     }
+
+
+
+    public void showMaximumCitizens()
+    {
+        System.out.println("city population is at its limit and can not be increased");
+    }
+
+
+
+    public void showNewCitizen(Citizen citizen)
+    {
+        System.out.println(citizen.getCitizenName() + "is now a new citizen of the city");
+
+        if (citizen.isWorking() && citizen.isInside()) {
+            System.out.println(citizen.getCitizenName() + "now is working in " + citizen.getBuilding().getGameName());
+        }
+        else if (citizen.isWorking() && !citizen.isInside()){
+            System.out.println(citizen.getCitizenName() + "now is working on the land with (" +
+                    citizen.getCoordinates().getX() + ", " + citizen.getCoordinates().getY() + ") coordinates");
+        }
+        else {
+            System.out.println(citizen.getCitizenName() + "is now working on anything right now");
+        }
+    }
 }
 

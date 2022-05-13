@@ -40,6 +40,9 @@ public class CityController {
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_CITIZENS)){
                 view.showCitizens(city);
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.ADD_CITIZEN_CHEAT)){
+                addCitizenCheat();
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu(city.getCityName());
             }
@@ -50,5 +53,18 @@ public class CityController {
                 view.showInvalidCommand();
             }
         }
+    }
+
+
+
+    private void addCitizenCheat()
+    {
+        if (city.getCitizens().size() >= 40){
+            view.showMaximumCitizens();
+            return;
+        }
+
+        city.addCitizenCheat();
+        view.showNewCitizen(city.getCitizens().get(city.getCitizens().size() - 1));
     }
 }

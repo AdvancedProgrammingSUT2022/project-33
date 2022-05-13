@@ -162,6 +162,7 @@ public class MatchingStrings {
     {
         public final static Pattern STATS = Pattern.compile("show stats");
         public final static Pattern SHOW_CITIZENS = Pattern.compile("show citizens");
+        public final static Pattern ADD_CITIZEN_CHEAT = Pattern.compile("");//TODO:
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern BACK = Pattern.compile("back");
     }

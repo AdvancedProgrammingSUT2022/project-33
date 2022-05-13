@@ -238,6 +238,14 @@ public class City {
 
 
 
+    public void addCitizenCheat()
+    {
+        Citizen citizen = new Citizen(this);
+        citizens.add(citizen);
+    }
+
+
+
     //getters
     public Coordinates getCoordinates() {
         return coordinates;
