@@ -143,16 +143,16 @@ public class MatchingStrings {
         public final static Pattern TASK_FLAG = Pattern.compile("( -(-?)(task|t))?");
         public final static Pattern LANDS = Pattern.compile(" -(-?)(lands|l)");
         public final static Pattern LANDS_FLAG = Pattern.compile("( -(-?)(lands|l))?");
-        public final static Pattern MANAGE_UNIT1 = Pattern.compile("manage unit -x \\d+ -y \\d+");
-        public final static Pattern MANAGE_UNIT2 = Pattern.compile("manage unit -y \\d+ -x \\d+");
-        public final static Pattern MANAGE_MILITARY_UNIT1 = Pattern.compile("manage military unit -y \\d+ -x \\d+");
-        public final static Pattern MANAGE_MILITARY_UNIT2 = Pattern.compile("manage military unit -x \\d+ -y \\d+");
+        public final static Pattern MANAGE_UNIT1 = Pattern.compile("manage unit -(-?)x \\d+ -(-?)y \\d+");
+        public final static Pattern MANAGE_UNIT2 = Pattern.compile("manage unit -(-?)y \\d+ -(-?)x \\d+");
+        public final static Pattern MANAGE_MILITARY_UNIT1 = Pattern.compile("manage military unit -(-?)y \\d+ -(-?)x \\d+");
+        public final static Pattern MANAGE_MILITARY_UNIT2 = Pattern.compile("manage military unit -(-?)x \\d+ -(-?)y \\d+");
         public final static Pattern MANAGE_CITY_NAME = Pattern.compile("manage city -(-?)(name|n) [a-zA-Z_0-9 ]+");
         public final static Pattern MANAGE_CITI_NAME_KNOWN_PART = Pattern.compile("manage city -(-?)(name|n) ");
-        public final static Pattern MANAGE_CITY1 = Pattern.compile("manage city -x \\d+ -y \\d+");
-        public final static Pattern MANAGE_CITY2 = Pattern.compile("manage city -y \\d+ -x \\d+");
-        public final static Pattern X_VALUE = Pattern.compile("-x \\d+");
-        public final static Pattern Y_VALUE = Pattern.compile("-y \\d+");
+        public final static Pattern MANAGE_CITY1 = Pattern.compile("manage city -(-?)x \\d+ -(-?)y \\d+");
+        public final static Pattern MANAGE_CITY2 = Pattern.compile("manage city -(-?)y \\d+ -(-?)x \\d+");
+        public final static Pattern X_VALUE = Pattern.compile("-(-?)x \\d+");
+        public final static Pattern Y_VALUE = Pattern.compile("-(-?)y \\d+");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
     }
 
@@ -163,6 +163,12 @@ public class MatchingStrings {
         public final static Pattern STATS = Pattern.compile("show stats");
         public final static Pattern SHOW_CITIZENS = Pattern.compile("show citizens");
         public final static Pattern ADD_CITIZEN_CHEAT = Pattern.compile("");//TODO:
+        public final static Pattern ASSIGN_WORK_BUILDING = Pattern.compile("assign work -(-?)(building|b)( \\S+)+");
+        public final static Pattern ASSIGN_WORK_LAND1 = Pattern.compile("assign work -(-?)x \\d+ -(-?)y \\d+");
+        public final static Pattern ASSIGN_WORK_LAND2 = Pattern.compile("assign work -(-?)y \\d+ -(-?)x \\d+");
+        public final static Pattern Building = Pattern.compile("-(-?)(building|b)( \\S+)+");
+        public final static Pattern X_VALUE = Pattern.compile("-(-?)x \\d+");
+        public final static Pattern Y_VALUE = Pattern.compile("-(-?)y \\d+");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern BACK = Pattern.compile("back");
     }

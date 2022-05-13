@@ -430,6 +430,43 @@ public class City {
 
 
 
+    public boolean isWorkerInBuilding(Building building)
+    {
+        for (int i = 0; i < citizens.size(); i++){
+            if (citizens.get(i).isWorking() && citizens.get(i).isInside() && citizens.get(i).getBuilding() == building){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+    public void fireWorkerFromBuilding(Building building)
+    {
+        for (int i = 0; i < citizens.size(); i++){
+            if (citizens.get(i).isWorking() && citizens.get(i).isInside() && citizens.get(i).getBuilding() == building){
+                citizens.get(i).setWorking(false);
+            }
+        }
+    }
+
+
+
+    public void assignWorkerToBuilding(Building building)
+    {
+        for (int i = 0; i < citizens.size(); i++){
+            if (!citizens.get(i).isWorking()){
+                citizens.get(i).setWorking(true);
+                citizens.get(i).setInside(true);
+                citizens.get(i).setBuilding(building);
+            }
+        }
+    }
+
+
+
     //setters
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;

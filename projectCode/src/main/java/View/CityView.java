@@ -1,5 +1,6 @@
 package View;
 
+import Model.Building;
 import Model.Citizen;
 import Model.PlayerCity;
 
@@ -125,6 +126,27 @@ public class CityView {
         else {
             System.out.println(citizen.getCitizenName() + "is now working on anything right now");
         }
+    }
+
+
+
+    public void showInvalidBuildingName(String buildingName)
+    {
+        System.out.println("no building with the name " + buildingName + " exist");
+    }
+
+
+
+    public void showWorkerIsInBuilding()
+    {
+        System.out.println("there is already a specialist working in this building.");
+    }
+
+
+
+    public void showWorkerIsAssignedToBuilding(Building building)
+    {
+        System.out.println("a new specialist is now working in " + building.getGameName());
     }
 }
 

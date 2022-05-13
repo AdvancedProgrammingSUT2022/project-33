@@ -237,4 +237,26 @@ public class Citizen {
     public String getCitizenName() {
         return citizenName;
     }
+
+
+
+    //setters
+    public void setWorking(boolean working) {
+        isWorking = working;
+    }
+
+
+    public void setInside(boolean inside) {
+        isInside = inside;
+    }
+
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+
+    public void setBuilding(Building building) {
+        this.building = building;
+    }
 }

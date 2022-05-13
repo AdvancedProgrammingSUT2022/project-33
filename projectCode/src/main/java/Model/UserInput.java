@@ -92,4 +92,19 @@ public class UserInput {
 
         finalPatterns.add(Pattern.compile(pattern));
     }
+
+
+
+    public static String getSpecificInputFromPatternWithOneSpace(String input, Pattern pattern)
+    {
+        String[] inputGroup = getMatchingStringGroupFromInput(input, pattern).split(" ");
+        String output = "";
+
+        for (int i = 1; i < inputGroup.length; i++){
+            output += " " +inputGroup[i];
+        }
+
+        output = output.substring(1);
+        return output;
+    }
 }
