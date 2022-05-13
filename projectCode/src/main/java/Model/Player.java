@@ -16,6 +16,7 @@ public class Player {
     private int researchProgress;
     private int researchPerTurn;
     private int happinessCheatBonus;
+    private int happinessBonus;
 
 
 
@@ -34,6 +35,7 @@ public class Player {
         this.isResearching = false;
         this.researchPerTurn = 0;
         this.happinessCheatBonus = 0;
+        this.happinessBonus = 0;
     }
 
 

@@ -37,10 +37,13 @@ public class CityController {
             if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.STATS)){
                 view.showCityStats(city);
             }
-            else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MENU)){
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_CITIZENS)){
+                view.showCitizens(city);
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu(city.getCityName());
             }
-            else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.BACK)){
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.BACK)){
                 return;
             }
             else {

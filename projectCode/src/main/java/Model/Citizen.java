@@ -1,6 +1,9 @@
 package Model;
 
+import java.util.Random;
+
 public class Citizen {
+    private String citizenName;
     private City city;
     private boolean isWorking;
     private boolean isInside;
@@ -17,6 +20,9 @@ public class Citizen {
         this.city = city;
         this.isInside = false;
         this.isWorking = false;
+
+        Random rand = new Random();
+        this.citizenName = CitizenNames.values()[rand.nextInt(CitizenNames.values().length)].name;
 
         findWorkForFood();
     }
@@ -225,5 +231,10 @@ public class Citizen {
 
     public Building getBuilding() {
         return building;
+    }
+
+
+    public String getCitizenName() {
+        return citizenName;
     }
 }

@@ -403,6 +403,24 @@ public class City {
     }
 
 
+    public ArrayList<Citizen> getCitizens() {
+        return citizens;
+    }
+
+
+
+    public CityLand getOwnedLandFromCoordinates(Coordinates coordinates)
+    {
+        for (int i = 0; i < landsOwned.size(); i++){
+            if (coordinates.equals(landsOwned.get(i).getTerrain().getCenterCoordinates())){
+                return landsOwned.get(i);
+            }
+        }
+
+        return null;
+    }
+
+
 
     //setters
     public void setCoordinates(Coordinates coordinates) {
@@ -473,4 +491,7 @@ public class City {
     public void setWorkingOnTask(boolean workingOnTask) {
         isWorkingOnTask = workingOnTask;
     }
+
+
+
 }
