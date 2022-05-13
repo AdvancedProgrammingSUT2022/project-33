@@ -45,7 +45,7 @@ public class CityController {
             }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.ASSIGN_WORK_LAND1) ||
                     UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.ASSIGN_WORK_LAND2)){
-                //TODO:
+                assignWorkerToLand(input);
             }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu(city.getCityName());
