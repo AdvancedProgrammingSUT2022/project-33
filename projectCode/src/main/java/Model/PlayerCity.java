@@ -113,8 +113,8 @@ public class PlayerCity extends City{
         double goldIncreasePercentage = 1;
 
         for (int i = 0; i < getBuildings().size(); i++){
-            goldIncome += getBuildings().get(i).building.getGoldPerTurn() - getBuildings().get(i).building.getMaintenance();
-            goldIncreasePercentage *= 1 + (double) getBuildings().get(i).building.getGoldEffect() / 100;
+            goldIncome += getBuildings().get(i).getGoldPerTurn() - getBuildings().get(i).getMaintenance();
+            goldIncreasePercentage *= 1 + (double) getBuildings().get(i).getGoldEffect() / 100;
         }
 
         for (int i = 0; i < wonders.size(); i++){
@@ -141,7 +141,7 @@ public class PlayerCity extends City{
         int foodIncreasePercentage = 1;
 
         for (int i = 0; i < getBuildings().size(); i++){
-            foodRemaining += getBuildings().get(i).building.getFoodPerTurn();
+            foodRemaining += getBuildings().get(i).getFoodPerTurn();
         }
 
         for (int i = 0; i < wonders.size(); i++){
@@ -174,7 +174,7 @@ public class PlayerCity extends City{
         int productionIncreasePercentage = 1;
 
         for (int i = 0; i < getBuildings().size(); i++){
-            production += getBuildings().get(i).building.getProductionPerTurn();
+            production += getBuildings().get(i).getProductionPerTurn();
         }
 
         for (int i = 0; i < wonders.size(); i++){
@@ -201,7 +201,7 @@ public class PlayerCity extends City{
         int happinessEffect = 1;
 
         for (int i = 0; i < getBuildings().size(); i++){
-            happiness += getBuildings().get(i).building.getHappinessPerTurn();
+            happiness += getBuildings().get(i).getHappinessPerTurn();
         }
 
         for (int i = 0; i < wonders.size(); i++){

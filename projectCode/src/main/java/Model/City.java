@@ -12,10 +12,11 @@ public class City {
     private int maxHealth;
     private boolean isUnitInTheCity;
     private int attackDamage;
-    private ArrayList<BuildingTypes> buildings;
+    private ArrayList<Building> buildings;
     private ArrayList<CityLand> landsOwned;
     private ArrayList<LuxuryResource> luxuryResources;
     private ArrayList<StrategicResource> strategicResources;
+    private ArrayList<Citizen> citizens;
     private int goldPerTurn;
     private boolean isCapital;
     private ArrayList<City> connectedCities;
@@ -49,6 +50,7 @@ public class City {
         foodUntilNewCitizen = 10;
         isCityStarving = false;
         connectedCities = new ArrayList<>();
+        this.citizens = new ArrayList<>();
 
         //TODO:
     }
@@ -82,8 +84,8 @@ public class City {
         double goldIncreasePercentage = 1;
 
         for (int i = 0; i < getBuildings().size(); i++){
-            goldIncome += getBuildings().get(i).building.getGoldPerTurn() - getBuildings().get(i).building.getMaintenance();
-            goldIncreasePercentage *= 1 + (double) getBuildings().get(i).building.getGoldEffect() / 100;
+            goldIncome += getBuildings().get(i).getGoldPerTurn() - getBuildings().get(i).getMaintenance();
+            goldIncreasePercentage *= 1 + (double) getBuildings().get(i).getGoldEffect() / 100;
         }
 
         ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
@@ -104,7 +106,7 @@ public class City {
         int foodRemaining = 0;
 
         for (int i = 0; i < getBuildings().size(); i++){
-            foodRemaining += getBuildings().get(i).building.getFoodPerTurn();
+            foodRemaining += getBuildings().get(i).getFoodPerTurn();
         }
 
         ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
@@ -129,7 +131,7 @@ public class City {
         int production  = 0;
 
         for (int i = 0; i < getBuildings().size(); i++){
-            production += getBuildings().get(i).building.getProductionPerTurn();
+            production += getBuildings().get(i).getProductionPerTurn();
         }
 
         ArrayList<CityLand> workableLands = new ArrayList<>(getWorkableLands());
@@ -148,7 +150,7 @@ public class City {
         int happiness  = 0;
 
         for (int i = 0; i < getBuildings().size(); i++){
-            happiness += getBuildings().get(i).building.getHappinessPerTurn();
+            happiness += getBuildings().get(i).getHappinessPerTurn();
         }
 
         happiness += luxuryResources.size();
@@ -281,7 +283,7 @@ public class City {
     }
 
 
-    public ArrayList<BuildingTypes> getBuildings() {
+    public ArrayList<Building> getBuildings() {
         return buildings;
     }
 
@@ -355,6 +357,31 @@ public class City {
     }
 
 
+    public boolean isCitizenWorkingInLand(Coordinates coordinates)
+    {
+        for (int i = 0; i < citizens.size(); i++){
+            if (citizens.get(i).isWorking() && !citizens.get(i).isInside() && citizens.get(i).getCoordinates().equals(coordinates)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+    public boolean isCitizenWorkingInBuilding(Building building)
+    {
+        for (int i = 0; i < citizens.size(); i++){
+            if (citizens.get(i).isWorking() && !citizens.get(i).isInside() && citizens.get(i).getBuilding() == building){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 
     //setters
     public void setCoordinates(Coordinates coordinates) {
@@ -399,11 +426,6 @@ public class City {
 
     public void setAttackDamage(int attackDamage) {
         this.attackDamage = attackDamage;
-    }
-
-
-    public void setBuildings(ArrayList<BuildingTypes> buildings) {
-        this.buildings = buildings;
     }
 
 

@@ -51,6 +51,30 @@ public class Building {
 
 
 
+    public Building (BuildingTypes building)
+    {
+        this.gameName = building.building.gameName;
+        this.cost = building.building.cost;
+        this.productionNeeded  = building.building.productionNeeded;
+        this.maintenance = building.building.maintenance;
+        this.foodPerTurn = building.building.foodPerTurn;
+        this.productionPerTurn = building.building.productionPerTurn;
+        this.happinessPerTurn = building.building.happinessPerTurn;
+        this.goldPerTurn = building.building.goldPerTurn;
+        this.goldEffect = building.building.goldEffect;
+        this.sciencePerTwoCitizen = building.building.sciencePerTwoCitizen;
+        this.scienceEffect = building.building.scienceEffect;
+        this.defenceEffect = building.building.defenceEffect;
+        this.unitsXpBonus = building.building.unitsXpBonus;
+        this.technologyNeeded = building.building.technologyNeeded;
+        this.RequiredBuildings = building.building.getRequiredBuildings();
+        this.needsRiver = building.building.needsRiver;
+        this.needsHorse = building.building.needsHorse;
+        this.era = building.building.era;
+    }
+
+
+
     //getters
     public String getGameName() {
         return gameName;
