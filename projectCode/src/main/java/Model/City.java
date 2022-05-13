@@ -20,12 +20,13 @@ public class City {
     private int goldPerTurn;
     private boolean isCapital;
     private ArrayList<City> connectedCities;
-    private boolean isWorking;
-    private Task task;
     private boolean isAnnexed;
     private int foodUntilNewCitizen;
     private boolean isCityStarving;
     private int turnsUntilACitizenDies;
+    private boolean isWorkingOnTask;
+    private String taskGameName;
+    private int taskNeededProduction;
 
 
 
@@ -43,7 +44,7 @@ public class City {
         this.landsOwned = new ArrayList<>();
         landsOwned.add(cityLand);
         cityLand.getTerrain().setTerritory(true, color);
-        this.isWorking = false;
+        this.isWorkingOnTask = false;
         this.maxHealth = 20;
         this.luxuryResources = new ArrayList<>();
         this.isAnnexed = false;
@@ -308,8 +309,8 @@ public class City {
     }
 
 
-    public boolean isWorking() {
-        return isWorking;
+    public boolean isWorkingOnTask() {
+        return isWorkingOnTask;
     }
 
 
@@ -352,8 +353,13 @@ public class City {
     }
 
 
-    public Task getTask() {
-        return task;
+    public String getTaskGameName() {
+        return taskGameName;
+    }
+
+
+    public int getTaskTurnsNeeded() {
+        return taskNeededProduction / production;
     }
 
 
@@ -379,6 +385,21 @@ public class City {
         }
 
         return false;
+    }
+
+
+    public int getFoodUntilNewCitizen() {
+        return foodUntilNewCitizen;
+    }
+
+
+    public boolean isCityStarving() {
+        return isCityStarving;
+    }
+
+
+    public int getTurnsUntilACitizenDies() {
+        return turnsUntilACitizenDies;
     }
 
 
@@ -449,7 +470,7 @@ public class City {
     }
 
 
-    public void setWorking(boolean working) {
-        isWorking = working;
+    public void setWorkingOnTask(boolean workingOnTask) {
+        isWorkingOnTask = workingOnTask;
     }
 }

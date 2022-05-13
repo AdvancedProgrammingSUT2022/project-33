@@ -560,7 +560,7 @@ public class MiniMapView {
             }
 
             if (taskFlag){
-                if (cities.get(i).isWorking()){
+                if (cities.get(i).isWorkingOnTask()){
                     System.out.print(", current task: " + cities.get(i).getTask().getGameName() + " turns remaining: " + cities.get(i).getTask().getTurnsRemaining());
                 }
                 else {
