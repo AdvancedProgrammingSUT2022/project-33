@@ -117,7 +117,7 @@ public enum BuildingTypes {
             Technologies.ELECTRICITY, BuildingTypes.BANK, false, false, Eras.INDUSTRIAL);
 
 
-    final Building building;
+    public final Building building;
 
     BuildingTypes(String gameName, int cost, int productionNeeded, int maintenance, int foodPerTurn, int productionPerTurn,
                   int happinessPerTurn, int goldPerTurn, int goldEffect, int sciencePerTwoCitizen, int scienceEffect, int defenceEffect, int unitsXpBonus,

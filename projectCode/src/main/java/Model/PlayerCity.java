@@ -304,6 +304,19 @@ public class PlayerCity extends City{
 
 
 
+    public boolean doesContainBuildingType(BuildingTypes buildingType)
+    {
+        for (int i = 0; i < getBuildings().size(); i++){
+            if (getBuildings().get(i).getGameName().equals(buildingType.building.getGameName())){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
     //setters:
     public void setOwner(Player owner) {
         this.owner = owner;
@@ -329,5 +342,36 @@ public class PlayerCity extends City{
 
     public String getCityName() {
         return cityName;
+    }
+
+
+    public ArrayList<Building> getAvailableBuildings()
+    {
+        ArrayList<Building> availableBuildings = new ArrayList<>();
+
+        for (int i = 0; i < BuildingTypes.values().length; i++){
+            if (owner.getTechnologies().contains(BuildingTypes.values()[i].building.getTechnologyNeeded()) &&
+                    doesContainBuildingType(BuildingTypes.values()[i])){
+                availableBuildings.add(BuildingTypes.values()[i].building);
+            }
+        }
+
+        return availableBuildings;
+    }
+
+
+
+    public ArrayList<Building> getUnavailableBuildings()
+    {
+        ArrayList<Building> unavailableBuildings = new ArrayList<>();
+
+        for (int i = 0; i < BuildingTypes.values().length; i++){
+            if (owner.getTechnologies().contains(BuildingTypes.values()[i].building.getTechnologyNeeded()) &&
+                    !doesContainBuildingType(BuildingTypes.values()[i])){
+                unavailableBuildings.add(BuildingTypes.values()[i].building);
+            }
+        }
+
+        return unavailableBuildings;
     }
 }

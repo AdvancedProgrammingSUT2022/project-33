@@ -1,9 +1,8 @@
 package View;
 
-import Model.Building;
-import Model.Citizen;
-import Model.Coordinates;
-import Model.PlayerCity;
+import Model.*;
+
+import java.util.ArrayList;
 
 public class CityView {
 
@@ -32,7 +31,13 @@ public class CityView {
         }
         else {
             System.out.println("food per turn: " + city.getFood());
-            System.out.println("turns until new citizen is born: " + city.getFoodUntilNewCitizen() / city.getFood());
+
+            if (city.getFood() != 0) {
+                System.out.println("turns until new citizen is born: " + city.getFoodUntilNewCitizen() / city.getFood());
+            }
+            else {
+                System.out.println("there is not enough food for population to grow");
+            }
         }
 
         System.out.println("production per turn: " + city.getProduction());
@@ -185,6 +190,152 @@ public class CityView {
     public void showNoWorker()
     {
         System.out.println("there is no citizen working here");
+    }
+
+
+
+    public void showBuildings(PlayerCity city, boolean builtFlag, boolean availableFlag, boolean unavailableFlag)
+    {
+        if (!builtFlag && !availableFlag && !unavailableFlag){
+            showBuiltBuildings(city);
+            showAvailableBuildings(city);
+            showUnavailableBuildings(city);
+            return;
+        }
+
+        if (builtFlag){
+            showBuiltBuildings(city);
+        }
+
+        if (availableFlag){
+            showAvailableBuildings(city);
+        }
+
+        if (unavailableFlag){
+            showUnavailableBuildings(city);
+        }
+    }
+
+
+
+    private void showBuiltBuildings(PlayerCity city)
+    {
+        System.out.println("city buildings: ");
+
+        for (int i = 0; i < city.getBuildings().size(); i++){
+            System.out.print((i + 1) + ") " + city.getBuildings().get(i).getGameName() + ":");
+
+            if (city.getBuildings().get(i).getFoodPerTurn() != 0) {
+                System.out.print(", food: " + city.getBuildings().get(i).getFoodPerTurn());
+            }
+
+            if (city.getBuildings().get(i).getProductionPerTurn() != 0) {
+                System.out.print(", production: " + city.getBuildings().get(i).getProductionPerTurn());
+            }
+
+            if (city.getBuildings().get(i).getGoldPerTurn() != 0) {
+                System.out.print(", gold per turn: " + city.getBuildings().get(i).getGoldPerTurn());
+            }
+
+            if (city.getBuildings().get(i).getGoldEffect() != 0) {
+                System.out.print(", gold effect: " + city.getBuildings().get(i).getGoldEffect() + "%");
+            }
+
+            if (city.getBuildings().get(i).getSciencePerTwoCitizen() != 0) {
+                System.out.print(", science: " + city.getBuildings().get(i).getSciencePerTwoCitizen());
+            }
+
+            if (city.getBuildings().get(i).getScienceEffect() != 0) {
+                System.out.print(", science effect: " + city.getBuildings().get(i).getFoodPerTurn() + "%");
+            }
+
+            if (city.getBuildings().get(i).getDefenceEffect() != 0) {
+                System.out.print(", defence effect: " + city.getBuildings().get(i).getDefenceEffect() + "%");
+            }
+
+            if (city.getBuildings().get(i).getUnitsXpBonus() != 0) {
+                System.out.print(", xp bonus: " + city.getBuildings().get(i).getUnitsXpBonus());
+            }
+
+            System.out.println(", era: " + city.getBuildings().get(i).getEra());
+        }
+    }
+
+
+
+    private void showAvailableBuildings(PlayerCity city)
+    {
+        System.out.println("available buildings to build in city: ");
+
+        for (int i = 0; i < city.getAvailableBuildings().size(); i++){
+            System.out.print((i + 1) + ") " + city.getAvailableBuildings().get(i).getGameName());
+
+            printBuilding(city.getAvailableBuildings().get(i));
+
+            System.out.print(", cost: " + city.getAvailableBuildings().get(i).getCost());
+            System.out.print(", turns needed: " + city.getAvailableBuildings().get(i).getProductionNeeded() / city.getProduction());
+
+            System.out.println(", era: " + city.getAvailableBuildings().get(i).getEra());
+        }
+    }
+
+
+
+    private void showUnavailableBuildings(PlayerCity city)
+    {
+        System.out.println("unavailable buildings: ");
+
+        for (int i = 0; i < city.getUnavailableBuildings().size(); i++){
+            System.out.print((i + 1) + ") " + city.getUnavailableBuildings().get(i).getGameName());
+
+            if (city.getUnavailableBuildings().get(i).getRequiredBuildings() != null) {
+                System.out.print(", building needed: " + city.getUnavailableBuildings().get(i).getRequiredBuildings().building.getGameName());
+            }
+            else {
+                System.out.print("does not need any building");
+            }
+
+            System.out.print(", cost: " + city.getUnavailableBuildings().get(i).getCost());
+            System.out.print(", turns needed: " + city.getUnavailableBuildings().get(i).getProductionNeeded() / city.getProduction());
+            System.out.println(", era: " + city.getUnavailableBuildings().get(i).getEra());
+        }
+    }
+
+
+
+    private void printBuilding(Building building)
+    {
+        if (building.getFoodPerTurn() != 0) {
+            System.out.print(", food: " + building.getFoodPerTurn());
+        }
+
+        if (building.getProductionPerTurn() != 0) {
+            System.out.print(", production: " + building.getProductionPerTurn());
+        }
+
+        if (building.getGoldPerTurn() != 0) {
+            System.out.print(", gold per turn: " + building.getGoldPerTurn());
+        }
+
+        if (building.getGoldEffect() != 0) {
+            System.out.print(", gold effect: " + building.getGoldEffect() + "%");
+        }
+
+        if (building.getSciencePerTwoCitizen() != 0) {
+            System.out.print(", science: " + building.getSciencePerTwoCitizen());
+        }
+
+        if (building.getScienceEffect() != 0) {
+            System.out.print(", science effect: " + building.getFoodPerTurn() + "%");
+        }
+
+        if (building.getDefenceEffect() != 0) {
+            System.out.print(", defence effect: " + building.getDefenceEffect() + "%");
+        }
+
+        if (building.getUnitsXpBonus() != 0) {
+            System.out.print(", xp bonus: " + building.getUnitsXpBonus());
+        }
     }
 }
 

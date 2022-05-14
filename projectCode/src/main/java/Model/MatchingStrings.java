@@ -172,6 +172,17 @@ public class MatchingStrings {
         public final static Pattern FIRE_CITIZEN_BUILDING = Pattern.compile("fire citizen -(-?)(building|b)( \\S+)+");
         public final static Pattern FIRE_CITIZEN_LAND1 = Pattern.compile("fire citizen -(-?)x \\d+ -(-?)y \\d+");
         public final static Pattern FIRE_CITIZEN_LAND2 = Pattern.compile("fire citizen -(-?)y \\d+ -(-?)x \\d+");
+        public final static Pattern SHOW_BUILDINGS = Pattern.compile("show buildings");
+        public final static Pattern BUILT_BUILDINGS_FLAG = Pattern.compile("( -(-?)(built|b))?");
+        public final static Pattern BUILT_BUILDINGS = Pattern.compile(" -(-?)(built|b)");
+        public final static Pattern AVAILABLE_BUILDINGS_FLAG = Pattern.compile("( -(-?)(available|a))?");
+        public final static Pattern AVAILABLE_BUILDINGS = Pattern.compile(" -(-?)(available|a)");
+        public final static Pattern UNAVAILABLE_BUILDINGS = Pattern.compile(" -(-?)(unavailable|u)");
+        public final static Pattern UNAVAILABLE_BUILDINGS_FLAG = Pattern.compile("( -(-?)(unavailable|u))?");
+        public final static Pattern SHOW_WONDERS = Pattern.compile("show wonders");
+        public final static Pattern SHOW_LANDS = Pattern.compile("show lands");
+        public final static Pattern START_TASK_UNIT = Pattern.compile("make( \\S+)+");
+        public final static Pattern START_TASK_BUILDING = Pattern.compile("build( \\S+)+");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern BACK = Pattern.compile("back");
     }
