@@ -454,5 +454,37 @@ public class CityView {
             System.out.print(", happiness: " + wonder.wonder.getHappinessEffect());
         }
     }
+
+
+
+    public void showLands(PlayerCity city)
+    {
+        System.out.println("city lands: ");
+
+        for (int i = 0; i < city.getLandsOwned().size(); i++){
+            System.out.print((i + 1) + ") coordinates: " + city.getLandsOwned().get(i).getTerrain().getCenterCoordinates().toString());
+
+            System.out.print(", land type: " + city.getLandsOwned().get(i).getTerrain().getType());
+
+            if (city.getLandsOwned().get(i).getTerrain().isHasProperty()){
+                System.out.print(", land property: " + city.getLandsOwned().get(i).getTerrain().getProperty().getType());
+            }
+
+            if (city.getLandsOwned().get(i).getTerrain().isHasResource()){
+                System.out.print(", resource: " + city.getLandsOwned().get(i).getTerrain().getResource().getGameName());
+            }
+
+            System.out.print(", food: " + city.getLandsOwned().get(i).getLandFood());
+            System.out.print(", production: " + city.getLandsOwned().get(i).getLandProduction());
+            System.out.print(", gold: " + city.getLandsOwned().get(i).getLandGold());
+
+            if (city.getLandsOwned().get(i).getImprovement() != null) {
+                System.out.print(", improvement: " + city.getLandsOwned().get(i).getImprovement());
+            }
+            else {
+                System.out.println(", improvement: this land does not have any improvement");
+            }
+        }
+    }
 }
 

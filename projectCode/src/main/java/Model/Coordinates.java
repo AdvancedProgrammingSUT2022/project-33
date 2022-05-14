@@ -50,4 +50,11 @@ public class Coordinates {
     public int getZ() {
         return z;
     }
+
+
+
+    public String toString()
+    {
+        return "(" + x + ", " + y + ")";
+    }
 }
