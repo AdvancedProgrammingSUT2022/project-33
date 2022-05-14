@@ -274,6 +274,17 @@ public class City {
 
 
 
+    public void fireWorkerFromLand(Coordinates coordinates)
+    {
+        for (int i = 0; i < citizens.size(); i++){
+            if (citizens.get(i).isWorking() && !citizens.get(i).isInside() && citizens.get(i).getCoordinates().equals(coordinates)){
+                citizens.get(i).setWorking(false);
+            }
+        }
+    }
+
+
+
     public void assignWorkerToBuilding(Building building)
     {
         for (int i = 0; i < citizens.size(); i++){

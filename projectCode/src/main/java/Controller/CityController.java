@@ -47,6 +47,13 @@ public class CityController {
                     UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.ASSIGN_WORK_LAND2)){
                 assignWorkerToLand(input);
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.FIRE_CITIZEN_BUILDING)){
+                fireWorkerFromBuilding(input);
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.FIRE_CITIZEN_LAND1) ||
+                    UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.FIRE_CITIZEN_LAND2)){
+                fireWorkerFromLand(input);
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu(city.getCityName());
             }
@@ -128,8 +135,57 @@ public class CityController {
 
 
 
-    private boolean getConfirmationForFiringWorkerFromBuilding()
+    private void fireWorkerFromBuilding(String input)
     {
+        String workBuilding = UserInput.getSpecificInputFromPatternWithOneSpace(input, MatchingStrings.CityControllerStrings.Building);
+
+        for (int i = 0; i < city.getBuildings().size(); i++){
+            if (city.getBuildings().get(i).getGameName().equalsIgnoreCase(workBuilding)){
+                if (city.isWorkerInBuilding(city.getBuildings().get(i)) && getConfirmationForFiringWorker()){
+                    city.fireWorkerFromBuilding(city.getBuildings().get(i));
+                }
+                else {
+                    view.showNoWorker();
+                }
+
+                return;
+            }
+        }
+
+        view.showInvalidBuildingName(workBuilding);
+    }
+
+
+
+    private void fireWorkerFromLand(String input)
+    {
+        int xValue = Integer.parseInt(UserInput.getMatchingStringGroupFromInput(input, MatchingStrings.CityControllerStrings.X_VALUE).split(" ")[1]);
+        int yValue = Integer.parseInt(UserInput.getMatchingStringGroupFromInput(input, MatchingStrings.CityControllerStrings.Y_VALUE).split(" ")[1]);
+
+        Coordinates coordinates = new Coordinates(xValue, yValue, 0);
+
+        for (int i = 0; i < city.getWorkableLandsWithoutCentralLand().size(); i++){
+            if (city.getWorkableLandsWithoutCentralLand().get(i).getTerrain().getCenterCoordinates().equals(coordinates)){
+                if (city.isWorkerInLand(coordinates) && getConfirmationForFiringWorker()){
+                    city.fireWorkerFromLand(coordinates);
+                }
+                else {
+                    view.showNoWorker();
+
+                }
+
+                return;
+            }
+        }
+
+    }
+
+
+
+    private boolean getConfirmationForFiringWorker()
+    {
+        view.showConfirmationForFiringCitizen();
+
         while (true){
             String input = UserInput.getInput();
             input = UserInput.removeSpaces(input);
@@ -145,8 +201,4 @@ public class CityController {
             }
         }
     }
-
-
-
-
 }

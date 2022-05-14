@@ -172,5 +172,19 @@ public class CityView {
     {
         System.out.println("there is now available citizen to do the job right now");
     }
+
+
+
+    public void showConfirmationForFiringCitizen()
+    {
+        System.out.println("are you sure you want to fire this citizen?");
+    }
+
+
+
+    public void showNoWorker()
+    {
+        System.out.println("there is no citizen working here");
+    }
 }
 

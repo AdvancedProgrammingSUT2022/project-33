@@ -169,6 +169,9 @@ public class MatchingStrings {
         public final static Pattern Building = Pattern.compile("-(-?)(building|b)( \\S+)+");
         public final static Pattern X_VALUE = Pattern.compile("-(-?)x \\d+");
         public final static Pattern Y_VALUE = Pattern.compile("-(-?)y \\d+");
+        public final static Pattern FIRE_CITIZEN_BUILDING = Pattern.compile("fire citizen -(-?)(building|b)( \\S+)+");
+        public final static Pattern FIRE_CITIZEN_LAND1 = Pattern.compile("fire citizen -(-?)x \\d+ -(-?)y \\d+");
+        public final static Pattern FIRE_CITIZEN_LAND2 = Pattern.compile("fire citizen -(-?)y \\d+ -(-?)x \\d+");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern BACK = Pattern.compile("back");
     }
