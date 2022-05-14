@@ -175,10 +175,10 @@ public class MatchingStrings {
         public final static Pattern SHOW_BUILDINGS = Pattern.compile("show buildings");
         public final static Pattern BUILT_BUILDINGS_FLAG = Pattern.compile("( -(-?)(built|b))?");
         public final static Pattern BUILT_BUILDINGS = Pattern.compile(" -(-?)(built|b)");
-        public final static Pattern AVAILABLE_BUILDINGS_FLAG = Pattern.compile("( -(-?)(available|a))?");
-        public final static Pattern AVAILABLE_BUILDINGS = Pattern.compile(" -(-?)(available|a)");
-        public final static Pattern UNAVAILABLE_BUILDINGS = Pattern.compile(" -(-?)(unavailable|u)");
-        public final static Pattern UNAVAILABLE_BUILDINGS_FLAG = Pattern.compile("( -(-?)(unavailable|u))?");
+        public final static Pattern AVAILABLE_FLAG = Pattern.compile("( -(-?)(available|a))?");
+        public final static Pattern AVAILABLE = Pattern.compile(" -(-?)(available|a)");
+        public final static Pattern UNAVAILABLE = Pattern.compile(" -(-?)(unavailable|u)");
+        public final static Pattern UNAVAILABLE_FLAG = Pattern.compile("( -(-?)(unavailable|u))?");
         public final static Pattern SHOW_WONDERS = Pattern.compile("show wonders");
         public final static Pattern SHOW_LANDS = Pattern.compile("show lands");
         public final static Pattern START_TASK_UNIT = Pattern.compile("make( \\S+)+");

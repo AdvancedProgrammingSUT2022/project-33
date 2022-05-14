@@ -5,7 +5,6 @@ import View.CityView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.regex.Pattern;
 
 
 public class CityController {
@@ -60,8 +59,12 @@ public class CityController {
             }
             else if (UserInput.doesMatchMultipleRegex(input, MatchingStrings.CityControllerStrings.SHOW_BUILDINGS.toString(),
                     new ArrayList<>(Arrays.asList(MatchingStrings.CityControllerStrings.BUILT_BUILDINGS_FLAG,
-                            MatchingStrings.CityControllerStrings.AVAILABLE_BUILDINGS_FLAG, MatchingStrings.CityControllerStrings.UNAVAILABLE_BUILDINGS_FLAG)))){
+                            MatchingStrings.CityControllerStrings.AVAILABLE_FLAG, MatchingStrings.CityControllerStrings.UNAVAILABLE_FLAG)))){
                 showBuildings(input);
+            }
+            else if (UserInput.doesMatchMultipleRegex(input, MatchingStrings.CityControllerStrings.SHOW_WONDERS.toString(),
+                    new ArrayList<>(Arrays.asList(MatchingStrings.CityControllerStrings.AVAILABLE_FLAG, MatchingStrings.CityControllerStrings.BUILT_BUILDINGS)))){
+                showWonders(input);
             }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu(city.getCityName());
@@ -216,9 +219,19 @@ public class CityController {
     private void showBuildings(String input)
     {
         boolean builtFlag = MatchingStrings.CityControllerStrings.BUILT_BUILDINGS.matcher(input).find();
-        boolean availableFlag = MatchingStrings.CityControllerStrings.AVAILABLE_BUILDINGS.matcher(input).find();
-        boolean unavailableFlag = MatchingStrings.CityControllerStrings.UNAVAILABLE_BUILDINGS.matcher(input).find();
+        boolean availableFlag = MatchingStrings.CityControllerStrings.AVAILABLE.matcher(input).find();
+        boolean unavailableFlag = MatchingStrings.CityControllerStrings.UNAVAILABLE.matcher(input).find();
 
         view.showBuildings(city, builtFlag, availableFlag, unavailableFlag);
+    }
+
+
+
+    private void showWonders(String input)
+    {
+        boolean builtFlag = MatchingStrings.CityControllerStrings.BUILT_BUILDINGS.matcher(input).find();
+        boolean availableFlag = MatchingStrings.CityControllerStrings.AVAILABLE.matcher(input).find();
+
+        view.showWonders(city, builtFlag, availableFlag);
     }
 }

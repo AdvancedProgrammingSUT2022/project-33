@@ -1,6 +1,7 @@
 package Model;
 
 public class Wonder {
+    private String gameName;
     private int goldPerTurn;
     private int happinessPerTurn;
     private int productionPerTurn;
@@ -10,6 +11,8 @@ public class Wonder {
     private int productionEffect;
     private int foodEffect;
     private int productionNeeded;
+    private Technologies technologyNeeded;
+    private boolean isfree;
 
     //TODO:
 
@@ -18,9 +21,10 @@ public class Wonder {
 
 
     ////methods////
-    public Wonder(int goldPerTurn, int happinessPerTurn, int productionPerTurn, int foodPerTurn, int goldEffect,
-                  int happinessEffect, int productionEffect, int foodEffect, int productionNeeded)
+    public Wonder(String gameName, int goldPerTurn, int happinessPerTurn, int productionPerTurn, int foodPerTurn, int goldEffect,
+                  int happinessEffect, int productionEffect, int foodEffect, int productionNeeded, Technologies technologyNeeded)
     {
+        this.gameName = gameName;
         this.goldPerTurn = goldPerTurn;
         this.happinessPerTurn = happinessPerTurn;
         this.productionPerTurn = productionPerTurn;
@@ -30,6 +34,8 @@ public class Wonder {
         this.productionEffect = productionEffect;
         this.foodEffect = foodEffect;
         this.productionNeeded = productionNeeded;
+        this.technologyNeeded = technologyNeeded;
+        isfree = true;
     }
 
 
@@ -77,5 +83,20 @@ public class Wonder {
 
     public int getFoodEffect() {
         return foodEffect;
+    }
+
+
+    public String getGameName() {
+        return gameName;
+    }
+
+
+    public Technologies getTechnologyNeeded() {
+        return technologyNeeded;
+    }
+
+
+    public boolean isIsfree() {
+        return isfree;
     }
 }

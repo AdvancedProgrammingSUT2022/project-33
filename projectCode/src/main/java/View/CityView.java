@@ -2,8 +2,6 @@ package View;
 
 import Model.*;
 
-import java.util.ArrayList;
-
 public class CityView {
 
 
@@ -270,10 +268,15 @@ public class CityView {
         for (int i = 0; i < city.getAvailableBuildings().size(); i++){
             System.out.print((i + 1) + ") " + city.getAvailableBuildings().get(i).getGameName());
 
-            printBuilding(city.getAvailableBuildings().get(i));
+            showBuilding(city.getAvailableBuildings().get(i));
 
             System.out.print(", cost: " + city.getAvailableBuildings().get(i).getCost());
-            System.out.print(", turns needed: " + city.getAvailableBuildings().get(i).getProductionNeeded() / city.getProduction());
+            if (city.getProduction() != 0) {
+                System.out.print(", turns needed: " + city.getAvailableBuildings().get(i).getProductionNeeded() / city.getProduction());
+            }
+            else {
+                System.out.println("there is not enough production in the city to build this building");
+            }
 
             System.out.println(", era: " + city.getAvailableBuildings().get(i).getEra());
         }
@@ -296,14 +299,20 @@ public class CityView {
             }
 
             System.out.print(", cost: " + city.getUnavailableBuildings().get(i).getCost());
-            System.out.print(", turns needed: " + city.getUnavailableBuildings().get(i).getProductionNeeded() / city.getProduction());
+
+            if (city.getProduction() != 0) {
+                System.out.print(", turns needed: " + city.getUnavailableBuildings().get(i).getProductionNeeded() / city.getProduction());
+            }
+            else {
+                System.out.println("there is not enough production in the city to build this building");
+            }
             System.out.println(", era: " + city.getUnavailableBuildings().get(i).getEra());
         }
     }
 
 
 
-    private void printBuilding(Building building)
+    private void showBuilding(Building building)
     {
         if (building.getFoodPerTurn() != 0) {
             System.out.print(", food: " + building.getFoodPerTurn());
@@ -335,6 +344,114 @@ public class CityView {
 
         if (building.getUnitsXpBonus() != 0) {
             System.out.print(", xp bonus: " + building.getUnitsXpBonus());
+        }
+    }
+
+
+
+    public void showWonders(PlayerCity city, boolean buildFlag, boolean availableFlag)
+    {
+        if (buildFlag) {
+            System.out.println("city wonders: ");
+
+            if (city.getWonders().size() == 0) {
+                System.out.println("there is no wonder in this city");
+                return;
+            }
+
+            for (int i = 0; i < city.getWonders().size(); i++) {
+                System.out.print((i + 1) + ") " + city.getWonders().get(i).wonder.getGameName());
+
+                showWonder(city.getWonders().get(i));
+                System.out.println();
+            }
+        }
+
+        if (availableFlag) {
+            System.out.println("available wonders: ");
+
+            for (int i = 0; i < Wonders.values().length; i++) {
+                if (Wonders.values()[i].wonder.isIsfree() && city.getOwner().getTechnologies().contains(Wonders.values()[i].wonder.getTechnologyNeeded())) {
+                    System.out.print((i + 1) + ") " + Wonders.values()[i].wonder.getGameName());
+
+                    showWonder(Wonders.values()[i]);
+
+                    if (city.getProduction() != 0) {
+                        System.out.println("turns needed: " + Wonders.values()[i].wonder.getProductionNeeded() / city.getProduction());
+                    } else {
+                        System.out.println("there is not enough production to build this wonder right now");
+                    }
+                }
+            }
+        }
+
+        if (!availableFlag && !buildFlag){
+            System.out.println("city wonders: ");
+
+            if (city.getWonders().size() == 0) {
+                System.out.println("there is no wonder in this city");
+                return;
+            }
+
+            for (int i = 0; i < city.getWonders().size(); i++) {
+                System.out.print((i + 1) + ") " + city.getWonders().get(i).wonder.getGameName());
+
+                showWonder(city.getWonders().get(i));
+                System.out.println();
+            }
+
+            System.out.println("available wonders: ");
+
+            for (int i = 0; i < Wonders.values().length; i++) {
+                if (Wonders.values()[i].wonder.isIsfree() && city.getOwner().getTechnologies().contains(Wonders.values()[i].wonder.getTechnologyNeeded())) {
+                    System.out.print((i + 1) + ") " + Wonders.values()[i].wonder.getGameName());
+
+                    showWonder(Wonders.values()[i]);
+
+                    if (city.getProduction() != 0) {
+                        System.out.println("turns needed: " + Wonders.values()[i].wonder.getProductionNeeded() / city.getProduction());
+                    } else {
+                        System.out.println("there is not enough production to build this wonder right now");
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    private void showWonder(Wonders wonder)
+    {
+        if (wonder.wonder.getFoodPerTurn() != 0){
+            System.out.print(", food: " + wonder.wonder.getFoodPerTurn());
+        }
+
+        if (wonder.wonder.getFoodEffect() != 0){
+            System.out.print(", food effect: " + wonder.wonder.getFoodEffect());
+        }
+
+        if (wonder.wonder.getProductionPerTurn() != 0){
+            System.out.print(", production: " + wonder.wonder.getProductionPerTurn());
+        }
+
+        if (wonder.wonder.getProductionEffect() != 0){
+            System.out.print(", production effect: " + wonder.wonder.getProductionEffect());
+        }
+
+        if (wonder.wonder.getGoldPerTurn() != 0){
+            System.out.print(", gold: " + wonder.wonder.getGoldPerTurn());
+        }
+
+        if (wonder.wonder.getGoldEffect() != 0){
+            System.out.print(", gold effect: " + wonder.wonder.getGoldEffect());
+        }
+
+        if (wonder.wonder.getHappinessPerTurn() != 0){
+            System.out.print(", happiness: " + wonder.wonder.getHappinessPerTurn());
+        }
+
+        if (wonder.wonder.getHappinessEffect() != 0){
+            System.out.print(", happiness: " + wonder.wonder.getHappinessEffect());
         }
     }
 }
