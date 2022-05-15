@@ -87,6 +87,9 @@ public class CityController {
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.PRODUCTION_FOCUS)){
                 focusProduction();
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.TASK_FINISHING_CHEAT)){
+                finishTaskCheat();
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu(city.getCityName());
             }
@@ -259,6 +262,11 @@ public class CityController {
             return;
         }
 
+        if (city.isOhHold() && !getTaskConfirmationToRemoveOnHoldUnit()){
+            return;
+        }
+
+        city.setOhHold(false);
         city.setTask(task);
     }
 
@@ -286,6 +294,10 @@ public class CityController {
             return;
         }
 
+        if (city.isOhHold() && !getTaskConfirmationToRemoveOnHoldUnit()){
+            return;
+        }
+
         city.setTask(task);
     }
 
@@ -309,6 +321,10 @@ public class CityController {
             return;
         }
 
+        if (city.isOhHold() && !getTaskConfirmationToRemoveOnHoldUnit()){
+            return;
+        }
+
         city.setTask(task);
     }
 
@@ -317,6 +333,15 @@ public class CityController {
     private boolean getTaskConfirmation()
     {
         view.showTaskConfirmation(city.getTask().getGameName(), city.getTask().getProductionNeeded(), city.getProduction());
+
+        return confirmation();
+    }
+
+
+
+    private boolean getTaskConfirmationToRemoveOnHoldUnit()
+    {
+        view.showUnitOnHoldConfirmation(city.getTask().getGameName());
 
         return confirmation();
     }
@@ -364,4 +389,18 @@ public class CityController {
         city.setFocusProduction();
         view.showProductionFocus(city);
     }
+
+
+
+    private void finishTaskCheat()
+    {
+        if (!city.isWorkingOnTask()){
+            view.showNoTaskForFinishingCheat();
+            return;
+        }
+
+        city.finishTask();
+    view.showTaskFinished(city.getTask().getGameName());
+    }
+
 }

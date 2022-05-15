@@ -12,7 +12,7 @@ public class Wonder {
     private int foodEffect;
     private int productionNeeded;
     private Technologies technologyNeeded;
-    private boolean isfree;
+    private boolean isFree;
 
     //TODO:
 
@@ -35,7 +35,7 @@ public class Wonder {
         this.foodEffect = foodEffect;
         this.productionNeeded = productionNeeded;
         this.technologyNeeded = technologyNeeded;
-        isfree = true;
+        isFree = true;
     }
 
 
@@ -97,6 +97,13 @@ public class Wonder {
 
 
     public boolean isIsfree() {
-        return isfree;
+        return isFree;
+    }
+
+
+
+    //setters
+    public void setIsFree(boolean isFree) {
+        this.isFree = isFree;
     }
 }

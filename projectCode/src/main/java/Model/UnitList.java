@@ -1,8 +1,6 @@
 package Model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class UnitList {
     private ArrayList<Worker> workers;
@@ -71,9 +69,25 @@ public class UnitList {
 
 
 
-    public void addMilitaryUnit(MeleeMilitaryUnit militaryUnit)
+    public void addMeleeMilitaryUnit(MeleeMilitaryUnit militaryUnit)
     {
         meleeMilitaryUnits.add(militaryUnit);
+        this.numberOfAllUnits++;
+    }
+
+
+
+    public void addRangedMilitaryUnit(RangedMilitaryUnit rangedMilitaryUnit)
+    {
+        rangedMilitaryUnits.add(rangedMilitaryUnit);
+        this.numberOfAllUnits++;
+    }
+
+
+
+    public void addHeavyRangedMilitaryUnit(HeavyRangedMilitaryUnits heavyRangedMilitaryUnit)
+    {
+        heavyRangedMilitaryUnits.add(heavyRangedMilitaryUnit);
         this.numberOfAllUnits++;
     }
 

@@ -505,7 +505,16 @@ public class CityView {
         else {
             System.out.println("city is already working on making " + taskName + " and can not be finished with current city production");
         }
+
         System.out.println("are you sure you want to cancel it?");
+    }
+
+
+
+    public void showUnitOnHoldConfirmation(String unitName)
+    {
+        System.out.println("there is a " + unitName + " waiting for free space. if you start this task, last task will get cancelled");
+        System.out.println("are you sure you want to continue?");
     }
 
 
@@ -554,6 +563,20 @@ public class CityView {
         System.out.println("city is now focusing on production.");
         System.out.println("stats: ");
         showCityStats(city);
+    }
+
+
+
+    public void showNoTaskForFinishingCheat()
+    {
+        System.out.println("the city is not working on anything right now");
+    }
+
+
+
+    public void showTaskFinished(String taskName)
+    {
+        System.out.println(taskName + " has been finished");
     }
 }
 

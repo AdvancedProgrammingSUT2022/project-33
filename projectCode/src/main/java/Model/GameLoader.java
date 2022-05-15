@@ -91,9 +91,9 @@ public class GameLoader {
                         players.get(k).getPlayerUnits().addSettler(settler);
                         map.getUnits().addSettler(settler);
                         MeleeMilitaryUnit warrior = new MeleeMilitaryUnit(MeleeUnits.WARRIOR.unit, coordinates, players.get(k).getColor(), players.get(k));
-                        players.get(k).getMap().getUnits().addMilitaryUnit(warrior);
-                        map.getUnits().addMilitaryUnit(warrior);
-                        players.get(k).getPlayerUnits().addMilitaryUnit(warrior);
+                        players.get(k).getMap().getUnits().addMeleeMilitaryUnit(warrior);
+                        map.getUnits().addMeleeMilitaryUnit(warrior);
+                        players.get(k).getPlayerUnits().addMeleeMilitaryUnit(warrior);
                         players.get(k).getMap().updateMap();
                         k++; flag = true;
                         break;

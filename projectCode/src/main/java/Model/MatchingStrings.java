@@ -188,6 +188,7 @@ public class MatchingStrings {
         public final static Pattern FOOD_FOCUS = Pattern.compile("produce food");
         public final static Pattern PRODUCTION_FOCUS = Pattern.compile("produce production");
         public final static Pattern GOLD_FOCUS = Pattern.compile("produce gold");
+        public final static Pattern TASK_FINISHING_CHEAT = Pattern.compile("but i want it");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern BACK = Pattern.compile("back");
     }

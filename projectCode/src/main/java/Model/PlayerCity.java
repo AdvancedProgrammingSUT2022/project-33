@@ -346,6 +346,80 @@ public class PlayerCity extends City{
 
 
 
+    public void finishTask()
+    {
+        if (getTask().isBuilding()){
+            getBuildings().add(new Building(getTask().getBuilding()));
+            setWorkingOnTask(false);
+        }
+        else if (getTask().isWonder()){
+            getTask().getWonder().wonder.setIsFree(false);
+            getWonders().add(getTask().getWonder());
+            setWorkingOnTask(false);
+        }
+        else {
+            finishUnitTask();
+        }
+    }
+
+
+
+    private void finishUnitTask()
+    {
+        if (getTask().isMeleeUnit()){
+            MeleeMilitaryUnit unit = new MeleeMilitaryUnit(getTask().getMeleeUnit().unit, getCoordinates(), getOwner().getColor(), getOwner());
+
+            if (getOwner().isCoordinatesFreeForNewUnit(getCoordinates(), true)) {
+                owner.getPlayerUnits().addMeleeMilitaryUnit(unit);
+            }
+            else {
+                setOhHold(true);
+            }
+        }
+        else if (getTask().isRangedUnit()){
+            RangedMilitaryUnit unit = new RangedMilitaryUnit(getTask().getRangedUnit().unit, getCoordinates(), getOwner().getColor(), getOwner());
+
+            if (getOwner().isCoordinatesFreeForNewUnit(getCoordinates(), true)) {
+                owner.getPlayerUnits().addRangedMilitaryUnit(unit);
+            }
+            else {
+                setOhHold(true);
+            }
+        }
+        else if (getTask().isHeavyUnit()){
+            HeavyRangedMilitaryUnits unit = new HeavyRangedMilitaryUnits(getTask().getHeavyUnit().unit, getCoordinates(), getOwner().getColor(), getOwner());
+
+            if (getOwner().isCoordinatesFreeForNewUnit(getCoordinates(), true)) {
+                owner.getPlayerUnits().addHeavyRangedMilitaryUnit(unit);
+            }
+            else {
+                setOhHold(true);
+            }
+        }
+        else if (getTask().getGameName().equalsIgnoreCase("Settler")){
+            Settler unit = new Settler(getCoordinates(), getOwner().getColor(), getOwner());
+
+            if (getOwner().isCoordinatesFreeForNewUnit(getCoordinates(), false)) {
+                owner.getPlayerUnits().addSettler(unit);
+            }
+            else {
+                setOhHold(true);
+            }
+        }
+        else if (getTask().getGameName().equalsIgnoreCase("Worker")){
+            Worker unit = new Worker(getCoordinates(), getOwner().getColor(), getOwner());
+
+            if (getOwner().isCoordinatesFreeForNewUnit(getCoordinates(), false)) {
+                owner.getPlayerUnits().addWorker(unit);
+            }
+            else {
+                setOhHold(true);
+            }
+        }
+    }
+
+
+
     //setters:
     public void setOwner(Player owner) {
         this.owner = owner;

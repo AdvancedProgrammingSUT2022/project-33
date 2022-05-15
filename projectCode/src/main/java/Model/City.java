@@ -27,6 +27,7 @@ public class City {
     private int turnsUntilACitizenDies;
     private boolean isWorkingOnTask;
     private CityTask task;
+    private boolean isOhHold;
 
 
 
@@ -338,6 +339,7 @@ public class City {
 
 
 
+
     //getters
     public Coordinates getCoordinates() {
         return coordinates;
@@ -569,6 +571,11 @@ public class City {
     }
 
 
+    public boolean isOhHold() {
+        return isOhHold;
+    }
+
+
 
     //setters
     public void setCoordinates(Coordinates coordinates) {
@@ -675,5 +682,10 @@ public class City {
         for (int i = 0; i < citizens.size(); i++){
             citizens.get(i).findWorkForGold();
         }
+    }
+
+
+    public void setOhHold(boolean ohHold) {
+        isOhHold = ohHold;
     }
 }

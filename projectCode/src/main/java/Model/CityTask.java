@@ -1,15 +1,15 @@
 package Model;
 
 public class CityTask {
-    String gameName;
-    int productionNeeded;
-    boolean isUnit;
-    boolean isWonder;
-    boolean isBuilding;
-    boolean isTaskValid;
-    boolean isMeleeUnit;
-    boolean isRangedUnit;
-    boolean isHeavyUnit;
+    private String gameName;
+    private int productionNeeded;
+    private boolean isUnit;
+    private boolean isWonder;
+    private boolean isBuilding;
+    private boolean isTaskValid;
+    private boolean isMeleeUnit;
+    private boolean isRangedUnit;
+    private boolean isHeavyUnit;
 
 
 
@@ -34,22 +34,34 @@ public class CityTask {
     {
         if (gameName.equalsIgnoreCase("Settler")){
             gameName = "Settler";
+            isUnit = true;
         }
         else if (gameName.equalsIgnoreCase("Worker")){
             gameName = "Worker";
+            isUnit = true;
         }
         else if (getMeleeUnit() != null){
             gameName = getMeleeUnit().unit.getGameName();
             isMeleeUnit = true;
+            isUnit = true;
         }
         else if (getRangedUnit() != null){
             gameName = getRangedUnit().unit.getGameName();
             isRangedUnit = true;
-
+            isUnit = true;
         }
         else if (getHeavyUnit() != null){
             gameName = getHeavyUnit().unit.getGameName();
             isHeavyUnit = true;
+            isUnit = true;
+        }
+        else if (getWonder() != null){
+            gameName = getWonder().wonder.getGameName();
+            isWonder = true;
+        }
+        else if (getBuilding() != null){
+            gameName = getBuilding().building.getGameName();
+            isBuilding = true;
         }
         else {
             return false;
@@ -182,9 +194,49 @@ public class CityTask {
     }
 
 
+    public boolean isWonder() {
+        return isWonder;
+    }
+
+
+    public boolean isBuilding() {
+        return isBuilding;
+    }
+
 
     public  Technologies getWonderNeededTechnology()
     {
         return getWonder().wonder.getTechnologyNeeded();
+    }
+
+
+    public boolean isUnit() {
+        return isUnit;
+    }
+
+
+    public boolean isMeleeUnit() {
+        return isMeleeUnit;
+    }
+
+
+    public boolean isRangedUnit() {
+        return isRangedUnit;
+    }
+
+
+    public boolean isHeavyUnit() {
+        return isHeavyUnit;
+    }
+
+
+    //setters
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
+    }
+
+
+    public void setProductionNeeded(int productionNeeded) {
+        this.productionNeeded = productionNeeded;
     }
 }

@@ -22,6 +22,16 @@ public class Worker extends Unit{
 
 
 
+    public Worker(Coordinates coordinates, Colors color, Player owner){
+        super("Worker", 8, 2, 2, 70, 70, 0);
+        setCoordinates(coordinates);
+        setColor(color);
+        setBelongsToPlayer(true);
+        setOwner(owner);
+    }
+
+
+
     public void updateUnit(ArrayList<Terrain> terrains)
     {
         setRemainingMovements(getMaxMovements());

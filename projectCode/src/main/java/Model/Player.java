@@ -253,4 +253,27 @@ public class Player {
 
         return null;
     }
+
+
+    public boolean isCoordinatesFreeForNewUnit(Coordinates coordinates, boolean isMilitary)
+    {
+        if (isMilitary){
+            if (playerUnits.getMeleeMilitaryUnitFromCoordinates(coordinates) == null &&
+                    playerUnits.getRangedMilitaryUnitFromCoordinates(coordinates) == null &&
+                    playerUnits.getHeavyRangedMilitaryUnitFromCoordinates(coordinates) == null){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            if (playerUnits.getSettlerFromCoordinates(coordinates) == null && playerUnits.getWorkerFromCoordinates(coordinates) == null){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
 }
