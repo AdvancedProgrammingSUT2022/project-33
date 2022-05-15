@@ -486,5 +486,25 @@ public class CityView {
             }
         }
     }
+
+
+
+    public void showInvalidUnitName(String unitName)
+    {
+        System.out.println("there is no unit called: " + unitName);
+    }
+
+
+
+    public void showTaskConfirmation(String taskName, int productionNeeded, int cityProduction)
+    {
+        if (cityProduction != 0) {
+            System.out.println("city is already working on making " + taskName + " and will be finished in " + productionNeeded / cityProduction + " turns");
+        }
+        else {
+            System.out.println("city is already working on making " + taskName + " and can not be finished with current city production");
+        }
+        System.out.println("are you sure you want to cancel it?");
+    }
 }
 

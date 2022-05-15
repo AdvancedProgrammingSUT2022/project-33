@@ -253,4 +253,17 @@ public class Player {
 
         return null;
     }
+
+
+
+    public ArrayList<? extends Unit> getAvailableUnitsToMake()
+    {
+        ArrayList<? extends Unit> units = new ArrayList<>();
+
+        for (int i = 0; i < MeleeUnits.values().length; i++){
+            if (technologies.contains(MeleeUnits.values()[i].unit.getTechnologyRequired())){
+                units.add(MeleeUnits.values()[i].unit);
+            }
+        }
+    }
 }

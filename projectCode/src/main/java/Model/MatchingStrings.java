@@ -182,7 +182,8 @@ public class MatchingStrings {
         public final static Pattern SHOW_WONDERS = Pattern.compile("show wonders");
         public final static Pattern SHOW_LANDS = Pattern.compile("show lands");
         public final static Pattern START_TASK_UNIT = Pattern.compile("make( \\S+)+");
-        public final static Pattern START_TASK_BUILDING = Pattern.compile("build( \\S+)+");
+        public final static Pattern START_TASK_BUILDING = Pattern.compile("build -(-?)(building|b)( \\S+)+");
+        public final static Pattern START_TASK_Wonder = Pattern.compile("build -(-?)(wonder|w)( \\S+)+");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern BACK = Pattern.compile("back");
     }

@@ -25,8 +25,7 @@ public class City {
     private boolean isCityStarving;
     private int turnsUntilACitizenDies;
     private boolean isWorkingOnTask;
-    private String taskGameName;
-    private int taskNeededProduction;
+    CityTask task;
 
 
 
@@ -433,16 +432,6 @@ public class City {
     }
 
 
-    public String getTaskGameName() {
-        return taskGameName;
-    }
-
-
-    public int getTaskTurnsNeeded() {
-        return taskNeededProduction / production;
-    }
-
-
     public boolean isCitizenWorkingInLand(Coordinates coordinates)
     {
         for (int i = 0; i < citizens.size(); i++){
@@ -540,6 +529,11 @@ public class City {
     }
 
 
+    public CityTask getTask() {
+        return task;
+    }
+
+
 
     //setters
     public void setCoordinates(Coordinates coordinates) {
@@ -612,5 +606,7 @@ public class City {
     }
 
 
-
+    public void setTask(CityTask task) {
+        this.task = task;
+    }
 }

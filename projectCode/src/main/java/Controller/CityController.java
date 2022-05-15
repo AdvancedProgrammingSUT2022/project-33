@@ -69,6 +69,9 @@ public class CityController {
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_LANDS)){
                 view.showLands(city);
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.START_TASK_UNIT)){
+                makeUnit(input);
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu(city.getCityName());
             }
@@ -201,20 +204,7 @@ public class CityController {
     {
         view.showConfirmationForFiringCitizen();
 
-        while (true){
-            String input = UserInput.getInput();
-            input = UserInput.removeSpaces(input);
-
-            if (input.equalsIgnoreCase("yes")){
-                return true;
-            }
-            else if (input.equals("no")){
-                return false;
-            }
-            else {
-                view.showInvalidCommand();
-            }
-        }
+        return confirmation();
     }
 
 
@@ -236,5 +226,53 @@ public class CityController {
         boolean availableFlag = MatchingStrings.CityControllerStrings.AVAILABLE.matcher(input).find();
 
         view.showWonders(city, builtFlag, availableFlag);
+    }
+
+
+
+    private void makeUnit(String input)
+    {
+        String unitGameName = input.substring(4);
+        CityTask task = new CityTask(unitGameName, true, false, false);
+
+        if (!task.isTaskValid()){
+            view.showInvalidUnitName(unitGameName);
+            return;
+        }
+
+        if (city.isWorkingOnTask() && !getTaskConfirmation()){
+            return;
+        }
+
+        city.setTask(task);
+    }
+
+
+
+    private boolean getTaskConfirmation()
+    {
+        view.showTaskConfirmation(city.getTask().getGameName(), city.getTask().getProductionNeeded(), city.getProduction());
+
+        return confirmation();
+    }
+
+
+
+    private boolean confirmation()
+    {
+        while (true){
+            String input = UserInput.getInput();
+            input = UserInput.removeSpaces(input);
+
+            if (input.equalsIgnoreCase("yes")){
+                return true;
+            }
+            else if (input.equals("no")){
+                return false;
+            }
+            else {
+                view.showInvalidCommand();
+            }
+        }
     }
 }
