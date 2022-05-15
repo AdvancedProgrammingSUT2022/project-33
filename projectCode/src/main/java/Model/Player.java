@@ -18,6 +18,7 @@ public class Player {
     private int happinessCheatBonus;
     private int happinessBonus;
     private int happinessUntilNextSpecialPerson;
+    private ArrayList<StrategicResourceTypes> strategicResources;
 
 
 
@@ -38,6 +39,7 @@ public class Player {
         this.happinessCheatBonus = 0;
         this.happinessBonus = 0;
         this.happinessUntilNextSpecialPerson = 50;
+        strategicResources = new ArrayList<>();
     }
 
 
@@ -275,5 +277,11 @@ public class Player {
                 return false;
             }
         }
+    }
+
+
+
+    public ArrayList<StrategicResourceTypes> getStrategicResources() {
+        return strategicResources;
     }
 }

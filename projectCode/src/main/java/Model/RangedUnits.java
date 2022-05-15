@@ -14,7 +14,7 @@ public enum RangedUnits {
             1, 6, 12, false, 2, Technologies.MACHINERY, null, Eras.MEDIEVAL);
 
 
-    final RangedMilitaryUnit unit;
+    public final RangedMilitaryUnit unit;
 
     RangedUnits(String gameName, int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
                int attackDamage, int rangedAttackDamage, boolean isCavalry, int attackRange, Technologies technologyRequired, StrategicResourceTypes resourceRequired, Eras era)

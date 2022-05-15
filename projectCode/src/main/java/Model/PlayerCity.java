@@ -420,6 +420,17 @@ public class PlayerCity extends City{
 
 
 
+    public void addBuildingCheat(BuildingTypes buildingType)
+    {
+        Building building = new Building(buildingType);
+
+        if (!doesContainBuildingType(building.getRequiredBuildings())){
+            addBuildingCheat(building.getRequiredBuildings());
+        }
+    }
+
+
+
     //setters:
     public void setOwner(Player owner) {
         this.owner = owner;

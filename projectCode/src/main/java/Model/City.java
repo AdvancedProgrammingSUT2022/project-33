@@ -576,6 +576,11 @@ public class City {
     }
 
 
+    public ArrayList<StrategicResource> getStrategicResources() {
+        return strategicResources;
+    }
+
+
 
     //setters
     public void setCoordinates(Coordinates coordinates) {

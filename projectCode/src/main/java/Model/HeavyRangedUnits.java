@@ -17,7 +17,7 @@ public enum HeavyRangedUnits {
     ARTILLERY("Artillery", 30, 2, 2, 420, 400, 2, 16,
             32, false, 3, 1, Technologies.DYNAMITE, null, Eras.INDUSTRIAL);
 
-    final HeavyRangedMilitaryUnits unit;
+    public final HeavyRangedMilitaryUnits unit;
 
     HeavyRangedUnits(String gameName, int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
                 int attackDamage, int rangedAttackDamage, boolean isCavalry, int attackRange, int turnsNeededToSetUp, Technologies technologyRequired, StrategicResourceTypes resourceRequired, Eras era)

@@ -162,11 +162,11 @@ public class MatchingStrings {
     {
         public final static Pattern STATS = Pattern.compile("show stats");
         public final static Pattern SHOW_CITIZENS = Pattern.compile("show citizens");
-        public final static Pattern ADD_CITIZEN_CHEAT = Pattern.compile("");//TODO:
+        public final static Pattern ADD_CITIZEN_CHEAT = Pattern.compile("where did it come from");
         public final static Pattern ASSIGN_WORK_BUILDING = Pattern.compile("assign work -(-?)(building|b)( \\S+)+");
         public final static Pattern ASSIGN_WORK_LAND1 = Pattern.compile("assign work -(-?)x \\d+ -(-?)y \\d+");
         public final static Pattern ASSIGN_WORK_LAND2 = Pattern.compile("assign work -(-?)y \\d+ -(-?)x \\d+");
-        public final static Pattern Building = Pattern.compile("-(-?)(building|b)( \\S+)+");
+        public final static Pattern BUILDING = Pattern.compile("-(-?)(building|b)( \\S+)+");
         public final static Pattern X_VALUE = Pattern.compile("-(-?)x \\d+");
         public final static Pattern Y_VALUE = Pattern.compile("-(-?)y \\d+");
         public final static Pattern FIRE_CITIZEN_BUILDING = Pattern.compile("fire citizen -(-?)(building|b)( \\S+)+");
@@ -189,6 +189,10 @@ public class MatchingStrings {
         public final static Pattern PRODUCTION_FOCUS = Pattern.compile("produce production");
         public final static Pattern GOLD_FOCUS = Pattern.compile("produce gold");
         public final static Pattern TASK_FINISHING_CHEAT = Pattern.compile("but i want it");
+        public final static Pattern PURCHASE_BUILDING = Pattern.compile("purchase -(-?)(building|b)( \\S+)+");
+        public final static Pattern BUILDING_CHEAT = Pattern.compile("place it right over there( \\S+)+");
+        public final static Pattern PURCHASE_UNIT = Pattern.compile("purchase -(-?)(unit|u)( \\S+)+");
+        public final static Pattern UNIT = Pattern.compile("-(-?)(unit|u)");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern BACK = Pattern.compile("back");
     }

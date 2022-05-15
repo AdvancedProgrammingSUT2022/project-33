@@ -497,6 +497,13 @@ public class CityView {
 
 
 
+    public void showInvalidWonderName(String name)
+    {
+        System.out.println("there is no wonder called: " + name);
+    }
+
+
+
     public void showTaskConfirmation(String taskName, int productionNeeded, int cityProduction)
     {
         if (cityProduction != 0) {
@@ -576,7 +583,35 @@ public class CityView {
 
     public void showTaskFinished(String taskName)
     {
-        System.out.println(taskName + " has been finished");
+        System.out.println("making " + taskName + " has been finished");
+    }
+
+
+
+    public void showBuildingFinished(String buildingName)
+    {
+        System.out.println("building of " + buildingName + " is now finished");
+    }
+
+
+
+    public void showNoResource(String resourceName)
+    {
+        System.out.println("you need " + resourceName + " to be able to build this unit in this city.");
+    }
+
+
+
+    public void showUnitIsInCityCoordinates()
+    {
+        System.out.println("can not make unit while another unit is in city tile");
+    }
+
+
+
+    public void showNotEnoughMoney(int goldNeeded)
+    {
+        System.out.println("you do not have enough money. you need " + goldNeeded + " more gold");
     }
 }
 

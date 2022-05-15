@@ -230,6 +230,46 @@ public class CityTask {
     }
 
 
+    public StrategicResourceTypes getResourceNeeded()
+    {
+        if (isMeleeUnit){
+            return getMeleeUnit().unit.getResourceRequired();
+        }
+        else if (isRangedUnit){
+            return getRangedUnit().unit.getResourceRequired();
+        }
+        else if (isHeavyUnit){
+            return getHeavyUnit().unit.getResourceRequired();
+        }
+        else {
+            return null;
+        }
+    }
+
+
+    public int getGoldNeeded()
+    {
+        if (isMeleeUnit){
+            return getMeleeUnit().unit.getPrice();
+        }
+        else if (isRangedUnit){
+            return getRangedUnit().unit.getPrice();
+        }
+        else if (isHeavyUnit){
+            return getHeavyUnit().unit.getPrice();
+        }
+        else {
+            if (gameName.equalsIgnoreCase("settler")){
+                return 89;
+            }
+            else {
+                return 70;
+            }
+        }
+    }
+
+
+
     //setters
     public void setGameName(String gameName) {
         this.gameName = gameName;

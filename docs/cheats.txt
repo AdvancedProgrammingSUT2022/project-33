@@ -11,3 +11,9 @@ clown attack -> increases happiness by 5
 *****gold box menu*****
 is that a coin -> increases gold by 100
 is that a treasure chest -> increases gold by 1000
+
+
+*****city menu*****
+where did it come from -> grows population by one
+but i want it -> finishes current city task
+place it right over there <building> -> instantly builds the building in the city

@@ -44,7 +44,7 @@ public enum MeleeUnits {
             3, 50, false, Technologies.COMBUSTION, null, Eras.INDUSTRIAL);
 
 
-    final MeleeMilitaryUnit unit;
+    public final MeleeMilitaryUnit unit;
 
     MeleeUnits(String gameName, int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
                       int attackDamage, boolean isCavalry, Technologies technologyRequired, StrategicResourceTypes resourceRequired, Eras era)

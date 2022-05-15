@@ -90,6 +90,15 @@ public class CityController {
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.TASK_FINISHING_CHEAT)){
                 finishTaskCheat();
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.PURCHASE_BUILDING)){
+                purchaseBuilding(input);
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.BUILDING_CHEAT)){
+                BuildingCheat(input);
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.PURCHASE_UNIT)){
+                purchaseUnit(input);
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu(city.getCityName());
             }
@@ -119,7 +128,7 @@ public class CityController {
 
     private void assignWorkerToBuilding(String input)
     {
-        String workBuilding = UserInput.getSpecificInputFromPatternWithOneSpace(input, MatchingStrings.CityControllerStrings.Building);
+        String workBuilding = UserInput.getSpecificInputFromPatternWithOneSpace(input, MatchingStrings.CityControllerStrings.BUILDING);
 
         for (int i = 0; i < city.getBuildings().size(); i++){
             if (city.getBuildings().get(i).getGameName().equalsIgnoreCase(workBuilding)){
@@ -173,7 +182,7 @@ public class CityController {
 
     private void fireWorkerFromBuilding(String input)
     {
-        String workBuilding = UserInput.getSpecificInputFromPatternWithOneSpace(input, MatchingStrings.CityControllerStrings.Building);
+        String workBuilding = UserInput.getSpecificInputFromPatternWithOneSpace(input, MatchingStrings.CityControllerStrings.BUILDING);
 
         for (int i = 0; i < city.getBuildings().size(); i++){
             if (city.getBuildings().get(i).getGameName().equalsIgnoreCase(workBuilding)){
@@ -258,6 +267,11 @@ public class CityController {
             return;
         }
 
+        if (task.getResourceNeeded() != null && !city.getOwner().getStrategicResources().contains(task.getResourceNeeded())){
+            view.showNoResource(task.getResourceNeeded().name());
+            return;
+        }
+
         if (city.isWorkingOnTask() && !getTaskConfirmation()){
             return;
         }
@@ -274,11 +288,11 @@ public class CityController {
 
     private void buildBuilding(String input)
     {
-        String buildingGameName = UserInput.getSpecificInputFromPatternWithOneSpace(input, MatchingStrings.CityControllerStrings.Building);
+        String buildingGameName = UserInput.getSpecificInputFromPatternWithOneSpace(input, MatchingStrings.CityControllerStrings.BUILDING);
         CityTask task = new CityTask(buildingGameName, false, true, false);
 
         if (!task.isTaskValid() || (task.getBuildingNeededTechnology() != null && !player.getTechnologies().contains(task.getBuildingNeededTechnology()))){
-            view.showInvalidUnitName(buildingGameName);
+            view.showInvalidBuildingName(buildingGameName);
             return;
         }
 
@@ -309,7 +323,7 @@ public class CityController {
         CityTask task = new CityTask(wonderGameName, false, false, true);
 
         if (!task.isTaskValid() || (task.getWonderNeededTechnology() != null && !player.getTechnologies().contains(task.getBuildingNeededTechnology()))){
-            view.showInvalidUnitName(wonderGameName);
+            view.showInvalidWonderName(wonderGameName);
             return;
         }
 
@@ -403,4 +417,132 @@ public class CityController {
     view.showTaskFinished(city.getTask().getGameName());
     }
 
+
+
+    private void purchaseBuilding(String input)
+    {
+        String buildingName = UserInput.getSpecificInputFromPatternWithOneSpace(input, MatchingStrings.CityControllerStrings.BUILDING);
+
+        if (getBuildingFromName(buildingName) == null || (getBuildingFromName(buildingName).building.getTechnologyNeeded() != null &&
+                        city.getOwner().getTechnologies().contains(getBuildingFromName(buildingName).building.getTechnologyNeeded()))){
+            view.showInvalidBuildingName(buildingName);
+            return;
+        }
+
+        if (!city.doesContainBuildingType(getBuildingFromName(buildingName).building.getRequiredBuildings())){
+            view.showNeedAnotherBuilding(getBuildingFromName(buildingName).building.getRequiredBuildings().building.getGameName());
+            return;
+        }
+
+        if (city.doesContainBuildingType(getBuildingFromName(buildingName))){
+            view.showCityHasBuilding();
+            return;
+        }
+
+        if (city.getOwner().getGold() < getBuildingFromName(buildingName).building.getCost()){
+            view.showNotEnoughMoney(getBuildingFromName(buildingName).building.getCost() - city.getOwner().getGold());
+            return;
+        }
+
+        city.addBuildingCheat(getBuildingFromName(buildingName));
+        view.showBuildingFinished(getBuildingFromName(buildingName).building.getGameName());
+    }
+
+
+
+    private void BuildingCheat(String input)
+    {
+        String buildingName = UserInput.getSpecificInputFromPatternWithOneSpace(input, MatchingStrings.CityControllerStrings.BUILDING);
+
+        if (getBuildingFromName(buildingName) == null || (getBuildingFromName(buildingName).building.getTechnologyNeeded() != null &&
+                        city.getOwner().getTechnologies().contains(getBuildingFromName(buildingName).building.getTechnologyNeeded()))){
+            view.showInvalidBuildingName(buildingName);
+            return;
+        }
+
+        if (city.doesContainBuildingType(getBuildingFromName(buildingName))){
+            view.showCityHasBuilding();
+            return;
+        }
+
+        city.addBuildingCheat(getBuildingFromName(buildingName));
+        view.showBuildingFinished(getBuildingFromName(buildingName).building.getGameName());
+    }
+
+
+
+    private BuildingTypes getBuildingFromName(String name)
+    {
+        for (int i = 0; i < BuildingTypes.values().length; i++){
+            if (name.equalsIgnoreCase(BuildingTypes.values()[i].building.getGameName())){
+                return BuildingTypes.values()[i];
+            }
+        }
+
+        return null;
+    }
+
+
+
+    private void purchaseUnit(String input)
+    {
+        String unitName = UserInput.getSpecificInputFromPatternWithOneSpace(input, MatchingStrings.CityControllerStrings.UNIT);
+
+        CityTask temporarilyTask = new CityTask(unitName, true, false, false);
+
+        if (!temporarilyTask.isTaskValid() || (temporarilyTask.getUnitNeededTechnology() != null &&
+                !player.getTechnologies().contains(temporarilyTask.getUnitNeededTechnology()))){
+            view.showInvalidUnitName(unitName);
+            return;
+        }
+
+        if (temporarilyTask.getResourceNeeded() != null && !city.getOwner().getStrategicResources().contains(temporarilyTask.getResourceNeeded())){
+            view.showNoResource(temporarilyTask.getResourceNeeded().name());
+            return;
+        }
+
+        if (city.getOwner().getGold() < temporarilyTask.getGoldNeeded()){
+            view.showNotEnoughMoney(temporarilyTask.getGoldNeeded() - city.getOwner().getGold());
+            return;
+        }
+
+        if (!city.getOwner().isCoordinatesFreeForNewUnit(city.getCoordinates(),
+                !(unitName.equalsIgnoreCase("Settler") || unitName.equalsIgnoreCase("Worker")))){
+            view.showUnitIsInCityCoordinates();
+            return;
+        }
+
+
+        finishUnitTaskCheat(temporarilyTask);
+    }
+
+
+
+    private void finishUnitTaskCheat(CityTask task)
+    {
+        if (task.isMeleeUnit()){
+            MeleeMilitaryUnit unit = new MeleeMilitaryUnit(task.getMeleeUnit().unit, city.getCoordinates(), city.getOwner().getColor(), city.getOwner());
+            city.getOwner().getPlayerUnits().addMeleeMilitaryUnit(unit);
+        }
+        else if (task.isRangedUnit()){
+            RangedMilitaryUnit unit = new RangedMilitaryUnit(task.getRangedUnit().unit, city.getCoordinates(), city.getOwner().getColor(), city.getOwner());
+
+            city.getOwner().getPlayerUnits().addRangedMilitaryUnit(unit);
+        }
+        else if (task.isHeavyUnit()){
+            HeavyRangedMilitaryUnits unit = new HeavyRangedMilitaryUnits(city.getTask().getHeavyUnit().unit, city.getCoordinates(), city.getOwner().getColor(), city.getOwner());
+
+            city.getOwner().getPlayerUnits().addHeavyRangedMilitaryUnit(unit);
+        }
+        else if (task.getGameName().equalsIgnoreCase("Settler")){
+            Settler unit = new Settler(city.getCoordinates(), city.getOwner().getColor(), city.getOwner());
+
+            city.getOwner().getPlayerUnits().addSettler(unit);
+        }
+        else if (task.getGameName().equalsIgnoreCase("Worker")){
+            Worker unit = new Worker(city.getCoordinates(), city.getOwner().getColor(), city.getOwner());
+
+            city.getOwner().getPlayerUnits().addWorker(unit);
+        }
+    }
 }
