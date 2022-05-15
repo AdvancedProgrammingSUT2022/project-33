@@ -528,5 +528,32 @@ public class CityView {
     {
         System.out.println("this wonder is unavailable");
     }
+
+
+
+    public void showFoodFocus(PlayerCity city)
+    {
+        System.out.println("city is now focusing on food.");
+        System.out.println("stats: ");
+        showCityStats(city);
+    }
+
+
+
+    public void showGoldFocus(PlayerCity city)
+    {
+        System.out.println("city is now focusing on gold.");
+        System.out.println("stats: ");
+        showCityStats(city);
+    }
+
+
+
+    public void showProductionFocus(PlayerCity city)
+    {
+        System.out.println("city is now focusing on production.");
+        System.out.println("stats: ");
+        showCityStats(city);
+    }
 }
 

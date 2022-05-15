@@ -103,6 +103,7 @@ public class PlayerCity extends City{
         updateResources();
         findConnectedCities();
         managePopulation();
+        updateScience();
         repairCity();
         //TODO:
     }

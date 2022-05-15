@@ -78,6 +78,15 @@ public class CityController {
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.START_TASK_Wonder)){
                 buildWonder(input);
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.FOOD_FOCUS)){
+                focusFood();
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.GOLD_FOCUS)){
+                focusGold();
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.PRODUCTION_FOCUS)){
+                focusProduction();
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu(city.getCityName());
             }
@@ -330,5 +339,29 @@ public class CityController {
                 view.showInvalidCommand();
             }
         }
+    }
+
+
+
+    private void focusFood()
+    {
+        city.setFocusFood();
+        view.showFoodFocus(city);
+    }
+
+
+
+    private void focusGold()
+    {
+        city.setFocusGold();
+        view.showGoldFocus(city);
+    }
+
+
+
+    private void focusProduction()
+    {
+        city.setFocusProduction();
+        view.showProductionFocus(city);
     }
 }

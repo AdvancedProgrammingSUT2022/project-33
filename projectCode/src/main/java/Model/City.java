@@ -26,7 +26,7 @@ public class City {
     private boolean isCityStarving;
     private int turnsUntilACitizenDies;
     private boolean isWorkingOnTask;
-    CityTask task;
+    private CityTask task;
 
 
 
@@ -648,5 +648,32 @@ public class City {
 
     public void setScience(int science) {
         this.science = science;
+    }
+
+
+
+    public void setFocusFood()
+    {
+        for (int i = 0; i < citizens.size(); i++){
+            citizens.get(i).findWorkForFood();
+        }
+    }
+
+
+
+    public void setFocusProduction()
+    {
+        for (int i = 0; i < citizens.size(); i++){
+            citizens.get(i).findWorkForProduction();
+        }
+    }
+
+
+
+    public void setFocusGold()
+    {
+        for (int i = 0; i < citizens.size(); i++){
+            citizens.get(i).findWorkForGold();
+        }
     }
 }
