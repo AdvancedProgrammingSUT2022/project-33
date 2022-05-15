@@ -40,6 +40,7 @@ public class CityView {
 
         System.out.println("production per turn: " + city.getProduction());
         System.out.println("gold income: " + city.getGoldPerTurn());
+        System.out.println("science: " + city.getScience());
 
         if (city.isWorkingOnTask()){
             System.out.println("currently working on " + city.getTask().getGameName());
@@ -471,7 +472,7 @@ public class CityView {
             }
 
             if (city.getLandsOwned().get(i).getTerrain().isHasResource()){
-                System.out.print(", resource: " + city.getLandsOwned().get(i).getTerrain().getResource().getGameName());
+                System.out.print(", resource: " + city.getLandsOwned().get(i).getTerrain().getResourceTypeString());
             }
 
             System.out.print(", food: " + city.getLandsOwned().get(i).getLandFood());
@@ -512,6 +513,20 @@ public class CityView {
     public void showNeedAnotherBuilding(String buildingName)
     {
         System.out.println("you have to build " + buildingName + " first to make this building");
+    }
+
+
+
+    public void showCityHasBuilding()
+    {
+        System.out.println("this city already has this building");
+    }
+
+
+
+    public void showUnavailableWonder()
+    {
+        System.out.println("this wonder is unavailable");
     }
 }
 

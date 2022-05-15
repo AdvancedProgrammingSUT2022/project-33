@@ -99,6 +99,7 @@ public class PlayerCity extends City{
         calculateFood();
         calculateProduction();
         calculateHappiness();
+        updateResearch();
         updateResources();
         findConnectedCities();
         managePopulation();
@@ -230,6 +231,33 @@ public class PlayerCity extends City{
 
 
 
+    private void updateScience()
+    {
+        int incomeScience = 0;
+        float scienceFactor = 1;
+
+        for (int i = 0; i < getBuildings().size(); i++){
+            incomeScience += getBuildings().get(i).getSciencePerTwoCitizen() * getPopulation();
+            scienceFactor *= (100.0 + getBuildings().get(i).getScienceEffect()) / 100;
+        }
+
+        incomeScience += getPopulation();
+        incomeScience *= scienceFactor;
+
+        if (isCityStarving()){
+            incomeScience -= getPopulation() * 2;
+        }
+
+        if(incomeScience < 0){
+            setScience(0);
+        }
+        else {
+            setScience(incomeScience);
+        }
+    }
+
+
+
     private void findConnectedCities()
     {
         setConnectedCities(new ArrayList<>());
@@ -351,7 +379,7 @@ public class PlayerCity extends City{
 
         for (int i = 0; i < BuildingTypes.values().length; i++){
             if (owner.getTechnologies().contains(BuildingTypes.values()[i].building.getTechnologyNeeded()) &&
-                    doesContainBuildingType(BuildingTypes.values()[i])){
+                    doesContainBuildingType(BuildingTypes.values()[i].building.getRequiredBuildings())){
                 availableBuildings.add(BuildingTypes.values()[i].building);
             }
         }

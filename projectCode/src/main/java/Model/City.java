@@ -8,6 +8,7 @@ public class City {
     private int food;
     private int production;
     private int happiness;
+    private int science;
     private int health;
     private int maxHealth;
     private boolean isUnitInTheCity;
@@ -199,6 +200,33 @@ public class City {
             else if (workableLands.get(i).hasLuxuryResource()){
                 luxuryResources.add(workableLands.get(i).getTerrain().getLuxuryResource());
             }
+        }
+    }
+
+
+
+    protected void updateResearch()
+    {
+        int incomeScience = 0;
+        float scienceFactor = 1;
+
+        for (int i = 0; i < buildings.size(); i++){
+            incomeScience += buildings.get(i).getSciencePerTwoCitizen() * population;
+            scienceFactor *= (100.0 + buildings.get(i).getScienceEffect()) / 100;
+        }
+
+        incomeScience += population;
+        incomeScience *= scienceFactor;
+
+        if (isCityStarving){
+            incomeScience -= population * 2;
+        }
+
+        if(incomeScience < 0){
+            science = 0;
+        }
+        else {
+            science = incomeScience;
         }
     }
 
@@ -535,6 +563,13 @@ public class City {
 
 
 
+    public int getScience()
+    {
+        return science;
+    }
+
+
+
     //setters
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
@@ -608,5 +643,10 @@ public class City {
 
     public void setTask(CityTask task) {
         this.task = task;
+    }
+
+
+    public void setScience(int science) {
+        this.science = science;
     }
 }

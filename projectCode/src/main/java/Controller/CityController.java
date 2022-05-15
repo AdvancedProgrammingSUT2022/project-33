@@ -63,7 +63,7 @@ public class CityController {
                 showBuildings(input);
             }
             else if (UserInput.doesMatchMultipleRegex(input, MatchingStrings.CityControllerStrings.SHOW_WONDERS.toString(),
-                    new ArrayList<>(Arrays.asList(MatchingStrings.CityControllerStrings.AVAILABLE_FLAG, MatchingStrings.CityControllerStrings.BUILT_BUILDINGS)))){
+                    new ArrayList<>(Arrays.asList(MatchingStrings.CityControllerStrings.AVAILABLE_FLAG, MatchingStrings.CityControllerStrings.BUILT_BUILDINGS_FLAG)))){
                 showWonders(input);
             }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_LANDS)){
@@ -269,6 +269,10 @@ public class CityController {
             view.showNeedAnotherBuilding(task.getBuildingNeededBuildings().building.getGameName());
         }
 
+        if (city.doesContainBuildingType(task.getBuilding())){
+            view.showCityHasBuilding();
+        }
+
         if (city.isWorkingOnTask() && !getTaskConfirmation()){
             return;
         }
@@ -286,6 +290,10 @@ public class CityController {
         if (!task.isTaskValid() || (task.getWonderNeededTechnology() != null && !player.getTechnologies().contains(task.getBuildingNeededTechnology()))){
             view.showInvalidUnitName(wonderGameName);
             return;
+        }
+
+        if (!task.getWonder().wonder.isIsfree()){
+            view.showUnavailableWonder();
         }
 
         if (city.isWorkingOnTask() && !getTaskConfirmation()){

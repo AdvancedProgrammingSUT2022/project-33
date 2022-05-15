@@ -561,7 +561,14 @@ public class MiniMapView {
 
             if (taskFlag){
                 if (cities.get(i).isWorkingOnTask()){
-                    System.out.print(", current task: " + cities.get(i).getTaskGameName() + " turns remaining: " + cities.get(i).getTaskTurnsNeeded());
+                    System.out.print(", current task: " + cities.get(i).getTask().getGameName());
+
+                    if (cities.get(i).getProduction() != 0){
+                        System.out.println(" turns remaining: " + cities.get(i).getTask().getProductionNeeded() / cities.get(i).getProduction());
+                    }
+                    else {
+                        System.out.println("  city can not finish this task with current production");
+                    }
                 }
                 else {
                     System.out.print(", current task: " + "nothing");
