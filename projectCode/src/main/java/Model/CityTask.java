@@ -167,4 +167,24 @@ public class CityTask {
     {
         return getBuilding().building.getRequiredBuildings();
     }
+
+
+
+    public Wonders getWonder()
+    {
+        for (int i = 0; i < Wonders.values().length; i++){
+            if (gameName.equalsIgnoreCase(Wonders.values()[i].wonder.getGameName())){
+                return Wonders.values()[i];
+            }
+        }
+
+        return null;
+    }
+
+
+
+    public  Technologies getWonderNeededTechnology()
+    {
+        return getWonder().wonder.getTechnologyNeeded();
+    }
 }

@@ -75,6 +75,9 @@ public class CityController {
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.START_TASK_BUILDING)){
                 buildBuilding(input);
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.START_TASK_Wonder)){
+                buildWonder(input);
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu(city.getCityName());
             }
@@ -264,6 +267,25 @@ public class CityController {
 
         if (task.getBuildingNeededBuildings() != null && !city.doesContainBuildingType(task.getBuildingNeededBuildings())){
             view.showNeedAnotherBuilding(task.getBuildingNeededBuildings().building.getGameName());
+        }
+
+        if (city.isWorkingOnTask() && !getTaskConfirmation()){
+            return;
+        }
+
+        city.setTask(task);
+    }
+
+
+
+    private void buildWonder(String input)
+    {
+        String wonderGameName = UserInput.getSpecificInputFromPatternWithOneSpace(input, MatchingStrings.CityControllerStrings.WONDER);
+        CityTask task = new CityTask(wonderGameName, false, false, true);
+
+        if (!task.isTaskValid() || (task.getWonderNeededTechnology() != null && !player.getTechnologies().contains(task.getBuildingNeededTechnology()))){
+            view.showInvalidUnitName(wonderGameName);
+            return;
         }
 
         if (city.isWorkingOnTask() && !getTaskConfirmation()){
