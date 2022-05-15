@@ -23,6 +23,9 @@ public class CityTask {
         if (isUnit) {
             isTaskValid = findUnitTask();
         }
+        else if (isBuilding){
+            isTaskValid = findBuilding();
+        }
     }
 
 
@@ -53,6 +56,18 @@ public class CityTask {
         }
 
         return true;
+    }
+
+
+
+    private boolean findBuilding()
+    {
+        if (getBuilding() != null){
+            isTaskValid = true;
+            gameName = getBuilding().building.getGameName();
+        }
+
+        return false;
     }
 
 
@@ -106,5 +121,50 @@ public class CityTask {
 
     public boolean isTaskValid() {
         return isTaskValid;
+    }
+
+
+
+    public Technologies getUnitNeededTechnology()
+    {
+        if (isMeleeUnit){
+            return getMeleeUnit().unit.getTechnologyRequired();
+        }
+        else if (isRangedUnit){
+            return getRangedUnit().unit.getTechnologyRequired();
+        }
+        else if (isHeavyUnit){
+            return getHeavyUnit().unit.getTechnologyRequired();
+        }
+        else {
+            return null;
+        }
+    }
+
+
+
+    public BuildingTypes getBuilding()
+    {
+        for (int i = 0; i < BuildingTypes.values().length; i++){
+            if (gameName.equalsIgnoreCase(BuildingTypes.values()[i].building.getGameName())){
+                return BuildingTypes.values()[i];
+            }
+        }
+
+        return null;
+    }
+
+
+
+    public Technologies getBuildingNeededTechnology()
+    {
+        return getBuilding().building.getTechnologyNeeded();
+    }
+
+
+
+    public BuildingTypes getBuildingNeededBuildings()
+    {
+        return getBuilding().building.getRequiredBuildings();
     }
 }

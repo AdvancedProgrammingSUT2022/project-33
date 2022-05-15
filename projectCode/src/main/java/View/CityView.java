@@ -42,7 +42,7 @@ public class CityView {
         System.out.println("gold income: " + city.getGoldPerTurn());
 
         if (city.isWorkingOnTask()){
-            System.out.println("currently working on " + city.getTaskGameName());
+            System.out.println("currently working on " + city.getTask().getGameName());
         }
         else {
             System.out.println("city is working on nothing right now");
@@ -505,6 +505,13 @@ public class CityView {
             System.out.println("city is already working on making " + taskName + " and can not be finished with current city production");
         }
         System.out.println("are you sure you want to cancel it?");
+    }
+
+
+
+    public void showNeedAnotherBuilding(String buildingName)
+    {
+        System.out.println("you have to build " + buildingName + " first to make this building");
     }
 }
 

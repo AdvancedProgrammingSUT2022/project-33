@@ -72,6 +72,9 @@ public class CityController {
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.START_TASK_UNIT)){
                 makeUnit(input);
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.START_TASK_BUILDING)){
+                buildBuilding(input);
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu(city.getCityName());
             }
@@ -235,9 +238,32 @@ public class CityController {
         String unitGameName = input.substring(4);
         CityTask task = new CityTask(unitGameName, true, false, false);
 
-        if (!task.isTaskValid()){
+        if (!task.isTaskValid() || (task.getUnitNeededTechnology() != null && !player.getTechnologies().contains(task.getUnitNeededTechnology()))){
             view.showInvalidUnitName(unitGameName);
             return;
+        }
+
+        if (city.isWorkingOnTask() && !getTaskConfirmation()){
+            return;
+        }
+
+        city.setTask(task);
+    }
+
+
+
+    private void buildBuilding(String input)
+    {
+        String buildingGameName = UserInput.getSpecificInputFromPatternWithOneSpace(input, MatchingStrings.CityControllerStrings.Building);
+        CityTask task = new CityTask(buildingGameName, false, true, false);
+
+        if (!task.isTaskValid() || (task.getBuildingNeededTechnology() != null && !player.getTechnologies().contains(task.getBuildingNeededTechnology()))){
+            view.showInvalidUnitName(buildingGameName);
+            return;
+        }
+
+        if (task.getBuildingNeededBuildings() != null && !city.doesContainBuildingType(task.getBuildingNeededBuildings())){
+            view.showNeedAnotherBuilding(task.getBuildingNeededBuildings().building.getGameName());
         }
 
         if (city.isWorkingOnTask() && !getTaskConfirmation()){
