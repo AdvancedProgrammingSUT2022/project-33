@@ -407,7 +407,6 @@ public class MiniMapView {
                     data[1] = "no";
                 }
 
-                //TODO:
         }
 
         return data;

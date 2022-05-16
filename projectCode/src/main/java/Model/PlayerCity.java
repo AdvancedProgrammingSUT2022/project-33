@@ -6,7 +6,7 @@ public class PlayerCity extends City{
     private Player owner;
     private ArrayList<Wonders> wonders;
     private String cityName;
-    //TODO:
+
 
 
 
@@ -22,8 +22,6 @@ public class PlayerCity extends City{
         initializeBorders();
         getCitizens().get(0).findWorkForFood();
         calculateFood();
-
-        //TODO:
     }
 
 

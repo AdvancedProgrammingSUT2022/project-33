@@ -27,7 +27,6 @@ public class Settler extends Unit{
         super.setColor(color);
         super.setOwner(player);
 
-        //TODO:
     }
 
 
@@ -47,7 +46,6 @@ public class Settler extends Unit{
         super.setNonPlayerColor(color);
 
 
-        //TODO:
     }
 
 
@@ -59,6 +57,8 @@ public class Settler extends Unit{
         if (isMoving()) {
             moveUnit(terrains, getOwner().getMap(), new SettlerView());
         }
+
+        heal();
 
         //TODO:
     }

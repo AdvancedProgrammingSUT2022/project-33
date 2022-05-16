@@ -72,7 +72,6 @@ public class MatchingStrings {
         public final static Pattern TECHNOLOGY_TREE = Pattern.compile("technology_tree");
         public final static Pattern DIPLOMACY_SECTION = Pattern.compile("diplomacy");
         public final static Pattern WIN_CHEAT = Pattern.compile("they have an army, we have a hulk");
-        //TODO:
     }
 
 

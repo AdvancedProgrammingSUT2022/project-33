@@ -4,7 +4,7 @@ public class CityLand {
     private Terrain terrain;
     private boolean hasImprovement;
     private Improvement improvement;
-    //TODO:
+
 
 
 

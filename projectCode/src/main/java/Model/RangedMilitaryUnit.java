@@ -69,6 +69,8 @@ public class RangedMilitaryUnit extends MilitaryUnit{
             setMoving(false);
         }
 
+        heal();
+
         //TODO:
     }
 

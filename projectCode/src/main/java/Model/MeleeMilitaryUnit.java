@@ -54,6 +54,8 @@ public class MeleeMilitaryUnit extends MilitaryUnit{
             setMoving(false);
         }
 
+        heal();
+
 
         //TODO:
     }

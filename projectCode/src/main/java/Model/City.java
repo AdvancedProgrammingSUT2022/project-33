@@ -57,7 +57,6 @@ public class City {
         Citizen citizen = new Citizen(this);
         citizens.add(citizen);
 
-        //TODO:
     }
 
 

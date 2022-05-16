@@ -1,5 +1,7 @@
 package Model;
 
+import View.TechnologyTreeView;
+
 import java.util.ArrayList;
 
 public class Player {
@@ -49,9 +51,8 @@ public class Player {
 
 
     public void updatePlayer(){
-        //TODO: updating map
         getPlayerUnits().updateUnits(map.getTerrains());
-
+        updateScience();
         updateHappiness();
         updateGold();
         //TODO:
@@ -133,6 +134,28 @@ public class Player {
         }
 
         return goldIncome;
+    }
+
+
+
+    public void updateScience()
+    {
+        researchPerTurn = 0;
+
+        for (int i = 0; i < cities.size(); i++){
+            researchPerTurn += cities.get(i).getScience();
+        }
+
+        if (isResearching) {
+            researchProgress += researchPerTurn;
+
+            if (researchProgress >= research.technology.getResearchCost()){
+                isResearching = false;
+                technologies.add(research);
+                researchProgress = 0;
+                new TechnologyTreeView().showTechnologyDiscovered(research);
+            }
+        }
     }
 
 

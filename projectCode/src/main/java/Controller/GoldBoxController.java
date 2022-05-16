@@ -48,7 +48,6 @@ public class GoldBoxController {
             else {
                 view.showInvalidCommand();
             }
-            //TODO:
         }
     }
 

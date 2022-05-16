@@ -40,6 +40,7 @@ public class Worker extends Unit{
             moveUnit(terrains, getOwner().getMap(), new WorkerView(getGameName()));
         }
 
+        heal();
         //TODO:
     }
 

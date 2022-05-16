@@ -62,6 +62,19 @@ public class Unit {
 
 
 
+    public void heal()
+    {
+        if(isHealing) {
+            health += maxHealth / 5;
+
+            if (health >= maxHealth) {
+                isHealing = false;
+            }
+        }
+    }
+
+
+
     //setters
     public void setPath(Coordinates destinationCoordinates)
     {

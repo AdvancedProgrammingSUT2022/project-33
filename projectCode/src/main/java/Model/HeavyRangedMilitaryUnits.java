@@ -53,6 +53,8 @@ public class HeavyRangedMilitaryUnits extends RangedMilitaryUnit{
             setAttacking(false);
             setMoving(false);
         }
+
+        heal();
     }
 
 
