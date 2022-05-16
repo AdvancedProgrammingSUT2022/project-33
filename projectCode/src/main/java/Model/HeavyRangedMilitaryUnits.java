@@ -2,6 +2,8 @@ package Model;
 
 import View.MilitaryView;
 
+import java.util.ArrayList;
+
 public class HeavyRangedMilitaryUnits extends RangedMilitaryUnit{
     private int turnsNeededToSetUp;
     private int turnsSinceStartingToSetUp;
@@ -37,10 +39,28 @@ public class HeavyRangedMilitaryUnits extends RangedMilitaryUnit{
 
 
 
+    public void updateUnit(ArrayList<Terrain> terrains)
+    {
+        setRemainingMovements(getMaxMovements());
+
+        if (isMoving()) {
+            moveUnit(terrains, getOwner().getMap(), new MilitaryView());
+        }
+
+
+        if (isAttacking() && getCoordinates().isNextToCoordinates(getAttackingUnitCoordinates())){
+            attackUnit();
+            setAttacking(false);
+            setMoving(false);
+        }
+    }
+
+
+
     public void moveAndAttackUnit(Coordinates coordinates)
     {
-        setPath(coordinates);
-        getPath().remove(getPath().size() - 1);
+        setDestinationCoordinates(coordinates, getOwner().getMap().getUnavailableTerrainsForMoving(), getOwner().getMap().getMapSize());
+        setDestinationCoordinates(getPath().get(getPath().size() - 2), getOwner().getMap().getUnavailableTerrainsForMoving(), getOwner().getMap().getMapSize());
         setMoving(true);
         setAttacking(true);
         setAttackingUnitCoordinates(coordinates);

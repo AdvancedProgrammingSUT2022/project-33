@@ -63,6 +63,12 @@ public class RangedMilitaryUnit extends MilitaryUnit{
             moveUnit(terrains, getOwner().getMap(), new MilitaryView());
         }
 
+        if (isAttacking() && getCoordinates().isNextToCoordinates(getAttackingUnitCoordinates())){
+            attackUnit();
+            setAttacking(false);
+            setMoving(false);
+        }
+
         //TODO:
     }
 
@@ -107,8 +113,8 @@ public class RangedMilitaryUnit extends MilitaryUnit{
 
     public void moveAndAttackUnit(Coordinates coordinates)
     {
-        setPath(coordinates);
-        getPath().remove(getPath().size() - 1);
+        setDestinationCoordinates(coordinates, getOwner().getMap().getUnavailableTerrainsForMoving(), getOwner().getMap().getMapSize());
+        setDestinationCoordinates(getPath().get(getPath().size() - 2), getOwner().getMap().getUnavailableTerrainsForMoving(), getOwner().getMap().getMapSize());
         setMoving(true);
         setAttacking(true);
         setAttackingUnitCoordinates(coordinates);

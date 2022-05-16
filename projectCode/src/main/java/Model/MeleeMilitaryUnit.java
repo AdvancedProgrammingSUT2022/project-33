@@ -48,6 +48,12 @@ public class MeleeMilitaryUnit extends MilitaryUnit{
             moveUnit(terrains, getOwner().getMap(), new MilitaryView());
         }
 
+        if (isAttacking() && getCoordinates().isNextToCoordinates(getAttackingUnitCoordinates())){
+            attackUnit();
+            setAttacking(false);
+            setMoving(false);
+        }
+
 
         //TODO:
     }
@@ -67,8 +73,15 @@ public class MeleeMilitaryUnit extends MilitaryUnit{
 
     public void moveAndAttackUnit(Coordinates coordinates)
     {
-        setPath(coordinates);
-        getPath().remove(getPath().size() - 1);
+        setDestinationCoordinates(coordinates, getOwner().getMap().getUnavailableTerrainsForMoving(), getOwner().getMap().getMapSize());
+
+        if (!getCoordinates().isNextToCoordinates(coordinates)) {
+            setDestinationCoordinates(getPath().get(getPath().size() - 2), getOwner().getMap().getUnavailableTerrainsForMoving(), getOwner().getMap().getMapSize());
+        }
+        else {
+            attackUnit();
+        }
+
         setMoving(true);
         setAttacking(true);
         setAttackingUnitCoordinates(coordinates);
@@ -76,10 +89,6 @@ public class MeleeMilitaryUnit extends MilitaryUnit{
 
 
         moveUnit(getOwner().getMap().getOriginalMap().getTerrains(), getOwner().getMap(), new MilitaryView());
-
-        if (getCoordinates().equals(getAttackDestination())){
-            attackUnit();
-        }
     }
 
 

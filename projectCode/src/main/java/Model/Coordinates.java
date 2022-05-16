@@ -42,10 +42,10 @@ public class Coordinates {
             return true;
         }
         else if (Math.abs(x - coordinates.getX()) + Math.abs(y - coordinates.getY()) == 2){
-            if (y - coordinates.getY() == 1 && coordinates.getX() % 2 == 0){
+            if (y - coordinates.getY() == 1 && x % 2 == 0){
                 return true;
             }
-            else if (coordinates.getY() - y == 1 &&  x % 2 == 0){
+            else if (coordinates.getY() - y == 1 &&  coordinates.getX() % 2 == 0){
                 return true;
             }
         }

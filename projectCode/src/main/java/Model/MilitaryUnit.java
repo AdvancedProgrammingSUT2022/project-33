@@ -279,17 +279,17 @@ public class MilitaryUnit extends Unit{
         Random rand = new Random();
 
         if (rand.nextInt(2) == 0){
-            unit1AttackDamage += rand.nextInt(unit1AttackDamage / 15);
+            unit1AttackDamage += rand.nextInt(unit1AttackDamage / 15 + 1);
         }
         else {
-            unit1AttackDamage -= rand.nextInt(unit1AttackDamage / 15);
+            unit1AttackDamage -= rand.nextInt(unit1AttackDamage / 15 + 1);
         }
 
         if (rand.nextInt(2) == 0){
-            unit2AttackDamage += rand.nextInt(unit2AttackDamage / 15);
+            unit2AttackDamage += rand.nextInt(unit2AttackDamage / 15 + 1);
         }
         else {
-            unit2AttackDamage -= rand.nextInt(unit2AttackDamage / 15);
+            unit2AttackDamage -= rand.nextInt(unit2AttackDamage / 15 + 1);
         }
 
         unit1AttackDamage /= rangedUnit.getOverallDefence();
@@ -326,17 +326,17 @@ public class MilitaryUnit extends Unit{
         Random rand = new Random();
 
         if (rand.nextInt(2) == 0){
-            unit1AttackDamage += rand.nextInt(unit1AttackDamage / 15);
+            unit1AttackDamage += rand.nextInt(unit1AttackDamage / 15 + 1);
         }
         else {
-            unit1AttackDamage -= rand.nextInt(unit1AttackDamage / 15);
+            unit1AttackDamage -= rand.nextInt(unit1AttackDamage / 15 + 1);
         }
 
         if (rand.nextInt(2) == 0){
-            unit2AttackDamage += rand.nextInt(unit2AttackDamage / 15);
+            unit2AttackDamage += rand.nextInt(unit2AttackDamage / 15 + 1);
         }
         else {
-            unit2AttackDamage -= rand.nextInt(unit2AttackDamage / 15);
+            unit2AttackDamage -= rand.nextInt(unit2AttackDamage / 15 + 1);
         }
 
         unit1AttackDamage /= meleeUnit2.getOverallDefence();
@@ -373,17 +373,17 @@ public class MilitaryUnit extends Unit{
         Random rand = new Random();
 
         if (rand.nextInt(2) == 0){
-            unit1AttackDamage += rand.nextInt(unit1AttackDamage / 15);
+            unit1AttackDamage += rand.nextInt(unit1AttackDamage / 15 + 1);
         }
         else {
-            unit1AttackDamage -= rand.nextInt(unit1AttackDamage / 15);
+            unit1AttackDamage -= rand.nextInt(unit1AttackDamage / 15 + 1);
         }
 
         if (rand.nextInt(2) == 0){
-            unit2AttackDamage += rand.nextInt(unit2AttackDamage / 15);
+            unit2AttackDamage += rand.nextInt(unit2AttackDamage / 15 + 1);
         }
         else {
-            unit2AttackDamage -= rand.nextInt(unit2AttackDamage / 15);
+            unit2AttackDamage -= rand.nextInt(unit2AttackDamage / 15 + 1);
         }
 
         unit1AttackDamage /= heavyUnit.getOverallDefence();
@@ -419,10 +419,10 @@ public class MilitaryUnit extends Unit{
         Random rand = new Random();
 
         if (rand.nextInt(2) == 0){
-            attackDamage += rand.nextInt(attackDamage / 15);
+            attackDamage += rand.nextInt(attackDamage / 15 + 1);
         }
         else {
-            attackDamage -= rand.nextInt(attackDamage / 15);
+            attackDamage -= rand.nextInt(attackDamage / 15 + 1);
         }
 
         defender.setHealth(defender.getHealth() - attackDamage);
@@ -446,10 +446,10 @@ public class MilitaryUnit extends Unit{
         Random rand = new Random();
 
         if (rand.nextInt(2) == 0){
-            attackDamage += rand.nextInt(attackDamage / 15);
+            attackDamage += rand.nextInt(attackDamage / 15 + 1);
         }
         else {
-            attackDamage -= rand.nextInt(attackDamage / 15);
+            attackDamage -= rand.nextInt(attackDamage / 15 + 1);
         }
 
         defender.setHealth(defender.getHealth() - attackDamage);
@@ -473,10 +473,10 @@ public class MilitaryUnit extends Unit{
         Random rand = new Random();
 
         if (rand.nextInt(2) == 0){
-            attackDamage += rand.nextInt(attackDamage / 15);
+            attackDamage += rand.nextInt(attackDamage / 15 + 1);
         }
         else {
-            attackDamage -= rand.nextInt(attackDamage / 15);
+            attackDamage -= rand.nextInt(attackDamage / 15 + 1);
         }
 
         defender.setHealth(defender.getHealth() - attackDamage);
@@ -500,10 +500,10 @@ public class MilitaryUnit extends Unit{
         Random rand = new Random();
 
         if (rand.nextInt(2) == 0){
-            attackDamage += rand.nextInt(attackDamage / 15);
+            attackDamage += rand.nextInt(attackDamage / 15 + 1);
         }
         else {
-            attackDamage -= rand.nextInt(attackDamage / 15);
+            attackDamage -= rand.nextInt(attackDamage / 15 + 1);
         }
 
         defender.setHealth(defender.getHealth() - attackDamage);
@@ -527,10 +527,10 @@ public class MilitaryUnit extends Unit{
         Random rand = new Random();
 
         if (rand.nextInt(2) == 0){
-            attackDamage += rand.nextInt(attackDamage / 15);
+            attackDamage += rand.nextInt(attackDamage / 15 + 1);
         }
         else {
-            attackDamage -= rand.nextInt(attackDamage / 15);
+            attackDamage -= rand.nextInt(attackDamage / 15 + 1);
         }
 
         defender.setHealth(defender.getHealth() - attackDamage);
@@ -554,10 +554,10 @@ public class MilitaryUnit extends Unit{
         Random rand = new Random();
 
         if (rand.nextInt(2) == 0){
-            attackDamage += rand.nextInt(attackDamage / 15);
+            attackDamage += rand.nextInt(attackDamage / 15 + 1);
         }
         else {
-            attackDamage -= rand.nextInt(attackDamage / 15);
+            attackDamage -= rand.nextInt(attackDamage / 15 + 1);
         }
 
         defender.setHealth(defender.getHealth() - attackDamage);
