@@ -192,7 +192,11 @@ public class MatchingStrings {
         public final static Pattern PURCHASE_BUILDING = Pattern.compile("purchase -(-?)(building|b)( \\S+)+");
         public final static Pattern BUILDING_CHEAT = Pattern.compile("place it right over there( \\S+)+");
         public final static Pattern PURCHASE_UNIT = Pattern.compile("purchase -(-?)(unit|u)( \\S+)+");
-        public final static Pattern UNIT = Pattern.compile("-(-?)(unit|u)");
+        public final static Pattern UNIT = Pattern.compile("-(-?)(unit|u)( \\S+)+");
+        public final static Pattern X_VALUE_SPACE = Pattern.compile(" -(-?)x \\d+");
+        public final static Pattern Y_VALUE_SPACE = Pattern.compile(" -(-?)y \\d+");
+        public final static Pattern PURCHASE_TILE = Pattern.compile("purchase");
+        public final static Pattern TILE = Pattern.compile(" -(-?)(tile|t)");
         public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
         public final static Pattern BACK = Pattern.compile("back");
     }

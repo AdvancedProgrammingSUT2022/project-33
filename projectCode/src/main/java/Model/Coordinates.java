@@ -36,6 +36,25 @@ public class Coordinates {
 
 
 
+    public boolean isNextToCoordinates(Coordinates coordinates)
+    {
+        if (Math.abs(x - coordinates.getX()) +  Math.abs(y - coordinates.getY()) == 1){
+            return true;
+        }
+        else if (Math.abs(x - coordinates.getX()) + Math.abs(y - coordinates.getY()) == 2){
+            if (y - coordinates.getY() == 1 && coordinates.getX() % 2 == 0){
+                return true;
+            }
+            else if (coordinates.getY() - y == 1 &&  x % 2 == 0){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
     //getters
     public int getX() {
         return x;

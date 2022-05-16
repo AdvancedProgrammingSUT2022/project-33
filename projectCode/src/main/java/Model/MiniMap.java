@@ -40,6 +40,8 @@ public class MiniMap extends Map{
     {
         visibleCoordinates = new ArrayList<>();
 
+        updateCityVisibility(owner.getCities());
+
         updateUnitVisibility(owner.getPlayerUnits().getWorkers());
         updateUnitVisibility(owner.getPlayerUnits().getSettlers());
         updateUnitVisibility(owner.getPlayerUnits().getMeleeMilitaryUnits());
@@ -57,6 +59,25 @@ public class MiniMap extends Map{
             for (int k = 0; k < visibleWorkerCoordinates.size(); k++){
                 if (!visibleCoordinates.contains(visibleWorkerCoordinates.get(k))){
                     visibleCoordinates.add(visibleWorkerCoordinates.get(k));
+                }
+            }
+        }
+    }
+
+
+
+    public void updateCityVisibility(ArrayList<PlayerCity> cities)
+    {
+        for (int i = 0; i < cities.size(); i++){
+
+            for (int j = 0; j < cities.get(i).getLandsOwned().size(); j++) {
+                ArrayList<Coordinates> visibleWorkerCoordinates = new ArrayList<>(
+                        findVisibleCoordinates(cities.get(i).getLandsOwned().get(j).getTerrain().getCenterCoordinates(), 1));
+
+                for (int k = 0; k < visibleWorkerCoordinates.size(); k++) {
+                    if (!visibleCoordinates.contains(visibleWorkerCoordinates.get(k))) {
+                        visibleCoordinates.add(visibleWorkerCoordinates.get(k));
+                    }
                 }
             }
         }
@@ -226,6 +247,46 @@ public class MiniMap extends Map{
             tile.setHasHeavyRangedMilitaryUnit(true);
             tile.setHeavyRangedMilitaryUnits(getUnits().getHeavyRangedMilitaryUnitFromCoordinates(coordinates));
         }
+    }
+
+
+
+    public void addMeleeMilitaryUnit(MeleeMilitaryUnit unit)
+    {
+        getUnits().addMeleeMilitaryUnit(unit);
+        getOriginalMap().getUnits().addMeleeMilitaryUnit(unit);
+    }
+
+
+
+    public void addRangedMilitaryUnit(RangedMilitaryUnit unit)
+    {
+        getUnits().addRangedMilitaryUnit(unit);
+        getOriginalMap().getUnits().addRangedMilitaryUnit(unit);
+    }
+
+
+
+    public void addHeavyRangedMilitaryUnit(HeavyRangedMilitaryUnits unit)
+    {
+        getUnits().addHeavyRangedMilitaryUnit(unit);
+        getOriginalMap().getUnits().addHeavyRangedMilitaryUnit(unit);
+    }
+
+
+
+    public void addSettler(Settler unit)
+    {
+        getUnits().addSettler(unit);
+        getOriginalMap().getUnits().addSettler(unit);
+    }
+
+
+
+    public void addWorker(Worker unit)
+    {
+        getUnits().addWorker(unit);
+        getOriginalMap().getUnits().addWorker(unit);
     }
 
 

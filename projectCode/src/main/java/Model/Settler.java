@@ -34,7 +34,7 @@ public class Settler extends Unit{
 
     public Settler(Coordinates coordinates, NonPlayerColors color){
 
-        super("Settler", 5, 2, 2, 89, 0, 100);
+        super("Settler", 5, 2, 2, 89, 100, 0);
         /* health = 5
         visibilityRange =2
         maxMovements = 2

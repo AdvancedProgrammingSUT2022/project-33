@@ -371,6 +371,7 @@ public class PlayerCity extends City{
 
             if (getOwner().isCoordinatesFreeForNewUnit(getCoordinates(), true)) {
                 owner.getPlayerUnits().addMeleeMilitaryUnit(unit);
+                owner.getMap().addMeleeMilitaryUnit(unit);
             }
             else {
                 setOhHold(true);
@@ -381,6 +382,7 @@ public class PlayerCity extends City{
 
             if (getOwner().isCoordinatesFreeForNewUnit(getCoordinates(), true)) {
                 owner.getPlayerUnits().addRangedMilitaryUnit(unit);
+                owner.getMap().addRangedMilitaryUnit(unit);
             }
             else {
                 setOhHold(true);
@@ -391,6 +393,7 @@ public class PlayerCity extends City{
 
             if (getOwner().isCoordinatesFreeForNewUnit(getCoordinates(), true)) {
                 owner.getPlayerUnits().addHeavyRangedMilitaryUnit(unit);
+                owner.getMap().addHeavyRangedMilitaryUnit(unit);
             }
             else {
                 setOhHold(true);
@@ -401,6 +404,7 @@ public class PlayerCity extends City{
 
             if (getOwner().isCoordinatesFreeForNewUnit(getCoordinates(), false)) {
                 owner.getPlayerUnits().addSettler(unit);
+                owner.getMap().addSettler(unit);
             }
             else {
                 setOhHold(true);
@@ -411,6 +415,7 @@ public class PlayerCity extends City{
 
             if (getOwner().isCoordinatesFreeForNewUnit(getCoordinates(), false)) {
                 owner.getPlayerUnits().addWorker(unit);
+                owner.getMap().addWorker(unit);
             }
             else {
                 setOhHold(true);

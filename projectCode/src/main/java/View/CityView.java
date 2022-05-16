@@ -613,5 +613,40 @@ public class CityView {
     {
         System.out.println("you do not have enough money. you need " + goldNeeded + " more gold");
     }
+
+
+
+    public void showCoordinatesOutOfBoundaries(String axis)
+    {
+        System.out.println("the value for " + axis + " is out of boundary");
+    }
+
+
+
+    public void showMustBeNextToBorder()
+    {
+        System.out.println("land must be near the border");
+    }
+
+
+
+    public void showMaximumBorder()
+    {
+        System.out.println("this city is at its maximum land limit and can not grow larger");
+    }
+
+
+
+    public void showAlreadyOwnLand()
+    {
+        System.out.println("this land already belongs to this city");
+    }
+
+
+
+    public void showOwnedByAnotherCity()
+    {
+        System.out.println("this lands is already owned by another city");
+    }
 }
 

@@ -32,7 +32,7 @@ public class Player {
         playerUnits = new UnitList();
         cities = new ArrayList<>();
         this.technologies = new ArrayList<>();
-        this.gold = 0;
+        this.gold = 200;
         this.happiness = 0;
         this.isResearching = false;
         this.researchPerTurn = 0;
@@ -149,6 +149,13 @@ public class Player {
 
     public void addTechnology(Technologies technology){
         this.technologies.add(technology);
+    }
+
+
+
+    public void decreaseGold(int amount)
+    {
+        gold -= amount;
     }
 
 

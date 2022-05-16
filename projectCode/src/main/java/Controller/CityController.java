@@ -99,6 +99,11 @@ public class CityController {
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.PURCHASE_UNIT)){
                 purchaseUnit(input);
             }
+            else if (UserInput.doesMatchMultipleRegex(input, MatchingStrings.CityControllerStrings.PURCHASE_TILE.toString(),
+                    new ArrayList<>(Arrays.asList(MatchingStrings.CityControllerStrings.X_VALUE_SPACE, MatchingStrings.CityControllerStrings.Y_VALUE_SPACE,
+                            MatchingStrings.CityControllerStrings.TILE)))){
+                purchaseTile(input);
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.CityControllerStrings.SHOW_MENU)){
                 view.showCurrentMenu(city.getCityName());
             }
@@ -523,26 +528,104 @@ public class CityController {
         if (task.isMeleeUnit()){
             MeleeMilitaryUnit unit = new MeleeMilitaryUnit(task.getMeleeUnit().unit, city.getCoordinates(), city.getOwner().getColor(), city.getOwner());
             city.getOwner().getPlayerUnits().addMeleeMilitaryUnit(unit);
+            city.getOwner().getMap().addMeleeMilitaryUnit(unit);
         }
         else if (task.isRangedUnit()){
             RangedMilitaryUnit unit = new RangedMilitaryUnit(task.getRangedUnit().unit, city.getCoordinates(), city.getOwner().getColor(), city.getOwner());
 
             city.getOwner().getPlayerUnits().addRangedMilitaryUnit(unit);
+            city.getOwner().getMap().addRangedMilitaryUnit(unit);
         }
         else if (task.isHeavyUnit()){
             HeavyRangedMilitaryUnits unit = new HeavyRangedMilitaryUnits(city.getTask().getHeavyUnit().unit, city.getCoordinates(), city.getOwner().getColor(), city.getOwner());
 
             city.getOwner().getPlayerUnits().addHeavyRangedMilitaryUnit(unit);
+            city.getOwner().getMap().addHeavyRangedMilitaryUnit(unit);
         }
         else if (task.getGameName().equalsIgnoreCase("Settler")){
             Settler unit = new Settler(city.getCoordinates(), city.getOwner().getColor(), city.getOwner());
 
             city.getOwner().getPlayerUnits().addSettler(unit);
+            city.getOwner().getMap().addSettler(unit);
         }
         else if (task.getGameName().equalsIgnoreCase("Worker")){
             Worker unit = new Worker(city.getCoordinates(), city.getOwner().getColor(), city.getOwner());
 
             city.getOwner().getPlayerUnits().addWorker(unit);
+            city.getOwner().getMap().addWorker(unit);
         }
+    }
+
+
+
+    private void purchaseTile(String input)
+    {
+        int x = Integer.parseInt(UserInput.getMatchingStringGroupFromInput(input, MatchingStrings.CityControllerStrings.X_VALUE).split(" ")[1]);
+        int y = Integer.parseInt(UserInput.getMatchingStringGroupFromInput(input, MatchingStrings.CityControllerStrings.Y_VALUE).split(" ")[1]);
+
+        if (x > city.getOwner().getMap().getMapSize() - 1 || x < 0){
+            view.showCoordinatesOutOfBoundaries("x");
+        }
+        else if (y > city.getOwner().getMap().getMapSize() - 1 || y < 0){
+            view.showCoordinatesOutOfBoundaries("y");
+        }
+
+        if (!isNextToBorder(x, y)){
+            view.showMustBeNextToBorder();
+            return;
+        }
+
+        if (city.getLandsOwned().size() >= 19){
+            view.showMaximumBorder();
+            return;
+        }
+
+        if (isLandAlreadyForPlayer(x, y)){
+            view.showAlreadyOwnLand();
+            return;
+        }
+
+        if (city.getOwner().getMap().getTerrainFromCoordinates(new Coordinates(x, y, 0)).getIsTerritory()){
+            view.showOwnedByAnotherCity();
+            return;
+        }
+
+        if (player.getGold() < 100){
+            view.showNotEnoughMoney(100 - player.getGold());
+            return;
+        }
+
+        city.addLand(new CityLand(city.getOwner().getMap().getTerrainFromCoordinates(new Coordinates(x, y , 0))));
+        city.getOwner().getMap().getTerrainFromCoordinates(new Coordinates(x, y , 0)).setTerritory(true, city.getOwner().getColor().toString());
+        city.getOwner().getMap().getOriginalMap().getTerrainFromCoordinates(new Coordinates(x, y , 0)).setTerritory(true, city.getOwner().getColor().toString());
+        city.getOwner().decreaseGold(100);
+    }
+
+
+
+    private boolean isNextToBorder(int x, int y)
+    {
+        for (int i = 0; i < city.getLandsOwned().size(); i++){
+            if (city.getLandsOwned().get(i).getTerrain().getCenterCoordinates().isNextToCoordinates(new Coordinates(x, y , 0))){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+    private boolean isLandAlreadyForPlayer(int x, int y)
+    {
+        Coordinates coordinates = new Coordinates(x, y, 0);
+
+        for (int i = 0; i < city.getLandsOwned().size(); i++){
+            if (city.getLandsOwned().get(i).getTerrain().getCenterCoordinates().equals(coordinates)){
+                return true;
+            }
+        }
+
+        return false;
     }
 }
