@@ -217,6 +217,7 @@ public class MatchingStrings {
             public final static Pattern SLEEP = Pattern.compile("sleep");
             public final static Pattern ALERT = Pattern.compile("be alert");
             public final static Pattern HEAL = Pattern.compile("heal");
+            public final static Pattern HEAL_CHEAT = Pattern.compile("we need a doctor");
             public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
             public final static Pattern FINISH = Pattern.compile("finish");
         }

@@ -17,3 +17,7 @@ is that a treasure chest -> increases gold by 1000
 where did it come from -> grows population by one
 but i want it -> finishes current city task
 place it right over there <building> -> instantly builds the building in the city
+
+
+*****units menu*****
+we need a doctor -> instantly heals the unit

@@ -125,4 +125,11 @@ public class WorkerView {
     {
         System.out.println("unit is now healing and will fully heal in " + turnsNeeded + " turns");
     }
+
+
+
+    public void showUnitIsFullyHealed()
+    {
+        System.out.println("unit is fully healed");
+    }
 }

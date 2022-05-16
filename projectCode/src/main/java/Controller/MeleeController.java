@@ -47,6 +47,9 @@ public class MeleeController {
             else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.AllUnits.HEAL)){
                 heal();
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.AllUnits.HEAL_CHEAT)){
+                healCheat();
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.AllUnits.SHOW_MENU)){
                 view.showCurrentMenu(unit.getGameName());
             }
@@ -196,5 +199,19 @@ public class MeleeController {
 
         unit.setHealing(true);
         view.showUnitIsHealing(unit.getTurnsNeededToFullyHeal());
+    }
+
+
+
+    private void healCheat()
+    {
+        if (unit.getHealth() == unit.getMaxHealth()){
+            view.showUnitHealthIsFull();
+            return;
+        }
+
+        unit.setHealth(unit.getMaxHealth());
+        unit.setHealing(false);
+        view.showUnitIsFullyHealed();
     }
 }

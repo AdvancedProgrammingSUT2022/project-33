@@ -156,7 +156,8 @@ public class MiniMapController {
         }
 
         if (player.getPlayerUnits().getWorkerFromCoordinates(coordinates) != null){
-            //TODO:
+            WorkerController workerController = new WorkerController(player.getPlayerUnits().getWorkerFromCoordinates(coordinates));
+            view.showYouAreInMiniMapMessage();
         }
         else if (player.getPlayerUnits().getSettlerFromCoordinates(coordinates) != null){
             SettlerController settlerController = new SettlerController(player.getPlayerUnits().getSettlerFromCoordinates(coordinates));
@@ -182,10 +183,12 @@ public class MiniMapController {
             view.showYouAreInMiniMapMessage();
         }
         else if (player.getPlayerUnits().getRangedMilitaryUnitFromCoordinates(coordinates) != null){
-            //TODO:
+            RangedController rangedController = new RangedController(player.getPlayerUnits().getRangedMilitaryUnitFromCoordinates(coordinates));
+            view.showYouAreInMiniMapMessage();
         }
         else if (player.getPlayerUnits().getHeavyRangedMilitaryUnitFromCoordinates(coordinates) != null){
-            //TODO:
+            HeavyController heavyRangedMilitaryUnits = new HeavyController(player.getPlayerUnits().getHeavyRangedMilitaryUnitFromCoordinates(coordinates));
+            view.showYouAreInMiniMapMessage();
         }
         else {
             view.showThereIsNoUnit();

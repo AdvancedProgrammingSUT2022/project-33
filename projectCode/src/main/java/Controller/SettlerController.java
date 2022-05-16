@@ -59,6 +59,9 @@ public class SettlerController {
             else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.SHOW_MENU)){
                 view.showCurrentMenu();
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.AllUnits.HEAL_CHEAT)){
+                healCheat();
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.FINISH)){
                 return;
             }
@@ -215,5 +218,19 @@ public class SettlerController {
 
         settler.setHealing(true);
         view.showUnitIsHealing(settler.getTurnsNeededToFullyHeal());
+    }
+
+
+
+    private void healCheat()
+    {
+        if (settler.getHealth() == settler.getMaxHealth()){
+            view.showUnitHealthIsFull();
+            return;
+        }
+
+        settler.setHealth(settler.getMaxHealth());
+        settler.setHealing(false);
+        view.showUnitIsFullyHealed();
     }
 }

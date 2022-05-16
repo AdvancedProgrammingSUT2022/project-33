@@ -200,4 +200,18 @@ public class HeavyController {
         unit.setHealing(true);
         view.showUnitIsHealing(unit.getTurnsNeededToFullyHeal());
     }
+
+
+
+    private void healCheat()
+    {
+        if (unit.getHealth() == unit.getMaxHealth()){
+            view.showUnitHealthIsFull();
+            return;
+        }
+
+        unit.setHealth(unit.getMaxHealth());
+        unit.setHealing(false);
+        view.showUnitIsFullyHealed();
+    }
 }
