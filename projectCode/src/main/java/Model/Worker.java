@@ -37,7 +37,7 @@ public class Worker extends Unit{
         setRemainingMovements(getMaxMovements());
 
         if (isMoving()) {
-            moveUnit(terrains, getOwner().getMap(), new WorkerView());
+            moveUnit(terrains, getOwner().getMap(), new WorkerView(getGameName()));
         }
 
         //TODO:
@@ -89,5 +89,16 @@ public class Worker extends Unit{
         if (getCoordinates().equals(getDestinationCoordinates())){
             setMoving(false);
         }
+    }
+
+
+
+    public void removeUnit()
+    {
+        getOwner().addGold(getPrice() * getHealth() / 10);
+
+        getOwner().getPlayerUnits().getRangedMilitaryUnits().remove(this);
+        getOwner().getMap().getUnits().getRangedMilitaryUnits().remove(this);
+        getOwner().getMap().getOriginalMap().getUnits().getRangedMilitaryUnits().remove(this);
     }
 }

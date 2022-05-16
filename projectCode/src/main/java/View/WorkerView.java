@@ -1,6 +1,7 @@
 package View;
 
 import Model.Coordinates;
+import Model.Worker;
 
 public class WorkerView {
 
@@ -9,6 +10,20 @@ public class WorkerView {
 
 
     ////methods////
+    public WorkerView(String unitType)
+    {
+        System.out.println("you are now controlling " + unitType);
+    }
+
+
+
+    public void showStats(Worker unit)
+    {
+
+    }
+
+
+
     public void showCoordinatesOutOfBoundary(int value, String axis, int mapSize)
     {
         System.out.println(axis + "axis value is out of boundaries: " + value);
@@ -39,5 +54,75 @@ public class WorkerView {
     public void showInaccessible()
     {
         System.out.println("destination coordinates is inaccessible");
+    }
+
+
+
+    public void showCurrentMenu(String gameName)
+    {
+        System.out.println(gameName + " menu");
+    }
+
+
+
+    public void showCheckRemovingMessage()
+    {
+        System.out.println("are you sure you want to remove this unit? ");
+    }
+
+
+
+    public void showUnitRemoved()
+    {
+        System.out.println("unit removed successfully");
+    }
+
+
+
+    public void showUnitIsAlreadySleeping()
+    {
+        System.out.println("this unit is already sleeping");
+    }
+
+
+
+    public void showUnitIsNowSleeping()
+    {
+        System.out.println("unit is now sleeping");
+    }
+
+
+
+    public void showUnitIsAlreadyOnAlert()
+    {
+        System.out.println("this uit is already on alert");
+    }
+
+
+
+    public void showUnitIsNowOnAlert()
+    {
+        System.out.println("unit is now on alert");
+    }
+
+
+
+    public void showUnitIsAlreadyHealing()
+    {
+        System.out.println("this unit is already healing");
+    }
+
+
+
+    public void showUnitHealthIsFull()
+    {
+        System.out.println("this unit is at its maximum health");
+    }
+
+
+
+    public void showUnitIsHealing(int turnsNeeded)
+    {
+        System.out.println("unit is now healing and will fully heal in " + turnsNeeded + " turns");
     }
 }

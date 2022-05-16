@@ -42,6 +42,15 @@ public class SettlerController {
                     return;
                 }
             }
+            else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.AllUnits.SLEEP)){
+                sleep();
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.AllUnits.ALERT)){
+                alert();
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.AllUnits.HEAL)){
+                heal();
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.Settler.REMOVE_UNIT)){
                 if (removeUnit()){
                     return;
@@ -162,5 +171,49 @@ public class SettlerController {
     {
         return settler.getOwner().getMap().getUnits().getSettlerFromCoordinates(coordinates) != null ||
                 settler.getOwner().getMap().getUnits().getWorkerFromCoordinates(coordinates) != null;
+    }
+
+
+
+    private void sleep()
+    {
+        if (settler.isSleep()){
+            view.showUnitIsAlreadySleeping();
+            return;
+        }
+
+        settler.setSleep(true);
+        view.showUnitIsNowSleeping();
+    }
+
+
+
+    private void alert()
+    {
+        if (settler.isOnAlert()){
+            view.showUnitIsAlreadyOnAlert();
+            return;
+        }
+
+        settler.setOnAlert(true);
+        view.showUnitIsNowOnAlert();
+    }
+
+
+
+    private void heal()
+    {
+        if (settler.isHealing()){
+            view.showUnitIsAlreadyHealing();
+            return;
+        }
+
+        if (settler.getHealth() == settler.getMaxHealth()){
+            view.showUnitHealthIsFull();
+            return;
+        }
+
+        settler.setHealing(true);
+        view.showUnitIsHealing(settler.getTurnsNeededToFullyHeal());
     }
 }

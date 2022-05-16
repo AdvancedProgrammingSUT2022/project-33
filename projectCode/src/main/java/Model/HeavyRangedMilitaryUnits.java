@@ -1,7 +1,10 @@
 package Model;
 
 public class HeavyRangedMilitaryUnits extends RangedMilitaryUnit{
-    int turnsNeededToSetUp;
+    private int turnsNeededToSetUp;
+    private int turnsSinceStartingToSetUp;
+    private boolean isSettingUp;
+    private boolean isSetUp;
 
 
 
@@ -28,5 +31,25 @@ public class HeavyRangedMilitaryUnits extends RangedMilitaryUnit{
     public HeavyRangedMilitaryUnits(HeavyRangedMilitaryUnits unit, Coordinates coordinates, NonPlayerColors color)
     {
         super(unit, coordinates, color);
+    }
+
+
+    public int getTurnsNeededToSetUp() {
+        return turnsNeededToSetUp;
+    }
+
+
+    public boolean isSetUp() {
+        return isSetUp;
+    }
+
+
+    public int getTurnsSinceStartingToSetUp() {
+        return turnsSinceStartingToSetUp;
+    }
+
+
+    public boolean isSettingUp() {
+        return isSettingUp;
     }
 }

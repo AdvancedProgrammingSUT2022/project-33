@@ -68,6 +68,17 @@ public class RangedMilitaryUnit extends MilitaryUnit{
 
 
 
+    public void removeUnit()
+    {
+        getOwner().addGold(getPrice() * getHealth() / 10);
+
+        getOwner().getPlayerUnits().getRangedMilitaryUnits().remove(this);
+        getOwner().getMap().getUnits().getRangedMilitaryUnits().remove(this);
+        getOwner().getMap().getOriginalMap().getUnits().getRangedMilitaryUnits().remove(this);
+    }
+
+
+
     //getters
     public int getAttackRange() {
         return attackRange;
@@ -76,5 +87,19 @@ public class RangedMilitaryUnit extends MilitaryUnit{
 
     public int getRangedAttackDamage() {
         return rangedAttackDamage;
+    }
+
+
+
+    public int getOverallRangedAttackDamage()
+    {
+        if (getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty() != null) {
+            return ((100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) *
+                    (100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty().getFightChangePercentage()) *
+                    (getRangedAttackDamage())) / 10000;
+        }
+        else {
+            return ((100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) * (getRangedAttackDamage())) / 100;
+        }
     }
 }

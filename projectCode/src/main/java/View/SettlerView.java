@@ -105,4 +105,53 @@ public class SettlerView {
     {
         System.out.println("destination coordinates is inaccessible");
     }
+
+
+
+    public void showUnitIsAlreadySleeping()
+    {
+        System.out.println("this unit is already sleeping");
+    }
+
+
+
+    public void showUnitIsNowSleeping()
+    {
+        System.out.println("unit is now sleeping");
+    }
+
+
+
+    public void showUnitIsAlreadyOnAlert()
+    {
+        System.out.println("this uit is already on alert");
+    }
+
+
+
+    public void showUnitIsNowOnAlert()
+    {
+        System.out.println("unit is now on alert");
+    }
+
+
+
+    public void showUnitIsAlreadyHealing()
+    {
+        System.out.println("this unit is already healing");
+    }
+
+
+
+    public void showUnitHealthIsFull()
+    {
+        System.out.println("this unit is at its maximum health");
+    }
+
+
+
+    public void showUnitIsHealing(int turnsNeeded)
+    {
+        System.out.println("unit is now healing and will fully heal in " + turnsNeeded + " turns");
+    }
 }
