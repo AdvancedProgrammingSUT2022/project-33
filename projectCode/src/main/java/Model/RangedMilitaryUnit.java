@@ -102,4 +102,50 @@ public class RangedMilitaryUnit extends MilitaryUnit{
             return ((100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) * (getRangedAttackDamage())) / 100;
         }
     }
+
+
+
+    public void moveAndAttackUnit(Coordinates coordinates)
+    {
+        setPath(coordinates);
+        getPath().remove(getPath().size() - 1);
+        setMoving(true);
+        setAttacking(true);
+        setAttackingUnitCoordinates(coordinates);
+        setAttackDestination(getPath().get(getPath().size() - 1));
+
+
+        moveUnit(getOwner().getMap().getOriginalMap().getTerrains(), getOwner().getMap(), new MilitaryView());
+
+        if (getCoordinates().equals(getAttackDestination())){
+            attackUnit();
+        }
+    }
+
+
+
+    private void attackUnit()
+    {
+        if (getOwner().getMap().getUnits().getMeleeMilitaryUnitFromCoordinates(getAttackingUnitCoordinates()) != null){
+            new MilitaryView().showUnitIsAttacking(getGameName(), getCoordinates());
+            new MilitaryView().showUnitIsUnderAttack(
+                    getOwner().getMap().getUnits().getMeleeMilitaryUnitFromCoordinates(getAttackingUnitCoordinates()).getGameName(),
+                    getOwner().getMap().getUnits().getMeleeMilitaryUnitFromCoordinates(getAttackingUnitCoordinates()).getCoordinates());
+            fightRangedToMelee(this, getOwner().getMap().getUnits().getMeleeMilitaryUnitFromCoordinates(getAttackingUnitCoordinates()));
+        }
+        else if (getOwner().getMap().getUnits().getRangedMilitaryUnitFromCoordinates(getAttackingUnitCoordinates()) != null){
+            new MilitaryView().showUnitIsAttacking(getGameName(), getCoordinates());
+            new MilitaryView().showUnitIsUnderAttack(
+                    getOwner().getMap().getUnits().getMeleeMilitaryUnitFromCoordinates(getAttackingUnitCoordinates()).getGameName(),
+                    getOwner().getMap().getUnits().getMeleeMilitaryUnitFromCoordinates(getAttackingUnitCoordinates()).getCoordinates());
+            fightRangedToRanged(this, getOwner().getMap().getUnits().getRangedMilitaryUnitFromCoordinates(getAttackingUnitCoordinates()));
+        }
+        else if (getOwner().getMap().getUnits().getHeavyRangedMilitaryUnitFromCoordinates(getAttackingUnitCoordinates()) != null){
+            new MilitaryView().showUnitIsAttacking(getGameName(), getCoordinates());
+            new MilitaryView().showUnitIsUnderAttack(
+                    getOwner().getMap().getUnits().getMeleeMilitaryUnitFromCoordinates(getAttackingUnitCoordinates()).getGameName(),
+                    getOwner().getMap().getUnits().getMeleeMilitaryUnitFromCoordinates(getAttackingUnitCoordinates()).getCoordinates());
+            fightRangedToHeavy(this, getOwner().getMap().getUnits().getHeavyRangedMilitaryUnitFromCoordinates(getAttackingUnitCoordinates()));
+        }
+    }
 }

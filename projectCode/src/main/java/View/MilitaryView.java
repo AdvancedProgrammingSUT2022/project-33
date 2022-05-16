@@ -145,4 +145,46 @@ public class MilitaryView {
     {
         System.out.println("unit is fully healed");
     }
+
+
+
+    public void showFriendlyUnitInAttackingCoordinates()
+    {
+        System.out.println("there is friendly units in the given coordinates");
+    }
+
+
+
+    public void showNoUnitInAttackingCoordinates()
+    {
+        System.out.println("there in no enemy unit in the given coordinates");
+    }
+
+
+
+    public void showUnitIsUnderAttack(String unitName, Coordinates coordinates)
+    {
+        System.out.println(unitName + " is under attack by another unit on (" + coordinates.getX() + ", " + coordinates.getY() +")");
+    }
+
+
+
+    public void showUnitIsAttacking(String unitName, Coordinates coordinates)
+    {
+        System.out.println(unitName + " is attacking another unit on (" + coordinates.getX() + ", " + coordinates.getY() +")");
+    }
+
+
+
+    public void showUnitKilledEnemy(String unitName, Coordinates coordinates)
+    {
+        System.out.println(unitName + " defeated another enemy on (" + coordinates.getX() + ", " + coordinates.getY() +")");
+    }
+
+
+
+    public void showUnitDied(String unitName, Coordinates coordinates)
+    {
+        System.out.println(unitName + " got defeated by another enemy on (" + coordinates.getX() + ", " + coordinates.getY() +")");
+    }
 }

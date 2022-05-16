@@ -206,4 +206,41 @@ public class UnitList {
 
         return gold;
     }
+
+
+
+    public boolean isUnitInCoordinates(Coordinates coordinates)
+    {
+        for (int i = 0; i < meleeMilitaryUnits.size(); i++){
+            if (meleeMilitaryUnits.get(i).getCoordinates().equals(coordinates)){
+                return true;
+            }
+        }
+
+        for (int i = 0; i < rangedMilitaryUnits.size(); i++){
+            if (rangedMilitaryUnits.get(i).getCoordinates().equals(coordinates)){
+                return true;
+            }
+        }
+
+        for (int i = 0; i < heavyRangedMilitaryUnits.size(); i++){
+            if (heavyRangedMilitaryUnits.get(i).getCoordinates().equals(coordinates)){
+                return true;
+            }
+        }
+
+        for (int i = 0; i < workers.size(); i++){
+            if (workers.get(i).getCoordinates().equals(coordinates)){
+                return true;
+            }
+        }
+
+        for (int i = 0; i < settlers.size(); i++){
+            if (settlers.get(i).getCoordinates().equals(coordinates)){
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

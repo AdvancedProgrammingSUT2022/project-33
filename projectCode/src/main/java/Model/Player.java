@@ -164,6 +164,13 @@ public class Player {
 
 
 
+    public void addNotification(String message)
+    {
+        notifications.add(message);
+    }
+
+
+
     //setters
     public void setMap(MiniMap map)
     {
@@ -314,5 +321,10 @@ public class Player {
 
     public boolean isHasLost() {
         return hasLost;
+    }
+
+
+    public ArrayList<String> getNotifications() {
+        return notifications;
     }
 }

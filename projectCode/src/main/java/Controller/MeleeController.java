@@ -50,6 +50,10 @@ public class MeleeController {
             else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.AllUnits.HEAL_CHEAT)){
                 healCheat();
             }
+            else if  (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.MeleeUnitStrings.ATTACK_UNIT1) ||
+                    UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.MeleeUnitStrings.ATTACK_UNIT2)){
+                attackUnit(input);
+            }
             else if (UserInput.doesMatch(input, MatchingStrings.UnitsControllerStrings.AllUnits.SHOW_MENU)){
                 view.showCurrentMenu(unit.getGameName());
             }
@@ -213,5 +217,28 @@ public class MeleeController {
         unit.setHealth(unit.getMaxHealth());
         unit.setHealing(false);
         view.showUnitIsFullyHealed();
+    }
+
+
+
+    private void attackUnit(String input)
+    {
+        int x = Integer.parseInt(UserInput.getMatchingStringGroupFromInput(input, MatchingStrings.UnitsControllerStrings.AllUnits.X_VALUE).split(" ")[1]);
+        int y = Integer.parseInt(UserInput.getMatchingStringGroupFromInput(input, MatchingStrings.UnitsControllerStrings.AllUnits.Y_VALUE).split(" ")[1]);
+
+        Coordinates coordinates = new Coordinates(x, y, 0);
+
+        if (unit.getOwner().getPlayerUnits().isUnitInCoordinates(coordinates)){
+            view.showFriendlyUnitInAttackingCoordinates();
+            return;
+        }
+
+
+        if (!unit.getOwner().getMap().getUnits().isUnitInCoordinates(coordinates)){
+            view.showNoUnitInAttackingCoordinates();
+            return;
+        }
+
+        unit.moveAndAttackUnit(coordinates);
     }
 }

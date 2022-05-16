@@ -247,6 +247,8 @@ public class MatchingStrings {
         public static class MeleeUnitStrings
         {
             public final static Pattern FORTIFY = Pattern.compile("fortify");
+            public final static Pattern ATTACK_UNIT1 = Pattern.compile("attack unit -x \\d+ -y \\d+");
+            public final static Pattern ATTACK_UNIT2 = Pattern.compile("attack unit -y \\d+ -x \\d+");
         }
     }
 }

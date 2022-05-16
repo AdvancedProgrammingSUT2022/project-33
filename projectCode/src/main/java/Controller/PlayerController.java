@@ -2,7 +2,6 @@ package Controller;
 
 import Model.MatchingStrings;
 import Model.Player;
-import Model.User;
 import Model.UserInput;
 import View.PlayerView;
 

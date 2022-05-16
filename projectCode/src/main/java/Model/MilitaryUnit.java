@@ -3,6 +3,7 @@ package Model;
 import View.MilitaryView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MilitaryUnit extends Unit{
     private int attackDamage;
@@ -17,6 +18,9 @@ public class MilitaryUnit extends Unit{
     private int attackBonus;
     private boolean isCavalry;
     private boolean isInCity;
+    private boolean isAttacking;
+    private Coordinates attackingUnitCoordinates;
+    private Coordinates attackDestination;
 
 
 
@@ -228,10 +232,342 @@ public class MilitaryUnit extends Unit{
     }
 
 
+    public boolean isAttacking() {
+        return isAttacking;
+    }
+
+
+    public Coordinates getAttackingUnitCoordinates() {
+        return attackingUnitCoordinates;
+    }
+
+
+    public Coordinates getAttackDestination() {
+        return attackDestination;
+    }
+
+
 
     //setters:
 
     public void setFortifying(boolean fortifying) {
         isFortifying = fortifying;
+    }
+
+
+    public void setAttacking(boolean attacking) {
+        isAttacking = attacking;
+    }
+
+
+    public void setAttackingUnitCoordinates(Coordinates attackingUnitCoordinates) {
+        this.attackingUnitCoordinates = attackingUnitCoordinates;
+    }
+
+
+    public void setAttackDestination(Coordinates attackDestination) {
+        this.attackDestination = attackDestination;
+    }
+
+
+
+    public void fightMeleeToRanged(MeleeMilitaryUnit meleeUnit, RangedMilitaryUnit rangedUnit)
+    {
+        int unit1AttackDamage = meleeUnit.getOverallDamage();
+        int unit2AttackDamage = rangedUnit.getOverallDamage();
+
+        Random rand = new Random();
+
+        if (rand.nextInt(2) == 0){
+            unit1AttackDamage += rand.nextInt(unit1AttackDamage / 15);
+        }
+        else {
+            unit1AttackDamage -= rand.nextInt(unit1AttackDamage / 15);
+        }
+
+        if (rand.nextInt(2) == 0){
+            unit2AttackDamage += rand.nextInt(unit2AttackDamage / 15);
+        }
+        else {
+            unit2AttackDamage -= rand.nextInt(unit2AttackDamage / 15);
+        }
+
+        unit1AttackDamage /= rangedUnit.getOverallDefence();
+        unit2AttackDamage /= meleeUnit.getOverallDefence();
+
+        meleeUnit.setHealth(getHealth() - unit2AttackDamage);
+        rangedUnit.setHealth(getHealth() - unit1AttackDamage);
+
+        if (meleeUnit.getHealth() <= 0){
+            meleeUnit.getOwner().getPlayerUnits().getMeleeMilitaryUnits().remove(meleeUnit);
+            meleeUnit.getOwner().getMap().getUnits().getMeleeMilitaryUnits().remove(meleeUnit);
+            meleeUnit.getOwner().getMap().getOriginalMap().getUnits().getMeleeMilitaryUnits().remove(meleeUnit);
+            new MilitaryView().showUnitDied(meleeUnit.getGameName(), meleeUnit.getCoordinates());
+            new MilitaryView().showUnitKilledEnemy(rangedUnit.getGameName(), rangedUnit.getCoordinates());
+        }
+
+        if (rangedUnit.getHealth() <= 0){
+            rangedUnit.getOwner().getPlayerUnits().getRangedMilitaryUnits().remove(rangedUnit);
+            rangedUnit.getOwner().getMap().getUnits().getRangedMilitaryUnits().remove(rangedUnit);
+            rangedUnit.getOwner().getMap().getOriginalMap().getUnits().getRangedMilitaryUnits().remove(rangedUnit);
+            new MilitaryView().showUnitDied(rangedUnit.getGameName(), rangedUnit.getCoordinates());
+            new MilitaryView().showUnitKilledEnemy(meleeUnit.getGameName(), meleeUnit.getCoordinates());
+
+        }
+    }
+
+
+
+    public void fightMeleeToMelee(MeleeMilitaryUnit meleeUnit1, MeleeMilitaryUnit meleeUnit2)
+    {
+        int unit1AttackDamage = meleeUnit1.getOverallDamage();
+        int unit2AttackDamage = meleeUnit2.getOverallDamage();
+
+        Random rand = new Random();
+
+        if (rand.nextInt(2) == 0){
+            unit1AttackDamage += rand.nextInt(unit1AttackDamage / 15);
+        }
+        else {
+            unit1AttackDamage -= rand.nextInt(unit1AttackDamage / 15);
+        }
+
+        if (rand.nextInt(2) == 0){
+            unit2AttackDamage += rand.nextInt(unit2AttackDamage / 15);
+        }
+        else {
+            unit2AttackDamage -= rand.nextInt(unit2AttackDamage / 15);
+        }
+
+        unit1AttackDamage /= meleeUnit2.getOverallDefence();
+        unit2AttackDamage /= meleeUnit1.getOverallDefence();
+
+        meleeUnit1.setHealth(getHealth() - unit2AttackDamage);
+        meleeUnit2.setHealth(getHealth() - unit1AttackDamage);
+
+        if (meleeUnit1.getHealth() <= 0){
+            meleeUnit1.getOwner().getPlayerUnits().getMeleeMilitaryUnits().remove(meleeUnit1);
+            meleeUnit1.getOwner().getMap().getUnits().getMeleeMilitaryUnits().remove(meleeUnit1);
+            meleeUnit1.getOwner().getMap().getOriginalMap().getUnits().getMeleeMilitaryUnits().remove(meleeUnit1);
+            new MilitaryView().showUnitDied(meleeUnit1.getGameName(), meleeUnit1.getCoordinates());
+            new MilitaryView().showUnitKilledEnemy(meleeUnit2.getGameName(), meleeUnit2.getCoordinates());
+
+        }
+
+        if (meleeUnit2.getHealth() <= 0){
+            meleeUnit2.getOwner().getPlayerUnits().getMeleeMilitaryUnits().remove(meleeUnit2);
+            meleeUnit2.getOwner().getMap().getUnits().getMeleeMilitaryUnits().remove(meleeUnit2);
+            meleeUnit2.getOwner().getMap().getOriginalMap().getUnits().getMeleeMilitaryUnits().remove(meleeUnit2);
+            new MilitaryView().showUnitDied(meleeUnit2.getGameName(), meleeUnit2.getCoordinates());
+            new MilitaryView().showUnitKilledEnemy(meleeUnit1.getGameName(), meleeUnit1.getCoordinates());
+        }
+    }
+
+
+
+    public void fightMeleeToHeavy(MeleeMilitaryUnit meleeUnit, HeavyRangedMilitaryUnits heavyUnit)
+    {
+        int unit1AttackDamage = meleeUnit.getOverallDamage();
+        int unit2AttackDamage = heavyUnit.getOverallDamage();
+
+        Random rand = new Random();
+
+        if (rand.nextInt(2) == 0){
+            unit1AttackDamage += rand.nextInt(unit1AttackDamage / 15);
+        }
+        else {
+            unit1AttackDamage -= rand.nextInt(unit1AttackDamage / 15);
+        }
+
+        if (rand.nextInt(2) == 0){
+            unit2AttackDamage += rand.nextInt(unit2AttackDamage / 15);
+        }
+        else {
+            unit2AttackDamage -= rand.nextInt(unit2AttackDamage / 15);
+        }
+
+        unit1AttackDamage /= heavyUnit.getOverallDefence();
+        unit2AttackDamage /= meleeUnit.getOverallDefence();
+
+        meleeUnit.setHealth(getHealth() - unit2AttackDamage);
+        heavyUnit.setHealth(getHealth() - unit1AttackDamage);
+
+        if (meleeUnit.getHealth() <= 0){
+            meleeUnit.getOwner().getPlayerUnits().getMeleeMilitaryUnits().remove(meleeUnit);
+            meleeUnit.getOwner().getMap().getUnits().getMeleeMilitaryUnits().remove(meleeUnit);
+            meleeUnit.getOwner().getMap().getOriginalMap().getUnits().getMeleeMilitaryUnits().remove(meleeUnit);
+            new MilitaryView().showUnitDied(meleeUnit.getGameName(), meleeUnit.getCoordinates());
+            new MilitaryView().showUnitKilledEnemy(heavyUnit.getGameName(), heavyUnit.getCoordinates());
+        }
+
+        if (heavyUnit.getHealth() <= 0){
+            heavyUnit.getOwner().getPlayerUnits().getHeavyRangedUnits().remove(heavyUnit);
+            heavyUnit.getOwner().getMap().getUnits().getHeavyRangedUnits().remove(heavyUnit);
+            heavyUnit.getOwner().getMap().getOriginalMap().getUnits().getHeavyRangedUnits().remove(heavyUnit);
+            new MilitaryView().showUnitDied(heavyUnit.getGameName(), heavyUnit.getCoordinates());
+            new MilitaryView().showUnitKilledEnemy(meleeUnit.getGameName(), meleeUnit.getCoordinates());
+        }
+    }
+
+
+
+    public void fightRangedToMelee(RangedMilitaryUnit attacker, MeleeMilitaryUnit defender)
+    {
+        int attackDamage = attacker.getOverallRangedAttackDamage();
+        attackDamage /= defender.getOverallDefence();
+
+        Random rand = new Random();
+
+        if (rand.nextInt(2) == 0){
+            attackDamage += rand.nextInt(attackDamage / 15);
+        }
+        else {
+            attackDamage -= rand.nextInt(attackDamage / 15);
+        }
+
+        defender.setHealth(defender.getHealth() - attackDamage);
+
+        if (defender.getHealth() <= 0){
+            defender.getOwner().getPlayerUnits().getMeleeMilitaryUnits().remove(defender);
+            defender.getOwner().getMap().getUnits().getMeleeMilitaryUnits().remove(defender);
+            defender.getOwner().getMap().getOriginalMap().getUnits().getMeleeMilitaryUnits().remove(defender);
+            new MilitaryView().showUnitDied(defender.getGameName(), defender.getCoordinates());
+            new MilitaryView().showUnitKilledEnemy(attacker.getGameName(), attacker.getCoordinates());
+        }
+    }
+
+
+
+    public void fightRangedToRanged(RangedMilitaryUnit attacker, RangedMilitaryUnit defender)
+    {
+        int attackDamage = attacker.getOverallRangedAttackDamage();
+        attackDamage /= defender.getOverallDefence();
+
+        Random rand = new Random();
+
+        if (rand.nextInt(2) == 0){
+            attackDamage += rand.nextInt(attackDamage / 15);
+        }
+        else {
+            attackDamage -= rand.nextInt(attackDamage / 15);
+        }
+
+        defender.setHealth(defender.getHealth() - attackDamage);
+
+        if (defender.getHealth() <= 0){
+            defender.getOwner().getPlayerUnits().getRangedMilitaryUnits().remove(defender);
+            defender.getOwner().getMap().getUnits().getRangedMilitaryUnits().remove(defender);
+            defender.getOwner().getMap().getOriginalMap().getUnits().getRangedMilitaryUnits().remove(defender);
+            new MilitaryView().showUnitDied(defender.getGameName(), defender.getCoordinates());
+            new MilitaryView().showUnitKilledEnemy(attacker.getGameName(), attacker.getCoordinates());
+        }
+    }
+
+
+
+    public void fightRangedToHeavy(RangedMilitaryUnit attacker, HeavyRangedMilitaryUnits defender)
+    {
+        int attackDamage = attacker.getOverallRangedAttackDamage();
+        attackDamage /= defender.getOverallDefence();
+
+        Random rand = new Random();
+
+        if (rand.nextInt(2) == 0){
+            attackDamage += rand.nextInt(attackDamage / 15);
+        }
+        else {
+            attackDamage -= rand.nextInt(attackDamage / 15);
+        }
+
+        defender.setHealth(defender.getHealth() - attackDamage);
+
+        if (defender.getHealth() <= 0){
+            defender.getOwner().getPlayerUnits().getHeavyRangedUnits().remove(defender);
+            defender.getOwner().getMap().getUnits().getHeavyRangedUnits().remove(defender);
+            defender.getOwner().getMap().getOriginalMap().getUnits().getHeavyRangedUnits().remove(defender);
+            new MilitaryView().showUnitDied(defender.getGameName(), defender.getCoordinates());
+            new MilitaryView().showUnitKilledEnemy(attacker.getGameName(), attacker.getCoordinates());
+        }
+    }
+
+
+
+    public void fightHeavyToMelee(HeavyRangedMilitaryUnits attacker, MeleeMilitaryUnit defender)
+    {
+        int attackDamage = attacker.getOverallRangedAttackDamage();
+        attackDamage /= defender.getOverallDefence();
+
+        Random rand = new Random();
+
+        if (rand.nextInt(2) == 0){
+            attackDamage += rand.nextInt(attackDamage / 15);
+        }
+        else {
+            attackDamage -= rand.nextInt(attackDamage / 15);
+        }
+
+        defender.setHealth(defender.getHealth() - attackDamage);
+
+        if (defender.getHealth() <= 0){
+            defender.getOwner().getPlayerUnits().getMeleeMilitaryUnits().remove(defender);
+            defender.getOwner().getMap().getUnits().getMeleeMilitaryUnits().remove(defender);
+            defender.getOwner().getMap().getOriginalMap().getUnits().getMeleeMilitaryUnits().remove(defender);
+            new MilitaryView().showUnitDied(defender.getGameName(), defender.getCoordinates());
+            new MilitaryView().showUnitKilledEnemy(attacker.getGameName(), attacker.getCoordinates());
+        }
+    }
+
+
+
+    public void fightHeavyToRanged(HeavyRangedMilitaryUnits attacker, RangedMilitaryUnit defender)
+    {
+        int attackDamage = attacker.getOverallRangedAttackDamage();
+        attackDamage /= defender.getOverallDefence();
+
+        Random rand = new Random();
+
+        if (rand.nextInt(2) == 0){
+            attackDamage += rand.nextInt(attackDamage / 15);
+        }
+        else {
+            attackDamage -= rand.nextInt(attackDamage / 15);
+        }
+
+        defender.setHealth(defender.getHealth() - attackDamage);
+
+        if (defender.getHealth() <= 0){
+            defender.getOwner().getPlayerUnits().getRangedMilitaryUnits().remove(defender);
+            defender.getOwner().getMap().getUnits().getRangedMilitaryUnits().remove(defender);
+            defender.getOwner().getMap().getOriginalMap().getUnits().getRangedMilitaryUnits().remove(defender);
+            new MilitaryView().showUnitDied(defender.getGameName(), defender.getCoordinates());
+            new MilitaryView().showUnitKilledEnemy(attacker.getGameName(), attacker.getCoordinates());
+        }
+    }
+
+
+
+    public void fightHeavyToHeavy(HeavyRangedMilitaryUnits attacker, HeavyRangedMilitaryUnits defender)
+    {
+        int attackDamage = attacker.getOverallRangedAttackDamage();
+        attackDamage /= defender.getOverallDefence();
+
+        Random rand = new Random();
+
+        if (rand.nextInt(2) == 0){
+            attackDamage += rand.nextInt(attackDamage / 15);
+        }
+        else {
+            attackDamage -= rand.nextInt(attackDamage / 15);
+        }
+
+        defender.setHealth(defender.getHealth() - attackDamage);
+
+        if (defender.getHealth() <= 0){
+            defender.getOwner().getPlayerUnits().getHeavyRangedUnits().remove(defender);
+            defender.getOwner().getMap().getUnits().getHeavyRangedUnits().remove(defender);
+            defender.getOwner().getMap().getOriginalMap().getUnits().getHeavyRangedUnits().remove(defender);
+            new MilitaryView().showUnitDied(defender.getGameName(), defender.getCoordinates());
+            new MilitaryView().showUnitKilledEnemy(attacker.getGameName(), attacker.getCoordinates());
+        }
     }
 }
