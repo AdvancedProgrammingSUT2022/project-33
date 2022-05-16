@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.PlayerController;
+import View.ZaWarudoView;
 
 import java.util.ArrayList;
 
@@ -24,11 +25,22 @@ public class ZaWarudo {
 
     public void updateGame()
     {
-        //TODO:
+        ZaWarudoView view = new ZaWarudoView();
+
         while (true) {
             for (int i = 0; i < players.size(); i++) {
                 players.get(i).updatePlayer();
                 PlayerController controller = new PlayerController(players.get(i));
+
+                if (players.get(i).isHasWon()){
+                    view.showPlayerWon(players.get(i).getNickname());
+                    return;
+                }
+                else if (players.get(i).isHasLost()){
+                    view.showPlayerLost(players.get(i).getNickname());
+                    players.remove(i);
+                    i--;
+                }
 
 
                 //TODO: managing turns and game

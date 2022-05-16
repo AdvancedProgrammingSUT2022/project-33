@@ -71,6 +71,7 @@ public class MatchingStrings {
         public final static Pattern GOLD_SECTION = Pattern.compile("gold_box");
         public final static Pattern TECHNOLOGY_TREE = Pattern.compile("technology_tree");
         public final static Pattern DIPLOMACY_SECTION = Pattern.compile("diplomacy");
+        public final static Pattern WIN_CHEAT = Pattern.compile("they have an army, we have a hulk");
         //TODO:
     }
 
@@ -117,6 +118,7 @@ public class MatchingStrings {
     public static class MinimapControllerStrings
     {
         public final static Pattern SHOW_MAP = Pattern.compile("show map");
+        public final static Pattern SHOW_MAP_CHEAT = Pattern.compile("now you see me");
         public final static Pattern SHOW_MAP_ZOOMED1 = Pattern.compile("show zoomed map (-(-?)(start|s) (\\d+)) (-(-?)(end|e) (\\d+))");
         public final static Pattern SHOW_MAP_ZOOMED2 = Pattern.compile("show zoomed map (-(-?)(end|e) (\\d+)) (-(-?)(start|s) (\\d+))");
         public final static Pattern STARTING_POINT = Pattern.compile("-(-?)(start|s) (\\d+)");

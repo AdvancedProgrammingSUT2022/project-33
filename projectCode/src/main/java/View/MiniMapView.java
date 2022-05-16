@@ -18,18 +18,18 @@ public class MiniMapView {
 
 
 
-    public void showMiniMap(MiniMap miniMap)
+    public void showMiniMap(MiniMap miniMap, boolean isCheat)
     {
         showXCoordinates(0, miniMap.getMapSize());
-        showRows(0, miniMap.getMapSize(), miniMap);
+        showRows(0, miniMap.getMapSize(), miniMap, isCheat);
     }
 
 
 
-    public void showMiniMapZoomed(MiniMap miniMap, int startingPoint, int endingPoint)
+    public void showMiniMapZoomed(MiniMap miniMap, int startingPoint, int endingPoint, boolean isCheat)
     {
         showXCoordinates(startingPoint, endingPoint);
-        showRows(startingPoint,  endingPoint, miniMap);
+        showRows(startingPoint,  endingPoint, miniMap, isCheat);
     }
 
 
@@ -52,13 +52,12 @@ public class MiniMapView {
 
 
 
-    private void showRows(int startingPoint, int endingPoint, MiniMap miniMap)
+    private void showRows(int startingPoint, int endingPoint, MiniMap miniMap, boolean isCheat)
     {
         for (int j = startingPoint; j <= endingPoint; j++){
             showLine1(startingPoint, endingPoint, j);
-            showTileLines(startingPoint, endingPoint, miniMap, j);
+            showTileLines(startingPoint, endingPoint, miniMap, j, isCheat);
         }
-            //TODO:
     }
 
 
@@ -118,13 +117,13 @@ public class MiniMapView {
 
 
 
-    private void showTileLines(int startingPoint, int endingPoint, MiniMap map, int y)
+    private void showTileLines(int startingPoint, int endingPoint, MiniMap map, int y, boolean isCheat)
     {
         for (int j = 0; j < 5; j++){
             printLinearSpaces(3);
 
             for (int i = startingPoint; i < endingPoint; i++){
-                showFirstPartOfVisibleTile(i, j, y, map, endingPoint);
+                showFirstPartOfVisibleTile(i, j, y, map, endingPoint, isCheat);
             }
 
             printLinearSpaces(5 - j);
@@ -138,7 +137,7 @@ public class MiniMapView {
             printLinearSpaces(3);
 
             for (int i = startingPoint; i < endingPoint; i++){
-                showSecondPartOfVisibleTile(i, j, y, map, endingPoint);
+                showSecondPartOfVisibleTile(i, j, y, map, endingPoint, isCheat);
             }
 
             if (y != endingPoint) {
@@ -152,10 +151,10 @@ public class MiniMapView {
 
 
 
-    private void showFirstPartOfVisibleTile(int i, int j, int y, MiniMap map, int mapSize)
+    private void showFirstPartOfVisibleTile(int i, int j, int y, MiniMap map, int mapSize, boolean isCheat)
     {
         if (i % 2 == 0){
-            if (i != 0 && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y - 1, 0)) == null &&
+            if (i != 0 && !isCheat && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y - 1, 0)) == null &&
                     map.getVisibleTileFromCoordinates(new Coordinates(i - 1, y - 1, 0)) == null){
                 printFog(5 - j);
             }
@@ -167,7 +166,7 @@ public class MiniMapView {
 
             Coordinates coordinates = new Coordinates(i, y, 0);
 
-            if (map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
+            if (!isCheat && map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
                 showFirstPartOfFog(i, j);
                 return;
             }
@@ -185,7 +184,7 @@ public class MiniMapView {
             printLinearSpaces(spaceNeeded);
         }
         else {
-            if (y < mapSize && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
+            if (y < mapSize && !isCheat && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
                     map.getVisibleTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null){
                 printFog(j + 1);
             }
@@ -200,7 +199,7 @@ public class MiniMapView {
 
             Coordinates coordinates = new Coordinates(i, y - 1, 0);
 
-            if (map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
+            if (!isCheat && map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
                 showFirstPartOfFog(i, j);
                 return;
             }
@@ -255,10 +254,10 @@ public class MiniMapView {
 
 
 
-    private void showSecondPartOfVisibleTile(int i, int j, int y, MiniMap map, int mapSize)
+    private void showSecondPartOfVisibleTile(int i, int j, int y, MiniMap map, int mapSize, boolean isCheat)
     {
         if (i % 2 == 0 && y < mapSize){
-            if (i != 0 && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
+            if (i != 0 && !isCheat && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
                     map.getVisibleTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null){
                 printFog(j + 1);
             }
@@ -270,7 +269,7 @@ public class MiniMapView {
 
             Coordinates coordinates = new Coordinates(i, y, 0);
 
-            if (map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
+            if (!isCheat && map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
                 showSecondPartOfFog(i, j);
                 return;
             }
@@ -286,7 +285,7 @@ public class MiniMapView {
             printLinearSpaces(spaceNeeded);
         }
         else if (y < mapSize){
-            if (map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
+            if (!isCheat && map.getHiddenTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null &&
                     map.getVisibleTileFromCoordinates(new Coordinates(i - 1, y, 0)) == null){
                 printFog(5 - j);
             }
@@ -298,7 +297,7 @@ public class MiniMapView {
 
             Coordinates coordinates = new Coordinates(i, y, 0);
 
-            if (map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
+            if (!isCheat && map.getHiddenTileFromCoordinates(coordinates) == null && map.getVisibleTileFromCoordinates(coordinates) == null){
                 showSecondPartOfFog(i, j);
                 return;
             }

@@ -21,7 +21,7 @@ public class MiniMapController {
         this.player = player;
         this.view = new MiniMapView();
         view.showYouAreInMiniMapMessage();
-        view.showMiniMap(player.getMap());
+        view.showMiniMap(player.getMap(), false);
 
         run();
     }
@@ -35,7 +35,10 @@ public class MiniMapController {
             input = UserInput.removeSpaces(input);
 
             if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MAP)){
-                view.showMiniMap(player.getMap());
+                view.showMiniMap(player.getMap(), false);
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MAP_CHEAT)){
+                view.showMiniMap(player.getMap(), true);
             }
             else if (UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MAP_ZOOMED1) ||
                     UserInput.doesMatch(input, MatchingStrings.MinimapControllerStrings.SHOW_MAP_ZOOMED2)){
@@ -97,7 +100,7 @@ public class MiniMapController {
                 startingPoint--;
             }
 
-            view.showMiniMapZoomed(player.getMap(), startingPoint, endingPoint);
+            view.showMiniMapZoomed(player.getMap(), startingPoint, endingPoint, false);
         }
     }
 

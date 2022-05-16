@@ -6,6 +6,7 @@ is research over? -> finishes current research
 
 *****player menu*****
 clown attack -> increases happiness by 5
+they have an army, we have a hulk
 
 
 *****gold box menu*****
@@ -21,3 +22,7 @@ place it right over there <building> -> instantly builds the building in the cit
 
 *****units menu*****
 we need a doctor -> instantly heals the unit
+
+
+*****minimap menu*****
+now you see me -> shows map completely

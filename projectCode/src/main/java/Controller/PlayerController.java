@@ -19,9 +19,8 @@ public class PlayerController {
     {
         this.player = player;
         view = new PlayerView();
-        run();
 
-        //TODO:
+        run();
     }
 
 
@@ -45,6 +44,10 @@ public class PlayerController {
             }
             else if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.ADD_HAPPINESS_CHEAT)){
                 addCheatHappiness();
+            }
+            else if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.WIN_CHEAT)){
+                player.setHasWon(true);
+                return;
             }
             else if (UserInput.doesMatch(input, MatchingStrings.PlayerControllerStrings.END_TURN)){
                 return;

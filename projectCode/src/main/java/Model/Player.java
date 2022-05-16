@@ -19,6 +19,9 @@ public class Player {
     private int happinessBonus;
     private int happinessUntilNextSpecialPerson;
     private ArrayList<StrategicResourceTypes> strategicResources;
+    private boolean hasWon;
+    private boolean hasLost;
+    private ArrayList<String> notifications;
 
 
 
@@ -40,6 +43,7 @@ public class Player {
         this.happinessBonus = 0;
         this.happinessUntilNextSpecialPerson = 50;
         strategicResources = new ArrayList<>();
+        notifications = new ArrayList<>();
     }
 
 
@@ -185,6 +189,16 @@ public class Player {
     }
 
 
+    public void setHasWon(boolean hasWon) {
+        this.hasWon = hasWon;
+    }
+
+
+    public void setHasLost(boolean hasLost) {
+        this.hasLost = hasLost;
+    }
+
+
 
     //getters
     public String getNickname() {
@@ -290,5 +304,15 @@ public class Player {
 
     public ArrayList<StrategicResourceTypes> getStrategicResources() {
         return strategicResources;
+    }
+
+
+    public boolean isHasWon() {
+        return hasWon;
+    }
+
+
+    public boolean isHasLost() {
+        return hasLost;
     }
 }
