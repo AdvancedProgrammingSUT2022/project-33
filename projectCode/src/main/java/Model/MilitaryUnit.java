@@ -1,8 +1,6 @@
 package Model;
 
-import View.MeleeView;
 import View.MilitaryView;
-import View.RangedView;
 
 import java.util.ArrayList;
 
@@ -12,10 +10,14 @@ public class MilitaryUnit extends Unit{
     private Technologies technologyRequired;
     private StrategicResourceTypes resourceRequired;
     private Eras era;
-    private int turnsAfterStartingToStabilize;
+    private int turnsAfterStartingToFortify;
+    boolean isFortifying;
+    boolean isFortified;
     private int defenceBonus;
     private int attackBonus;
     private boolean isCavalry;
+    private boolean isInCity;
+
 
 
 
@@ -115,6 +117,24 @@ public class MilitaryUnit extends Unit{
 
 
 
+    public void updateFortifying()
+    {
+        if (isFortifying){
+            turnsAfterStartingToFortify++;
+        }
+        else {
+            return;
+        }
+
+        if (turnsAfterStartingToFortify >= 2){
+            isFortified = true;
+            isFortifying = false;
+            turnsAfterStartingToFortify = 0;
+        }
+    }
+
+
+
     //getters
     public int getAttackDamage() {
         return attackDamage;
@@ -160,6 +180,10 @@ public class MilitaryUnit extends Unit{
     public double getOverallDefence()
     {
         if (getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty() != null) {
+            if (isFortified){
+                return (double)((110 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) *
+                        (100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty().getFightChangePercentage())) / 10000;
+            }
             return (double)((100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getFightChangePercentage()) *
                     (100 + getOwner().getMap().getTerrainFromCoordinates(getCoordinates()).getProperty().getFightChangePercentage())) / 10000;
         }
@@ -174,8 +198,8 @@ public class MilitaryUnit extends Unit{
     }
 
 
-    public int getTurnsAfterStartingToStabilize() {
-        return turnsAfterStartingToStabilize;
+    public int getTurnsAfterStartingToFortify() {
+        return turnsAfterStartingToFortify;
     }
 
 
@@ -191,5 +215,23 @@ public class MilitaryUnit extends Unit{
 
     public boolean isCavalry() {
         return isCavalry;
+    }
+
+
+    public boolean isFortifying() {
+        return isFortifying;
+    }
+
+
+    public boolean isFortified() {
+        return isFortified;
+    }
+
+
+
+    //setters:
+
+    public void setFortifying(boolean fortifying) {
+        isFortifying = fortifying;
     }
 }

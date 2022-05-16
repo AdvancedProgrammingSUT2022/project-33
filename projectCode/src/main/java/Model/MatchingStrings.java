@@ -205,6 +205,25 @@ public class MatchingStrings {
 
     public static class UnitsControllerStrings
     {
+        public static class AllUnits
+        {
+            public final static Pattern SHOW_STATS = Pattern.compile("show stats");
+            public final static Pattern MOVE_UNIT1 = Pattern.compile("move to -x \\d+ -y \\d+");
+            public final static Pattern MOVE_UNIT2 = Pattern.compile("move to -y \\d+ -x \\d+");
+            public final static Pattern X_VALUE = Pattern.compile("-x \\d+");
+            public final static Pattern Y_VALUE = Pattern.compile("-y \\d+");
+            public final static Pattern CANCEL = Pattern.compile("cancel");
+            public final static Pattern REMOVE_UNIT = Pattern.compile("remove unit");
+            public final static Pattern SLEEP = Pattern.compile("sleep");
+            public final static Pattern ALERT = Pattern.compile("be alert");
+            public final static Pattern HEAL = Pattern.compile("heal");
+            public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
+            public final static Pattern FINISH = Pattern.compile("finish");
+        }
+
+
+
+
         public static class Settler
         {
             public final static Pattern SHOW_STATS = Pattern.compile("show stats");
@@ -224,15 +243,7 @@ public class MatchingStrings {
 
         public static class MeleeUnitStrings
         {
-            public final static Pattern SHOW_STATS = Pattern.compile("show stats");
-            public final static Pattern MOVE_UNIT1 = Pattern.compile("move to -x \\d+ -y \\d+");
-            public final static Pattern MOVE_UNIT2 = Pattern.compile("move to -y \\d+ -x \\d+");
-            public final static Pattern X_VALUE = Pattern.compile("-x \\d+");
-            public final static Pattern Y_VALUE = Pattern.compile("-y \\d+");
-            public final static Pattern CANCEL = Pattern.compile("cancel");
-            public final static Pattern REMOVE_UNIT = Pattern.compile("remove unit");
-            public final static Pattern SHOW_MENU = Pattern.compile("menu show-current");
-            public final static Pattern FINISH = Pattern.compile("finish");
+            public final static Pattern FORTIFY = Pattern.compile("fortify");
         }
     }
 }

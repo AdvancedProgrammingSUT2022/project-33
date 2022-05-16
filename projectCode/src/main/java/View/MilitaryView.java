@@ -47,4 +47,95 @@ public class MilitaryView {
     {
         System.out.println("destination coordinates is inaccessible");
     }
+
+
+
+    public void showCheckRemovingMessage()
+    {
+        System.out.println("are you sure you want to remove this unit? ");
+    }
+
+
+
+    public void showUnitRemoved()
+    {
+        System.out.println("unit removed successfully");
+    }
+
+
+
+    public void showAlreadyFortifying(int turnsNeeded)
+    {
+        System.out.println("this units is already fortifying and will be finished in " + turnsNeeded + " turns");
+    }
+
+
+
+    public void showAlreadyFortified()
+    {
+        System.out.println("this unis is already fortified");
+    }
+
+
+
+    public void showNotEnoughGoldToFortify(int goldNeeded)
+    {
+        System.out.println("you don't have enough money to fortify this unit. you need " + goldNeeded + " more gold to fortify this unit");
+    }
+
+
+
+    public void showUnitIsFortifying(String unitName)
+    {
+        System.out.println(unitName + " is now fortifying and will be finished in 2 turns");
+    }
+
+
+
+    public void showUnitIsAlreadySleeping()
+    {
+        System.out.println("this unit is already sleeping");
+    }
+
+
+
+    public void showUnitIsNowSleeping()
+    {
+        System.out.println("unit is now sleeping");
+    }
+
+
+
+    public void showUnitIsAlreadyOnAlert()
+    {
+        System.out.println("this uit is already on alert");
+    }
+
+
+
+    public void showUnitIsNowOnAlert()
+    {
+        System.out.println("unit is now on alert");
+    }
+
+
+
+    public void showUnitIsAlreadyHealing()
+    {
+        System.out.println("this unit is already healing");
+    }
+
+
+
+    public void showUnitHealthIsFull()
+    {
+        System.out.println("this unit is at its maximum health");
+    }
+
+
+
+    public void showUnitIsHealing(int turnsNeeded)
+    {
+        System.out.println("unit is now healing and will fully heal in " + turnsNeeded + " turns");
+    }
 }

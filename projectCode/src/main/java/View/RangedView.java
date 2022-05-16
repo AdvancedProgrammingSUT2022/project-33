@@ -1,4 +1,4 @@
 package View;
 
-public class RangedView {
+public class RangedView extends MilitaryView{
 }

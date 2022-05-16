@@ -10,6 +10,7 @@ public class Unit {
     private Player Owner;
     private NonPlayerColors nonPlayerColor;
     private int health;
+    private int maxHealth;
     private int visibilityRange;
     private int maxMovements;
     private int remainingMovements;
@@ -21,17 +22,22 @@ public class Unit {
     private boolean isMoving;
     private PathFinder pathFinder;
     private ArrayList<Coordinates> path;
+    private boolean isSleep;
+    private boolean isOnAlert;
+    private boolean isHealing;
+
 
 
 
 
 
     ////methods////
-    public Unit(String gameName, int health, int visibilityRange, int maxMovements, int price, int productionNeededForBeingMade,
+    public Unit(String gameName, int maxHealth, int visibilityRange, int maxMovements, int price, int productionNeededForBeingMade,
                 int maintenancePricePerTurn)
     {
         this.gameName = gameName;
-        this.health = health;
+        this.maxHealth = maxHealth;
+        health = maxHealth;
         this.visibilityRange = visibilityRange;
         this.maxMovements = maxMovements;
         this.price = price;
@@ -168,6 +174,21 @@ public class Unit {
     }
 
 
+    public void setSleep(boolean sleep) {
+        isSleep = sleep;
+    }
+
+
+    public void setOnAlert(boolean onAlert) {
+        isOnAlert = onAlert;
+    }
+
+
+    public void setHealing(boolean healing) {
+        isHealing = healing;
+    }
+
+
 
     //getters
     public Terrain getTerrainFromCoordinates(ArrayList<Terrain> terrains, Coordinates coordinates)
@@ -269,5 +290,41 @@ public class Unit {
 
     public Player getOwner() {
         return Owner;
+    }
+
+
+    public boolean isSleep() {
+        return isSleep;
+    }
+
+
+    public boolean isOnAlert() {
+        return isOnAlert;
+    }
+
+
+    public boolean isHealing() {
+        return isHealing;
+    }
+
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+
+
+    public int getTurnsNeededToFullyHeal()
+    {
+        int turns = 0;
+
+        int temporarilyHealth = health;
+
+        while (temporarilyHealth <= maxHealth){
+            turns += 1;
+            temporarilyHealth += maxHealth / 5;
+        }
+
+        return turns;
     }
 }
