@@ -1,0 +1,58 @@
+.text-field{
+    -fx-pref-width: 280;
+    -fx-pref-height: 50;
+    -fx-font-size: 18;
+    -fx-alignment: CENTER;
+    -fx-background-color: #313131;
+    -fx-effect:  innershadow(gaussian, #101010, 50, 0.3, 0, 0);
+    -fx-text-fill: #b9ddff;
+}
+
+
+
+.text-field:focused{
+    -fx-pref-width: 280;
+    -fx-pref-height: 50;
+    -fx-font-size: 18;
+    -fx-alignment: CENTER;
+    -fx-background-color: #424242;
+    -fx-effect:  innershadow(gaussian, #101010, 50, 0.3, 0, 0);
+    -fx-text-fill: #b9ddff;
+}
+
+
+
+.button{
+    -fx-pref-width: 280;
+    -fx-pref-height: 50;
+    -fx-font-size: 18;
+    -fx-background-radius: 5;
+    -fx-background-color: #2A2A2A;
+    -fx-effect:  innershadow(gaussian, #101010, 50, 0.3, 0, 0);
+    -fx-text-fill: #f8fdff;
+}
+
+
+
+.button:hover{
+    -fx-pref-width: 280;
+    -fx-pref-height: 50;
+    -fx-font-size: 18;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-background-radius: 5;
+    -fx-background-color: #393939;
+    -fx-text-fill: #96d9ff;
+}
+
+
+.button:pressed{
+    -fx-pref-width: 280;
+    -fx-pref-height: 50;
+    -fx-font-size: 18;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-background-radius: 5;
+    -fx-background-color: #5d5d5d;
+    -fx-text-fill: #7bd6ff;
+}

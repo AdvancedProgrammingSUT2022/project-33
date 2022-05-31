@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Program.Controller.LoginMenuController"
+            prefHeight="720.0" prefWidth="1080.0">
+
+    <ImageView >
+        <Image url="@../Textures/Menu/LoginMenuBackground.png" />
+    </ImageView>
+
+    <TextField layoutX="330" layoutY="200"  promptText="nickname" fx:id="newNicknameTextField" stylesheets="@../CssFiles/LoginMenu.css" />
+    <TextField layoutX="330" layoutY="260"  promptText="username" fx:id="newUsernameTextField" stylesheets="@../CssFiles/LoginMenu.css" />
+    <TextField layoutX="330" layoutY="320"  promptText="password" fx:id="newPasswordTextField" stylesheets="@../CssFiles/LoginMenu.css" />
+    <Button layoutX="330" layoutY="380" text="register" onMouseClicked="#registerUser" stylesheets="@../CssFiles/LoginMenu.css" />
+
+    <TextField layoutX="670" layoutY="260" promptText="username" fx:id="usernameTextField" stylesheets="@../CssFiles/LoginMenu.css" />
+    <TextField layoutX="670" layoutY="320" promptText="password" fx:id="passwordTextField" stylesheets="@../CssFiles/LoginMenu.css" />
+    <Button layoutX="670" layoutY="380" text="login" onMouseClicked="#loginUser" stylesheets="@../CssFiles/LoginMenu.css" />
+</AnchorPane>
