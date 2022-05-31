@@ -1,9 +1,13 @@
 package Program.Model;
 
+import java.io.File;
+import java.util.Random;
+
 public class User {
     private String nickname;
     private String username;
     private String password;
+    private String imagePath;
 
 
 
@@ -15,6 +19,18 @@ public class User {
             this.nickname = nickname;
             this.username = username;
             this.password = password;
+
+            setRandomImage();
+    }
+
+
+
+    private void setRandomImage()
+    {
+        File[] imageFiles =  new File("src/main/resources/UserImages/DefaultImages/").listFiles();
+        Random rand = new Random();
+        File image = imageFiles[rand.nextInt(imageFiles.length)];
+        imagePath = image.getPath();
     }
 
 
