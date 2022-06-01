@@ -34,7 +34,7 @@
 
 
 
-.button:hover{
+.button:hover, .button:focused{
     -fx-pref-width: 280;
     -fx-pref-height: 50;
     -fx-font-size: 18;

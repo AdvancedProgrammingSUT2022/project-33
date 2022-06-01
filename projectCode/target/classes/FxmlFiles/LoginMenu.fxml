@@ -20,9 +20,9 @@
     <TextField layoutX="330" layoutY="200"  promptText="nickname" fx:id="newNicknameTextField" stylesheets="@../CssFiles/LoginMenu.css" />
     <TextField layoutX="330" layoutY="260"  promptText="username" fx:id="newUsernameTextField" stylesheets="@../CssFiles/LoginMenu.css" />
     <TextField layoutX="330" layoutY="320"  promptText="password" fx:id="newPasswordTextField" stylesheets="@../CssFiles/LoginMenu.css" />
-    <Button layoutX="330" layoutY="380" text="register" onMouseClicked="#registerUser" stylesheets="@../CssFiles/LoginMenu.css" />
+    <Button layoutX="330" layoutY="380" text="register" onMouseClicked="#registerUser" onKeyPressed="#registerUserClick" stylesheets="@../CssFiles/LoginMenu.css" />
 
     <TextField layoutX="670" layoutY="260" promptText="username" fx:id="usernameTextField" stylesheets="@../CssFiles/LoginMenu.css" />
     <TextField layoutX="670" layoutY="320" promptText="password" fx:id="passwordTextField" stylesheets="@../CssFiles/LoginMenu.css" />
-    <Button layoutX="670" layoutY="380" text="login" onMouseClicked="#loginUser" stylesheets="@../CssFiles/LoginMenu.css" />
+    <Button layoutX="670" layoutY="380" text="login" onMouseClicked="#loginUser" onKeyPressed="#loginUserClick" stylesheets="@../CssFiles/LoginMenu.css" />
 </AnchorPane>

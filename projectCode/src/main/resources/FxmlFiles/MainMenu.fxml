@@ -6,9 +6,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="Program.Controller.MainMenuController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="720.0" prefWidth="1280.0">
+
+    <ImageView >
+        <Image url="@../Textures/Menu/MainMenuBackground.png" />
+    </ImageView>
+
+<Button text="new game" layoutY="220" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />
+<Button text="load game" layoutY="270" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />
+<Button text="profile" layoutY="320" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />
+<Button text="scoreboard" layoutY="370" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />
+<Button text="chat room" layoutY="420" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />
+<Button text="logout" layoutY="470" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />
+<Button text="exit" layoutY="520" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />
+
+
 
 </AnchorPane>

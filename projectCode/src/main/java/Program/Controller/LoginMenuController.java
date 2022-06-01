@@ -6,6 +6,8 @@ import Program.Model.User;
 import Program.View.LoginMenuView;
 import Program.View.MainMenuView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.util.regex.Pattern;
 
@@ -27,6 +29,15 @@ public class LoginMenuController {
     {
         this.view = view;
         menu = new LoginMenu();
+    }
+
+
+
+    public void registerUserClick(KeyEvent keyEvent)
+    {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)){
+            registerUser();
+        }
     }
 
 
@@ -73,6 +84,18 @@ public class LoginMenuController {
             MainMenuView mainMenuView = new MainMenuView(view.getStage(), user);
         }
     }
+
+
+
+
+    public void loginUserClick(KeyEvent keyEvent)
+    {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)){
+            loginUser();
+        }
+    }
+
+
 
     public void loginUser()
     {
