@@ -5,6 +5,8 @@ import Program.Model.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -44,5 +46,11 @@ public class MainMenuView {
         stage.setWidth(stage.getWidth());
         stage.setHeight(stage.getHeight());
         stage.centerOnScreen();
+    }
+
+
+    public Stage getStage()
+    {
+        return stage;
     }
 }

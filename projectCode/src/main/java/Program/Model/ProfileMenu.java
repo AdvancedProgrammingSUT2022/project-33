@@ -11,9 +11,10 @@ public class ProfileMenu {
 
 
     ////methods////
-    public ProfileMenu(User user, ArrayList<User> users)
+    public ProfileMenu(User user)
     {
         this.user = user;
+        users = LoginMenu.getUsers();
     }
 
 
@@ -48,5 +49,11 @@ public class ProfileMenu {
     //getters
     public User getUser() {
         return user;
+    }
+
+
+    public String getProfileImagePath()
+    {
+        return user.getImagePath();
     }
 }
