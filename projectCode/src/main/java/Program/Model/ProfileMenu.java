@@ -1,6 +1,16 @@
 package Program.Model;
 
+import javafx.scene.image.Image;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ProfileMenu {
     private User user;
@@ -15,6 +25,33 @@ public class ProfileMenu {
     {
         this.user = user;
         users = LoginMenu.getUsers();
+    }
+
+
+
+    public void setRandomImage()
+    {
+        File[] imageFiles = new File("src/main/resources/UserImages/DefaultImages/").listFiles();
+        Random rand = new Random();
+        File imageFile = imageFiles[rand.nextInt(imageFiles.length)];
+        user.setImagePath(imageFile.getPath());
+        LoginMenu.saveUsers();
+    }
+
+
+
+
+    public void setCustomImage(File file)
+    {
+        if (file != null){
+            try {
+                Files.copy(Paths.get(file.getPath()), Paths.get("src/main/resources/UserImages/CustomImages/" + file.getName()), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            user.setImagePath("src/main/resources/UserImages/CustomImages/" + file.getName());
+        }
     }
 
 
@@ -56,4 +93,5 @@ public class ProfileMenu {
     {
         return user.getImagePath();
     }
+
 }

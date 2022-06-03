@@ -51,6 +51,12 @@ public class User {
     }
 
 
+    public String getImagePath()
+    {
+        return imagePath;
+    }
+
+
 
     //setters
     public void setNickname(String nickname) {
@@ -63,8 +69,7 @@ public class User {
     }
 
 
-    public String getImagePath()
-    {
-        return imagePath;
+    public void setImagePath(String imagePath){
+        this.imagePath = imagePath;
     }
 }

@@ -25,4 +25,10 @@
     <ImageView layoutY="5">
         <Image url="@../Textures/Menu/ProfileImageOverlay.png" />
     </ImageView>
+
+    <Button layoutX="400" layoutY="155" onMouseClicked="#setRandomImage" stylesheets="@../CssFiles/MainMenu.css" text="random image"/>
+
+
+
+    <Button layoutX="980" layoutY="155" onMouseClicked="#setCustomImage" stylesheets="@../CssFiles/MainMenu.css" text="custom image"/>
 </AnchorPane>

@@ -2,18 +2,12 @@ package Program.View;
 
 import Program.Controller.ProfileMenuController;
 import Program.Model.User;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.effect.Glow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 
@@ -22,8 +16,6 @@ public class ProfileMenuView {
     Scene scene;
     Group root;
     ProfileMenuController controller;
-    Image profileImage;
-    Image[] profileImages;
 
 
 
@@ -36,7 +28,7 @@ public class ProfileMenuView {
         root = new Group();
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FxmlFiles/ProfileMenuController.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FxmlFiles/ProfileMenu.fxml"));
 
         try {
             root.getChildren().add(fxmlLoader.load());
@@ -47,21 +39,11 @@ public class ProfileMenuView {
             e.printStackTrace();
         }
 
-        loadImages();
-
-
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setWidth(stage.getWidth());
         stage.setHeight(stage.getHeight());
         stage.centerOnScreen();
-    }
-
-
-
-    private void loadImages()
-    {
-        profileImage = controller.getProfileImage();
     }
 
 
@@ -88,5 +70,10 @@ public class ProfileMenuView {
         ScrollPane scrollPane = new ScrollPane(gridPane);
         scrollPane.setPrefHeight(100);
         root.getChildren().add(scrollPane);*/
+    }
+
+    public Stage getStage()
+    {
+        return stage;
     }
 }
