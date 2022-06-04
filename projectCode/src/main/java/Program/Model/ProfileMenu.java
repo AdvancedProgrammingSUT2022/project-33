@@ -83,6 +83,14 @@ public class ProfileMenu {
 
 
 
+
+    public void setImage(String imagePath)
+    {
+        user.setImagePath(imagePath);
+    }
+
+
+
     //getters
     public User getUser() {
         return user;

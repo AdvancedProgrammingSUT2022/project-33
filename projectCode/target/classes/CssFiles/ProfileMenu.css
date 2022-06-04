@@ -1,6 +1,6 @@
-.button{
+#normalButton{
     -fx-background-color: transparent;
-    -fx-graphic: url(../Textures/Menu/buttonBackground.png);
+    -fx-background-image: url(../Textures/Menu/buttonBackground.png);
     -fx-pref-width: 250;
     -fx-pref-height: 40;
     -fx-text-fill: #f5cd49;
@@ -10,9 +10,9 @@
 
 
 
-.button:hover{
+#normalButton:hover{
     -fx-background-color: transparent;
-    -fx-graphic: url(../Textures/Menu/buttonBackground.png);
+    -fx-background-image: url(../Textures/Menu/buttonBackground.png);
     -fx-pref-width: 250;
     -fx-pref-height: 40;
     -fx-scale-x: 1.1;
@@ -21,4 +21,23 @@
     -fx-text-fill: #f5cd49;
     -fx-font-size: 20;
     -fx-content-display: Center;
+}
+
+
+
+#imageButton{
+    -fx-background-color: transparent;
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+}
+
+
+
+#imageButton:hover{
+    -fx-background-color: transparent;
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-effect: dropshadow(gaussian, yellow, 8, 0.1, 0, 0);
 }

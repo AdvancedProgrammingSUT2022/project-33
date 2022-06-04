@@ -8,6 +8,7 @@ public class User {
     private String username;
     private String password;
     private String imagePath;
+    private boolean hasCustomImage;
 
 
 
@@ -58,6 +59,13 @@ public class User {
 
 
 
+    public boolean hasCustomImage()
+    {
+        return hasCustomImage;
+    }
+
+
+
     //setters
     public void setNickname(String nickname) {
         this.nickname = nickname;
@@ -72,4 +80,5 @@ public class User {
     public void setImagePath(String imagePath){
         this.imagePath = imagePath;
     }
+
 }

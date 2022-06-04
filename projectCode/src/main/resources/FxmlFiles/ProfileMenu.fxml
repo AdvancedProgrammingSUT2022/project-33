@@ -26,9 +26,34 @@
         <Image url="@../Textures/Menu/ProfileImageOverlay.png" />
     </ImageView>
 
-    <Button layoutX="400" layoutY="155" onMouseClicked="#setRandomImage" stylesheets="@../CssFiles/MainMenu.css" text="random image"/>
+    <Button layoutX="400" layoutY="155" onMouseClicked="#setRandomImage" id="normalButton" stylesheets="@../CssFiles/ProfileMenu.css" text="random image"/>
+
+    <ImageView layoutX="740" layoutY="100" fitWidth="150" fitHeight="150" fx:id="imagePreview"/>
+    <Rectangle layoutX="740" layoutY="100" width="150" height="150"
+               fill="transparent" style="-fx-stroke-width: 4; -fx-stroke: #ffdb16; -fx-effect: innershadow(gaussian, #ff6200, 4, 0.2 , 0, 0)" />
+    <Button  layoutX="680" layoutY="155" stylesheets="@../CssFiles/ProfileMenu.css"  id="imageButton" onMouseClicked="#previousImage">
+        <graphic>
+            <ImageView>
+                <Image url="@../Textures/Menu/previousButton.png" />
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button  layoutX="895" layoutY="155" stylesheets="@../CssFiles/ProfileMenu.css"  id="imageButton" onMouseClicked="#nextImage" >
+        <graphic>
+            <ImageView>
+                <Image url="@../Textures/Menu/nextButton.png" />
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <Button layoutX="690" layoutY="260" text="save image" id="normalButton" onMouseClicked="#saveImage" stylesheets="@../CssFiles/ProfileMenu.css" />
+    <Button layoutX="690" layoutY="310" text="select image" id="normalButton" onMouseClicked="#openImageSelectionMenu"
+            stylesheets="@../CssFiles/ProfileMenu.css" />
+
+    <Button layoutX="980" layoutY="155" onMouseClicked="#setCustomImage" id="normalButton" stylesheets="@../CssFiles/ProfileMenu.css" text="custom image"/>
 
 
-
-    <Button layoutX="980" layoutY="155" onMouseClicked="#setCustomImage" stylesheets="@../CssFiles/MainMenu.css" text="custom image"/>
+    <Button layoutX="370" layoutY="650" text="back" id="normalButton" onMouseClicked="#back" stylesheets="@../CssFiles/ProfileMenu.css" />
+    <Button layoutX="660" layoutY="650" text="remove account" id="normalButton" onMouseClicked="#getConfirmation"
+            stylesheets="@../CssFiles/ProfileMenu.css" />
 </AnchorPane>
