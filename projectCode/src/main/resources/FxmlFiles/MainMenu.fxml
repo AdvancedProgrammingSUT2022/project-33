@@ -17,7 +17,7 @@
         <Image url="@../Textures/Menu/MainMenuBackground.png" />
     </ImageView>
 
-    <Button text="new game" layoutY="220" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />
+    <Button text="new game" layoutY="220" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" onMouseClicked="#startNewGame"/>
     <Button text="load game" layoutY="270" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />
     <Button text="profile" layoutY="320" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" onMouseClicked="#openProfile"/>
     <Button text="scoreboard" layoutY="370" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />

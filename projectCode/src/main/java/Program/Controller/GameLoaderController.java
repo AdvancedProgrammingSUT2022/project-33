@@ -1,6 +1,8 @@
 package Program.Controller;
 
 import Program.Model.*;
+import Program.Model.Enums.GeneralBiomes;
+import Program.Model.Enums.MapSizes;
 import Program.View.GameLoaderView;
 
 import java.util.ArrayList;

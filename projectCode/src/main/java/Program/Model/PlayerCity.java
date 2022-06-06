@@ -1,5 +1,8 @@
 package Program.Model;
 
+import Program.Model.Enums.BuildingTypes;
+import Program.Model.Enums.Wonders;
+
 import java.util.ArrayList;
 
 public class PlayerCity extends City{

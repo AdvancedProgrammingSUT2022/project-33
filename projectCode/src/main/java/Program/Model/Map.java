@@ -1,5 +1,7 @@
 package Program.Model;
 
+import Program.Model.Enums.MapSizes;
+
 import java.util.ArrayList;
 
 public class Map {

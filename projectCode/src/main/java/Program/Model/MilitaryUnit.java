@@ -1,5 +1,8 @@
 package Program.Model;
 
+import Program.Model.Enums.Eras;
+import Program.Model.Enums.StrategicResourceTypes;
+import Program.Model.Enums.Technologies;
 import Program.View.MilitaryView;
 
 import java.util.ArrayList;

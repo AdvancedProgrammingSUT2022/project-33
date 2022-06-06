@@ -1,5 +1,7 @@
 package Program.Model;
 
+import Program.Model.Enums.NaturalWonderTypes;
+
 public class NaturalWonder {
     Coordinates coordinates;
     private int happinessBoost;

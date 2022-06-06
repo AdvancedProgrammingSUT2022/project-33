@@ -1,5 +1,6 @@
 package Program.Model;
 
+import Program.Model.Enums.Colors;
 import Program.View.WorkerView;
 
 import java.util.ArrayList;

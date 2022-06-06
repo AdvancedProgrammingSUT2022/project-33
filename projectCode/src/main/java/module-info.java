@@ -13,4 +13,5 @@ module project {
     exports Program;
     opens Program to javafx.fxml;
     opens Program.View to com.google.gson, javafx.fxml;
+    opens Program.Model.Enums to com.google.gson;
 }

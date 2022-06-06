@@ -1,5 +1,7 @@
 package Program.Model;
 
+import Program.Model.Enums.TileDirections;
+
 import java.util.ArrayList;
 import java.util.Random;
 

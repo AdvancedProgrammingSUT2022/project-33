@@ -1,5 +1,7 @@
 package Program.Model;
 
+import Program.Model.Enums.*;
+
 public class CityTask {
     private String gameName;
     private int productionNeeded;

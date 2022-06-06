@@ -1,6 +1,7 @@
 package Program.View;
 
 import Program.Model.*;
+import Program.Model.Enums.Wonders;
 
 public class CityView {
 

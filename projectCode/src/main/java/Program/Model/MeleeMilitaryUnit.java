@@ -1,5 +1,6 @@
 package Program.Model;
 
+import Program.Model.Enums.*;
 import Program.View.MilitaryView;
 
 import java.util.ArrayList;

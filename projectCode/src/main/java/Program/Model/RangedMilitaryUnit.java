@@ -1,5 +1,6 @@
 package Program.Model;
 
+import Program.Model.Enums.*;
 import Program.View.MilitaryView;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class RangedMilitaryUnit extends MilitaryUnit{
 
     ////methods////
     public RangedMilitaryUnit(String gameName, int health, int visibilityRange, int maxMovements, int price, int productionRequiredForBeingMade, int maintenancePricePerTurn,
-                             int attackDamage, int rangedAttackDamage, boolean isCavalry, int attackRange, Technologies technologyRequired, StrategicResourceTypes resourceRequired, Eras era)
+                              int attackDamage, int rangedAttackDamage, boolean isCavalry, int attackRange, Technologies technologyRequired, StrategicResourceTypes resourceRequired, Eras era)
     {
         super(gameName, health, visibilityRange, maxMovements, price, productionRequiredForBeingMade, maintenancePricePerTurn, attackDamage,
                 isCavalry, technologyRequired, resourceRequired, era);

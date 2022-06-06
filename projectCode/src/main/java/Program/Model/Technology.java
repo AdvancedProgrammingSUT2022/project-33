@@ -1,5 +1,8 @@
 package Program.Model;
 
+import Program.Model.Enums.Eras;
+import Program.Model.Enums.Technologies;
+
 import java.util.ArrayList;
 
 public class Technology {

@@ -1,5 +1,9 @@
 package Program.Model;
 
+import Program.Model.Enums.BuildingTypes;
+import Program.Model.Enums.Eras;
+import Program.Model.Enums.Technologies;
+
 public class Building {
     private String gameName;
     private int cost;

@@ -1,5 +1,7 @@
 package Program.Model;
 
+import Program.Model.Enums.ResourceCategories;
+
 public class CityLand {
     private Terrain terrain;
     private boolean hasImprovement;

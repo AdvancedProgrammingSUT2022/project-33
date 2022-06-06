@@ -1,5 +1,7 @@
 package Program.Model;
 
+import Program.Model.Enums.Technologies;
+
 public class Wonder {
     private String gameName;
     private int goldPerTurn;

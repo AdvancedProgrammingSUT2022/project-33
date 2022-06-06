@@ -1,5 +1,8 @@
 package Program.Model;
 
+import Program.Model.Enums.Colors;
+import Program.Model.Enums.StrategicResourceTypes;
+import Program.Model.Enums.Technologies;
 import Program.View.TechnologyTreeView;
 
 import java.util.ArrayList;

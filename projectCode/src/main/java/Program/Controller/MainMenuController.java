@@ -4,6 +4,7 @@ import Program.Model.MainMenu;
 import Program.Model.MatchingStrings;
 import Program.Model.User;
 import Program.Model.UserInput;
+import Program.View.GameStartingMenuView;
 import Program.View.LoginMenuView;
 import Program.View.MainMenuView;
 import Program.View.ProfileMenuView;
@@ -28,6 +29,12 @@ public class MainMenuController {
         this.view = mainMenuView;
     }
 
+
+
+    public void startNewGame(MouseEvent mouseEvent)
+    {
+        GameStartingMenuView gameStartingMenuView = new GameStartingMenuView(view.getStage(), menu.getUser());
+    }
 
 
 

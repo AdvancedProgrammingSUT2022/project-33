@@ -5,6 +5,9 @@ import Program.View.LoginMenuView;
 import Program.View.MainMenuView;
 import Program.View.ProfileMenuView;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +27,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ProfileMenuController {
     private ProfileMenu menu;
@@ -35,6 +39,14 @@ public class ProfileMenuController {
     private Circle profileImageCircle;
     @FXML
     private ImageView imagePreview;
+    @FXML
+    private Label nicknameLabel;
+    @FXML
+    private Label usernameLabel;
+    @FXML
+    private Label passwordLabel;
+    public Button changeNicknameButton;
+    public Button changePasswordButton;
 
 
 
@@ -54,8 +66,17 @@ public class ProfileMenuController {
         }
 
         loadPreviewSectionImages();
+        setLabels();
     }
 
+
+
+    private void setLabels()
+    {
+        nicknameLabel.setText("nickname: " + menu.getUser().getNickname());
+        usernameLabel.setText("username: " + menu.getUser().getUsername());
+        passwordLabel.setText("password: " + menu.getUser().getPassword());
+    }
 
 
     public void setRandomImage()
@@ -67,6 +88,8 @@ public class ProfileMenuController {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        loadPreviewSectionImages();
     }
 
 
@@ -154,7 +177,7 @@ public class ProfileMenuController {
 
     public void openImageSelectionMenu(MouseEvent mouseEvent)
     {
-        //TODO:
+        view.openImageSelectionMenu();
     }
 
 
@@ -180,5 +203,95 @@ public class ProfileMenuController {
         users.remove(menu.getUser());
         LoginMenu.saveUsers();
         LoginMenuView loginMenuView = new LoginMenuView(view.getStage());
+    }
+
+
+
+    public void setSelectionImage(String path)
+    {
+        menu.setImage(path);
+        try {
+            profileImageCircle.setFill(new ImagePattern(new Image(new FileInputStream(menu.getProfileImagePath()))));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        LoginMenu.saveUsers();
+        view.closeImageSelection();
+        loadPreviewSectionImages();
+    }
+
+    public void changeNickname(MouseEvent mouseEvent)
+    {
+        Button button = (Button) mouseEvent.getSource();
+        button.setVisible(false);
+
+        view.loadNicknameField();
+    }
+
+
+
+    public void changePassword(MouseEvent mouseEvent)
+    {
+        Button button = (Button) mouseEvent.getSource();
+        button.setVisible(false);
+
+        view.loadPasswordField();
+    }
+
+
+
+    public void savePassword(TextField passwordTextField)
+    {
+        String password = passwordTextField.getText();
+
+        if (isPasswordFormatInvalid(password)){
+            passwordTextField.setPromptText("password format is invalid");
+            passwordTextField.setStyle("-fx-prompt-text-fill: red");
+            passwordTextField.setText("");
+            return;
+        }
+
+        menu.getUser().setPassword(password);
+        passwordTextField.setPromptText("password changed");
+        passwordTextField.setStyle("-fx-prompt-text-fill: green");
+        passwordTextField.setText("");
+
+        passwordTextField.setText("password: " + menu.getUser().getPassword());
+    }
+
+
+
+    public void saveNickname(TextField nicknameTextField)
+    {
+        String password = nicknameTextField.getText();
+
+        if (isNicknameFormatInvalid(password)){
+            nicknameTextField.setPromptText("nickname format is invalid");
+            nicknameTextField.setStyle("-fx-prompt-text-fill: red");
+            nicknameTextField.setText("");
+            return;
+        }
+
+        menu.getUser().setNickname(password);
+        nicknameTextField.setPromptText("nickname changed");
+        nicknameTextField.setStyle("-fx-prompt-text-fill: green");
+        nicknameTextField.setText("");
+
+        nicknameTextField.setText("nickname: " + menu.getUser().getPassword());
+    }
+
+
+
+    private boolean isPasswordFormatInvalid(String password)
+    {
+        return !(MatchingStrings.LoginControllerStrings.PASSWORD.matcher(password).matches() && Pattern.compile("\\d").matcher(password).find()
+                && password.length() > 5 && password.length() < 15);
+    }
+
+
+
+    private boolean isNicknameFormatInvalid(String nickname)
+    {
+        return !(MatchingStrings.LoginControllerStrings.NICKNAME.matcher(nickname).matches() && nickname.length() < 15);
     }
 }

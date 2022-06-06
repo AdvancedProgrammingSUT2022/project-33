@@ -1,7 +1,7 @@
 package Program.View;
 
-import Program.Model.GeneralBiomes;
-import Program.Model.MapSizes;
+import Program.Model.Enums.GeneralBiomes;
+import Program.Model.Enums.MapSizes;
 import Program.Model.UselessTips;
 
 public class GameLoaderView  {

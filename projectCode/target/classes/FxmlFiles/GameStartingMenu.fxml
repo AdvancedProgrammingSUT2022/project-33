@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Program.Controller.GameStartingMenuController"
+            prefHeight="720.0" prefWidth="1280.0">
+
+    <ImageView fitHeight="720" fitWidth="1280" >
+        <Image url="@../Textures/Menu/StartingGameBackground.png" />
+    </ImageView>
+
+    <Label layoutX="50" layoutY="100" text="biome type:" stylesheets="@../CssFiles/GameStartingMenu.css"
+           onMouseEntered="#showBiomeTip" onMouseExited="#closeBiomeTip"/>
+    <ComboBox layoutY="100" layoutX="330" prefWidth="250" prefHeight="40" fx:id="biomeComboBox" promptText="biome type"
+              stylesheets="@../CssFiles/GameStartingMenu.css"/>
+
+    <Label layoutX="700" layoutY="100" text="map size:" stylesheets="@../CssFiles/GameStartingMenu.css"
+    onMouseEntered="#showMapSizeTip" onMouseExited="#closeMapSizeTip"/>
+    <ComboBox layoutY="100" layoutX="980" prefWidth="250" prefHeight="40" fx:id="mapSizeComboBox" promptText="map size"
+              stylesheets="@../CssFiles/GameStartingMenu.css"/>
+
+    <Label layoutX="50" layoutY="160" text="number of players:" stylesheets="@../CssFiles/GameStartingMenu.css"
+           onMouseEntered="#showNumberOfPlayersTip" onMouseExited="#closeNumberOfPlayersTip"/>
+    <ComboBox layoutY="160" layoutX="330" prefWidth="250" prefHeight="40" fx:id="numberOfPlayersComboBox" promptText="number of players"
+              stylesheets="@../CssFiles/GameStartingMenu.css"/>
+
+    <Label layoutX="700" layoutY="160" text="players username" stylesheets="@../CssFiles/GameStartingMenu.css" />
+    <TextField layoutY="160" layoutX="980" promptText="enter usernames 1 by 1" stylesheets="@../CssFiles/GameStartingMenu.css"
+               onKeyReleased="#addUser" fx:id="usernamesTextField"/>
+
+    <Label layoutX="50" layoutY="480" text="auto save" stylesheets="@../CssFiles/GameStartingMenu.css"
+           onMouseEntered="#showAutoSaveLabelTip" onMouseExited="#closeAutoSaveLabelTip"/>
+    <Button layoutX="330" layoutY="480" text="off" stylesheets="@../CssFiles/GameStartingMenu.css" onMouseClicked="#changeSaveState"
+            onMouseEntered="#showAutoSaveButtonTip" onMouseExited="#closeAutoSaveButtonTip"/>
+
+    <Label layoutX="700" layoutY="480" text="rounds between each save" stylesheets="@../CssFiles/GameStartingMenu.css" fx:id="autoSaveRoundsLabel"/>
+    <ComboBox layoutY="480" layoutX="980" prefWidth="250" prefHeight="40" fx:id="roundsNeededComboBox" promptText="number of players"
+              stylesheets="@../CssFiles/GameStartingMenu.css"/>
+
+<Button layoutX="330" layoutY="600" text="start game" onMouseClicked="#startGame" stylesheets="@../CssFiles/GameStartingMenu.css" />
+<Button layoutX="700" layoutY="600" text="back" onMouseClicked="#back" stylesheets="@../CssFiles/GameStartingMenu.css" />
+
+
+
+
+    <Label fx:id="biomeTip" text="this property changes the general layout and biomes of the game. it is set to random by default."
+           id="tip" stylesheets="@../CssFiles/GameStartingMenu.css" visible="false"/>
+    <Label fx:id="mapSizeTip" text="this property changes the size of the map. auto makes it so that the size is based on the number of players"
+           id="tip" stylesheets="@../CssFiles/GameStartingMenu.css" visible="false"/>
+    <Label fx:id="numberOfPlayerTip" text="this property changes the number of players"
+           id="tip" stylesheets="@../CssFiles/GameStartingMenu.css" visible="false"/>
+    <Label fx:id="autoSaveTip" text="if you turn on this property, game will be saved every couple of rounds"
+           id="tip" stylesheets="@../CssFiles/GameStartingMenu.css" visible="false"/>
+    <Label fx:id="autoSaveButtonTip" text="click on the button to change the property value"
+           id="tip" stylesheets="@../CssFiles/GameStartingMenu.css" visible="false"/>
+
+</AnchorPane>

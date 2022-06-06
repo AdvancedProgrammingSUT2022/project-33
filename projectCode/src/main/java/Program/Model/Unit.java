@@ -1,5 +1,8 @@
 package Program.Model;
 
+import Program.Model.Enums.Colors;
+import Program.Model.Enums.NonPlayerColors;
+
 import java.util.ArrayList;
 
 public class Unit {

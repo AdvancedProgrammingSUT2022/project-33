@@ -2,7 +2,7 @@ package Program.Controller;
 
 import Program.Model.MatchingStrings;
 import Program.Model.Player;
-import Program.Model.Technologies;
+import Program.Model.Enums.Technologies;
 import Program.Model.UserInput;
 import Program.View.TechnologyTreeView;
 

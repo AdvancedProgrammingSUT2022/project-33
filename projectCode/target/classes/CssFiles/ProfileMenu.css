@@ -41,3 +41,35 @@
     -fx-scale-y: 1.1;
     -fx-effect: dropshadow(gaussian, yellow, 8, 0.1, 0, 0);
 }
+
+
+
+.scroll-bar{
+    -fx-background-color: #2a2a2a;
+}
+
+
+
+#menuLabel{
+    -fx-background-color: transparent;
+    -fx-background-image: url(../Textures/Menu/labelBackground.png);
+    -fx-min-width: 250;
+    -fx-pref-height: 40;
+    -fx-fit-to-width: 250;
+    -fx-text-fill: #f5cd49;
+    -fx-font-size: 20;
+    -fx-alignment: Center;
+}
+
+
+
+.text-field{
+     -fx-background-color: transparent;
+     -fx-pref-height: 40;
+     -fx-fit-to-width: 250;
+     -fx-text-fill: #f5cd49;
+     -fx-font-size: 20;
+     -fx-alignment: Center;
+     -fx-border-width: 2;
+     -fx-border-color: #f5c71f;
+ }

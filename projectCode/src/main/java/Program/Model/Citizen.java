@@ -1,5 +1,7 @@
 package Program.Model;
 
+import Program.Model.Enums.CitizenNames;
+
 import java.util.Random;
 
 public class Citizen {

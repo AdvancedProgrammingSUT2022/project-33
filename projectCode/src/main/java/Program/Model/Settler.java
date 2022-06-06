@@ -1,6 +1,8 @@
 package Program.Model;
 
 import Program.Controller.SettlerController;
+import Program.Model.Enums.Colors;
+import Program.Model.Enums.NonPlayerColors;
 import Program.View.SettlerView;
 
 import java.util.ArrayList;

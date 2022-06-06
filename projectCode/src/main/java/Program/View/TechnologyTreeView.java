@@ -1,7 +1,7 @@
 package Program.View;
 
 import Program.Model.Player;
-import Program.Model.Technologies;
+import Program.Model.Enums.Technologies;
 
 import java.util.ArrayList;
 

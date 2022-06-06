@@ -1,5 +1,7 @@
 package Program.Model;
 
+import Program.Model.Enums.*;
+
 import java.util.ArrayList;
 import java.util.Random;
 
