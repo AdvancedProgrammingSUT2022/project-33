@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.Terrain;
+import Program.Model.Models.Terrain;
 
 import java.util.ArrayList;
 import java.util.Arrays;

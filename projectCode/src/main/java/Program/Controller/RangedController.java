@@ -1,9 +1,9 @@
 package Program.Controller;
 
-import Program.Model.Coordinates;
-import Program.Model.MatchingStrings;
-import Program.Model.RangedMilitaryUnit;
-import Program.Model.UserInput;
+import Program.Model.Models.Coordinates;
+import Program.Model.Models.MatchingStrings;
+import Program.Model.Models.RangedMilitaryUnit;
+import Program.Model.Models.UserInput;
 import Program.View.RangedView;
 
 public class RangedController {

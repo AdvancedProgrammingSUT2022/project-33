@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.Biomes;
+import Program.Model.Models.Biomes;
 
 public enum BiomesDefaultChance {
     DESERT(35, 12, 15, 15, 4, 12, 2, 5),

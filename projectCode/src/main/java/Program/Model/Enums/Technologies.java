@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.Technology;
+import Program.Model.Models.Technology;
 
 import java.util.ArrayList;
 import java.util.Arrays;

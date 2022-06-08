@@ -1,6 +1,6 @@
 package Program.Controller;
 
-import Program.Model.*;
+import Program.Model.Models.*;
 import Program.View.MiniMapView;
 
 import java.util.ArrayList;

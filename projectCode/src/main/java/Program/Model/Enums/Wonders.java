@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.Wonder;
+import Program.Model.Models.Wonder;
 
 public enum Wonders {
     //TODO:

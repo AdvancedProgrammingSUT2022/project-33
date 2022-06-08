@@ -1,7 +1,7 @@
 package Program.View;
 
-import Program.Model.Coordinates;
-import Program.Model.Settler;
+import Program.Model.Models.Coordinates;
+import Program.Model.Models.Settler;
 
 public class SettlerView {
 

@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.SpecialPerson;
+import Program.Model.Models.SpecialPerson;
 
 public enum SpecialPeoples {
 

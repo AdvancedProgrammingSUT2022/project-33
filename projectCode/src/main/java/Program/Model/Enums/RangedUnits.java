@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.RangedMilitaryUnit;
+import Program.Model.Models.RangedMilitaryUnit;
 
 public enum RangedUnits {
     //Ancient units

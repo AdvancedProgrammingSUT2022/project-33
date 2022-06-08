@@ -1,6 +1,6 @@
 package Program.View;
 
-import Program.Model.HeavyRangedMilitaryUnits;
+import Program.Model.Models.HeavyRangedMilitaryUnits;
 
 public class HeavyView extends RangedView{
 

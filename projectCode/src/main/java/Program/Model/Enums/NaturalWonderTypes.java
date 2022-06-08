@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.NaturalWonder;
+import Program.Model.Models.NaturalWonder;
 
 public enum NaturalWonderTypes {
     FIRE_TEMPLE(2, 2, 0, "Fire Temple"),

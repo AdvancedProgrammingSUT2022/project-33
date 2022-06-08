@@ -1,7 +1,7 @@
 package Program.View;
 
 import Program.Controller.ProfileMenuController;
-import Program.Model.User;
+import Program.Model.Models.User;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;

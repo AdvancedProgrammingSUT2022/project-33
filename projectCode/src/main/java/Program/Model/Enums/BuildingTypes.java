@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.Building;
+import Program.Model.Models.Building;
 
 public enum BuildingTypes {
     //Ancient Buildings

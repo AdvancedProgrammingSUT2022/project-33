@@ -1,6 +1,6 @@
 package Program.View;
 
-import Program.Model.Player;
+import Program.Model.Models.Player;
 import Program.Model.Enums.Technologies;
 
 import java.util.ArrayList;

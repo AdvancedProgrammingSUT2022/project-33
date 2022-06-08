@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.MapLandElement;
+import Program.Model.Models.MapLandElement;
 
 public enum MapPropertyTypes {
     FLOOD_PLAIN(2, 0, 0, -33, 1, true),

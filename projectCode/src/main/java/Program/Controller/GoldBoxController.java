@@ -1,8 +1,8 @@
 package Program.Controller;
 
-import Program.Model.MatchingStrings;
-import Program.Model.Player;
-import Program.Model.UserInput;
+import Program.Model.Models.MatchingStrings;
+import Program.Model.Models.Player;
+import Program.Model.Models.UserInput;
 import Program.View.GoldBoxView;
 
 public class GoldBoxController {

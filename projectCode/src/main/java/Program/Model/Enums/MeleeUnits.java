@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.MeleeMilitaryUnit;
+import Program.Model.Models.MeleeMilitaryUnit;
 
 public enum MeleeUnits {
     //Ancient units

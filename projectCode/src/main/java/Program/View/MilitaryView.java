@@ -1,6 +1,6 @@
 package Program.View;
 
-import Program.Model.Coordinates;
+import Program.Model.Models.Coordinates;
 
 public class MilitaryView {
 

@@ -1,6 +1,6 @@
 package Program.View;
 
-import Program.Model.Player;
+import Program.Model.Models.Player;
 
 public class GoldBoxView {
 

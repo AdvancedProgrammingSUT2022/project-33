@@ -1,14 +1,12 @@
 package Program.View;
 
 import Program.Controller.MainMenuController;
-import Program.Model.User;
+import Program.Model.Models.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;

@@ -1,7 +1,11 @@
 package Program.Controller;
 
-import Program.Model.LoginMenu;
-import Program.Model.User;
+import Program.Model.Enums.GeneralBiomes;
+import Program.Model.Enums.MapSizes;
+import Program.Model.Models.GameLoader;
+import Program.Model.Models.LoginMenu;
+import Program.Model.Models.User;
+import Program.View.GameLoaderView;
 import Program.View.GameStartingMenuView;
 import Program.View.MainMenuView;
 import javafx.animation.KeyFrame;
@@ -21,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -32,6 +37,9 @@ public class GameStartingMenuController {
     private boolean isAutoSave;
     private boolean showTip;
     private Label lastTipLabel;
+    private String biomeTypeString;
+    private String mapSizeString;
+    private int autoSaveRounds;
 
     @FXML
     private ComboBox<String> biomeComboBox;
@@ -123,6 +131,9 @@ public class GameStartingMenuController {
         if (players.size() < numberOfPlayersComboBox.getValue()){
             players.add(getUserByUsername(usernamesTextField.getText()));
             view.updateUsers(players);
+            usernamesTextField.setText("");
+            usernamesTextField.setPromptText("enter usernames 1 by 1");
+            usernamesTextField.setStyle("-fx-prompt-text-fill: gray");
         }
     }
 
@@ -154,22 +165,81 @@ public class GameStartingMenuController {
         else {
             button.setText("off");
         }
-
-
     }
 
 
 
     public void startGame()
     {
+        if (numberOfPlayersComboBox.getValue() == null || !numberOfPlayersComboBox.getValue().equals(players.size())){
+            usernamesTextField.setText("");
+            usernamesTextField.setPromptText("not enough players");
+            usernamesTextField.setStyle("-fx-prompt-text-fill: red");
+            return;
+        }
 
+        GeneralBiomes mapBiome = setBiomeValue();
+        MapSizes mapSize = setMapSize();
+        GameLoaderView gameLoaderView = new GameLoaderView(view.getStage(), players, mapBiome, mapSize);
+    }
+
+
+
+    private GeneralBiomes setBiomeValue()
+    {
+        GeneralBiomes mapBiome = GeneralBiomes.DESERT;
+
+        if (biomeTypeString == null){
+            biomeTypeString = "random";
+        }
+
+        for (GeneralBiomes generalBiome: GeneralBiomes.values()){
+            if (generalBiome.toString().equalsIgnoreCase(biomeTypeString)){
+                mapBiome = generalBiome;
+            }
+        }
+
+        if (biomeTypeString.equalsIgnoreCase("random")){
+            Random rand = new Random();
+            mapBiome = GeneralBiomes.values()[rand.nextInt(GeneralBiomes.values().length)];
+        }
+
+        return mapBiome;
+    }
+
+
+
+    private MapSizes setMapSize()
+    {
+        MapSizes mapSize = MapSizes.TINY;
+
+        if (mapSizeString == null){
+            mapSizeString = "";
+        }
+
+        for (MapSizes defaultMapSize: MapSizes.values()){
+            if (defaultMapSize.toString().equalsIgnoreCase(mapSizeString)){
+                mapSize = defaultMapSize;
+            }
+        }
+
+        if (mapSizeString.equalsIgnoreCase("very tiny")){
+            mapSize = MapSizes.VERY_TINY;
+        }
+
+        if (mapSizeString.equalsIgnoreCase("random")){
+            Random rand = new Random();
+            mapSize = MapSizes.values()[rand.nextInt(MapSizes.values().length)];
+        }
+
+        return mapSize;
     }
 
 
 
     public void back()
     {
-        MainMenuView mainMenuView = new MainMenuView(view.Stage(), user);
+        MainMenuView mainMenuView = new MainMenuView(view.getStage(), user);
     }
 
 
@@ -179,7 +249,7 @@ public class GameStartingMenuController {
         showTip = true;
         lastTipLabel = biomeTip;
 
-        Timer timer = new Timer();
+        Timer timer = new Timer(true);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -204,7 +274,7 @@ public class GameStartingMenuController {
         showTip = true;
         lastTipLabel = mapSizeTip;
 
-        Timer timer = new Timer();
+        Timer timer = new Timer(true);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -229,7 +299,7 @@ public class GameStartingMenuController {
         showTip = true;
         lastTipLabel = numberOfPlayerTip;
 
-        Timer timer = new Timer();
+        Timer timer = new Timer(true);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -254,7 +324,7 @@ public class GameStartingMenuController {
         showTip = true;
         lastTipLabel = autoSaveRoundsLabel;
 
-        Timer timer = new Timer();
+        Timer timer = new Timer(true);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -279,7 +349,7 @@ public class GameStartingMenuController {
         showTip = true;
         lastTipLabel = autoSaveButtonTip;
 
-        Timer timer = new Timer();
+        Timer timer = new Timer(true);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -349,5 +419,19 @@ public class GameStartingMenuController {
                 label.setVisible(false);
             }
         });
+    }
+
+
+
+    public void setBiomeType(ActionEvent event)
+    {
+        biomeTypeString = biomeComboBox.getValue();
+    }
+
+
+
+    public void setMapSizeValue(ActionEvent event)
+    {
+        mapSizeString = mapSizeComboBox.getValue();
     }
 }

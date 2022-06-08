@@ -1,6 +1,6 @@
 package Program.View;
 
-import Program.Model.MeleeMilitaryUnit;
+import Program.Model.Models.MeleeMilitaryUnit;
 
 public class MeleeView extends MilitaryView {
 

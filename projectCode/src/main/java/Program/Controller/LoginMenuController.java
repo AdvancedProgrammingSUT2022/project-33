@@ -1,8 +1,8 @@
 package Program.Controller;
 
-import Program.Model.LoginMenu;
-import Program.Model.MatchingStrings;
-import Program.Model.User;
+import Program.Model.Models.LoginMenu;
+import Program.Model.Models.MatchingStrings;
+import Program.Model.Models.User;
 import Program.View.LoginMenuView;
 import Program.View.MainMenuView;
 import javafx.scene.control.TextField;

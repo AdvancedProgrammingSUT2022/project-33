@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.StrategicResource;
+import Program.Model.Models.StrategicResource;
 
 import java.util.ArrayList;
 import java.util.Arrays;

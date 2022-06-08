@@ -17,12 +17,12 @@
     <Label layoutX="50" layoutY="100" text="biome type:" stylesheets="@../CssFiles/GameStartingMenu.css"
            onMouseEntered="#showBiomeTip" onMouseExited="#closeBiomeTip"/>
     <ComboBox layoutY="100" layoutX="330" prefWidth="250" prefHeight="40" fx:id="biomeComboBox" promptText="biome type"
-              stylesheets="@../CssFiles/GameStartingMenu.css"/>
+              stylesheets="@../CssFiles/GameStartingMenu.css" onAction="#setBiomeType"/>
 
     <Label layoutX="700" layoutY="100" text="map size:" stylesheets="@../CssFiles/GameStartingMenu.css"
     onMouseEntered="#showMapSizeTip" onMouseExited="#closeMapSizeTip"/>
     <ComboBox layoutY="100" layoutX="980" prefWidth="250" prefHeight="40" fx:id="mapSizeComboBox" promptText="map size"
-              stylesheets="@../CssFiles/GameStartingMenu.css"/>
+              stylesheets="@../CssFiles/GameStartingMenu.css" onAction="#setMapSizeValue"/>
 
     <Label layoutX="50" layoutY="160" text="number of players:" stylesheets="@../CssFiles/GameStartingMenu.css"
            onMouseEntered="#showNumberOfPlayersTip" onMouseExited="#closeNumberOfPlayersTip"/>

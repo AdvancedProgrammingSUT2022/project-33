@@ -1,7 +1,10 @@
 package Program.View;
 
-import Program.Model.*;
 import Program.Model.Enums.Wonders;
+import Program.Model.Models.Building;
+import Program.Model.Models.Citizen;
+import Program.Model.Models.Coordinates;
+import Program.Model.Models.PlayerCity;
 
 public class CityView {
 

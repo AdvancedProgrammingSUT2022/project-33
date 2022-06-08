@@ -1,6 +1,9 @@
 package Program.Controller;
 
-import Program.Model.*;
+import Program.Model.Models.Coordinates;
+import Program.Model.Models.MatchingStrings;
+import Program.Model.Models.MeleeMilitaryUnit;
+import Program.Model.Models.UserInput;
 import Program.View.MeleeView;
 
 public class MeleeController {

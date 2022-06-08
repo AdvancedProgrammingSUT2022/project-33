@@ -1,7 +1,7 @@
 package Program.View;
 
 import Program.Controller.GameStartingMenuController;
-import Program.Model.User;
+import Program.Model.Models.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
@@ -118,7 +118,7 @@ public class GameStartingMenuView {
 
 
     //getters
-    public Stage Stage()
+    public Stage getStage()
     {
         return stage;
     }

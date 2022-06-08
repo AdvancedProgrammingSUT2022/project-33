@@ -1,6 +1,6 @@
 package Program.View;
 
-import Program.Model.*;
+import Program.Model.Models.*;
 
 import java.util.ArrayList;
 

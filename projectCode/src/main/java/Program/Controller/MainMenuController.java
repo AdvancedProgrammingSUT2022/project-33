@@ -1,18 +1,13 @@
 package Program.Controller;
 
-import Program.Model.MainMenu;
-import Program.Model.MatchingStrings;
-import Program.Model.User;
-import Program.Model.UserInput;
+import Program.Model.Models.MainMenu;
+import Program.Model.Models.User;
 import Program.View.GameStartingMenuView;
 import Program.View.LoginMenuView;
 import Program.View.MainMenuView;
 import Program.View.ProfileMenuView;
 import javafx.application.Platform;
 import javafx.scene.input.MouseEvent;
-
-import java.util.ArrayList;
-import java.util.regex.Matcher;
 
 public class MainMenuController {
     private MainMenu menu;

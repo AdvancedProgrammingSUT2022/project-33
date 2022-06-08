@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.HeavyRangedMilitaryUnits;
+import Program.Model.Models.HeavyRangedMilitaryUnits;
 
 public enum HeavyRangedUnits {
     //classical units

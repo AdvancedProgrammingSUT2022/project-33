@@ -1,6 +1,9 @@
 package Program.Controller;
 
-import Program.Model.*;
+import Program.Model.Models.LoginMenu;
+import Program.Model.Models.MatchingStrings;
+import Program.Model.Models.ProfileMenu;
+import Program.Model.Models.User;
 import Program.View.LoginMenuView;
 import Program.View.MainMenuView;
 import Program.View.ProfileMenuView;
@@ -18,15 +21,8 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ProfileMenuController {

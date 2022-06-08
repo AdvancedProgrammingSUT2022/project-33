@@ -1,6 +1,6 @@
 package Program.Model.Enums;
 
-import Program.Model.LuxuryResource;
+import Program.Model.Models.LuxuryResource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public enum LuxuryResourceTypes {
     COTTON("Cotton", 0, 0, 2, "FARMHOUSE", new ArrayList<String>(Arrays.asList("PLAIN", "DESERT", "GRASSLAND"))),
-    COLOR("Color", 0, 0, 2, "FARMHOUSE", new ArrayList<String>(Arrays.asList("JUNGLE", "DENSE_FOREST"))),
+    DYE("Dye", 0, 0, 2, "FARMHOUSE", new ArrayList<String>(Arrays.asList("JUNGLE", "DENSE_FOREST"))),
     FUR("Fur", 0, 0, 2 , "CAMP", new ArrayList<String>(Arrays.asList("JUNGLE", "TUNDRA"))),
     GEMSTONE("Gemstone", 0, 0, 3, "MINE",
             new ArrayList<String>(Arrays.asList("DENSE_FOREST", "TUNDRA", "GRASSLAND", "PLAIN", "DESERT", "HILLS"))),
