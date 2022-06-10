@@ -13,7 +13,7 @@ public enum TerrainTypes {
     MOUNTAIN(0, 0, 0, 0, 0, false, new ArrayList<String>()),
     OCEAN(0, 0, 0, 0, 0, false, new ArrayList<String>()),
     PLAIN(1, 1, 0, -33, 1, true, new ArrayList<String>(Arrays.asList("JUNGLE", "DENSE_FOREST"))),
-    SNOW(0, 0, 0, -33, 1, true, new ArrayList<String>()),
+    SNOW(0, 0, 0, -33, 1, true, new ArrayList<String>(List.of("ICE"))),
     TUNDRA(1, 0, 0, -33, 1, true, new ArrayList<String>(List.of("JUNGLE")));
 
 

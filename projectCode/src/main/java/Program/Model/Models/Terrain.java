@@ -68,12 +68,14 @@ public class Terrain extends MapLandElement{
 
         for (MapPropertyTypes mapProperty: MapPropertyTypes.values()){
             if (availableProperties.contains(mapProperty.toString())) {
-                if (propertyTypeIndex == 0) {
+                 if (propertyTypeIndex == 0) {
                     property = new MapProperty(mapProperty.toString(), mapProperty.property);
                     hasProperty = true;
                     this.hasRiver = property.getType().equals("FLOOD_PAIN");
                     return;
                 }
+
+                propertyTypeIndex--;
             }
         }
     }

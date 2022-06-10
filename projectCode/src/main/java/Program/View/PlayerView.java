@@ -1,15 +1,24 @@
 package Program.View;
 
-import Program.Model.Models.Coordinates;
-import Program.Model.Models.MiniMap;
-import Program.Model.Models.Player;
-import Program.Model.Models.River;
+import Program.Controller.PlayerController;
+import Program.Model.Models.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class PlayerView {
     Stage stage;
@@ -18,7 +27,18 @@ public class PlayerView {
     MiniMap miniMap;
     int centerX;
     int centerY;
+    int lastCenterX;
+    int lastCenterY;
     Group mapRoot;
+    int tileXLength;
+    int tileYLength;
+    PlayerController controller;
+    boolean isHoldingUp;
+    boolean isHoldingDown;
+    boolean isHoldingRight;
+    boolean isHoldingLeft;
+    MapImages mapImages;
+
 
 
 
@@ -28,15 +48,51 @@ public class PlayerView {
     ////methods////
     public PlayerView(Stage stage, Player player)
     {
-        root = new Group();
-        mapRoot = new Group();
-        this.miniMap = player.getMap();
+        this.stage = stage;
+        initializeValues(player);
+
         loadBackground();
 
         reloadMap();
         root.getChildren().add(mapRoot);
-        scene = new Scene(root);
+
+        loadFront(player);
+
+        initializeScene();
         stage.setScene(scene);
+    }
+
+
+
+    private void initializeValues(Player player)
+    {
+        tileXLength = 16 * 3;
+        tileYLength = 56;
+        centerX = player.getPlayerUnits().getSettlers().get(0).getCoordinates().getX() * tileXLength;
+        centerY = player.getPlayerUnits().getSettlers().get(0).getCoordinates().getY() * tileYLength;
+        lastCenterX = centerX;
+        lastCenterY = centerY;
+        root = new Group();
+        mapRoot = new Group();
+        this.miniMap = player.getMap();
+
+        mapImages = new MapImages();
+    }
+
+
+
+    public void loadFront(Player player)
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FxmlFiles/PlayerView.fxml"));
+
+        try {
+            root.getChildren().add(fxmlLoader.load());
+            controller = fxmlLoader.getController();
+            controller.initializeController(player, this);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -53,24 +109,30 @@ public class PlayerView {
 
     private void reloadMap()
     {
-        for (int j = 0; j < 10; j++){
-            for (int i = 0; i < 10; i++){
+        mapRoot.getChildren().clear();
+
+        for (int j = getMinY(); j < getMaxY(); j++){
+            for (int i = getMinX(); i < getMaxX(); i++){
                 loadTerrain(i, j);
+                loadRiver(i, j);
                 loadProperty(i, j);
                 loadResources(i, j);
             }
         }
 
-        loadRivers();
+        //loadRivers();
     }
 
 
 
     private void loadTerrain(int x, int y)
     {
-        Image image = new Image(String.valueOf(getClass().getResource(
+        /*Image image = new Image(String.valueOf(getClass().getResource(
                 "/Textures/Game/Map/Terrain/" + miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getType() + ".png")));
-        loadImageIntoCoordinates(image, x, y);
+        loadImageIntoCoordinates(image, x, y);*/
+
+        loadImageIntoCoordinates(mapImages.getImageByName(miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getType()), x, y);
+
     }
 
 
@@ -90,7 +152,6 @@ public class PlayerView {
             if (river.getNextPart(coordinates) == null){
                 Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/River.png")));
                 loadRiverImageIntoCoordinates(image, coordinates.getX(), 0, coordinates.getY(), 0);
-                System.out.println(river.getRiverCoordinates());
                 return;
             }
 
@@ -158,51 +219,74 @@ public class PlayerView {
             return;
         }
 
-
+        boolean placedRiver = false; 
 
         if (y > 0 && miniMap.getTerrainFromCoordinates(new Coordinates(x, y - 1, 0)).isHasRiver()){
-            Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/River.png")));
-            loadRiverImageIntoCoordinates(image, x, 0, y, -16);
+            Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpDown.png")));
+            loadRiverImageIntoCoordinates(image, x, 0, y, -29);
+            placedRiver = true;
         }
-        else if (y < miniMap.getMapSize() - 1 && miniMap.getTerrainFromCoordinates(new Coordinates(x, y + 1, 0)).isHasRiver()) {
-            Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/River.png")));
-            loadRiverImageIntoCoordinates(image, x, 0, y, 16);
+
+        if (y < miniMap.getMapSize() - 1 && miniMap.getTerrainFromCoordinates(new Coordinates(x, y + 1, 0)).isHasRiver()) {
+            Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpDown.png")));
+            loadRiverImageIntoCoordinates(image, x, 0, y, 29);
+            placedRiver = true;
         }
-        else if (x % 2 == 0){
+
+        if (x % 2 == 0){
             if (x < miniMap.getMapSize() - 1 && y > 0 &&  miniMap.getTerrainFromCoordinates(new Coordinates(x + 1, y - 1, 0)).isHasRiver()){
                 Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpRight.png")));
                 loadRiverImageIntoCoordinates(image, x, 25, y, -16);
+                placedRiver = true;
             }
-            else if (x > 0 && y > 0 && miniMap.getTerrainFromCoordinates(new Coordinates(x - 1, y - 1, 0)).isHasRiver()){
+
+            if (x > 0 && y > 0 && miniMap.getTerrainFromCoordinates(new Coordinates(x - 1, y - 1, 0)).isHasRiver()){
                 Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpLeft.png")));
                 loadRiverImageIntoCoordinates(image, x, -25, y, -16);
+                placedRiver = true;
             }
-            else if (x < miniMap.getMapSize() - 1 && miniMap.getTerrainFromCoordinates(new Coordinates(x + 1, y, 0)).isHasRiver()){
+
+            if (x < miniMap.getMapSize() - 1 && miniMap.getTerrainFromCoordinates(new Coordinates(x + 1, y, 0)).isHasRiver()){
                 Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpLeft.png")));
                 loadRiverImageIntoCoordinates(image, x, 25, y, 16);
+                placedRiver = true;
             }
-            else if (x > 0 && miniMap.getTerrainFromCoordinates(new Coordinates(x - 1, y, 0)).isHasRiver()){
-                Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpLeft.png")));
+
+            if (x > 0 && miniMap.getTerrainFromCoordinates(new Coordinates(x - 1, y, 0)).isHasRiver()){
+                Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpRight.png")));
                 loadRiverImageIntoCoordinates(image, x, -25, y, 16);
+                placedRiver = true;
             }
         }
         else {
             if (x < miniMap.getMapSize() - 1 && miniMap.getTerrainFromCoordinates(new Coordinates(x + 1, y, 0)).isHasRiver()){
                 Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpRight.png")));
                 loadRiverImageIntoCoordinates(image, x, 25, y, -16);
+                placedRiver = true;
             }
-            else if (x > 0 && miniMap.getTerrainFromCoordinates(new Coordinates(x - 1, y, 0)).isHasRiver()){
+
+            if (x > 0 && miniMap.getTerrainFromCoordinates(new Coordinates(x - 1, y, 0)).isHasRiver()){
                 Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpLeft.png")));
                 loadRiverImageIntoCoordinates(image, x, -25, y, -16);
+                placedRiver = true;
             }
-            else if (x < miniMap.getMapSize() - 1 && y < miniMap.getMapSize() - 1 && miniMap.getTerrainFromCoordinates(new Coordinates(x + 1, y + 1, 0)).isHasRiver()){
+
+            if (x < miniMap.getMapSize() - 1 && y < miniMap.getMapSize() - 1 && miniMap.getTerrainFromCoordinates(new Coordinates(x + 1, y + 1, 0)).isHasRiver()){
                 Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpLeft.png")));
                 loadRiverImageIntoCoordinates(image, x, 25, y, 16);
+                placedRiver = true;
             }
-            else if (x > 0 && y < miniMap.getMapSize() - 1 && miniMap.getTerrainFromCoordinates(new Coordinates(x - 1, y + 1, 0)).isHasRiver()){
-                Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpLeft.png")));
+
+            if (x > 0 && y < miniMap.getMapSize() - 1 && miniMap.getTerrainFromCoordinates(new Coordinates(x - 1, y + 1, 0)).isHasRiver()){
+                Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpRight.png")));
                 loadRiverImageIntoCoordinates(image, x, -25, y, 16);
+                placedRiver = true;
             }
+        }
+
+        if (!placedRiver) {
+            Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/River.png")));
+            loadRiverImageIntoCoordinates(image, x, 0, y, 0);
         }
     }
 
@@ -211,9 +295,11 @@ public class PlayerView {
     private void loadProperty (int x, int y)
     {
         if (miniMap.getTerrainFromCoordinates(new Coordinates(x, y , 0)).isHasProperty()) {
-            Image image = new Image(String.valueOf(getClass().getResource(
+            /*Image image = new Image(String.valueOf(getClass().getResource(
                     "/Textures/Game/Map/Terrain/" + miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getProperty().getType() + ".png")));
-            loadImageIntoCoordinates(image, x, y);
+            loadImageIntoCoordinates(image, x, y);*/
+
+            loadImageIntoCoordinates(mapImages.getImageByName(miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getProperty().getType()), x, y);
         }
     }
 
@@ -222,9 +308,11 @@ public class PlayerView {
     private void loadResources(int x, int y)
     {
         if (miniMap.getTerrainFromCoordinates(new Coordinates(x, y , 0)).isHasResource()) {
-            Image image = new Image(String.valueOf(getClass().getResource(
+            /*Image image = new Image(String.valueOf(getClass().getResource(
                     "/Textures/Game/Map/Terrain/" + miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getResourceTypeString() + ".png")));
-            loadImageIntoCoordinates(image, x, y);
+            loadImageIntoCoordinates(image, x, y);*/
+
+            loadImageIntoCoordinates(mapImages.getImageByName(miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getResourceTypeString()), x, y);
         }
     }
 
@@ -233,11 +321,11 @@ public class PlayerView {
     private void loadImageIntoCoordinates(Image image, int x, int y)
     {
         ImageView imageView = new ImageView(image);
-        imageView.setX(x * 16 * 3);
-        imageView.setY(y * 56 + (x % 2 ) * 28);
+        imageView.setX(x * tileXLength - centerX + 640);
+        imageView.setY(y * tileYLength + (x % 2 ) * (tileYLength / 2) - centerY + 360);
 
-        if (image.getHeight() != 56){
-            imageView.setY(imageView.getY() - (image.getHeight() - 56));
+        if (image.getHeight() != tileYLength){
+            imageView.setY(imageView.getY() - (image.getHeight() - tileYLength));
         }
 
         mapRoot.getChildren().add(imageView);
@@ -247,13 +335,168 @@ public class PlayerView {
 
     private void loadRiverImageIntoCoordinates(Image image, int x, int deltaX, int y, int deltaY){
         ImageView imageView = new ImageView(image);
-        imageView.setX(x * 16 * 3 + deltaX);
-        imageView.setY(y * 56 + (x % 2 ) * 28 + deltaY);
+        imageView.setX(x * tileXLength + deltaX - centerX + 640);
+        imageView.setY(y * tileYLength + (x % 2 ) * (tileYLength / 2) + deltaY - centerY + 360);
 
-        if (image.getHeight() != 56){
-            imageView.setY(imageView.getY() - (image.getHeight() - 56));
+        if (image.getHeight() != tileYLength){
+            imageView.setY(imageView.getY() - (image.getHeight() - tileYLength));
         }
 
         mapRoot.getChildren().add(imageView);
     }
+
+
+
+    private int getMinX()
+    {
+        int borderX = centerX - 1280;
+
+        if (borderX < 0){
+            borderX = 0;
+        }
+
+
+        return borderX / tileXLength;
+    }
+
+
+
+    private int getMaxX()
+    {
+        int borderX = centerX + 1280;
+
+        if (borderX > (miniMap.getMapSize() - 1) * tileXLength){
+            borderX = (miniMap.getMapSize() - 1) * tileXLength;
+        }
+
+        return borderX / tileXLength;
+    }
+
+
+
+    private int getMinY()
+    {
+        int borderY = centerY - 720;
+
+        if (borderY < 0){
+            borderY = 0;
+        }
+
+        return borderY/ tileYLength;
+    }
+
+
+
+    private int getMaxY()
+    {
+        int borderY = centerY + 720;
+
+        if (borderY > (miniMap.getMapSize() - 1) * tileYLength){
+            borderY = (miniMap.getMapSize() - 1) * tileYLength;
+        }
+
+        return borderY/ tileYLength;
+    }
+
+
+
+    private void initializeScene()
+    {
+        scene = new Scene(root);
+        scene.setCursor(new ImageCursor(new Image(String.valueOf(getClass().getResource("/Textures/Cursor.png"))), 64, 64));
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode().equals(KeyCode.UP)){
+                    isHoldingUp = true;
+                }
+                if (keyEvent.getCode().equals(KeyCode.DOWN)){
+                    isHoldingDown = true;
+                }
+                if (keyEvent.getCode().equals(KeyCode.RIGHT)){
+                    isHoldingRight = true;
+                }
+                if (keyEvent.getCode().equals(KeyCode.LEFT)){
+                    isHoldingLeft = true;
+                }
+            }
+        });
+
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode().equals(KeyCode.UP)){
+                    isHoldingUp = false;
+                }
+                if (keyEvent.getCode().equals(KeyCode.DOWN)){
+                    isHoldingDown = false;
+                }
+                if (keyEvent.getCode().equals(KeyCode.RIGHT)){
+                    isHoldingRight = false;
+                }
+                if (keyEvent.getCode().equals(KeyCode.LEFT)){
+                    isHoldingLeft = false;
+                }
+            }
+        });
+
+        Timeline mapMovingTimeline = new Timeline(new KeyFrame(Duration.millis(20), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                moveMap();
+            }
+        }));
+
+        mapMovingTimeline.setCycleCount(-1);
+        mapMovingTimeline.play();
+    }
+
+
+
+    private void moveMap()
+    {
+        int deltaY = 0;
+        int deltaX = 0;
+
+        if (isHoldingDown && centerY < miniMap.getMapSize() * tileYLength){
+            deltaY = -5;
+        }
+
+        if (isHoldingUp && centerY > 0){
+            deltaY = 5;
+        }
+
+        if (isHoldingLeft && centerX > 0){
+            deltaX = 5;
+        }
+
+        if (isHoldingRight && centerX < miniMap.getMapSize() * tileXLength){
+            deltaX = -5;
+        }
+
+        centerX -= deltaX;
+        centerY -= deltaY;
+        moveMapElements(deltaX, deltaY);
+    }
+
+
+
+    private void moveMapElements(int deltaX, int deltaY)
+    {
+        if (Math.abs(Math.abs(lastCenterX) - Math.abs(centerX)) > 1280 || Math.abs(Math.abs(lastCenterY) - Math.abs(centerY)) > 720){
+            lastCenterX = centerX;
+            lastCenterY = centerY;
+            reloadMap();
+        }
+
+        for (int i = 0; i < mapRoot.getChildren().size(); i++){
+            mapRoot.getChildren().get(i).setLayoutX(mapRoot.getChildren().get(i).getLayoutX() + deltaX);
+            mapRoot.getChildren().get(i).setLayoutY(mapRoot.getChildren().get(i).getLayoutY() + deltaY);
+        }
+    }
+
+
+
+
 }
