@@ -219,7 +219,7 @@ public class PlayerView {
             return;
         }
 
-        boolean placedRiver = false; 
+        boolean placedRiver = false;
 
         if (y > 0 && miniMap.getTerrainFromCoordinates(new Coordinates(x, y - 1, 0)).isHasRiver()){
             Image image = new Image(String.valueOf(getClass().getResource("/Textures/Game/Map/Terrain/RiverUpDown.png")));
@@ -498,5 +498,43 @@ public class PlayerView {
 
 
 
+    public void showScienceTip()
+    {
+        //TODO:
+    }
 
+
+
+    public void closeScienceTip()
+    {
+        //TODO:
+    }
+
+
+
+    public void showGoldTip()
+    {
+        //TODO:
+    }
+
+
+
+    public void closeGoldTip()
+    {
+        //TODO:
+    }
+
+
+
+    public void showHappinessTip()
+    {
+        //TODO:
+    }
+
+
+
+    public void closeHappinessTip()
+    {
+        //TODO:
+    }
 }
