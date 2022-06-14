@@ -26,19 +26,22 @@
         <Image url="@../Textures/Menu/ProfileImageOverlay.png" />
     </ImageView>
 
-    <Button layoutX="400" layoutY="155" onMouseClicked="#setRandomImage" id="normalButton" stylesheets="@../CssFiles/ProfileMenu.css" text="random image"/>
+    <Button layoutX="400" layoutY="155" onMouseClicked="#setRandomImage" id="normalButton" stylesheets="@../CssFiles/ProfileMenu.css"
+            text="random image"  onMouseEntered="#playButtonSound"/>
 
     <ImageView layoutX="715" layoutY="75" fitWidth="200" fitHeight="200" fx:id="imagePreview"/>
     <Rectangle layoutX="715" layoutY="75" width="200" height="200"
                fill="transparent" style="-fx-stroke-width: 4; -fx-stroke: #ffdb16; -fx-effect: innershadow(gaussian, #ff6200, 4, 0.2 , 0, 0)" />
-    <Button  layoutX="655" layoutY="155" stylesheets="@../CssFiles/ProfileMenu.css"  id="imageButton" onMouseClicked="#previousImage">
+    <Button  layoutX="655" layoutY="155" stylesheets="@../CssFiles/ProfileMenu.css"  id="imageButton" onMouseClicked="#previousImage"
+             onMouseEntered="#playButtonSound">
         <graphic>
             <ImageView>
                 <Image url="@../Textures/Menu/previousButton.png" />
             </ImageView>
         </graphic>
     </Button>
-    <Button  layoutX="920" layoutY="155" stylesheets="@../CssFiles/ProfileMenu.css"  id="imageButton" onMouseClicked="#nextImage" >
+    <Button  layoutX="920" layoutY="155" stylesheets="@../CssFiles/ProfileMenu.css"  id="imageButton" onMouseClicked="#nextImage"
+             onMouseEntered="#playButtonSound">
         <graphic>
             <ImageView>
                 <Image url="@../Textures/Menu/nextButton.png" />
@@ -46,22 +49,25 @@
         </graphic>
     </Button>
 
-    <Button layoutX="690" layoutY="270" text="save image" id="normalButton" onMouseClicked="#saveImage" stylesheets="@../CssFiles/ProfileMenu.css" />
+    <Button layoutX="690" layoutY="270" text="save image" id="normalButton" onMouseClicked="#saveImage" stylesheets="@../CssFiles/ProfileMenu.css"
+            onMouseEntered="#playButtonSound"/>
     <Button layoutX="690" layoutY="320" text="select image" id="normalButton" onMouseClicked="#openImageSelectionMenu"
-            stylesheets="@../CssFiles/ProfileMenu.css" />
+            stylesheets="@../CssFiles/ProfileMenu.css" onMouseEntered="#playButtonSound" />
 
-    <Button layoutX="980" layoutY="155" onMouseClicked="#setCustomImage" id="normalButton" stylesheets="@../CssFiles/ProfileMenu.css" text="custom image"/>
+    <Button layoutX="980" layoutY="155" onMouseClicked="#setCustomImage" id="normalButton" stylesheets="@../CssFiles/ProfileMenu.css" text="custom image"
+            onMouseEntered="#playButtonSound"/>
 
 
-    <Button layoutX="370" layoutY="650" text="back" id="normalButton" onMouseClicked="#back" stylesheets="@../CssFiles/ProfileMenu.css" />
+    <Button layoutX="370" layoutY="650" text="back" id="normalButton" onMouseClicked="#back" stylesheets="@../CssFiles/ProfileMenu.css"
+            onMouseEntered="#playButtonSound"/>
     <Button layoutX="660" layoutY="650" text="remove account" id="normalButton" onMouseClicked="#getConfirmation"
-            stylesheets="@../CssFiles/ProfileMenu.css" />
+            stylesheets="@../CssFiles/ProfileMenu.css" onMouseEntered="#playButtonSound" />
 
     <Label layoutX="20" layoutY="430" id="menuLabel" stylesheets="@../CssFiles/ProfileMenu.css" fx:id="usernameLabel"/>
     <Label layoutX="20" layoutY="490" id="menuLabel" stylesheets="@../CssFiles/ProfileMenu.css" fx:id="nicknameLabel"/>
     <Label layoutX="20" layoutY="550" id="menuLabel" stylesheets="@../CssFiles/ProfileMenu.css" fx:id="passwordLabel"/>
     <Button layoutX="370" layoutY="490" id="normalButton" text="change" fx:id="changeNicknameButton"
-            onMouseClicked="#changeNickname" stylesheets="@../CssFiles/ProfileMenu.css" />
+            onMouseClicked="#changeNickname" stylesheets="@../CssFiles/ProfileMenu.css" onMouseEntered="#playButtonSound" />
     <Button layoutX="370" layoutY="550" id="normalButton" text="change" fx:id="changePasswordButton"
-            onMouseClicked="#changePassword" stylesheets="@../CssFiles/ProfileMenu.css" />
+            onMouseClicked="#changePassword" stylesheets="@../CssFiles/ProfileMenu.css" onMouseEntered="#playButtonSound" />
 </AnchorPane>

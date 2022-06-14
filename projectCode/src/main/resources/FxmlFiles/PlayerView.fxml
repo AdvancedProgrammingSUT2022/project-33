@@ -23,7 +23,7 @@
 
     <Circle layoutX="80" layoutY="135" radius="84" fill="transparent" onMouseClicked="#openScienceTree" />
     <Rectangle layoutX="108" layoutY="56" width="280" height="62" fill="transparent" onMouseClicked="#openScienceTree" />
-    
+
 
 
 </AnchorPane>

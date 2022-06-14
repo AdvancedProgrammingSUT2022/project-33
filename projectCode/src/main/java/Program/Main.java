@@ -1,6 +1,8 @@
 package Program;
 
 import Program.View.LoginMenuView;
+import Program.View.MainMenuView;
+import Program.View.MenuSoundPlayer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,6 +22,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        MenuSoundPlayer menuSoundPlayer = new MenuSoundPlayer();
         LoginMenuView loginMenuView = new LoginMenuView(stage);
     }
 }

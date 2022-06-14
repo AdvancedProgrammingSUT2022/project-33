@@ -1,5 +1,7 @@
 package Program.Model.Models;
 
+import javafx.scene.layout.CornerRadii;
+
 import java.util.ArrayList;
 
 public class MiniMap extends Map{
@@ -389,5 +391,19 @@ public class MiniMap extends Map{
 
     public Player getOwner() {
         return owner;
+    }
+
+
+
+    public boolean isCoordinatesInFog(Coordinates coordinates)
+    {
+        return !(visibleCoordinates.contains(coordinates) || hiddenCoordinates.contains(coordinates));
+    }
+
+
+
+    public boolean isCoordinatesHidden(Coordinates coordinates)
+    {
+        return hiddenCoordinates.contains(coordinates) && !visibleCoordinates.contains(coordinates);
     }
 }

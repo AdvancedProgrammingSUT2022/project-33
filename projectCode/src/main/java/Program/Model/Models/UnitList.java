@@ -243,4 +243,48 @@ public class UnitList {
 
         return false;
     }
+
+
+
+    public String getNormalUnitNameFromCoordinates(Coordinates coordinates)
+    {
+        for (Worker worker : workers) {
+            if (worker.getCoordinates().equals(coordinates)) {
+                return worker.getGameName();
+            }
+        }
+
+        for (Settler settler : settlers) {
+            if (settler.getCoordinates().equals(coordinates)) {
+                return settler.getGameName();
+            }
+        }
+
+        return null;
+    }
+
+
+
+    public String getMilitaryUnitNameFromCoordinates(Coordinates coordinates)
+    {
+        for (MeleeMilitaryUnit meleeMilitaryUnit : meleeMilitaryUnits) {
+            if (meleeMilitaryUnit.getCoordinates().equals(coordinates)) {
+                return meleeMilitaryUnit.getGameName();
+            }
+        }
+
+        for (RangedMilitaryUnit rangedMilitaryUnit : rangedMilitaryUnits) {
+            if (rangedMilitaryUnit.getCoordinates().equals(coordinates)) {
+                return rangedMilitaryUnit.getGameName();
+            }
+        }
+
+        for (HeavyRangedMilitaryUnits heavyRangedMilitaryUnit : heavyRangedMilitaryUnits) {
+            if (heavyRangedMilitaryUnit.getCoordinates().equals(coordinates)) {
+                return heavyRangedMilitaryUnit.getGameName();
+            }
+        }
+
+        return null;
+    }
 }

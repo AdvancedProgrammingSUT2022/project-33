@@ -243,6 +243,13 @@ public class ProfileMenuView {
         nicknameSaveButton.setId("normalButton");
         nicknameSaveButton.getStylesheets().add(String.valueOf(getClass().getResource("/CssFiles/ProfileMenu.css")));
         root.getChildren().add(nicknameSaveButton);
+
+        nicknameSaveButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                controller.saveNickname(nicknameTextField);
+            }
+        });
     }
 
 

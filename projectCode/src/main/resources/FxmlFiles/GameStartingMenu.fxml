@@ -17,17 +17,17 @@
     <Label layoutX="50" layoutY="100" text="biome type:" stylesheets="@../CssFiles/GameStartingMenu.css"
            onMouseEntered="#showBiomeTip" onMouseExited="#closeBiomeTip"/>
     <ComboBox layoutY="100" layoutX="330" prefWidth="250" prefHeight="40" fx:id="biomeComboBox" promptText="biome type"
-              stylesheets="@../CssFiles/GameStartingMenu.css" onAction="#setBiomeType"/>
+              stylesheets="@../CssFiles/GameStartingMenu.css" onAction="#setBiomeType" onMouseEntered="#playButtonSound"/>
 
     <Label layoutX="700" layoutY="100" text="map size:" stylesheets="@../CssFiles/GameStartingMenu.css"
     onMouseEntered="#showMapSizeTip" onMouseExited="#closeMapSizeTip"/>
     <ComboBox layoutY="100" layoutX="980" prefWidth="250" prefHeight="40" fx:id="mapSizeComboBox" promptText="map size"
-              stylesheets="@../CssFiles/GameStartingMenu.css" onAction="#setMapSizeValue"/>
+              stylesheets="@../CssFiles/GameStartingMenu.css" onAction="#setMapSizeValue" onMouseEntered="#playButtonSound"/>
 
     <Label layoutX="50" layoutY="160" text="number of players:" stylesheets="@../CssFiles/GameStartingMenu.css"
            onMouseEntered="#showNumberOfPlayersTip" onMouseExited="#closeNumberOfPlayersTip"/>
     <ComboBox layoutY="160" layoutX="330" prefWidth="250" prefHeight="40" fx:id="numberOfPlayersComboBox" promptText="number of players"
-              stylesheets="@../CssFiles/GameStartingMenu.css"/>
+              stylesheets="@../CssFiles/GameStartingMenu.css" onMouseEntered="#playButtonSound"/>
 
     <Label layoutX="700" layoutY="160" text="players username" stylesheets="@../CssFiles/GameStartingMenu.css" />
     <TextField layoutY="160" layoutX="980" promptText="enter usernames 1 by 1" stylesheets="@../CssFiles/GameStartingMenu.css"
@@ -36,14 +36,14 @@
     <Label layoutX="50" layoutY="480" text="auto save" stylesheets="@../CssFiles/GameStartingMenu.css"
            onMouseEntered="#showAutoSaveLabelTip" onMouseExited="#closeAutoSaveLabelTip"/>
     <Button layoutX="330" layoutY="480" text="off" stylesheets="@../CssFiles/GameStartingMenu.css" onMouseClicked="#changeSaveState"
-            onMouseEntered="#showAutoSaveButtonTip" onMouseExited="#closeAutoSaveButtonTip"/>
+            onMouseEntered="#showAutoSaveButtonTip" onMouseExited="#closeAutoSaveButtonTip" />
 
     <Label layoutX="700" layoutY="480" text="rounds between each save" stylesheets="@../CssFiles/GameStartingMenu.css" fx:id="autoSaveRoundsLabel"/>
     <ComboBox layoutY="480" layoutX="980" prefWidth="250" prefHeight="40" fx:id="roundsNeededComboBox" promptText="number of players"
               stylesheets="@../CssFiles/GameStartingMenu.css"/>
 
-<Button layoutX="330" layoutY="600" text="start game" onMouseClicked="#startGame" stylesheets="@../CssFiles/GameStartingMenu.css" />
-<Button layoutX="700" layoutY="600" text="back" onMouseClicked="#back" stylesheets="@../CssFiles/GameStartingMenu.css" />
+<Button layoutX="330" layoutY="600" text="start game" onMouseClicked="#startGame" stylesheets="@../CssFiles/GameStartingMenu.css"  onMouseEntered="#playButtonSound"/>
+<Button layoutX="700" layoutY="600" text="back" onMouseClicked="#back" stylesheets="@../CssFiles/GameStartingMenu.css"  onMouseEntered="#playButtonSound"/>
 
 
 

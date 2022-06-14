@@ -6,6 +6,7 @@ import Program.Model.Models.ProfileMenu;
 import Program.Model.Models.User;
 import Program.View.LoginMenuView;
 import Program.View.MainMenuView;
+import Program.View.MenuSoundPlayer;
 import Program.View.ProfileMenuView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -77,6 +78,7 @@ public class ProfileMenuController {
 
     public void setRandomImage()
     {
+        MenuSoundPlayer.playClickSound();
         menu.setRandomImage();
 
         try {
@@ -92,6 +94,7 @@ public class ProfileMenuController {
 
     public void setCustomImage()
     {
+        MenuSoundPlayer.playClickSound();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Image Files", "png", "jpg"));
         fileChooser.setTitle("custom image");
@@ -112,6 +115,7 @@ public class ProfileMenuController {
 
     private void loadPreviewSectionImages()
     {
+        MenuSoundPlayer.playClickSound();
         previewImages = new ArrayList<>();
         File[] imageFiles = new File("src/main/resources/UserImages/DefaultImages/").listFiles();
 
@@ -164,6 +168,7 @@ public class ProfileMenuController {
 
     public void saveImage()
     {
+        MenuSoundPlayer.playClickSound();
         menu.setImage(Objects.requireNonNull(new File("src/main/resources/UserImages/DefaultImages/").listFiles())[imageNumber].getPath());
         profileImageCircle.setFill(new ImagePattern(previewImages.get(imageNumber)));
         LoginMenu.saveUsers();
@@ -173,6 +178,7 @@ public class ProfileMenuController {
 
     public void openImageSelectionMenu(MouseEvent mouseEvent)
     {
+        MenuSoundPlayer.playClickSound();
         view.openImageSelectionMenu();
     }
 
@@ -180,6 +186,7 @@ public class ProfileMenuController {
 
     public void back()
     {
+        MenuSoundPlayer.playClickSound();
         MainMenuView mainMenuView = new MainMenuView(view.getStage(), menu.getUser());
     }
 
@@ -187,6 +194,7 @@ public class ProfileMenuController {
 
     public void getConfirmation()
     {
+        MenuSoundPlayer.playClickSound();
         view.getConfirmation();
     }
 
@@ -206,11 +214,13 @@ public class ProfileMenuController {
     public void setSelectionImage(String path)
     {
         menu.setImage(path);
+
         try {
             profileImageCircle.setFill(new ImagePattern(new Image(new FileInputStream(menu.getProfileImagePath()))));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
         LoginMenu.saveUsers();
         view.closeImageSelection();
         loadPreviewSectionImages();
@@ -218,6 +228,7 @@ public class ProfileMenuController {
 
     public void changeNickname(MouseEvent mouseEvent)
     {
+        MenuSoundPlayer.playClickSound();
         Button button = (Button) mouseEvent.getSource();
         button.setVisible(false);
 
@@ -228,6 +239,7 @@ public class ProfileMenuController {
 
     public void changePassword(MouseEvent mouseEvent)
     {
+        MenuSoundPlayer.playClickSound();
         Button button = (Button) mouseEvent.getSource();
         button.setVisible(false);
 
@@ -238,6 +250,7 @@ public class ProfileMenuController {
 
     public void savePassword(TextField passwordTextField)
     {
+        MenuSoundPlayer.playClickSound();
         String password = passwordTextField.getText();
 
         if (isPasswordFormatInvalid(password)){
@@ -259,6 +272,7 @@ public class ProfileMenuController {
 
     public void saveNickname(TextField nicknameTextField)
     {
+        MenuSoundPlayer.playClickSound();
         String password = nicknameTextField.getText();
 
         if (isNicknameFormatInvalid(password)){
@@ -289,5 +303,11 @@ public class ProfileMenuController {
     private boolean isNicknameFormatInvalid(String nickname)
     {
         return !(MatchingStrings.LoginControllerStrings.NICKNAME.matcher(nickname).matches() && nickname.length() < 15);
+    }
+
+
+
+    public void playButtonSound(MouseEvent mouseEvent) {
+        MenuSoundPlayer.playButtonSound();
     }
 }

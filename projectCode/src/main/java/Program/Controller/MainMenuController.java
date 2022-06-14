@@ -2,10 +2,7 @@ package Program.Controller;
 
 import Program.Model.Models.MainMenu;
 import Program.Model.Models.User;
-import Program.View.GameStartingMenuView;
-import Program.View.LoginMenuView;
-import Program.View.MainMenuView;
-import Program.View.ProfileMenuView;
+import Program.View.*;
 import javafx.application.Platform;
 import javafx.scene.input.MouseEvent;
 
@@ -28,6 +25,7 @@ public class MainMenuController {
 
     public void startNewGame(MouseEvent mouseEvent)
     {
+        MenuSoundPlayer.playClickSound();
         GameStartingMenuView gameStartingMenuView = new GameStartingMenuView(view.getStage(), menu.getUser());
     }
 
@@ -35,6 +33,7 @@ public class MainMenuController {
 
     public void openProfile(MouseEvent mouseEvent)
     {
+        MenuSoundPlayer.playClickSound();
         ProfileMenuView profileMenuView = new ProfileMenuView(view.getStage(), menu.getUser());
     }
 
@@ -42,6 +41,7 @@ public class MainMenuController {
 
     public void logout(MouseEvent mouseEvent)
     {
+        MenuSoundPlayer.playClickSound();
         LoginMenuView loginMenuView = new LoginMenuView(view.getStage());
     }
 
@@ -49,6 +49,14 @@ public class MainMenuController {
 
     public void exit(MouseEvent mouseEvent)
     {
+        MenuSoundPlayer.playClickSound();
         Platform.exit();
+    }
+
+
+
+    public void playButtonSound(MouseEvent mouseEvent)
+    {
+        MenuSoundPlayer.playButtonSound();
     }
 }

@@ -17,12 +17,12 @@
         <Image url="@../Textures/Menu/MainMenuBackground.png" />
     </ImageView>
 
-    <Button text="new game" layoutY="220" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" onMouseClicked="#startNewGame"/>
-    <Button text="load game" layoutY="270" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />
-    <Button text="profile" layoutY="320" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" onMouseClicked="#openProfile"/>
-    <Button text="scoreboard" layoutY="370" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />
-    <Button text="chat room" layoutY="420" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" />
-    <Button text="logout" layoutY="470" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" onMouseClicked="#logout"/>
-    <Button text="exit" layoutY="520" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" onMouseClicked="#exit"/>
+    <Button text="new game" layoutY="220" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" onMouseClicked="#startNewGame" onMouseEntered="#playButtonSound"/>
+    <Button text="load game" layoutY="270" layoutX="515" stylesheets="@../CssFiles/MainMenu.css"  onMouseEntered="#playButtonSound"/>
+    <Button text="profile" layoutY="320" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" onMouseClicked="#openProfile" onMouseEntered="#playButtonSound"/>
+    <Button text="scoreboard" layoutY="370" layoutX="515" stylesheets="@../CssFiles/MainMenu.css"  onMouseEntered="#playButtonSound"/>
+    <Button text="chat room" layoutY="420" layoutX="515" stylesheets="@../CssFiles/MainMenu.css"  onMouseEntered="#playButtonSound"/>
+    <Button text="logout" layoutY="470" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" onMouseClicked="#logout" onMouseEntered="#playButtonSound"/>
+    <Button text="exit" layoutY="520" layoutX="515" stylesheets="@../CssFiles/MainMenu.css" onMouseClicked="#exit" onMouseEntered="#playButtonSound"/>
 
 </AnchorPane>

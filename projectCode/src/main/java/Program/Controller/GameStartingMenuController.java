@@ -8,6 +8,7 @@ import Program.Model.Models.User;
 import Program.View.GameLoaderView;
 import Program.View.GameStartingMenuView;
 import Program.View.MainMenuView;
+import Program.View.MenuSoundPlayer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
@@ -154,6 +155,8 @@ public class GameStartingMenuController {
 
     public void changeSaveState(MouseEvent mouseEvent)
     {
+        MenuSoundPlayer.playClickSound();
+
         Button button = (Button) mouseEvent.getSource();
         isAutoSave = !isAutoSave;
         roundsNeededComboBox.setVisible(isAutoSave);
@@ -171,6 +174,8 @@ public class GameStartingMenuController {
 
     public void startGame()
     {
+        MenuSoundPlayer.playClickSound();
+
         if (numberOfPlayersComboBox.getValue() == null || !numberOfPlayersComboBox.getValue().equals(players.size())){
             usernamesTextField.setText("");
             usernamesTextField.setPromptText("not enough players");
@@ -239,6 +244,7 @@ public class GameStartingMenuController {
 
     public void back()
     {
+        MenuSoundPlayer.playClickSound();
         MainMenuView mainMenuView = new MainMenuView(view.getStage(), user);
     }
 
@@ -433,5 +439,12 @@ public class GameStartingMenuController {
     public void setMapSizeValue(ActionEvent event)
     {
         mapSizeString = mapSizeComboBox.getValue();
+    }
+
+
+
+    public void playButtonSound()
+    {
+        MenuSoundPlayer.playButtonSound();
     }
 }

@@ -18,26 +18,27 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class PlayerView {
-    Stage stage;
-    Scene scene;
-    Group root;
-    MiniMap miniMap;
-    int centerX;
-    int centerY;
-    int lastCenterX;
-    int lastCenterY;
-    Group mapRoot;
-    int tileXLength;
-    int tileYLength;
-    PlayerController controller;
-    boolean isHoldingUp;
-    boolean isHoldingDown;
-    boolean isHoldingRight;
-    boolean isHoldingLeft;
-    MapImages mapImages;
+    private Stage stage;
+    private Scene scene;
+    private Group root;
+    private MiniMap miniMap;
+    private int centerX;
+    private int centerY;
+    private int lastCenterX;
+    private int lastCenterY;
+    private Group mapTerrainRoot;
+    private int tileXLength;
+    private int tileYLength;
+    private PlayerController controller;
+    private boolean isHoldingUp;
+    private boolean isHoldingDown;
+    private boolean isHoldingRight;
+    private boolean isHoldingLeft;
+    private MapImages mapImages;
+    private Group mapBuildings;
+    private Group mapUnitsRoot;
 
 
 
@@ -54,7 +55,7 @@ public class PlayerView {
         loadBackground();
 
         reloadMap();
-        root.getChildren().add(mapRoot);
+        root.getChildren().add(mapTerrainRoot);
 
         loadFront(player);
 
@@ -73,7 +74,9 @@ public class PlayerView {
         lastCenterX = centerX;
         lastCenterY = centerY;
         root = new Group();
-        mapRoot = new Group();
+        mapTerrainRoot = new Group();
+        mapBuildings = new Group();
+        mapUnitsRoot = new Group();
         this.miniMap = player.getMap();
 
         mapImages = new MapImages();
@@ -109,18 +112,35 @@ public class PlayerView {
 
     private void reloadMap()
     {
-        mapRoot.getChildren().clear();
+        mapTerrainRoot.getChildren().clear();
 
         for (int j = getMinY(); j < getMaxY(); j++){
             for (int i = getMinX(); i < getMaxX(); i++){
-                loadTerrain(i, j);
-                loadRiver(i, j);
-                loadProperty(i, j);
-                loadResources(i, j);
+                Coordinates coordinates = new Coordinates(i, j, 0);
+
+                if (!miniMap.isCoordinatesInFog(coordinates)){
+
+                    loadTerrain(i, j);
+                    loadRiver(i, j);
+
+                    if (!miniMap.isCoordinatesHidden(coordinates) && (miniMap.getTileFromCoordinates(coordinates).isHasDefaultCity() ||
+                            miniMap.getTileFromCoordinates(coordinates).isHasPlayerCity())){
+
+                    }
+                    else {
+                        loadProperty(i, j);
+                        loadResources(i, j);
+                    }
+
+                    if (miniMap.isCoordinatesHidden(coordinates)){
+                        addHiddenTileShadow(i, j);
+                    }
+                    else{
+                        loadUnits(i, j);
+                    }
+                }
             }
         }
-
-        //loadRivers();
     }
 
 
@@ -131,8 +151,14 @@ public class PlayerView {
                 "/Textures/Game/Map/Terrain/" + miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getType() + ".png")));
         loadImageIntoCoordinates(image, x, y);*/
 
-        loadImageIntoCoordinates(mapImages.getImageByName(miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getType()), x, y);
+        loadImageIntoCoordinates(mapImages.getTerrainImageByName(miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getType()), x, y);
+    }
 
+
+
+    private void addHiddenTileShadow(int x, int y)
+    {
+        loadImageIntoCoordinates(mapImages.getTerrainImageByName("HiddenTileShadow") , x, y);
     }
 
 
@@ -299,7 +325,7 @@ public class PlayerView {
                     "/Textures/Game/Map/Terrain/" + miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getProperty().getType() + ".png")));
             loadImageIntoCoordinates(image, x, y);*/
 
-            loadImageIntoCoordinates(mapImages.getImageByName(miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getProperty().getType()), x, y);
+            loadImageIntoCoordinates(mapImages.getTerrainImageByName(miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getProperty().getType()), x, y);
         }
     }
 
@@ -312,7 +338,25 @@ public class PlayerView {
                     "/Textures/Game/Map/Terrain/" + miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getResourceTypeString() + ".png")));
             loadImageIntoCoordinates(image, x, y);*/
 
-            loadImageIntoCoordinates(mapImages.getImageByName(miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getResourceTypeString()), x, y);
+            loadImageIntoCoordinates(mapImages.getTerrainImageByName(miniMap.getTerrainFromCoordinates(new Coordinates(x, y, 0)).getResourceTypeString()), x, y);
+        }
+    }
+
+
+
+    private void loadUnits(int x, int y)
+    {
+        if (!miniMap.getUnits().isUnitInCoordinates(new Coordinates(x, y, 0))){
+            return;
+        }
+
+        if (miniMap.getUnits().getMilitaryUnitNameFromCoordinates(new Coordinates(x, y, 0)) != null){
+            loadImageIntoCoordinates(mapImages.getUnitImageByName(miniMap.getUnits().getMilitaryUnitNameFromCoordinates(new Coordinates(x, y, 0))), x, y);
+            //TODO:
+        }
+
+        if (miniMap.getUnits().getNormalUnitNameFromCoordinates(new Coordinates(x, y, 0)) != null){
+            loadImageIntoCoordinates(mapImages.getUnitImageByName(miniMap.getUnits().getNormalUnitNameFromCoordinates(new Coordinates(x, y, 0))), x, y);
         }
     }
 
@@ -328,7 +372,7 @@ public class PlayerView {
             imageView.setY(imageView.getY() - (image.getHeight() - tileYLength));
         }
 
-        mapRoot.getChildren().add(imageView);
+        mapTerrainRoot.getChildren().add(imageView);
     }
 
 
@@ -342,7 +386,7 @@ public class PlayerView {
             imageView.setY(imageView.getY() - (image.getHeight() - tileYLength));
         }
 
-        mapRoot.getChildren().add(imageView);
+        mapTerrainRoot.getChildren().add(imageView);
     }
 
 
@@ -490,9 +534,9 @@ public class PlayerView {
             reloadMap();
         }
 
-        for (int i = 0; i < mapRoot.getChildren().size(); i++){
-            mapRoot.getChildren().get(i).setLayoutX(mapRoot.getChildren().get(i).getLayoutX() + deltaX);
-            mapRoot.getChildren().get(i).setLayoutY(mapRoot.getChildren().get(i).getLayoutY() + deltaY);
+        for (int i = 0; i < mapTerrainRoot.getChildren().size(); i++){
+            mapTerrainRoot.getChildren().get(i).setLayoutX(mapTerrainRoot.getChildren().get(i).getLayoutX() + deltaX);
+            mapTerrainRoot.getChildren().get(i).setLayoutY(mapTerrainRoot.getChildren().get(i).getLayoutY() + deltaY);
         }
     }
 
