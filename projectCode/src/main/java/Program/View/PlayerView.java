@@ -37,8 +37,9 @@ public class PlayerView {
     private boolean isHoldingRight;
     private boolean isHoldingLeft;
     private MapImages mapImages;
-    private Group mapBuildings;
+    private Group mapBuildingsRoot;
     private Group mapUnitsRoot;
+    private Group mapIconsRoot;
 
 
 
@@ -75,8 +76,9 @@ public class PlayerView {
         lastCenterY = centerY;
         root = new Group();
         mapTerrainRoot = new Group();
-        mapBuildings = new Group();
+        mapBuildingsRoot = new Group();
         mapUnitsRoot = new Group();
+        mapIconsRoot = new Group();
         this.miniMap = player.getMap();
 
         mapImages = new MapImages();
@@ -125,7 +127,7 @@ public class PlayerView {
 
                     if (!miniMap.isCoordinatesHidden(coordinates) && (miniMap.getTileFromCoordinates(coordinates).isHasDefaultCity() ||
                             miniMap.getTileFromCoordinates(coordinates).isHasPlayerCity())){
-
+                        //TODO: loading city and city icon
                     }
                     else {
                         loadProperty(i, j);
@@ -137,6 +139,7 @@ public class PlayerView {
                     }
                     else{
                         loadUnits(i, j);
+                        //TODO: loading units and icons
                     }
                 }
             }
@@ -581,4 +584,26 @@ public class PlayerView {
     {
         //TODO:
     }
+
+
+
+    private void loadUnitImageIntoCoordinates(String unitName, int x, int y)
+    {
+        Image unitImage = mapImages.getUnitImageByName(unitName);
+        Image unitIconImage = mapImages.getIconImageByName(unitName);
+
+        ImageView unit = new ImageView(unitImage);
+        unit.setX(x * tileXLength - centerX + 640);
+        unit.setY(y * tileYLength + (x % 2 ) * (tileYLength / 2) - centerY + 360);
+
+        ImageView unitIcon = new ImageView(unitIconImage);
+        unitIcon.setX(x * tileXLength - centerX + 640);
+        unitIcon.setY(y * tileYLength + (x % 2 ) * (tileYLength / 2) - centerY + 360);//TODO: setting correct values
+
+        mapUnitsRoot.getChildren().add(unit); //TODO: making it so units be in the same level as map elements
+        mapIconsRoot.getChildren().add(unitIcon);
+
+        //TODO: adding functions to manage units
+    }
+
 }

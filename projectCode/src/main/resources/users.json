@@ -3,7 +3,14 @@
     "nickname": "yahya",
     "username": "yahya1234",
     "password": "yahya1234",
-    "imagePath": "src\\main\\resources\\UserImages\\DefaultImages\\Attila.png",
+    "imagePath": "src\\main\\resources\\UserImages\\DefaultImages\\Ahmad al-Mansur.png",
+    "hasCustomImage": false
+  },
+  {
+    "nickname": "kian",
+    "username": "kian",
+    "password": "kian1234",
+    "imagePath": "src\\main\\resources\\UserImages\\DefaultImages\\Boudicca.png",
     "hasCustomImage": false
   }
 ]
